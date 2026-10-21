@@ -4,37 +4,30 @@ import {
   isAskDisplayResponse,
   type AskDisplayResponse,
 } from "@/lib/ask-display";
-
-function lastUserText(messages: readonly ThreadMessage[]): string {
-  for (let i = messages.length - 1; i >= 0; i -= 1) {
-    const message = messages[i];
-    if (message?.role !== "user") continue;
-    const parts = message.content;
-    const text = parts
-      .filter((part): part is { type: "text"; text: string } => part.type === "text")
-      .map((part) => part.text)
-      .join("\n")
-      .trim();
-    if (text) return text;
-  }
-  return "";
-}
+import { buildAskHistoryFromThreadMessages } from "@/lib/chat-history";
+import { HE_API_ERRORS } from "@/lib/user-facing-he";
 
 /**
  * LocalRuntime adapter: browser → POST /api/ask → same ask() as the CLI.
+ * Sends prior user/assistant turns from the active branch (not the new question).
  * No streaming. Structured RAG payload goes in metadata.custom (not answer text).
  */
 export const ragChatModelAdapter: ChatModelAdapter = {
   async run({ messages, abortSignal }) {
-    const question = lastUserText(messages);
+    const { question, history } = buildAskHistoryFromThreadMessages(messages);
     if (!question) {
-      throw new Error("לא נמצאה שאלת משתמש לשליחה.");
+      throw new Error(HE_API_ERRORS.missingUserQuestion);
+    }
+
+    const body: { question: string; history?: typeof history } = { question };
+    if (history.length > 0) {
+      body.history = history;
     }
 
     const response = await fetch("/api/ask", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ question }),
+      body: JSON.stringify(body),
       signal: abortSignal,
     });
 
@@ -43,7 +36,7 @@ export const ragChatModelAdapter: ChatModelAdapter = {
     }
 
     if (!response.ok) {
-      let message = "אירעה שגיאת מערכת בעת יצירת התשובה. נסו שוב.";
+      let message: string = HE_API_ERRORS.internalError;
       try {
         const payload = (await response.json()) as { error?: string };
         if (typeof payload.error === "string" && payload.error.trim()) {
@@ -60,7 +53,7 @@ export const ragChatModelAdapter: ChatModelAdapter = {
       throw new DOMException("Request aborted", "AbortError");
     }
     if (!isAskDisplayResponse(data)) {
-      throw new Error("התקבל פלט לא תקין מהשרת.");
+      throw new Error(HE_API_ERRORS.invalidServerPayload);
     }
 
     const display: AskDisplayResponse = data;
@@ -75,3 +68,8 @@ export const ragChatModelAdapter: ChatModelAdapter = {
     };
   },
 };
+
+// Re-export for tests that previously imported last-user helpers via adapter file.
+export function lastUserText(messages: readonly ThreadMessage[]): string {
+  return buildAskHistoryFromThreadMessages(messages).question;
+}

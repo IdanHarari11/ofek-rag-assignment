@@ -1,57 +1,59 @@
-# רשימת דרישות מול מסמך המטלה
+# Requirements vs assignment PDF
 
-מקור: `מבחן_בית_RAG.pdf` (2 עמודים).  
-עדכון שלב 8 (2026-10-21): רינדור חזותי ל־PNG + חילוץ PDFKit. פירוט: `docs/SUBMISSION-VERIFY.md`.
+Source: `מבחן_בית_RAG.pdf` (2 pages).  
+Stage 8 update (2026-10-21): visual render to PNG + PDFKit text extract. Details: `docs/SUBMISSION-VERIFY.md`.
 
-## קריאות ה־PDF
+## PDF reading status
 
-| אזור | מצב |
+| Area | Status |
 | --- | --- |
-| עמוד 1 — רקע, משימה, «עדיף לא מצאתי» | **קריא במלואו** (חזותי + PDFKit) |
-| עמוד 1 — טבלת «מה מצורף» | **תוכן משוחזר**: zip עם `corpus/` (33 מסמכים) ו־`dem_set/`/`dem_questions.json` (15 שאלות). חילוץ אוטומטי של שמות עם `_` משובש — לא חוסם הבנה |
-| עמוד 1 — דרישת חובה 1 (Ingestion) | **קריאה מלאה**: MD/Word/PDF כולל טבלאות |
-| עמוד 2 — דרישות 2–7, הגשה, כללים, ראיון | **קריא במלואו** |
+| Page 1 — background, task, “prefer I couldn’t find” | **Fully read** (visual + PDFKit) |
+| Page 1 — “what’s included” table | **Semantically recovered**: zip with `corpus/` (33 docs) and `dem_set/`/`dem_questions.json` (15 questions). Auto-extract of `_` names garbled — does not block understanding |
+| Page 1 — mandatory req 1 (Ingestion) | **Full read**: MD/Word/PDF including tables |
+| Page 2 — reqs 2–7, submission, rules, interview | **Fully read** |
 
-בדיקת הדרישות נחשבת **מלאה** לדרישות החובה וההגשה. לא אומצו טענות מתיאורי-Vision סותרים שאינם תואמים ל־PDFKit.
+Requirement check is **complete** for mandatory and submission items. Vision-only contradictory claims (e.g. 32 questions) were **not** adopted when they disagreed with PDFKit and on-disk files.
 
-## דרישות חובה
+## Mandatory requirements
 
-| # | דרישה (מנוסחת מה־PDF) | מימוש בפרויקט | הדגמה (פקודה / קובץ) | פער |
+| # | Requirement (from PDF) | Implementation | Demo (command / file) | Gap |
 | --- | --- | --- | --- | --- |
-| 1 | **Ingestion** — Markdown / Word / PDF כולל טבלאות | `src/ingestion/` | `pnpm ingest`; `pnpm test:ingestion` | אזהרות מבנה PDF |
-| 2 | **Retrieval** — שליפה מנומקת (vector/hybrid/rerank וכו׳) | Hybrid כברירת מחדל אחרי ניסוי | `pnpm eval:hybrid` | אין rerank |
-| 3 | **Generation** — עברית ממקטעים שנשלפו בלבד | `ask()` | `pnpm ask`; stage5.3 | D05/D11 — ראו כשלים |
-| 4 | **ציטוט מקורות** — מסמך (+ סעיף רצוי) | `sources` + UI | `/api/ask`, HomeDemo | אין URL לקובץ גולמי |
-| 5 | **ידיעת גבולות** — לא להמציא | `insufficient_evidence` | D04 / X02 | השמטת PIR (D11) = שלמות |
-| 6 | **Evaluation** — שליפה ומענה בנפרד | `eval:*` | `eval_results/` | סקירת מענה ידנית |
-| 7 | **ממשק** — API או צ׳אט + מקורות | API + chat | `pnpm dev` | אין streaming/זיכרון |
+| 1 | **Ingestion** — Markdown / Word / PDF including tables | `src/ingestion/` | `pnpm ingest`; `pnpm test:ingestion` | PDF structure warnings |
+| 2 | **Retrieval** — justified retrieval (vector/hybrid/rerank etc.) | Hybrid default after experiment | `pnpm eval:hybrid` | No rerank |
+| 3 | **Generation** — Hebrew from retrieved chunks only | `ask()` | `pnpm ask`; stage5.3 / stage4 active | D05/D11 — see failures |
+| 4 | **Source citation** — document (+ section desired) | `sources` + UI | `/api/ask`, HomeDemo | No URL to raw corpus file |
+| 5 | **Know limits** — do not invent | `insufficient_evidence` | D04 / X02 | PIR omission (D11) = completeness |
+| 6 | **Evaluation** — retrieval and answer separately | `eval:*` | `eval_results/` | Answer review manual / AI-assisted |
+| 7 | **Interface** — API or chat + sources | API + chat + bounded history | `pnpm dev` | No streaming |
 
-## מה מגישים (מה־PDF)
+## Submission package (from PDF)
 
-| דרישת הגשה | מימוש | הדגמה | פער |
+| Submission item | Implementation | Demo | Gap |
 | --- | --- | --- | --- |
-| ריפו GitHub (ציבורי או עם הרשאה) + קוד שרץ + הוראות | README, INSTALL, `prepare:rag` | אימות מאפס — SUBMISSION-VERIFY | Push מרוחק — לא בוצע בשלב 8 |
-| מפתחות API מתועדים | `.env.example` | אותו קובץ | — |
-| תוצאות eval מפורטות לכל שאלה | `eval_results/ask-eval-stage5.3.*` וכו׳ | EVALUATION-SUMMARY | — |
-| README: חלוקה, embedding, שליפה, אין-תשובה, עלות/זמן | README | README | — |
-| ניתוח כשלים | `FAILURES-AND-NEXT-WEEK.md` | אותו קובץ | — |
-| «עם עוד שבוע» | אותו מסמך | אותו קובץ | — |
+| GitHub repo (public or granted) + runnable code + instructions | README, INSTALL, `prepare:rag` | Zero-copy verify — SUBMISSION-VERIFY | Remote push — not done in stage 8 |
+| Documented API keys | `.env.example` | same file | — |
+| Detailed eval per question | `eval_results/ask-eval-stage5.3.*` etc. | EVALUATION-SUMMARY | — |
+| README: split, embedding, retrieval, no-answer, cost/time | README | README | — |
+| Failure analysis | `FAILURES-AND-NEXT-WEEK.md` | same | — |
+| “With one more week” | same doc | same | — |
 
-## כללים / הקשר
+## Rules / context
 
-| נושא | התייחסות |
+| Topic | Coverage |
 | --- | --- |
-| עדיף «לא מצאתי» | `insufficient_evidence` |
-| סט שאלות נוסף בראיון | מתועד — אין הוכחת הכללה |
-| כלי AI + תיעוד ב־README | מתועד |
-| ציון לא רק דיוק | ממדי סקירה מופרדים |
+| Prefer “couldn’t find” | `insufficient_evidence` |
+| Extra interview questions | Documented — no generalization proof |
+| AI tools + README note | Documented; scope expanded beyond base PDF (conversation, tracing, applicability, review experiment, Stage 6 holdout) |
+| Grade not accuracy-only | Separate review dimensions |
 
-## דרישות חסרות?
+## Missing mandatory requirement?
 
-**לא נמצאה דרישת חובה חסרה** מה־PDF שלא מכוסה בטבלאות למעלה.
+**None found** in the PDF that is not covered in the tables above.
 
-## פערים פתוחים (איכות / תהליך)
+## Open gaps (quality / process)
 
-1. D05, D11, תקציב הקשר  
-2. אין זיכרון שיחה / streaming  
-3. העברה ל־GitHub (remote + Push) — מחוץ להיקף שלב 8  
+1. D05, D11, context budget  
+2. No streaming; history capped (6 turns / 6000 chars) — dropped turns invisible to the model  
+3. GitHub remote + push — out of scope for stage 8  
+4. **Not production-ready** — no claim that answers are verified ground truth  
+5. Stage 7 English prompts may change `promptBundleId` and slightly shift behavior — regression on frozen Stage 6 set, not new holdout

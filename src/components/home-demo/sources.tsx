@@ -78,10 +78,15 @@ export function Sources(): ReactNode {
                         className="border-foreground/10 bg-muted/40 mt-1 rounded-control border px-3 py-2 text-[12px] leading-relaxed"
                         dir="auto"
                       >
-                        <p className="text-muted-foreground mb-1 font-mono text-[11px]">
+                        <p
+                          className="text-muted-foreground mb-1 font-mono text-[11px]"
+                          dir="ltr"
+                        >
                           {source.fileName}
-                          {section ? ` · ${section}` : ""}
-                          {pages ? ` · ${pages}` : ""}
+                          <span dir="rtl">
+                            {section ? ` · ${section}` : ""}
+                            {pages ? ` · ${pages}` : ""}
+                          </span>
                         </p>
                         <p className="whitespace-pre-wrap wrap-break-word">
                           {source.text || "(אין טקסט קטע זמין)"}

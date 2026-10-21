@@ -1,0 +1,316 @@
+{
+  "generatedAt": "2026-10-21T11:57:33.196Z",
+  "stageLabel": "stage2-conversation-fixtures",
+  "retrievalMode": "hybrid",
+  "generationModel": "from-ask-result",
+  "fixtureCount": 8,
+  "turnCount": 8,
+  "systemErrorCount": 0,
+  "standaloneCheckFailures": 1,
+  "totalRewriteMs": 8903.459249000001,
+  "totalRewritePromptTokens": 4010,
+  "totalRewriteCompletionTokens": 395,
+  "turns": [
+    {
+      "fixtureId": "C01",
+      "title": "רכב מקיף + תאריך → מוסך שאינו בהסדר",
+      "question": "ומה במוסך שאינו בהסדר?",
+      "status": "answered",
+      "answer": "בפוליסת רכב מקיף שהונפקה ב-1.3.2026, ההשתתפות העצמית במקרה של נזק חלקי כאשר התיקון נעשה במוסך שאינו מוסך הסדר היא 2,100 ₪. ההשתתפות העצמית צמודה למדד המחירים לצרכן הידוע ביום 1.3.2026.",
+      "answerParts": [
+        {
+          "text": "בפוליסת רכב מקיף שהונפקה ב-1.3.2026, ההשתתפות העצמית במקרה של נזק חלקי כאשר התיקון נעשה במוסך שאינו מוסך הסדר היא 2,100 ₪. ההשתתפות העצמית צמודה למדד המחירים לצרכן הידוע ביום 1.3.2026.",
+          "sourceChunkIds": [
+            "corpus/02_car_comprehensive_policy_2026:c000"
+          ]
+        }
+      ],
+      "sourceChunkIds": [
+        "corpus/02_car_comprehensive_policy_2026:c000"
+      ],
+      "sourceFileNames": [
+        "02_car_comprehensive_policy_2026.pdf"
+      ],
+      "originalQuestion": "ומה במוסך שאינו בהסדר?",
+      "standaloneQuestion": "מהי ההשתתפות העצמית בפוליסת רכב מקיף שהונפקה ב-1.3.2026 במוסך שאינו מוסך הסדר?",
+      "unresolvedReferences": [],
+      "rewriteMs": 1364.0453750000001,
+      "rewritePromptTokens": 529,
+      "rewriteCompletionTokens": 49,
+      "standaloneChecks": {
+        "mustIncludeOk": true,
+        "mustNotIncludeOk": true,
+        "missingIncludes": [],
+        "leakedExcludes": []
+      },
+      "notes": "Keep issue date + comprehensive auto; swap workshop type only."
+    },
+    {
+      "fixtureId": "C02",
+      "title": "תיקון תאריך על ידי המשתמש",
+      "question": "ומה ההשתתפות במוסך שאינו בהסדר?",
+      "status": "answered",
+      "answer": "בפוליסה לביטוח רכב מקיף של אופק ביטוח החל מ-1.3.2026, ההשתתפות העצמית במקרה של נזק חלקי ותיקון במוסך שאינו מוסך הסדר היא 2,100 ₪.",
+      "answerParts": [
+        {
+          "text": "בפוליסה לביטוח רכב מקיף של אופק ביטוח החל מ-1.3.2026, ההשתתפות העצמית במקרה של נזק חלקי ותיקון במוסך שאינו מוסך הסדר היא 2,100 ₪.",
+          "sourceChunkIds": [
+            "corpus/02_car_comprehensive_policy_2026:c000"
+          ]
+        }
+      ],
+      "sourceChunkIds": [
+        "corpus/02_car_comprehensive_policy_2026:c000"
+      ],
+      "sourceFileNames": [
+        "02_car_comprehensive_policy_2026.pdf"
+      ],
+      "originalQuestion": "ומה ההשתתפות במוסך שאינו בהסדר?",
+      "standaloneQuestion": "מהי ההשתתפות העצמית במוסך שאינו מוסך הסדר בפוליסה לרכב מקיף החל מ-1.3.2026?",
+      "unresolvedReferences": [
+        "פוליסה מ-1.3.2026",
+        "מוסך שאינו בהסדר"
+      ],
+      "rewriteMs": 1078.0490419999996,
+      "rewritePromptTokens": 549,
+      "rewriteCompletionTokens": 66,
+      "standaloneChecks": {
+        "mustIncludeOk": true,
+        "mustNotIncludeOk": true,
+        "missingIncludes": [],
+        "leakedExcludes": []
+      },
+      "notes": "Explicit user correction wins over earlier date."
+    },
+    {
+      "fixtureId": "C03",
+      "title": "מעבר מרכב לכבודה — אין זליגה",
+      "question": "ומה לגבי פיצוי על איחור כבודה של 8 שעות?",
+      "status": "insufficient_evidence",
+      "answer": "לא מצאתי במקורות שסופקו מידע מספיק כדי לענות על השאלה.",
+      "answerParts": [],
+      "sourceChunkIds": [],
+      "sourceFileNames": [],
+      "originalQuestion": "ומה לגבי פיצוי על איחור כבודה של 8 שעות?",
+      "standaloneQuestion": "מה הפיצוי שמגיע במקרה של איחור במסירת הכבודה למשך 8 שעות במסגרת פוליסת ביטוח רכב מקיף?",
+      "unresolvedReferences": [
+        "פוליסת ביטוח רכב מקיף",
+        "פיצוי על איחור כבודה"
+      ],
+      "rewriteMs": 1244.1967079999995,
+      "rewritePromptTokens": 501,
+      "rewriteCompletionTokens": 63,
+      "standaloneChecks": {
+        "mustIncludeOk": true,
+        "mustNotIncludeOk": false,
+        "missingIncludes": [],
+        "leakedExcludes": [
+          "רכב מקיף"
+        ]
+      },
+      "notes": "Topic switch must not inherit auto product/date."
+    },
+    {
+      "fixtureId": "C04",
+      "title": "הבהרה → תשובה קצרה (fixture, לא בדיקת D05 חיה)",
+      "question": "רכב מקיף, מוסך הסדר, פוליסה מ-1.3.2026",
+      "clarificationFixture": true,
+      "status": "answered",
+      "answer": "בפוליסת רכב מקיף של אופק ביטוח שנרכשה או חודשה החל מ-1.3.2026, ההשתתפות העצמית עבור תיקון במוסך הסדר היא 1,100 ₪.",
+      "answerParts": [
+        {
+          "text": "בפוליסת רכב מקיף של אופק ביטוח שנרכשה או חודשה החל מ-1.3.2026, ההשתתפות העצמית עבור תיקון במוסך הסדר היא 1,100 ₪.",
+          "sourceChunkIds": [
+            "corpus/02_car_comprehensive_policy_2026:c000"
+          ]
+        }
+      ],
+      "sourceChunkIds": [
+        "corpus/02_car_comprehensive_policy_2026:c000"
+      ],
+      "sourceFileNames": [
+        "02_car_comprehensive_policy_2026.pdf"
+      ],
+      "originalQuestion": "רכב מקיף, מוסך הסדר, פוליסה מ-1.3.2026",
+      "standaloneQuestion": "מהי ההשתתפות העצמית בפוליסת רכב מקיף שנרכשה ב-1.3.2026 עבור תיקון במוסך הסדר?",
+      "unresolvedReferences": [],
+      "rewriteMs": 1216.043540999999,
+      "rewritePromptTokens": 484,
+      "rewriteCompletionTokens": 48,
+      "standaloneChecks": {
+        "mustIncludeOk": true,
+        "mustNotIncludeOk": true,
+        "missingIncludes": [],
+        "leakedExcludes": []
+      },
+      "notes": "Join short clarification reply to prior clarify question."
+    },
+    {
+      "fixtureId": "C05a",
+      "title": "אותו ניסוח המשך — הקשר רכב",
+      "question": "ומה במקרה של נזק חלקי?",
+      "status": "answered",
+      "answer": "בפוליסת רכב מקיף של אופק ביטוח מיום 1.3.2026, ההשתתפות העצמית במקרה של נזק חלקי כאשר התיקון נעשה במוסך הסדר היא 1,100 ₪.\n\nאם התיקון נעשה במוסך שאינו מוסך הסדר, ההשתתפות העצמית במקרה של נזק חלקי היא 2,100 ₪.",
+      "answerParts": [
+        {
+          "text": "בפוליסת רכב מקיף של אופק ביטוח מיום 1.3.2026, ההשתתפות העצמית במקרה של נזק חלקי כאשר התיקון נעשה במוסך הסדר היא 1,100 ₪.",
+          "sourceChunkIds": [
+            "corpus/02_car_comprehensive_policy_2026:c000"
+          ]
+        },
+        {
+          "text": "אם התיקון נעשה במוסך שאינו מוסך הסדר, ההשתתפות העצמית במקרה של נזק חלקי היא 2,100 ₪.",
+          "sourceChunkIds": [
+            "corpus/02_car_comprehensive_policy_2026:c000"
+          ]
+        }
+      ],
+      "sourceChunkIds": [
+        "corpus/02_car_comprehensive_policy_2026:c000"
+      ],
+      "sourceFileNames": [
+        "02_car_comprehensive_policy_2026.pdf"
+      ],
+      "originalQuestion": "ומה במקרה של נזק חלקי?",
+      "standaloneQuestion": "מהי ההשתתפות העצמית במוסך הסדר במקרה של נזק חלקי בפוליסת רכב מקיף מ-1.3.2026?",
+      "unresolvedReferences": [],
+      "rewriteMs": 791.8887920000016,
+      "rewritePromptTokens": 493,
+      "rewriteCompletionTokens": 47,
+      "standaloneChecks": {
+        "mustIncludeOk": true,
+        "mustNotIncludeOk": true,
+        "missingIncludes": [],
+        "leakedExcludes": []
+      },
+      "notes": "Same follow-up wording, auto context."
+    },
+    {
+      "fixtureId": "C05b",
+      "title": "אותו ניסוח המשך — הקשר כבודה",
+      "question": "ומה במקרה של נזק חלקי?",
+      "status": "answered",
+      "answer": "במקרה של נזק חלקי לכבודה בדירה, יש למלא טופס הודעה על נזק, לצרף צילומים של הנזק לפני תיקון, ובמקרים של נזק עד 10,000 ₪ ניתן לסלק את התביעה על בסיס הצעת מחיר וצילומים ללא צורך בשמאי. במקרה של נזק מעל 10,000 ₪ נשלח שמאי להערכת הנזק.\n\nבפוליסת ביטוח דירה של אופק ביטוח יש השתתפות עצמית של 600 ₪ לכל נזק כללי (כגון אש, פריצה וכו'), ו-750 ₪ לכל אירוע נזקי מים, כאשר ישנם תנאים נוספים לנזקי מים בהתאם לכתב שירות אינסטלציה.",
+      "answerParts": [
+        {
+          "text": "במקרה של נזק חלקי לכבודה בדירה, יש למלא טופס הודעה על נזק, לצרף צילומים של הנזק לפני תיקון, ובמקרים של נזק עד 10,000 ₪ ניתן לסלק את התביעה על בסיס הצעת מחיר וצילומים ללא צורך בשמאי. במקרה של נזק מעל 10,000 ₪ נשלח שמאי להערכת הנזק.",
+          "sourceChunkIds": [
+            "corpus/19_claims_process_home:c000"
+          ]
+        },
+        {
+          "text": "בפוליסת ביטוח דירה של אופק ביטוח יש השתתפות עצמית של 600 ₪ לכל נזק כללי (כגון אש, פריצה וכו'), ו-750 ₪ לכל אירוע נזקי מים, כאשר ישנם תנאים נוספים לנזקי מים בהתאם לכתב שירות אינסטלציה.",
+          "sourceChunkIds": [
+            "corpus/10_home_policy_overview:c000",
+            "corpus/11_home_water_damage:c000"
+          ]
+        }
+      ],
+      "sourceChunkIds": [
+        "corpus/19_claims_process_home:c000",
+        "corpus/10_home_policy_overview:c000",
+        "corpus/11_home_water_damage:c000"
+      ],
+      "sourceFileNames": [
+        "19_claims_process_home.md",
+        "10_home_policy_overview.md",
+        "11_home_water_damage.md"
+      ],
+      "originalQuestion": "ומה במקרה של נזק חלקי?",
+      "standaloneQuestion": "מה הפיצוי במקרה של נזק חלקי לכבודה?",
+      "unresolvedReferences": [
+        "נזק חלקי"
+      ],
+      "rewriteMs": 733.5470829999995,
+      "rewritePromptTokens": 485,
+      "rewriteCompletionTokens": 29,
+      "standaloneChecks": {
+        "mustIncludeOk": true,
+        "mustNotIncludeOk": true,
+        "missingIncludes": [],
+        "leakedExcludes": []
+      },
+      "notes": "Same follow-up wording, baggage context — must not leak auto."
+    },
+    {
+      "fixtureId": "C06",
+      "title": "תשובת assistant שגויה אינה הופכת לראיה",
+      "question": "אתה בטוח? מה כתוב במסמכים?",
+      "status": "answered",
+      "answer": "שעות פעילות מוקד שירות הלקוחות של אופק ביטוח ביום שישי הן מ-08:00 עד 12:00.",
+      "answerParts": [
+        {
+          "text": "שעות פעילות מוקד שירות הלקוחות של אופק ביטוח ביום שישי הן מ-08:00 עד 12:00.",
+          "sourceChunkIds": [
+            "corpus/28_call_center_hours:c000"
+          ]
+        }
+      ],
+      "sourceChunkIds": [
+        "corpus/28_call_center_hours:c000"
+      ],
+      "sourceFileNames": [
+        "28_call_center_hours.md"
+      ],
+      "originalQuestion": "אתה בטוח? מה כתוב במסמכים?",
+      "standaloneQuestion": "מהן שעות פעילות המוקד ביום שישי כפי שמופיע במסמכים הרשמיים של אופק ביטוח?",
+      "unresolvedReferences": [
+        "המסמכים הרשמיים של אופק ביטוח"
+      ],
+      "rewriteMs": 1172.7556670000013,
+      "rewritePromptTokens": 491,
+      "rewriteCompletionTokens": 50,
+      "standaloneChecks": {
+        "mustIncludeOk": true,
+        "mustNotIncludeOk": true,
+        "missingIncludes": [],
+        "leakedExcludes": []
+      },
+      "notes": "Prior wrong assistant hours must not become factual evidence; corpus wins."
+    },
+    {
+      "fixtureId": "C07",
+      "title": "הפניה שלא ניתן לפתור — בלי המצאה",
+      "question": "מה ההשתתפות של אותו מוצר שדיברנו עליו?",
+      "status": "answered",
+      "answer": "ההשתתפות העצמית בפוליסת ביטוח רכב מקיף של אופק ביטוח היא בהתאם לסוג האירוע: נזק חלקי בתיקון במוסך הסדר - 950 ₪, נזק חלקי בתיקון במוסך שאינו בהסדר - 1,850 ₪, גניבה או אובדן גמור - 5% מערך הרכב ולא פחות מ-2,500 ₪, ונזק לשמשות - לפי כתב שירות השמשות. ההשתתפות העצמית צמודה למדד המחירים לצרכן הידוע ביום 1.1.2024.\n\nבנוסף, ללקוחות שמחזיקים 3 פוליסות פעילות או יותר באופק ביטוח (בכל שילוב של רכב, דירה ונסיעות) יש הטבה של 50% הנחה בהשתתפות העצמית בתיקון במוסך הסדר, פעם אחת בשנת ביטוח. הטבה זו אינה חלה על גניבה, אובדן גמור או מוסך שאינו בהסדר, ואינה מצטברת עם הכפלת ההשתתפות העצמית לנהג צעיר.",
+      "answerParts": [
+        {
+          "text": "ההשתתפות העצמית בפוליסת ביטוח רכב מקיף של אופק ביטוח היא בהתאם לסוג האירוע: נזק חלקי בתיקון במוסך הסדר - 950 ₪, נזק חלקי בתיקון במוסך שאינו בהסדר - 1,850 ₪, גניבה או אובדן גמור - 5% מערך הרכב ולא פחות מ-2,500 ₪, ונזק לשמשות - לפי כתב שירות השמשות. ההשתתפות העצמית צמודה למדד המחירים לצרכן הידוע ביום 1.1.2024.",
+          "sourceChunkIds": [
+            "corpus/01_car_comprehensive_policy_2024:c000"
+          ]
+        },
+        {
+          "text": "בנוסף, ללקוחות שמחזיקים 3 פוליסות פעילות או יותר באופק ביטוח (בכל שילוב של רכב, דירה ונסיעות) יש הטבה של 50% הנחה בהשתתפות העצמית בתיקון במוסך הסדר, פעם אחת בשנת ביטוח. הטבה זו אינה חלה על גניבה, אובדן גמור או מוסך שאינו בהסדר, ואינה מצטברת עם הכפלת ההשתתפות העצמית לנהג צעיר.",
+          "sourceChunkIds": [
+            "corpus/31_ofek_plus_vip:c000"
+          ]
+        }
+      ],
+      "sourceChunkIds": [
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/31_ofek_plus_vip:c000"
+      ],
+      "sourceFileNames": [
+        "01_car_comprehensive_policy_2024.pdf",
+        "31_ofek_plus_vip.docx"
+      ],
+      "originalQuestion": "מה ההשתתפות של אותו מוצר שדיברנו עליו?",
+      "standaloneQuestion": "מהי ההשתתפות העצמית בפוליסה של המוצר שעליו דיברנו קודם?",
+      "unresolvedReferences": [
+        "אותו מוצר שדיברנו עליו"
+      ],
+      "rewriteMs": 1302.9330410000002,
+      "rewritePromptTokens": 478,
+      "rewriteCompletionTokens": 43,
+      "standaloneChecks": {
+        "mustIncludeOk": true,
+        "mustNotIncludeOk": true,
+        "missingIncludes": [],
+        "leakedExcludes": []
+      },
+      "notes": "No product was established — unresolvedReferences expected; no invent."
+    }
+  ]
+}

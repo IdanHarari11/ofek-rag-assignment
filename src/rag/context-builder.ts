@@ -22,12 +22,12 @@ export const CONTEXT_BUDGET_NOTES = [
 function packBlock(chunk: ContextChunk): string {
   const lines = [
     `[chunkId=${chunk.chunkId} | origin=${chunk.origin}]`,
-    chunk.documentTitle ? `כותרת: ${chunk.documentTitle}` : undefined,
-    chunk.relativePath ? `קובץ: ${chunk.relativePath}` : undefined,
+    chunk.documentTitle ? `Title: ${chunk.documentTitle}` : undefined,
+    chunk.relativePath ? `File: ${chunk.relativePath}` : undefined,
     chunk.sectionPath?.length
-      ? `סעיף: ${chunk.sectionPath.join(" > ")}`
+      ? `Section: ${chunk.sectionPath.join(" > ")}`
       : undefined,
-    chunk.pages?.length ? `עמודים: ${chunk.pages.join(", ")}` : undefined,
+    chunk.pages?.length ? `Pages: ${chunk.pages.join(", ")}` : undefined,
     "",
     chunk.text,
   ].filter((line): line is string => line !== undefined);
@@ -168,7 +168,7 @@ export function buildGenerationContext(
 /** Format packed evidence for the model prompt. */
 export function formatContextForPrompt(chunks: ContextChunk[]): string {
   return chunks
-    .map((chunk, index) => `### מקור ${index + 1}\n${packBlock(chunk)}`)
+    .map((chunk, index) => `### Source ${index + 1}\n${packBlock(chunk)}`)
     .join("\n\n");
 }
 

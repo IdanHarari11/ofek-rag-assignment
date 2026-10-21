@@ -89,7 +89,7 @@ export function ThreadRenameInput({
         />
         <button
           type="submit"
-          aria-label="Save title"
+          aria-label="שמירת שם"
           disabled={pending}
           className="text-muted-foreground hover:text-foreground grid size-7 place-items-center"
         >
@@ -97,7 +97,7 @@ export function ThreadRenameInput({
         </button>
         <button
           type="button"
-          aria-label="Cancel rename"
+          aria-label="ביטול שינוי שם"
           disabled={pending}
           onClick={cancel}
           className="text-muted-foreground hover:text-foreground grid size-7 place-items-center"
@@ -107,7 +107,7 @@ export function ThreadRenameInput({
       </div>
       {error ? (
         <p id={errorId} className="text-destructive mt-1 text-[11px]">
-          Could not rename thread
+          לא ניתן לשנות את שם השיחה
         </p>
       ) : null}
     </form>

@@ -1,12 +1,12 @@
 export const threadCommands = [
-  { id: "new", label: "New thread", shortcut: "Alt ⇧ O" },
-  { id: "previous", label: "Previous thread", shortcut: "Alt ↑" },
-  { id: "next", label: "Next thread", shortcut: "Alt ↓" },
-  { id: "rename", label: "Rename thread", shortcut: "Alt ⇧ R" },
-  { id: "archive", label: "Archive / restore", shortcut: "Alt ⇧ X" },
-  { id: "pin", label: "Pin / unpin", shortcut: "Alt ⇧ P" },
-  { id: "sidebar", label: "Toggle threads", shortcut: "Alt ⇧ H" },
-  { id: "composer", label: "Focus message", shortcut: "Alt ⇧ C" },
+  { id: "new", label: "שיחה חדשה", shortcut: "Alt ⇧ O" },
+  { id: "previous", label: "שיחה קודמת", shortcut: "Alt ↑" },
+  { id: "next", label: "שיחה הבאה", shortcut: "Alt ↓" },
+  { id: "rename", label: "שינוי שם", shortcut: "Alt ⇧ R" },
+  { id: "archive", label: "ארכוב / שחזור", shortcut: "Alt ⇧ X" },
+  { id: "pin", label: "נעיצה / ביטול נעיצה", shortcut: "Alt ⇧ P" },
+  { id: "sidebar", label: "הצגת / הסתרת היסטוריה", shortcut: "Alt ⇧ H" },
+  { id: "composer", label: "מיקוד בשדה ההודעה", shortcut: "Alt ⇧ C" },
 ] as const;
 
 export type ThreadCommand = (typeof threadCommands)[number]["id"];

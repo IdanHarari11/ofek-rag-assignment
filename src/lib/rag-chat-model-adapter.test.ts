@@ -13,9 +13,9 @@ async function runAdapter(
   return result as ChatModelRunResult;
 }
 
-function userMessage(text: string): ThreadMessage {
+function userMessage(text: string, id = "u1"): ThreadMessage {
   return {
-    id: "u1",
+    id,
     createdAt: new Date(),
     role: "user",
     content: [{ type: "text", text }],
@@ -24,8 +24,20 @@ function userMessage(text: string): ThreadMessage {
   } as ThreadMessage;
 }
 
+function assistantMessage(text: string, id = "a1"): ThreadMessage {
+  return {
+    id,
+    createdAt: new Date(),
+    role: "assistant",
+    content: [{ type: "text", text }],
+    status: { type: "complete", reason: "stop" },
+    metadata: { custom: {}, steps: [], unstable_state: null, unstable_annotations: [], unstable_data: [] },
+  } as ThreadMessage;
+}
+
 function answeredFixture() {
   return {
+    requestId: "adapter-test-request-id",
     status: "answered",
     answer: "שעות המוקד בשישי הן 08:00–13:00.",
     answerParts: [
@@ -89,6 +101,36 @@ describe("ragChatModelAdapter", () => {
       status: "answered",
       sources: expect.any(Array),
     });
+  });
+
+  it("posts prior turns as history without duplicating the new question", async () => {
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => answeredFixture(),
+    });
+    vi.stubGlobal("fetch", fetchMock);
+
+    const messages = [
+      userMessage("רכב מקיף מ-1.3.2026", "u0"),
+      assistantMessage("מה תרצו לדעת?", "a0"),
+      userMessage("ומה במוסך שאינו בהסדר?", "u1"),
+    ];
+    await runAdapter({
+      messages,
+      abortSignal: new AbortController().signal,
+      runConfig: {},
+      context: {},
+      unstable_getMessage: () => messages[2]!,
+    });
+
+    const body = JSON.parse(
+      String(fetchMock.mock.calls[0]?.[1]?.body),
+    ) as { question: string; history: unknown[] };
+    expect(body.question).toBe("ומה במוסך שאינו בהסדר?");
+    expect(body.history).toEqual([
+      { role: "user", content: "רכב מקיף מ-1.3.2026" },
+      { role: "assistant", content: "מה תרצו לדעת?" },
+    ]);
   });
 
   it("surfaces server error without mock fallback", async () => {

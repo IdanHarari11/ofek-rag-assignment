@@ -25,6 +25,8 @@ export interface AskDisplaySource {
 }
 
 export interface AskDisplayResponse {
+  /** Server ask-trace id (also returned on API errors). */
+  requestId: string;
   status: AnswerStatus;
   answer: string;
   answerParts: AnswerPart[];
@@ -64,6 +66,7 @@ export function toAskDisplayResponse(result: AskResult): AskDisplayResponse {
   }));
 
   return {
+    requestId: result.requestId,
     status: result.status,
     answer: result.answer,
     answerParts: result.answerParts,
@@ -78,6 +81,8 @@ export function isAskDisplayResponse(value: unknown): value is AskDisplayRespons
   if (!value || typeof value !== "object") return false;
   const obj = value as Record<string, unknown>;
   return (
+    typeof obj.requestId === "string" &&
+    obj.requestId.length > 0 &&
     typeof obj.status === "string" &&
     typeof obj.answer === "string" &&
     Array.isArray(obj.answerParts) &&

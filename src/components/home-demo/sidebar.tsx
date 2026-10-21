@@ -34,7 +34,7 @@ export function Sidebar({
             <button
               type="button"
               onClick={onNavigate}
-              title="New thread (Alt+Shift+O)"
+              title="שיחה חדשה (Alt+Shift+O)"
               aria-keyshortcuts="Alt+Shift+O"
               className="border-foreground/10 bg-background hover:border-foreground/25 rounded-control flex h-8 w-full shrink-0 items-center gap-2 border px-2.5 text-[13px] transition-colors"
             >
@@ -50,7 +50,8 @@ export function Sidebar({
           className="border-foreground/10 text-muted-foreground mt-3 border-t px-2 pt-3 text-[11px] leading-relaxed"
           dir="rtl"
         >
-          שיחות נשמרות בדפדפן בסשן הנוכחי בלבד; אין עדיין מענה המשכי על הודעות קודמות.
+          השיחות נשמרות בדפדפן הזה בלבד (לא בענן). אפשר לשאול שאלות המשך באותה
+          שיחה (חלון היסטוריה מוגבל בשרת).
         </div>
       </ThreadListPrimitive.Root>
     </SidebarNavigationContext.Provider>
@@ -75,7 +76,7 @@ function ThreadList(): ReactNode {
       {isLoading && !hasThreads ? (
         <div
           role="status"
-          aria-label="Loading threads"
+          aria-label="טוען שיחות"
           className="mt-5 flex flex-col gap-0.5"
         >
           {SIDEBAR_SKELETON_WIDTHS.map((width, index) => (
@@ -89,20 +90,18 @@ function ThreadList(): ReactNode {
           role="alert"
           className="mt-1 flex h-8 shrink-0 items-center justify-between px-2 text-[13px]"
         >
-          <span className="text-muted-foreground">
-            Threads could not be loaded
-          </span>
+          <span className="text-muted-foreground">לא ניתן לטעון את השיחות</span>
           <button
             type="button"
             onClick={() => void aui.threads.reload()}
             className="text-muted-foreground hover:text-foreground rounded-control -me-2 h-8 px-2 transition-colors"
           >
-            Retry
+            נסה שוב
           </button>
         </div>
       ) : (
         <>
-          <p className={sidebarLabelClass}>Threads</p>
+          <p className={sidebarLabelClass}>שיחות</p>
           <div className="flex flex-col gap-0.5">
             <ThreadListPrimitive.Items components={threadListItemComponents} />
           </div>
@@ -113,7 +112,7 @@ function ThreadList(): ReactNode {
           type="button"
           className="text-muted-foreground hover:text-foreground rounded-control mt-1 flex h-8 shrink-0 items-center px-2 text-[13px] transition-colors disabled:hidden"
         >
-          Load more
+          טען עוד
         </button>
       </ThreadListPrimitive.LoadMore>
       {hasArchived ? <ArchivedThreads /> : null}
@@ -137,9 +136,12 @@ function ArchivedThreads(): ReactNode {
         )}
       >
         <ChevronDownIcon
-          className={cn("size-3 transition-transform", !open && "-rotate-90")}
+          className={cn(
+            "size-3 transition-transform",
+            !open && "rtl:rotate-90 ltr:-rotate-90",
+          )}
         />
-        Archived ({count})
+        בארכיון ({count})
       </button>
       {open ? (
         <div className="flex flex-col gap-0.5">

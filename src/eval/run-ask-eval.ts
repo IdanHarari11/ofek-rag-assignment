@@ -56,6 +56,20 @@ export interface AskEvalQuestionResult {
   retrievedChunkIds: string[];
   contextChunkIds: string[];
   expandedChunkIds: string[];
+  /** Stage 4 linked relationship chunks (not counted in Recall@5). */
+  linkedChunkIds?: string[];
+  hybridTopKChunkIds?: string[];
+  applicabilitySummary?: {
+    versionDecisions: Array<{
+      documentFamily: string;
+      status: string;
+      selectedDocumentId?: string;
+      reasonCode: string;
+      dateKindUsed?: string;
+    }>;
+    unresolvedNotes: string[];
+    activatedRelationshipCount: number;
+  };
   contextMeta: AskResult["contextMeta"] | null;
   validation:
     | AskResult["validation"]
@@ -69,9 +83,17 @@ export interface AskEvalQuestionResult {
   generationModel?: string;
   usage?: AskResult["usage"];
   timingsMs?: AskResult["timingsMs"];
+  /** Stage 2 diagnostics — present when history triggered rewrite. */
+  originalQuestion?: string;
+  standaloneQuestion?: string;
+  unresolvedReferences?: string[];
   systemError?: string;
+  /** Stable error code when status=system_error (e.g. answer_review_failed). */
+  systemErrorCode?: string;
   /** Technical gate only — not claim faithfulness. */
   citationIdValidationOk?: boolean;
+  /** Stage 5 semantic review metadata when enabled. */
+  answerReview?: AskResult["answerReview"];
   manualReview: ManualReview;
 }
 
@@ -182,6 +204,26 @@ function toEvalResult(
     expandedChunkIds: result.contextChunks
       .filter((c) => c.origin === "expanded")
       .map((c) => c.chunkId),
+    linkedChunkIds: result.contextChunks
+      .filter((c) => c.origin === "linked")
+      .map((c) => c.chunkId),
+    hybridTopKChunkIds: result.contextMeta.hybridTopKChunkIds,
+    applicabilitySummary: result.contextMeta.applicability
+      ? {
+          versionDecisions: result.contextMeta.applicability.versionDecisions.map(
+            (d) => ({
+              documentFamily: d.documentFamily,
+              status: d.status,
+              selectedDocumentId: d.selectedDocumentId,
+              reasonCode: d.reasonCode,
+              dateKindUsed: d.dateKindUsed,
+            }),
+          ),
+          unresolvedNotes: result.contextMeta.applicability.unresolvedNotes,
+          activatedRelationshipCount:
+            result.contextMeta.applicability.activatedRelationships.length,
+        }
+      : undefined,
     contextMeta: result.contextMeta,
     validation: result.validation,
     citationIdValidationOk: result.validation.citationsOk,
@@ -189,6 +231,10 @@ function toEvalResult(
     generationModel: result.generationModel,
     usage: result.usage,
     timingsMs: result.timingsMs,
+    originalQuestion: result.question,
+    standaloneQuestion: result.standaloneQuestion,
+    unresolvedReferences: result.unresolvedReferences,
+    answerReview: result.answerReview,
     manualReview: pendingManualReview(q),
   };
 }
@@ -199,6 +245,17 @@ function toSystemErrorResult(
   extraProbe = false,
 ): AskEvalQuestionResult {
   const message = error instanceof Error ? error.message : String(error);
+  const code =
+    error && typeof error === "object" && "code" in error
+      ? String((error as { code: unknown }).code)
+      : undefined;
+  const reviewMeta =
+    error &&
+    typeof error === "object" &&
+    "meta" in error &&
+    (error as { meta?: AskResult["answerReview"] }).meta
+      ? (error as { meta: AskResult["answerReview"] }).meta
+      : undefined;
   return {
     id: q.id,
     category: q.category,
@@ -223,6 +280,8 @@ function toSystemErrorResult(
     },
     citationIdValidationOk: false,
     systemError: message,
+    systemErrorCode: code,
+    answerReview: reviewMeta,
     manualReview: pendingManualReview(q),
   };
 }
@@ -347,6 +406,26 @@ function formatOneQuestion(q: AskEvalQuestionResult): string[] {
         : ""),
     `**Validation (chunkId technical only):** structure=${q.validation.structureOk} citations=${q.validation.citationsOk}`,
   ];
+  if (q.linkedChunkIds?.length) {
+    lines.push(`**Linked (relations, not Recall@5):** ${q.linkedChunkIds.join(", ")}`);
+  }
+  if (q.applicabilitySummary) {
+    const decisions = q.applicabilitySummary.versionDecisions
+      .map(
+        (d) =>
+          `${d.documentFamily}:${d.status}` +
+          (d.selectedDocumentId ? `→${d.selectedDocumentId}` : "") +
+          `(${d.reasonCode})`,
+      )
+      .join("; ");
+    lines.push(
+      `**Applicability:** ${decisions || "(none)"}` +
+        (q.applicabilitySummary.unresolvedNotes.length
+          ? ` | unresolved=${q.applicabilitySummary.unresolvedNotes.join(",")}`
+          : "") +
+        ` | relationships=${q.applicabilitySummary.activatedRelationshipCount}`,
+    );
+  }
   if (q.contextMeta?.omittedExpansions?.length) {
     lines.push(
       `**Omitted expansions:** ${q.contextMeta.omittedExpansions.map((o) => o.chunkId).join(", ")}`,

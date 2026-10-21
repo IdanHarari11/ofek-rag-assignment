@@ -22,7 +22,10 @@ function chunk(
 
 function baseResult(overrides: Partial<AskResult> = {}): AskResult {
   return {
+    requestId: "test-request-id",
     question: "שאלה",
+    standaloneQuestion: "שאלה",
+    unresolvedReferences: [],
     status: "answered",
     answer: "תשובה.",
     answerParts: [{ text: "תשובה.", sourceChunkIds: ["doc:c000"] }],
@@ -90,6 +93,7 @@ function baseResult(overrides: Partial<AskResult> = {}): AskResult {
 describe("toAskDisplayResponse", () => {
   it("maps answered payload with cited source text from index", () => {
     const display = toAskDisplayResponse(baseResult());
+    expect(display.requestId).toBe("test-request-id");
     expect(display.status).toBe("answered");
     expect(display.answerParts).toHaveLength(1);
     expect(display.sources).toHaveLength(1);
@@ -135,6 +139,15 @@ describe("isAskDisplayResponse / limits", () => {
     expect(isAskDisplayResponse({ status: "answered" })).toBe(false);
     expect(
       isAskDisplayResponse({
+        status: "answered",
+        answer: "x",
+        answerParts: [],
+        sources: [],
+      }),
+    ).toBe(false);
+    expect(
+      isAskDisplayResponse({
+        requestId: "rid",
         status: "answered",
         answer: "x",
         answerParts: [],

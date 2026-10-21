@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, Public_Sans } from "next/font/google";
 import type { ReactNode } from "react";
+import { HE_UI } from "@/lib/user-facing-he";
 import "./globals.css";
 
 const publicSans = Public_Sans({
@@ -14,7 +15,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "אופק ביטוח — RAG",
+  title: HE_UI.appTitle,
   description:
     "ממשק נציג לשאלות על מסמכי אופק ביטוח — תשובות מבוססות מקורות מהאינדקס המקומי.",
 };

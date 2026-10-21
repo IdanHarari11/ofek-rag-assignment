@@ -3,14 +3,25 @@ import {
   ASK_MAX_QUESTION_CHARS,
   toAskDisplayResponse,
 } from "@/lib/ask-display";
+import { HE_API_ERRORS } from "@/lib/user-facing-he";
 import {
   ask,
+  AnswerReviewFailedError,
+  AnswerReviewSystemError,
+  createRequestId,
   GenerationSystemError,
   getGenerationModel,
   getOpenAiApiKey,
+  HistoryValidationError,
+  HISTORY_MAX_TURNS,
+  HISTORY_MAX_TOTAL_CHARS,
   IndexMismatchError,
+  isAbortError,
+  isAnswerReviewEnabled,
   loadEnv,
   MissingApiKeyError,
+  RewriteSystemError,
+  TRACE_LOG_POLICY,
 } from "@/rag";
 
 /**
@@ -21,69 +32,99 @@ import {
 
 type AskBody = {
   question?: unknown;
+  history?: unknown;
 };
 
-function safeErrorMessage(status: number): string {
+function safeErrorMessage(status: number, code?: string): string {
   if (status === 400) {
-    return "השאלה אינה תקינה. בדקו שהטקסט אינו ריק ואינו ארוך מדי.";
+    if (code?.startsWith("invalid_history") || code === "forbidden_history_role") {
+      return HE_API_ERRORS.invalidHistory;
+    }
+    return HE_API_ERRORS.invalidQuestion;
   }
   if (status === 503) {
-    return "שירות המענה אינו זמין כרגע. נסו שוב מאוחר יותר.";
+    return HE_API_ERRORS.serviceUnavailable;
   }
-  return "אירעה שגיאת מערכת בעת יצירת התשובה. נסו שוב.";
+  if (code === "rewrite_failed") {
+    return HE_API_ERRORS.rewriteFailed;
+  }
+  if (code === "answer_review_failed") {
+    return HE_API_ERRORS.answerReviewFailed;
+  }
+  if (code === "answer_review_error") {
+    return HE_API_ERRORS.answerReviewError;
+  }
+  return HE_API_ERRORS.internalError;
+}
+
+function errorJson(
+  requestId: string,
+  status: number,
+  code: string,
+  extra?: Record<string, unknown>,
+): NextResponse {
+  return NextResponse.json(
+    {
+      requestId,
+      error: safeErrorMessage(status, code),
+      code,
+      ...extra,
+    },
+    { status },
+  );
 }
 
 export async function POST(request: Request): Promise<Response> {
   await connection();
   loadEnv();
+  const requestId = createRequestId();
 
   let body: AskBody;
   try {
     body = (await request.json()) as AskBody;
   } catch {
-    return NextResponse.json(
-      { error: safeErrorMessage(400), code: "invalid_json" },
-      { status: 400 },
-    );
+    return errorJson(requestId, 400, "invalid_json");
   }
 
   if (typeof body.question !== "string") {
-    return NextResponse.json(
-      { error: safeErrorMessage(400), code: "invalid_question_type" },
-      { status: 400 },
-    );
+    return errorJson(requestId, 400, "invalid_question_type");
   }
 
   const question = body.question.trim();
   if (!question) {
-    return NextResponse.json(
-      { error: safeErrorMessage(400), code: "empty_question" },
-      { status: 400 },
-    );
+    return errorJson(requestId, 400, "empty_question");
   }
   if (question.length > ASK_MAX_QUESTION_CHARS) {
-    return NextResponse.json(
-      {
-        error: safeErrorMessage(400),
-        code: "question_too_long",
-        maxChars: ASK_MAX_QUESTION_CHARS,
-      },
-      { status: 400 },
-    );
+    return errorJson(requestId, 400, "question_too_long", {
+      maxChars: ASK_MAX_QUESTION_CHARS,
+    });
   }
 
   try {
     getOpenAiApiKey({ required: true });
-    const result = await ask(question, { mode: "hybrid", topK: 5 });
+    const result = await ask(question, {
+      mode: "hybrid",
+      topK: 5,
+      history: body.history,
+      signal: request.signal,
+      requestId,
+      traceSource: "api",
+    });
     if (request.signal.aborted) {
-      return new Response(null, { status: 499 });
+      return new Response(null, {
+        status: 499,
+        headers: { "x-request-id": requestId },
+      });
     }
     return NextResponse.json(toAskDisplayResponse(result));
   } catch (error) {
-    if (request.signal.aborted) {
-      return new Response(null, { status: 499 });
+    if (request.signal.aborted || isAbortError(error)) {
+      return new Response(null, {
+        status: 499,
+        headers: { "x-request-id": requestId },
+      });
     }
-    return mapAskError(error);
+    return mapAskError(error, requestId);
   }
 }
 
@@ -95,24 +136,49 @@ export async function GET(): Promise<Response> {
     generationModel: getGenerationModel(),
     maxQuestionChars: ASK_MAX_QUESTION_CHARS,
     retrievalModeDefault: "hybrid",
+    historyMaxTurns: HISTORY_MAX_TURNS,
+    historyMaxTotalChars: HISTORY_MAX_TOTAL_CHARS,
+    followUpSupported: true,
+    answerReviewEnabled: isAnswerReviewEnabled(),
+    tracing: {
+      askPath: true,
+      logDirectory: TRACE_LOG_POLICY.directoryRelative,
+      threadTitleTraced: false,
+    },
   });
 }
 
-function mapAskError(error: unknown): NextResponse {
+function mapAskError(error: unknown, requestId: string): NextResponse {
+  if (error instanceof HistoryValidationError) {
+    return errorJson(requestId, 400, error.code);
+  }
   if (error instanceof MissingApiKeyError || error instanceof IndexMismatchError) {
-    return NextResponse.json(
-      { error: safeErrorMessage(503), code: "service_unavailable" },
-      { status: 503 },
-    );
+    return errorJson(requestId, 503, "service_unavailable");
+  }
+  if (error instanceof RewriteSystemError) {
+    return errorJson(requestId, 500, "rewrite_failed");
+  }
+  if (error instanceof AnswerReviewFailedError) {
+    // Not insufficient_evidence — review exhausted without a verified draft.
+    return errorJson(requestId, 422, "answer_review_failed", {
+      reviewOutcome: error.meta.outcome,
+      reviewAttempts: error.meta.reviewAttempts,
+      revisionAttempts: error.meta.revisionAttempts,
+    });
+  }
+  if (error instanceof AnswerReviewSystemError) {
+    return errorJson(requestId, 500, "answer_review_error");
   }
   if (error instanceof GenerationSystemError) {
-    return NextResponse.json(
-      { error: safeErrorMessage(500), code: "generation_failed" },
-      { status: 500 },
+    const isRewrite =
+      error.message.toLowerCase().includes("rewrite") ||
+      error.message.includes("שכתוב") ||
+      error.message.includes("Query rewrite");
+    return errorJson(
+      requestId,
+      500,
+      isRewrite ? "rewrite_failed" : "generation_failed",
     );
   }
-  return NextResponse.json(
-    { error: safeErrorMessage(500), code: "internal_error" },
-    { status: 500 },
-  );
+  return errorJson(requestId, 500, "internal_error");
 }

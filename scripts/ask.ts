@@ -67,14 +67,28 @@ async function main(): Promise<void> {
     throw error;
   }
 
-  const result = await ask(question, { topK, mode });
+  const result = await ask(question, { topK, mode, traceSource: "cli" });
 
+  console.log(`requestId=${result.requestId}`);
   console.log(`status=${result.status}`);
   console.log(
     `mode=${result.retrievalMode} generation=${result.generationModel} embedding=${result.embeddingModel}`,
   );
+  if (result.rewrite) {
+    console.log(`originalQuestion=${result.rewrite.originalQuestion}`);
+    console.log(`standaloneQuestion=${result.rewrite.standaloneQuestion}`);
+    console.log(
+      `unresolvedReferences=${result.rewrite.unresolvedReferences.join(" | ") || "(none)"}`,
+    );
+  } else {
+    console.log(`standaloneQuestion=${result.standaloneQuestion}`);
+  }
   console.log(
-    `timings: retrieve=${result.timingsMs.retrieveMs.toFixed(0)}ms ` +
+    `timings: ` +
+      (result.timingsMs.rewriteMs !== undefined
+        ? `rewrite=${result.timingsMs.rewriteMs.toFixed(0)}ms `
+        : "") +
+      `retrieve=${result.timingsMs.retrieveMs.toFixed(0)}ms ` +
       `context=${result.timingsMs.contextMs.toFixed(0)}ms ` +
       `gen=${result.timingsMs.generationMs.toFixed(0)}ms ` +
       `total=${result.timingsMs.totalMs.toFixed(0)}ms`,
@@ -82,6 +96,8 @@ async function main(): Promise<void> {
   if (result.usage) {
     console.log(
       `tokens: embed_prompt=${result.usage.embeddingPromptTokens ?? "-"} ` +
+        `rewrite_prompt=${result.usage.rewritePromptTokens ?? "-"} ` +
+        `rewrite_completion=${result.usage.rewriteCompletionTokens ?? "-"} ` +
         `gen_prompt=${result.usage.generationPromptTokens ?? "-"} ` +
         `gen_completion=${result.usage.generationCompletionTokens ?? "-"} ` +
         `gen_total=${result.usage.generationTotalTokens ?? "-"}`,

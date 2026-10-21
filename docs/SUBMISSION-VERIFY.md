@@ -1,62 +1,64 @@
-# אימות הגשה סופי (שלב 8)
+# Final submission verification (stage 8)
 
-תאריך: **2026-10-21**. אין Push/Deploy בשלב זה.
+Date: **2026-10-21**. No push/deploy in this stage.
 
-## 1. קריאת המטלה (PDF)
+> **Stage 7:** Developer documentation translated to English; assignment PDF and eval run reports under `eval_results/` are unchanged. Post–Stage 7 prompt translation should be verified with regression on `dev_set/extended_eval_stage6.json`, not claimed as fresh holdout.
 
-- רינדור חזותי: שני עמודים ל־PNG דרך PDFKit (`/tmp/ofek-pdf-pages/page-0{1,2}.png`).
-- חילוץ טקסט מקביל ב־PDFKit לאימות.
+## 1. Assignment PDF
 
-### מה הושלם בעמוד 1 (שלא היה מלא קודם)
+- Visual render: both pages to PNG via PDFKit (`/tmp/ofek-pdf-pages/page-0{1,2}.png`).
+- Parallel PDFKit text extract for cross-check.
 
-| אזור | מצב אחרי רינדור + PDFKit |
+### Page 1 completed (was not fully available earlier)
+
+| Area | After render + PDFKit |
 | --- | --- |
-| רקע / משימה / «עדיף לא מצאתי» | **קריא במלואו** |
-| «מה מצורף» — טבלת zip | **מובן סמנטית**: `assignment.zip` עם `corpus/` (33 מסמכי MD/Word/PDF) ו־`dem_set/` + `dem_questions.json` (**15** שאלות עם תשובת רפרנס ומקורות). חילוץ אוטומטי של שמות התיקיות נשבר בגלל קווים תחתונים (`ofek_rag_` / `dem_set`) — **לא** שינה את תוכן הדרישה |
-| דרישת חובה 1 — Ingestion | **קריאה מלאה**: קריאת שלושת הפורמטים כולל טבלאות ב־Word ו־PDF (המשך בעמ׳ 2 לדרישות 2–7) |
+| Background / task / “prefer couldn’t find” | **Fully read** |
+| “What’s included” — zip table | **Semantically clear**: `assignment.zip` with `corpus/` (33 MD/Word/PDF) and `dem_set/` + `dem_questions.json` (**15** questions with reference answer and sources). Auto-extract broke folder names with underscores — **does not** change requirement meaning |
+| Mandatory req 1 — Ingestion | **Full read**: all three formats including Word/PDF tables (page 2 continues reqs 2–7) |
 
-### השוואה ל־`REQUIREMENTS-CHECKLIST.md`
+### Comparison to `REQUIREMENTS-CHECKLIST.md`
 
-- לא התגלתה דרישת חובה נוספת מעבר ל־7 הסעיפים + חבילת ההגשה שכבר תועדה.
-- תיקון דיוק: שם קובץ השאלות ב־PDF הוא `dem_questions.json` תחת `dem_set/` (בפרויקט: `dev_set/dev_questions.json` — אותו תפקיד).
-- **לא** אומצו טענות מתיאורי-Vision סותרים (למשל 32 שאלות / README.pdf) — הן אינן תואמות ל־PDFKit ולמבנה הקבצים בפועל.
+- No additional mandatory requirement beyond the 7 items + submission bundle already documented.
+- Accuracy fix: PDF question file is `dem_questions.json` under `dem_set/` (in repo: `dev_set/dev_questions.json` — same role).
+- **Did not adopt** Vision-only contradictory claims (e.g. 32 questions / README.pdf) — inconsistent with PDFKit and on-disk layout.
 
-**מסקנה:** דרישות החובה וההגשה **נקראו במלואן** (עמ׳ 1+2). החלק היחיד עם מגבלת חילוץ טכנית הוא פירוק שמות בטבלת «מה מצורף» — התוכן שוחזר.
+**Conclusion:** Mandatory and submission requirements **read in full** (pages 1+2). Only limitation is technical garbling of names in the “what’s included” table — content recovered.
 
-## 2. הפעלה מאפס (עותק זמני)
+## 2. Run from zero (temp copy)
 
-נתיב: `/tmp/ofek-rag-e2e-poyucM` (לא נוגע בסביבת העבודה המקורית).  
-מפתח API: **משתנה סביבה בלבד**; בקובץ `.env` שבעותק שדה המפתח נשאר ריק (בלי ערך).
+Path: `/tmp/ofek-rag-e2e-poyucM` (does not touch original workspace).  
+API key: **environment variable only**; `.env` in copy leaves key field empty.
 
-| שלב | תוצאה |
+| Step | Result |
 | --- | --- |
-| `pnpm install --frozen-lockfile` | הצלחה (לאחר `allowBuilds.esbuild: true` ב־`pnpm-workspace.yaml`) |
+| `pnpm install --frozen-lockfile` | Success (after `allowBuilds.esbuild: true` in `pnpm-workspace.yaml`) |
 | `pnpm prepare:rag` | ingest **33** / chunk **49** / index **49/49** |
-| hashes | `chunksInputHash` / `embeddingTextHash` **זהים** לאינדקס המקורי |
-| טוקני אינדוקס | prompt/total **23,084** |
-| `pnpm ask -- "…שישי?"` | `answered`; 08:00–12:00; מקור `28_call_center_hours.md`; embed=42, gen_total=2070; ~2.9s |
-| `POST /api/ask` (next dev על פורט זמני) | `answered` + מקור עם טקסט מהאינדקס |
+| hashes | `chunksInputHash` / `embeddingTextHash` **match** original index |
+| index tokens | prompt/total **23,084** |
+| `pnpm ask -- "…שישי?"` | `answered`; 08:00–12:00; source `28_call_center_hours.md`; embed=42, gen_total=2070; ~2.9s |
+| `POST /api/ask` (temp next dev port) | `answered` + source with index text |
 
-**מסקנה:** בנייה מאפס **הושלמה בפועל**, כולל אינדוקס אמיתי — לא reuse של `data/` מהתיקייה המקורית.
+**Conclusion:** Build from zero **completed**, including real index — not reuse of original `data/`.
 
-## 3. קבצי הגשה / סודות
+## 3. Submission files / secrets
 
-| בדיקה | תוצאה |
+| Check | Result |
 | --- | --- |
-| `.env` / `.env.*` ב־gitignore; `.env.example` ללא ערך סודי | OK |
-| `node_modules`, `.next`, `data/` מוחרגים | OK |
-| `eval_results/` נכללים | OK |
+| `.env` / `.env.*` gitignored; `.env.example` has no secret value | OK |
+| `node_modules`, `.next`, `data/` excluded | OK |
+| `eval_results/` included | OK |
 | `corpus/`, `dev_set/` | OK |
 | `docs/licenses/assistant-ui-MIT.txt`, `docs/ATTRIBUTION.md` | OK |
-| סריקת מחרוזות מפתח בקבצים שאינם `.env` | אין ממצאים מסוג ערך מפתח בקוד/דוחות (רק נתיבי קבצים אם יופיעו) |
+| Secret string scan in non-`.env` files | No key-like values in code/reports (paths only if any) |
 
-## 4. Git מקומי
+## 4. Local Git
 
 | | |
 | --- | --- |
-| ענף | `main` |
+| Branch | `main` |
 | Commit | `8f1787e1ac4ebfae23278fbf3ab6414f6ba0d063` |
-| הודעה | `Initial RAG assignment implementation` |
-| Remote | **אין** — commit מקומי בלבד, לא Push |
+| Message | `Initial RAG assignment implementation` |
+| Remote | **None** — local commit only, no push |
 
-זהות Git הייתה מוגדרת גלובלית מראש; לא שונו הגדרות Git גלובליות.
+Git identity was configured globally beforehand; global Git config was not changed here.

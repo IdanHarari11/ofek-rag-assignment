@@ -1,0 +1,442 @@
+{
+  "schemaVersion": 1,
+  "setId": "extended_eval_stage6",
+  "title": "Stage 6 extended holdout (AI-assisted, in-development)",
+  "notes": [
+    "Created during development with AI assistance (Cursor). Not an independent external gold set.",
+    "Reference answers were authored against corpus evidence before any ask() run on this file.",
+    "Do not add this file to the embedding index or generation prompts.",
+    "Original dev_set/dev_questions.json is unchanged."
+  ],
+  "questions": [
+    {
+      "id": "E01",
+      "category": "factual",
+      "tags": ["ofek_plus", "eligibility"],
+      "question": "מי זכאי להטבות של תוכנית \"אופק פלוס\"?",
+      "expectedBehavior": "answered",
+      "materialFacts": [
+        "זכאות ללקוח עם 3 פוליסות פעילות או יותר (רכב/דירה/נסיעות בכל שילוב)"
+      ],
+      "evidence": [
+        {
+          "fileName": "31_ofek_plus_vip.docx",
+          "chunkId": "corpus/31_ofek_plus_vip:c000",
+          "quoteSnippet": "לקוח שמחזיק 3 פוליסות פעילות או יותר באופק ביטוח"
+        }
+      ],
+      "acceptableSourceAlternatives": [["31_ofek_plus_vip.docx"]],
+      "reference_answer": "לקוח שמחזיק לפחות 3 פוליסות פעילות באופק ביטוח (רכב, דירה ונסיעות בכל שילוב).",
+      "forbiddenAssumptions": ["הנחה שהלקוח כבר אופק פלוס בלי מספר פוליסות"],
+      "sources": ["31_ofek_plus_vip.docx"]
+    },
+    {
+      "id": "E02",
+      "category": "factual",
+      "tags": ["claims_sla", "car"],
+      "question": "תוך כמה ימי עסקים אמור להתבצע ביקור שמאי ברכב לפי אמנת השירות?",
+      "expectedBehavior": "answered",
+      "materialFacts": ["עד 3 ימי עסקים לביקור שמאי – רכב"],
+      "evidence": [
+        {
+          "fileName": "21_claims_sla.md",
+          "chunkId": "corpus/21_claims_sla:c000",
+          "quoteSnippet": "ביקור שמאי – רכב | עד 3 ימי עסקים"
+        }
+      ],
+      "acceptableSourceAlternatives": [["21_claims_sla.md"], ["18_claims_process_car.md"]],
+      "reference_answer": "עד 3 ימי עסקים.",
+      "forbiddenAssumptions": ["ערבוב עם יעד שמאי דירה (5 ימים)"],
+      "sources": ["21_claims_sla.md"]
+    },
+    {
+      "id": "E03",
+      "category": "factual",
+      "tags": ["identification", "privacy"],
+      "question": "בשיחת מוקד, אילו פרטים נדרשים לזיהוי לקוח מעבר למספר תעודת זהות?",
+      "expectedBehavior": "answered",
+      "materialFacts": [
+        "תעודת זהות + שניים מתוך: תאריך לידה, מספר פוליסה, 4 ספרות אחרונות של כרטיס האשראי"
+      ],
+      "evidence": [
+        {
+          "fileName": "33_customer_identification.md",
+          "chunkId": "corpus/33_customer_identification:c000",
+          "quoteSnippet": "מספר תעודת זהות, ובנוסף שניים מתוך שלושת הפרטים"
+        }
+      ],
+      "acceptableSourceAlternatives": [["33_customer_identification.md"]],
+      "reference_answer": "מספר ת.ז. ועוד שניים מתוך: תאריך לידה, מספר פוליסה, או 4 הספרות האחרונות של כרטיס האשראי לתשלום.",
+      "forbiddenAssumptions": ["מסירת מידע לבן זוג בלי הרשאה"],
+      "sources": ["33_customer_identification.md"]
+    },
+    {
+      "id": "E04",
+      "category": "table",
+      "tags": ["payment", "installments"],
+      "question": "מה פריסת התשלומים המקסימלית בכרטיס אשראי, ומה קורה אם תשלום לא נפרע בתוך 21 יום?",
+      "expectedBehavior": "answered",
+      "materialFacts": [
+        "כרטיס אשראי: עד 12 תשלומים ללא ריבית",
+        "אם לא הוסדר בתוך 21 יום — הודעה בכתב על ביטול הפוליסה"
+      ],
+      "evidence": [
+        {
+          "fileName": "24_payment_methods.md",
+          "chunkId": "corpus/24_payment_methods:c000",
+          "quoteSnippet": "כרטיס אשראי | עד 12 תשלומים ללא ריבית"
+        },
+        {
+          "fileName": "24_payment_methods.md",
+          "chunkId": "corpus/24_payment_methods:c000",
+          "quoteSnippet": "אם התשלום לא הוסדר בתוך 21 יום, נשלחת הודעה בכתב על ביטול הפוליסה"
+        }
+      ],
+      "acceptableSourceAlternatives": [["24_payment_methods.md"]],
+      "reference_answer": "עד 12 תשלומים ללא ריבית בכרטיס אשראי. אם התשלום לא הוסדר תוך 21 יום נשלחת הודעה בכתב על ביטול הפוליסה.",
+      "forbiddenAssumptions": ["ערבוב עם מגבלת הוראת קבע (10 תשלומים) כתשובה יחידה"],
+      "sources": ["24_payment_methods.md"]
+    },
+    {
+      "id": "E05",
+      "category": "table",
+      "tags": ["home", "water", "deductible"],
+      "question": "מה ההשתתפות העצמית בנזקי מים בדירה, ומה משתנה אם משתמשים באינסטלטור מרשת אופק עם כתב שירות אינסטלציה?",
+      "expectedBehavior": "answered",
+      "materialFacts": [
+        "750 ₪ לאירוע נזקי מים",
+        "עם כתב שירות אינסטלציה ואינסטלטור רשת: 250 ₪ לביקור כולל איתור נזילה"
+      ],
+      "evidence": [
+        {
+          "fileName": "11_home_water_damage.md",
+          "chunkId": "corpus/11_home_water_damage:c000",
+          "quoteSnippet": "750 ₪ לכל אירוע נזקי מים"
+        },
+        {
+          "fileName": "11_home_water_damage.md",
+          "chunkId": "corpus/11_home_water_damage:c000",
+          "quoteSnippet": "250 ₪ לכל ביקור, כולל איתור נזילה"
+        }
+      ],
+      "acceptableSourceAlternatives": [["11_home_water_damage.md"]],
+      "reference_answer": "750 ₪ לאירוע; עם כתב שירות אינסטלציה ואינסטלטור מרשת אופק — 250 ₪ לביקור כולל איתור נזילה.",
+      "forbiddenAssumptions": ["שאיתור נזילה מכוסה תמיד בלי כתב שירות"],
+      "sources": ["11_home_water_damage.md"]
+    },
+    {
+      "id": "E06",
+      "category": "table",
+      "tags": ["earthquake", "deductible", "calc_base"],
+      "question": "מה בסיס חישוב ההשתתפות העצמית ברעידת אדמה לפרק המבנה, ומה שיעור ההשתתפות בדירה שעברה חיזוק תמ\"א 38?",
+      "expectedBehavior": "answered",
+      "materialFacts": [
+        "מבנה רגיל: 10% מסכום ביטוח המבנה",
+        "מבנה עם תמ\"א 38: 5% מסכום ביטוח המבנה"
+      ],
+      "evidence": [
+        {
+          "fileName": "13_home_earthquake_annex.pdf",
+          "chunkId": "corpus/13_home_earthquake_annex:c000",
+          "quoteSnippet": "מבנה | השתתפות עצמית: 10% מסכום ביטוח המבנה"
+        },
+        {
+          "fileName": "13_home_earthquake_annex.pdf",
+          "chunkId": "corpus/13_home_earthquake_annex:c000",
+          "quoteSnippet": "תמ”א 38 | השתתפות עצמית: 5% מסכום ביטוח המבנה"
+        }
+      ],
+      "acceptableSourceAlternatives": [["13_home_earthquake_annex.pdf"]],
+      "reference_answer": "10% מסכום ביטוח המבנה; בדירה מחוזקת לפי תמ\"א 38 — 5% מסכום ביטוח המבנה.",
+      "forbiddenAssumptions": ["חישוב לפי סכום הנזק לפרק המבנה במקום סכום הביטוח"],
+      "sources": ["13_home_earthquake_annex.pdf"]
+    },
+    {
+      "id": "E07",
+      "category": "applicability",
+      "tags": ["car", "version", "before_transition"],
+      "question": "מה ההשתתפות העצמית בתיקון במוסך הסדר בפוליסת מקיף שהונפקה ב-28.2.2026?",
+      "expectedBehavior": "answered",
+      "materialFacts": ["הנפקה לפני 1.3.2026 → גרסת 2024 → 950 ₪ במוסך הסדר"],
+      "evidence": [
+        {
+          "fileName": "02_car_comprehensive_policy_2026.pdf",
+          "chunkId": "corpus/02_car_comprehensive_policy_2026:c000",
+          "quoteSnippet": "פוליסות שהונפקו או חודשו לפני 1.3.2026 ממשיכות לפעול לפי גרסת 2024"
+        },
+        {
+          "fileName": "01_car_comprehensive_policy_2024.pdf",
+          "chunkId": "corpus/01_car_comprehensive_policy_2024:c000",
+          "quoteSnippet": "נזק חלקי – תיקון במוסך הסדר | סכום ההשתתפות העצמית: 950 ₪"
+        }
+      ],
+      "acceptableSourceAlternatives": [
+        ["01_car_comprehensive_policy_2024.pdf"],
+        ["01_car_comprehensive_policy_2024.pdf", "02_car_comprehensive_policy_2026.pdf"]
+      ],
+      "reference_answer": "950 ₪ (גרסת 2024 — הנפקה לפני 1.3.2026).",
+      "forbiddenAssumptions": ["יישום סכומי 2026 על הנפקה בפברואר 2026"],
+      "sources": [
+        "01_car_comprehensive_policy_2024.pdf",
+        "02_car_comprehensive_policy_2026.pdf"
+      ]
+    },
+    {
+      "id": "E08",
+      "category": "applicability",
+      "tags": ["car", "version", "on_transition"],
+      "question": "מה ההשתתפות העצמית במוסך הסדר בפוליסת מקיף שהונפקה בדיוק ב-1.3.2026?",
+      "expectedBehavior": "answered",
+      "materialFacts": ["הנפקה ב-1.3.2026 נכללת בגרסת 2026 → 1,100 ₪"],
+      "evidence": [
+        {
+          "fileName": "02_car_comprehensive_policy_2026.pdf",
+          "chunkId": "corpus/02_car_comprehensive_policy_2026:c000",
+          "quoteSnippet": "בתוקף לפוליסות שהונפקו או חודשו מיום 1.3.2026 ואילך"
+        },
+        {
+          "fileName": "02_car_comprehensive_policy_2026.pdf",
+          "chunkId": "corpus/02_car_comprehensive_policy_2026:c000",
+          "quoteSnippet": "נזק חלקי – תיקון במוסך הסדר | סכום ההשתתפות העצמית: 1,100 ₪"
+        }
+      ],
+      "acceptableSourceAlternatives": [["02_car_comprehensive_policy_2026.pdf"]],
+      "reference_answer": "1,100 ₪ לפי גרסת 2026.",
+      "forbiddenAssumptions": ["טענה שרק אחרי 1.3.2026 בלי לכלול את היום עצמו"],
+      "sources": ["02_car_comprehensive_policy_2026.pdf"]
+    },
+    {
+      "id": "E09",
+      "category": "applicability",
+      "tags": ["cancellation", "partial_update", "fees"],
+      "question": "מה דמי הטיפול בהחזר אם הלקוח מבטל פוליסה אחרי יותר מ-14 יום ממועד הרכישה (לאחר תחילת עדכון 2025)?",
+      "expectedBehavior": "answered",
+      "materialFacts": ["דמי טיפול 3% מסכום ההחזר ולא יותר מ-150 ₪"],
+      "evidence": [
+        {
+          "fileName": "23_cancellation_procedure_update_2025.md",
+          "chunkId": "corpus/23_cancellation_procedure_update_2025:c000",
+          "quoteSnippet": "דמי הטיפול הופחתו ל-3% מסכום ההחזר, ולא יותר מ-150 ₪"
+        }
+      ],
+      "acceptableSourceAlternatives": [["23_cancellation_procedure_update_2025.md"]],
+      "reference_answer": "3% מסכום ההחזר, ולא יותר מ-150 ₪ (עדכון 2025; לא 5%).",
+      "forbiddenAssumptions": ["ציון דמי טיפול 5% ככלל החל"],
+      "sources": ["23_cancellation_procedure_update_2025.md"]
+    },
+    {
+      "id": "E10",
+      "category": "applicability",
+      "tags": ["cancellation", "partial_update", "unchanged_rule"],
+      "question": "מתי נכנס לתוקף ביטול פוליסה לפי הנוהל, והאם עדכון 2025 שינה את הכלל הזה?",
+      "expectedBehavior": "answered",
+      "materialFacts": [
+        "הביטול נכנס לתוקף במועד שביקש הלקוח, אך לא לפני מועד קבלת הבקשה",
+        "עדכון 2025 משנה רק את סעיף חישוב ההחזר — שאר הוראות 2023 נותרו בתוקף"
+      ],
+      "evidence": [
+        {
+          "fileName": "22_cancellation_procedure_2023.md",
+          "chunkId": "corpus/22_cancellation_procedure_2023:c000",
+          "quoteSnippet": "הביטול נכנס לתוקף במועד שביקש הלקוח, אך לא לפני מועד קבלת הבקשה"
+        },
+        {
+          "fileName": "23_cancellation_procedure_update_2025.md",
+          "chunkId": "corpus/23_cancellation_procedure_update_2025:c000",
+          "quoteSnippet": "העדכון משנה את סעיף \"חישוב ההחזר\" בלבד. שאר הוראות נוהל 2023 נותרו בתוקף"
+        }
+      ],
+      "acceptableSourceAlternatives": [
+        ["22_cancellation_procedure_2023.md", "23_cancellation_procedure_update_2025.md"]
+      ],
+      "reference_answer": "במועד שביקש הלקוח ולא לפני קבלת הבקשה; עדכון 2025 לא החליף כלל זה (רק חישוב ההחזר).",
+      "forbiddenAssumptions": ["\"החדש תמיד גובר\" על כל סעיפי הביטול"],
+      "sources": [
+        "22_cancellation_procedure_2023.md",
+        "23_cancellation_procedure_update_2025.md"
+      ]
+    },
+    {
+      "id": "E11",
+      "category": "multi_doc",
+      "tags": ["marketing_vs_binding", "towing"],
+      "question": "העלון השיווקי מציע \"גרירות ללא הגבלה\". כמה גרירות מותרות בפועל לפי כתב השירות, ומה מעמד העלון?",
+      "expectedBehavior": "answered",
+      "materialFacts": [
+        "כתב שירות: עד 4 גרירות בשנת ביטוח",
+        "העלון שיווקי בלבד; התנאים המחייבים הם הפוליסה וכתבי השירות"
+      ],
+      "evidence": [
+        {
+          "fileName": "07_towing_roadside.md",
+          "chunkId": "corpus/07_towing_roadside:c000",
+          "quoteSnippet": "גרירה לאחר תאונה או תקלה | מגבלה בשנת ביטוח: עד 4 גרירות"
+        },
+        {
+          "fileName": "09_marketing_brochure_car.md",
+          "chunkId": "corpus/09_marketing_brochure_car:c000",
+          "quoteSnippet": "המידע בעלון זה הוא שיווקי בלבד"
+        }
+      ],
+      "acceptableSourceAlternatives": [
+        ["07_towing_roadside.md", "09_marketing_brochure_car.md"]
+      ],
+      "reference_answer": "עד 4 גרירות בשנה לפי כתב השירות; העלון שיווקי בלבד ואינו גובר על כתב השירות.",
+      "forbiddenAssumptions": ["אימוץ \"ללא הגבלה\" מהשיווק ככלל מחייב"],
+      "sources": ["07_towing_roadside.md", "09_marketing_brochure_car.md"]
+    },
+    {
+      "id": "E12",
+      "category": "multi_doc",
+      "tags": ["ofek_plus", "deductible", "exception"],
+      "question": "לקוח אופק פלוס שואל אם ההנחה של 50% בהשתתפות עצמית במוסך הסדר חלה גם על גניבת רכב.",
+      "expectedBehavior": "answered",
+      "materialFacts": [
+        "הנחת 50% בהשתתפות במוסך הסדר פעם אחת בשנה",
+        "אינה חלה על גניבה, אובדן גמור או מוסך שאינו בהסדר"
+      ],
+      "evidence": [
+        {
+          "fileName": "31_ofek_plus_vip.docx",
+          "chunkId": "corpus/31_ofek_plus_vip:c000",
+          "quoteSnippet": "ההטבה בהשתתפות העצמית אינה חלה על גניבה, אובדן גמור או מוסך שאינו בהסדר"
+        }
+      ],
+      "acceptableSourceAlternatives": [["31_ofek_plus_vip.docx"]],
+      "reference_answer": "לא — ההטבה אינה חלה על גניבה (וגם לא על אובדן גמור / מוסך שאינו בהסדר).",
+      "forbiddenAssumptions": ["החלת הנחת אופק פלוס על גניבה"],
+      "sources": ["31_ofek_plus_vip.docx"]
+    },
+    {
+      "id": "E13",
+      "category": "multi_doc",
+      "tags": ["ofek_plus", "young_driver", "stacking"],
+      "question": "האם הנחת אופק פלוס בהשתתפות עצמית מצטברת עם הכפלת ההשתתפות לנהג צעיר כאשר נהג צעיר נהג ברכב?",
+      "expectedBehavior": "answered",
+      "materialFacts": [
+        "ההטבה אינה מצטברת עם הכפלת ההשתתפות לנהג צעיר; כשנהג צעיר נהג — לא תינתן הנחת אופק פלוס"
+      ],
+      "evidence": [
+        {
+          "fileName": "31_ofek_plus_vip.docx",
+          "chunkId": "corpus/31_ofek_plus_vip:c000",
+          "quoteSnippet": "ההטבה אינה מצטברת עם הכפלת ההשתתפות העצמית לנהג צעיר"
+        }
+      ],
+      "acceptableSourceAlternatives": [["31_ofek_plus_vip.docx"]],
+      "reference_answer": "לא — אין צבירה; כשנהג צעיר נהג לא תינתן הנחת אופק פלוס.",
+      "forbiddenAssumptions": ["צבירת הנחות סותרות"],
+      "sources": ["31_ofek_plus_vip.docx"]
+    },
+    {
+      "id": "E14",
+      "category": "cross_lingual",
+      "tags": ["agents", "commission", "en_evidence"],
+      "question": "מה קורה לעמלת הסוכן אם הלקוח מבטל פוליסה תוך 120 יום מההנפקה?",
+      "expectedBehavior": "answered",
+      "materialFacts": [
+        "ביטול תוך 120 יום מההנפקה → clawback מלא של העמלה (מתוך FAQ באנגלית לסוכנים)"
+      ],
+      "evidence": [
+        {
+          "fileName": "30_agent_faq_en.md",
+          "chunkId": "corpus/30_agent_faq_en:c000",
+          "quoteSnippet": "If the policy is cancelled within 120 days of issue, the full commission is clawed back"
+        }
+      ],
+      "acceptableSourceAlternatives": [["30_agent_faq_en.md"]],
+      "reference_answer": "העמלה נגבית בחזרה במלואה (full clawback) אם הביטול תוך 120 יום מההנפקה.",
+      "forbiddenAssumptions": [
+        "תשובה מנוהל הביטול ללקוח במקום מ-FAQ הסוכנים",
+        "המצאת שיעור clawback שלא במקור"
+      ],
+      "sources": ["30_agent_faq_en.md"],
+      "crossLingualNote": "Hebrew question; binding numeric rule appears only in English agent FAQ (not duplicated in Hebrew corpus docs)."
+    },
+    {
+      "id": "E15",
+      "category": "cross_lingual",
+      "tags": ["agents", "discount", "en_evidence"],
+      "question": "מה אחוז ההנחה המרבי שסוכן רשאי לתת לפי שיקול דעתו בלי אישור מנהל מכירות?",
+      "expectedBehavior": "answered",
+      "materialFacts": ["עד 5% לפי שיקול דעת הסוכן; מעל זה נדרש אישור מנהל מכירות"],
+      "evidence": [
+        {
+          "fileName": "30_agent_faq_en.md",
+          "chunkId": "corpus/30_agent_faq_en:c000",
+          "quoteSnippet": "Agents may grant up to 5% at their discretion. Anything above that requires sales manager approval"
+        }
+      ],
+      "acceptableSourceAlternatives": [["30_agent_faq_en.md"]],
+      "reference_answer": "עד 5%; מעל לכך נדרש אישור מנהל מכירות.",
+      "forbiddenAssumptions": ["שימוש במבצע שיווקי 20% מהעלון כהנחת סוכן"],
+      "sources": ["30_agent_faq_en.md"],
+      "crossLingualNote": "Hebrew question; rule only in English agent FAQ. Marketing brochure 20% is a different claim and non-binding."
+    },
+    {
+      "id": "E16",
+      "category": "ambiguous",
+      "tags": ["benefits", "underspecified"],
+      "question": "מה ההטבות שלי?",
+      "expectedBehavior": "clarification_needed",
+      "materialFacts": [],
+      "evidence": [],
+      "acceptableSourceAlternatives": [],
+      "reference_answer": "השאלה עמומה (איזו תוכנית/פוליסה). יש לבקש הבהרה — לא להניח אופק פלוס או מוצר מסוים רק בגלל שליפה.",
+      "forbiddenAssumptions": ["הנחת אופק פלוס / מוצר רכב בלי שהמשתמש ציין"],
+      "sources": []
+    },
+    {
+      "id": "E17",
+      "category": "ambiguous",
+      "tags": ["sla", "underspecified"],
+      "question": "תוך כמה זמן מגיע שמאי?",
+      "expectedBehavior": "clarification_needed",
+      "materialFacts": [],
+      "evidence": [],
+      "acceptableSourceAlternatives": [],
+      "reference_answer": "עמום בין רכב (3 ימי עסקים) לדירה מעל 10,000 ₪ (5). יש לבקש סוג תביעה/מוצר או להציג את שתי האפשרויות במפורש כחלופות.",
+      "forbiddenAssumptions": ["בחירת יעד אחד בלי לציין שתלוי בסוג"],
+      "sources": []
+    },
+    {
+      "id": "E18",
+      "category": "no_answer",
+      "tags": ["out_of_corpus", "cyber"],
+      "question": "האם אופק ביטוח מציעה ביטוח סייבר לעסקים קטנים?",
+      "expectedBehavior": "insufficient_evidence",
+      "materialFacts": [],
+      "evidence": [],
+      "acceptableSourceAlternatives": [],
+      "reference_answer": "אין מידע בקורפוס. יש להימנע ולהשתמש בניסוח ניטרלי — לא להמציא מוצר ולא להסיק היעדר מוחלט מהמדגם.",
+      "forbiddenAssumptions": ["המצאת כיסוי סייבר", "טענה שאין בכלל מוצר כזה בחברה"],
+      "sources": []
+    },
+    {
+      "id": "E19",
+      "category": "no_answer",
+      "tags": ["out_of_corpus", "marine"],
+      "question": "מה גבול האחריות בפוליסת ביטוח יאכטות של אופק?",
+      "expectedBehavior": "insufficient_evidence",
+      "materialFacts": [],
+      "evidence": [],
+      "acceptableSourceAlternatives": [],
+      "reference_answer": "אין מסמך יאכטות בקורפוס — insufficient_evidence.",
+      "forbiddenAssumptions": ["השאלה על צד ג' רכב כתחליף"],
+      "sources": []
+    },
+    {
+      "id": "E20",
+      "category": "no_answer",
+      "tags": ["out_of_corpus", "life"],
+      "question": "מה סכום הביטוח המינימלי בביטוח חיים למשכנתא באופק?",
+      "expectedBehavior": "insufficient_evidence",
+      "materialFacts": [],
+      "evidence": [],
+      "acceptableSourceAlternatives": [],
+      "reference_answer": "אין ביטוח חיים בקורפוס — insufficient_evidence.",
+      "forbiddenAssumptions": ["ערבוב עם סכום ביטוח תכולה/נסיעות"],
+      "sources": []
+    }
+  ]
+}

@@ -1,95 +1,104 @@
-# תוכנית פיתוח — אופק ביטוח RAG
+# Development plan — Ofek Insurance RAG
 
-## כיוון כללי
+## Direction
 
-- Next.js + TypeScript, פרויקט אחד (ללא microservices בשלב זה).
-- assistant-ui לממשק הצ׳אט.
-- ליבת RAG עצמאית מה-UI ומ-Next.js — ניתנת להרצה מ-API ומסקריפט Evaluation.
-- Ingestion כסקריפט מראש; קול ובחירת מודלים אחרי מסלול RAG מדיד.
-- Python לחילוץ רק אם TypeScript אינו אמין מספיק (לא מניחים מראש).
+- Next.js + TypeScript, single project (no microservices at this stage).
+- assistant-ui for chat shell.
+- RAG core independent of UI and Next.js — runnable from API and eval scripts.
+- Ingestion as upfront scripts; model choices after measurable RAG path.
+- Python for extraction only if TypeScript is unreliable (not assumed upfront).
 
-## הבהרות מוסכמות (לשמור לאורך הפרויקט)
+## Agreed clarifications (keep throughout)
 
-1. **Ingestion:** הצלחה נמדדת לפי שלמות ואיכות החילוץ (כולל טבלאות ותנאי תחולה), לא רק לפי היעדר קריסה.
-2. **שליפה:** ציון דמיון אינו הסתברות שהתשובה נכונה. מדיניות "אין מספיק מידע" תיקבע בהמשך על בסיס ראיות ומדידה.
-3. **Evaluation:** יפריד בין איכות שליפה, נכונות התשובה, שלמות תנאים, תמיכה במקורות, ובקשת הבהרה / אין מידע.
-4. **cross_lingual:** שאלת D07 ניתנת למענה גם ממסמך בעברית. רשימות `sources` ברפרנס אינן בהכרח ממצות את כל המקורות התקפים.
-5. **README סופי:** יציין באילו כלי AI השתמשנו ולשם מה.
-6. **dev_set:** להערכה בלבד — לא לאינדקס ולא לפרומפט המענה. אין להתאים קוד למזהי שאלות הבדיקה.
+1. **Ingestion:** Success = completeness and quality of extraction (tables, applicability), not merely no crash.
+2. **Retrieval:** Similarity scores are **not** probability the answer is correct. Abstention policy set later from evidence and measurement.
+3. **Evaluation:** Separate retrieval quality, answer correctness, condition completeness, source support, clarification vs no-info.
+4. **cross_lingual:** D07 can be answered from Hebrew docs. Reference `sources` lists are not exhaustive of all valid sources.
+5. **Final README:** Document which AI tools were used and for what (including scope beyond base PDF).
+6. **dev_set:** Evaluation only — not indexed, not in answer prompts. Do not tune to question ids.
 
-## ארכיטקטורה מתוכננת
+## Planned architecture
 
 ```
 corpus/ + parsers → chunks → embeddings → local index
 ask(question) → retrieve → generate(answer + sources)
-UI / API / evaluate.ts → אותה ליבת ask()
+UI / API / evaluate.ts → same ask() core
 ```
 
-## שלבי פיתוח
+## Development stages
 
-| שלב | תוכן | תנאי סיום |
+| Stage | Content | Done when |
 | --- | --- | --- |
-| 0 | סקירה ותכנון | הושלם |
-| 1 | Next.js + HomeDemo UI + Mock | הושלם |
-| 2 | Ingestion לכל הקורפוס (md/pdf/docx) | הושלם — `pnpm ingest`, דוח 33/33 |
-| 3 | Chunking על בסיס הבלוקים המובנים | הושלם — `pnpm chunk`, 49 קטעים / 33 מסמכים |
-| 4 | Embeddings + retrieve + eval שליפה | הושלם בקוד — אינדקס מקומי + `retrieve` + `eval:retrieval` |
-| 5 | Generation + מדיניות מקורות | הושלם — `ask()` Hybrid + הרחבת הקשר + ציטוטים מאומתים |
-| 5.1 | תיקון ממוקד מענה + הערכה | הושלם — מדיניות חזקה יותר; 4 ממדי סקירה; דוח לפני/אחרי |
-| 5.2 | Clarify לפני retrieve + answerParts | נוסה; נדחה בגלל over-clarification (9 נסיגות + D05 רצויה) |
-| 5.3 | חזרה מ-Clarify; שמירת answerParts | מסלול Hybrid→gen; מגבלה פתוחה: עמימות D05 |
-| 6 | חיבור UI לליבה | הושלם — API + LocalRuntime → ask(); מקורות ב-UI |
-| 7 | הכנה להגשה והדגמה | הושלם — checklist, INSTALL, דוח מסכם, README, כשלים, הדגמה |
-| 8 | אימות הגשה סופי + Git מקומי | הושלם — PDF חזותי, E2E מאפס, commit מקומי (בלי Push) |
+| 0 | Review and plan | Done |
+| 1 | Next.js + HomeDemo UI + Mock | Done |
+| 2 | Ingestion for full corpus (md/pdf/docx) | Done — `pnpm ingest`, report 33/33 |
+| 3 | Chunking on structured blocks | Done — `pnpm chunk`, 49 chunks / 33 docs |
+| 4 | Embeddings + retrieve + retrieval eval | Done — local index + `retrieve` + `eval:retrieval` |
+| 5 | Generation + source policy | Done — `ask()` Hybrid + context expand + validated citations |
+| 5.1 | Targeted answer fix + eval | Done — stronger policy; 4 review dimensions; before/after report |
+| 5.2 | Clarify before retrieve + answerParts | **Tried; rejected** — over-clarification (9 regressions + wanted D05) |
+| 5.3 | Roll back Clarify gate; keep answerParts | Hybrid→gen path; open: D05 ambiguity |
+| 6 | Wire UI to core | Done — API + LocalRuntime → ask(); sources in UI |
+| 7 | Submission prep + demo docs | Done — checklist, INSTALL, summary, README, failures, demo |
+| 8 | Final submission verify + local Git | Done — visual PDF, E2E from zero, local commit (no push) |
+| 7 (docs) | English developer documentation + English system prompts | In progress — Hebrew user/corpus examples preserved |
 
-## מבנה תיקיות
+## Folder layout
 
-- `src/ingestion/` — parsers + טיפוסים (שלב 2)
+- `src/ingestion/` — parsers + types (stage 2)
 - `scripts/ingest.ts` — `pnpm ingest`
-- `data/parsed/` — JSON לכל מסמך
-- `data/ingestion-report.json` — סיכום
-- `src/chunking/` — פיצול לקטעים (שלב 3)
+- `data/parsed/` — JSON per document
+- `data/ingestion-report.json` — summary
+- `src/chunking/` — chunk split (stage 3)
 - `scripts/chunk.ts` — `pnpm chunk`
-- `data/chunks.json`, `data/chunking-report.json` — פלט קטעים
-- `src/rag/` — embeddings + אינדקס + retrieve + `ask()` (שלבים 4–5)
-- `src/eval/` — הערכת שליפה/מענה מול `dev_set` (רק כאן; לא בפרומפט)
+- `data/chunks.json`, `data/chunking-report.json` — chunk outputs
+- `src/rag/` — embeddings + index + retrieve + `ask()` (stages 4–5)
+- `src/eval/` — retrieval/answer eval vs `dev_set` (only here; not in prompts)
 - `scripts/index.ts`, `retrieve.ts`, `ask.ts`, `eval-retrieval.ts`, `eval-ask.ts`
-- `data/index/embeddings.json` — וקטורים + manifest
+- `data/index/embeddings.json` — vectors + manifest
 - `eval_results/retrieval-eval.*`, `hybrid-comparison.*`, `ask-eval.*`
 
-## הערות Ingestion
+## Ingestion notes
 
-- הצלחה = שלמות חילוץ (טבלאות, תנאי תחולה), לא רק היעדר קריסה.
-- טבלאות PDF מסומנות `structureInferred` + אזהרה; יש לאמת תאים קריטיים.
-- `structureInferred` ≠ אובדן מידע. חשד לחילוץ חלקי מסומן ב-`extractionIncomplete` / אזהרת `Partial extraction`.
-- HTML comments ב-Markdown מוסרים מטקסט החיפוש — אינו תחליף להגנת Prompt Injection.
-- Generative UI נשאר לשלב מאוחר; אין `render_spec` כרגע.
+- Success = extraction completeness (tables, applicability), not only no crash.
+- PDF tables marked `structureInferred` + warning; verify critical cells.
+- `structureInferred` ≠ information loss. Suspected partial extract → `extractionIncomplete` / `Partial extraction` warning.
+- HTML comments removed from Markdown search text — not a substitute for prompt-injection defense.
+- Generative UI deferred; no `render_spec` yet.
 
-## הערות Chunking
+## Chunking notes
 
-- Chunk ≠ בלוק חילוץ: בלוק הוא יחידת מבנה מהמסמך; Chunk הוא יחידת חיפוש/ציטוט עם הקשר.
-- אורך = הערכת טוקנים היוריסטית `max(words*1.3, chars/2.8)` — לא tokenizer של מודל.
-- מסמכים קצרים נשארים קטע אחד; אין פיצול רק כדי להגיע לגודל קבוע.
-- טבלה גדולה: קבוצות שורות עם כותרות חוזרות + `tableRowRange`; לא חותכים שורה לוגית.
-- הקשר תחולה/כותרת ממקור אחר באותו מסמך נרשם ב-`contextBlockIds` בנפרד מ-`sourceBlockIds`.
+- Chunk ≠ ingestion block: block = document structure unit; chunk = search/citation unit with context.
+- Length = heuristic token estimate `max(words*1.3, chars/2.8)` — not model tokenizer.
+- Short documents stay one chunk; no split just to hit a size target.
+- Large table: row groups with repeated headers + `tableRowRange`; do not cut logical rows.
+- Applicability/title context from same doc recorded in `contextBlockIds` separately from `sourceBlockIds`.
 
-## הערות Embeddings / שליפה
+## Embeddings / retrieval notes
 
-- קלט אינדקס: `data/chunks.json` בלבד. `dev_set` לא נכנס לאינדקס.
-- אותו מודל וממדים לקטעים ולשאלות; ברירת מחדל `text-embedding-3-small` / 1536.
-- טקסט embedding: כותרת + סעיף + גוף — בלי מזהים טכניים ואזהרות חילוץ.
-- אינדקס מקומי עם manifest (מודל, ממדים, hashes, formatVersion); אי-התאמה → הודעה לבנות מחדש (`pnpm index`).
-- `retrieve({ mode })`: `vector` (cosine) | `lexical` (BM25) | `hybrid` (RRF c=60). ציון ≠ confidence.
-- BM25 על אותו `embeddingText`; ללא stemming/מילים נרדפות; פרמטרים k1=1.2 b=0.75 לא כוונו על ה-dev set.
-- Document Recall@K בודק הופעת מסמך ייחוס בטופ-K קטעים — לא הוכחה שנשלף הסעיף עם התשובה.
-- דוחות שליפה: `eval_results/retrieval-eval.*` (baseline) ו-`hybrid-comparison.*` — לא לדרוס זה את זה.
+- Index input: `data/chunks.json` only. `dev_set` not indexed.
+- Same model and dimensions for chunks and queries; default `text-embedding-3-small` / 1536.
+- Embedding text: title + section + body — no technical ids or extraction warnings.
+- Local index with manifest (model, dims, hashes, formatVersion); mismatch → rebuild message (`pnpm index`).
+- `retrieve({ mode })`: `vector` (cosine) | `lexical` (BM25) | `hybrid` (RRF c=60). Score ≠ confidence.
+- BM25 on same `embeddingText`; no stemming/synonyms; k1=1.2 b=0.75 not tuned on dev set.
+- Document Recall@K = unique reference **documents** in top‑K **chunks** — not proof the right section was retrieved.
+- Reports: `eval_results/retrieval-eval.*` (baseline) and `hybrid-comparison.*` — do not overwrite each other.
 
-## הערות Generation / ask (שלב 5)
+## Generation / ask notes (stage 5)
 
-- **שלוש שכבות נפרדות:** (1) `retrievedChunks` = top-K Hybrid לשליפה/Recall@5; (2) `contextChunks` = מה שנשלח למודל אחרי הרחבה לפי `documentId` בתקציב; (3) `sources`/`citations` = מה שהמודל ציטט ואשר השרת אימת מול הקשר בלבד.
-- הרחבת הקשר היא שלב נפרד אחרי Hybrid — לא משנה את דירוג/Recall@5.
-- תקציב ברירת מחדל: 3500 טוקנים משוערים (`heuristic_he_en_v1`); קטעים שלמים בלבד; אין חיתוך באמצע טבלה/סעיף.
-- מודל מענה: `GENERATION_MODEL` (ברירת מחדל `gpt-4.1-mini` — Structured Outputs בתיעוד OpenAI).
-- סטטוסים: `answered` | `clarification_needed` | `insufficient_evidence`. שגיאת API/JSON = `GenerationSystemError`, לא insufficient.
-- אימות `chunkId` ≠ אימות שהמקור תומך בטענה. אין confidence מספרי.
-- `dev_set` נקרא רק ב-`eval:ask` אחרי המענה לסקירה ידנית.
+- **Three layers:** (1) `retrievedChunks` = Hybrid top‑K for Recall@5; (2) `contextChunks` = sent to model after `documentId` expansion within budget; (3) `sources`/`citations` = cited parts validated against context only.
+- Context expansion is after Hybrid — does not change Recall@5 ranking.
+- Default budget: 3500 estimated tokens (`heuristic_he_en_v1`); whole chunks only; no mid-table/section cut.
+- Answer model: `GENERATION_MODEL` (default `gpt-4.1-mini` — Structured Outputs per OpenAI docs).
+- Statuses: `answered` | `clarification_needed` | `insufficient_evidence`. API/JSON errors = `GenerationSystemError`, not insufficient.
+- `chunkId` check ≠ claim supported by source. No numeric confidence.
+- `dev_set` read only in `eval:ask` after answering for manual review.
+
+## Active path vs experiments
+
+| Path | Status |
+| --- | --- |
+| Hybrid + applicability + rewrite (with history) | **Active** |
+| Pre-retrieve Clarify | **Rejected** (code retained, unwired) |
+| `ANSWER_REVIEW_ENABLED=1` default | **Rejected** — default **0** |

@@ -5,6 +5,7 @@ import { Menu } from "@base-ui/react/menu";
 import { MoreHorizontalIcon, PanelLeftIcon } from "lucide-react";
 import { useRef, useState, type ReactNode } from "react";
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
+import { DEFAULT_THREAD_TITLE } from "@/lib/thread-title";
 import { cn } from "@/lib/utils";
 import { Sidebar } from "./sidebar";
 import { menuContentClass, menuItemClass } from "./styles";
@@ -113,7 +114,7 @@ export function DemoShell({
         }
       })
       .catch(() => {
-        // LocalRuntime rarely fails; keep UI quiet on switch errors.
+        // Keep UI quiet on switch / storage errors; do not claim success.
       });
   };
 
@@ -133,9 +134,10 @@ export function DemoShell({
           : "md:grid-cols-[15rem_minmax(0,1fr)]",
       )}
     >
+      {/* Sidebar header — first grid column = inline-start in LTR / inline-end in RTL (right). */}
       <div
         className={cn(
-          "border-foreground/10 bg-foreground/[0.025] dark:bg-foreground/[0.04] hidden h-12 items-center gap-2 border-r border-b px-4",
+          "border-foreground/10 bg-foreground/[0.025] dark:bg-foreground/[0.04] hidden h-12 items-center gap-2 border-e border-b px-4",
           !sidebarCollapsed && "md:flex",
         )}
       >
@@ -143,37 +145,37 @@ export function DemoShell({
           aria-hidden
           className="bg-foreground/80 block size-4 rounded-[3px]"
         />
-        <span className="text-[13px] font-medium">Ofek RAG</span>
+        <span className="text-[13px] font-medium">אופק RAG</span>
         <button
           type="button"
           onClick={() => setSidebarCollapsed(true)}
-          aria-label="Collapse threads"
+          aria-label="כיווץ רשימת השיחות"
           aria-expanded
           aria-controls={SIDEBAR_REGION_ID}
           className="text-muted-foreground hover:text-foreground rounded-control ms-auto -me-1.5 grid size-7 shrink-0 place-items-center transition-colors"
         >
-          <PanelLeftIcon className="size-4" />
+          <PanelLeftIcon className="size-4 rtl:-scale-x-100" />
         </button>
       </div>
       <div className="border-foreground/10 flex h-12 min-w-0 items-center gap-2 border-b px-4 md:px-5">
         <button
           type="button"
           onClick={() => onMobileSidebarOpenChange(true)}
-          aria-label="Open threads"
+          aria-label="פתיחת רשימת השיחות"
           className="text-muted-foreground hover:text-foreground rounded-control -ms-1.5 grid size-7 shrink-0 place-items-center transition-colors md:hidden"
         >
-          <PanelLeftIcon className="size-4" />
+          <PanelLeftIcon className="size-4 rtl:-scale-x-100" />
         </button>
         {sidebarCollapsed ? (
           <button
             type="button"
             onClick={() => setSidebarCollapsed(false)}
-            aria-label="Show threads"
+            aria-label="הצגת רשימת השיחות"
             aria-expanded={false}
             aria-controls={SIDEBAR_REGION_ID}
             className="text-muted-foreground hover:text-foreground rounded-control -ms-1.5 hidden size-7 shrink-0 place-items-center transition-colors md:grid"
           >
-            <PanelLeftIcon className="size-4" />
+            <PanelLeftIcon className="size-4 rtl:-scale-x-100" />
           </button>
         ) : null}
         {renaming && renaming.id === mainThreadId ? (
@@ -198,7 +200,7 @@ export function DemoShell({
         ) : (
           <ThreadTitle />
         )}
-        <div className="-me-1.5 ml-auto flex shrink-0 items-center gap-1.5">
+        <div className="-me-1.5 ms-auto flex shrink-0 items-center gap-1.5">
           <span className="border-foreground/15 text-muted-foreground hidden rounded-control border px-2 py-0.5 text-[11px] sm:inline">
             אופק RAG
           </span>
@@ -208,7 +210,7 @@ export function DemoShell({
       <div
         id={SIDEBAR_REGION_ID}
         className={cn(
-          "border-foreground/10 bg-foreground/[0.025] dark:bg-foreground/[0.04] hidden min-h-0 flex-col overflow-hidden border-r p-3",
+          "border-foreground/10 bg-foreground/[0.025] dark:bg-foreground/[0.04] hidden min-h-0 flex-col overflow-hidden border-e p-3",
           !sidebarCollapsed && "md:flex",
         )}
       >
@@ -231,7 +233,7 @@ export function DemoShell({
         }}
       >
         <SheetContent
-          side="left"
+          side="right"
           className="bg-background w-72 overflow-hidden p-3 pt-12"
           finalFocus={() => pendingMobileAction.current === null}
           onKeyDownCapture={(event) => {
@@ -241,7 +243,7 @@ export function DemoShell({
             runCommand("composer");
           }}
         >
-          <SheetTitle className="sr-only">Threads</SheetTitle>
+          <SheetTitle className="sr-only">רשימת שיחות</SheetTitle>
           <Sidebar
             onNavigate={() => {
               setMobileSidebarOpen(false);
@@ -260,8 +262,8 @@ function ThreadTitle(): ReactNode {
   );
 
   return (
-    <span className="min-w-0 truncate text-[13px] font-medium">
-      {title ?? "New chat"}
+    <span className="min-w-0 truncate text-[13px] font-medium" dir="auto">
+      {title?.trim() || DEFAULT_THREAD_TITLE}
     </span>
   );
 }
@@ -322,7 +324,7 @@ function DemoMenu({
                 }}
               >
                 <span>{command.label}</span>
-                <kbd className="text-muted-foreground font-mono text-[10px]">
+                <kbd className="text-muted-foreground font-mono text-[10px]" dir="ltr">
                   {command.shortcut}
                 </kbd>
               </Menu.Item>

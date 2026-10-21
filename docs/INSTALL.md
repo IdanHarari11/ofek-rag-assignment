@@ -1,66 +1,66 @@
-# מסלול התקנה והרצה
+# Install and run
 
-נבדק בפרויקט עם **Node.js v22.23.3** ו־**pnpm 12.11.2** (`packageManager` ב־`package.json`; `engines.node: >=22`).
+Verified in this project with **Node.js v22.23.3** and **pnpm 12.11.2** (`packageManager` in `package.json`; `engines.node: >=22`).
 
-## שלושה מצבים נפרדים
+## Three separate modes
 
-| מצב | מתי | מה מריצים | מפתח API |
+| Mode | When | Commands | API key |
 | --- | --- | --- | --- |
-| **הכנה ראשונה** | שכפול חדש / אין `data/index` | `pnpm install` → `.env` → `pnpm prepare:rag` → `pnpm dev` | כן — embeddings ב־`pnpm index` |
-| **הפעלה רגילה** | אינדקס קיים ולא שיניתם קורפוס | `pnpm dev` (או `pnpm ask -- "…"`) | כן — לכל שאלה (embed שאלה + generation) |
-| **בנייה מחדש אחרי שינוי קורפוס** | שינוי ב־`corpus/` | `pnpm prepare:rag` (ingest→chunk→index) | כן — אינדקס מחדש לקטעים שהשתנו (reuse כשאפשר) |
+| **First-time setup** | Fresh clone / no `data/index` | `pnpm install` → `.env` → `pnpm prepare:rag` → `pnpm dev` | Yes — embeddings in `pnpm index` |
+| **Normal run** | Index exists, corpus unchanged | `pnpm dev` (or `pnpm ask -- "…"`) | Yes — per question (embed + generation) |
+| **Rebuild after corpus change** | Edits under `corpus/` | `pnpm prepare:rag` (ingest→chunk→index) | Yes — re-index changed chunks (reuse when possible) |
 
-`pnpm prepare:rag` רק מרכיב את הסקריפטים הקיימים: `ingest && chunk && index` — **בלי** לשכפל לוגיקה.
+`pnpm prepare:rag` only chains existing scripts: `ingest && chunk && index` — **no** duplicated logic.
 
-## שלבים (הכנה ראשונה)
+## Steps (first-time setup)
 
 ```bash
-# 1) התקנת תלויות עם lockfile
+# 1) Install with lockfile
 pnpm install
 
-# 2) הגדרת סביבה (בלי סודות בריפו)
+# 2) Environment (no secrets in repo)
 cp .env.example .env
-# ערכו .env ומלאו OPENAI_API_KEY (שרת בלבד; לא NEXT_PUBLIC_)
+# Edit .env and set OPENAI_API_KEY (server only; not NEXT_PUBLIC_)
 
-# 3) חילוץ → chunking → אינדקס
+# 3) Extract → chunk → index
 pnpm prepare:rag
 
-# 4) ממשק
+# 4) UI
 pnpm dev
 ```
 
-CLI ללא UI:
+CLI without UI:
 
 ```bash
 pnpm ask -- "מה שעות הפעילות של מוקד שירות הלקוחות ביום שישי?"
 ```
 
-## מה לא לשכוח
+## Do not forget
 
-- בלי `OPENAI_API_KEY` תקין: `pnpm index` / `ask` / `/api/ask` ייכשלו (שגיאת שירות — לא `insufficient_evidence`).
-- `data/` ב־gitignore — כל מפתח מקומי בונה את האינדקס אצלו (או מעתיק `data/` מחוץ לריפו אם סוכם כך).
-- `eval_results/` מיועדים להגשה (דוחות שמורים); אין צורך להריץ מחדש את כל ה־eval אם לא שיניתם לוגיקת מענה.
+- Without a valid `OPENAI_API_KEY`, `pnpm index` / `ask` / `/api/ask` fail with a service error — not `insufficient_evidence`.
+- `data/` is gitignored — each machine builds its own index (or copy `data/` out of band if agreed).
+- `eval_results/` are kept for submission (saved reports); no need to re-run all evals unless answer logic changed.
 
-## הערת pnpm 12 — build של esbuild
+## pnpm 12 — esbuild build
 
-ב־`pnpm-workspace.yaml` מוגדר `allowBuilds.esbuild: true` כדי ש־`pnpm install --frozen-lockfile` יריץ את postinstall של esbuild (נדרש ל־tsx/vite). בלי זה pnpm 12 עלול להיכשל ב־`ERR_PNPM_IGNORED_BUILDS`.
+`pnpm-workspace.yaml` sets `allowBuilds.esbuild: true` so `pnpm install --frozen-lockfile` runs esbuild postinstall (needed for tsx/vite). Without it, pnpm 12 may fail with `ERR_PNPM_IGNORED_BUILDS`.
 
-## אימות מסלול בעותק זמני
+## Verify path on a clean copy
 
-### שלב 7 (חלקי)
+### Stage 7 (partial)
 
-עותק נקי: התקנה + ingest + chunk; אינדוקס בלי מפתח נכשל כמצופה.
+Clean copy: install + ingest + chunk; index without a key fails as expected.
 
-### שלב 8 — מאפס כולל אינדוקס אמיתי
+### Stage 8 — full from zero including real index
 
-עותק: `/tmp/ofek-rag-e2e-poyucM` (ללא `node_modules`/`data` מהמקור).  
-מפתח: **רק `OPENAI_API_KEY` בסביבה**; קובץ `.env` בעותק נשאר ריק ממפתח.
+Copy path: `/tmp/ofek-rag-e2e-poyucM` (no `node_modules`/`data` from source).  
+Key: **`OPENAI_API_KEY` in environment only**; `.env` in the copy leaves the key field empty.
 
-| שלב | תוצאה |
+| Step | Result |
 | --- | --- |
 | `pnpm install --frozen-lockfile` | OK |
-| `pnpm prepare:rag` | 33 מסמכים → 49 קטעים → אינדקס 49/49; usage **23,084** טוקנים; hashes זהים למקור |
-| `pnpm ask -- "…שישי?"` | answered + מקור `28_call_center_hours.md` (embed 42 / gen_total 2070) |
-| `POST /api/ask` | answered + מקור עם טקסט מהאינדקס |
+| `pnpm prepare:rag` | 33 documents → 49 chunks → index 49/49; usage **23,084** tokens; hashes match source |
+| `pnpm ask -- "…שישי?"` | answered + source `28_call_center_hours.md` (embed 42 / gen_total 2070) |
+| `POST /api/ask` | answered + source with index text |
 
-פירוט: `docs/SUBMISSION-VERIFY.md`.
+Details: `docs/SUBMISSION-VERIFY.md`.

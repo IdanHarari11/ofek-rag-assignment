@@ -1,0 +1,283 @@
+{
+  "generatedAt": "2026-10-21T13:32:26.763Z",
+  "stageLabel": "stage2-conversation-fixtures",
+  "retrievalMode": "hybrid",
+  "generationModel": "from-ask-result",
+  "fixtureCount": 8,
+  "turnCount": 8,
+  "systemErrorCount": 0,
+  "standaloneCheckFailures": 0,
+  "totalRewriteMs": 9772.515415999995,
+  "totalRewritePromptTokens": 4522,
+  "totalRewriteCompletionTokens": 365,
+  "turns": [
+    {
+      "fixtureId": "C01",
+      "title": "רכב מקיף + תאריך → מוסך שאינו בהסדר",
+      "question": "ומה במוסך שאינו בהסדר?",
+      "status": "answered",
+      "answer": "בפוליסת רכב מקיף שהונפקה ב-1.3.2026, ההשתתפות העצמית עבור נזק חלקי כאשר התיקון נעשה במוסך שאינו מוסך הסדר היא 2,100 ₪. ההשתתפות העצמית צמודה למדד המחירים לצרכן הידוע ביום 1.3.2026.",
+      "answerParts": [
+        {
+          "text": "בפוליסת רכב מקיף שהונפקה ב-1.3.2026, ההשתתפות העצמית עבור נזק חלקי כאשר התיקון נעשה במוסך שאינו מוסך הסדר היא 2,100 ₪. ההשתתפות העצמית צמודה למדד המחירים לצרכן הידוע ביום 1.3.2026.",
+          "sourceChunkIds": [
+            "corpus/02_car_comprehensive_policy_2026:c000"
+          ]
+        }
+      ],
+      "sourceChunkIds": [
+        "corpus/02_car_comprehensive_policy_2026:c000"
+      ],
+      "sourceFileNames": [
+        "02_car_comprehensive_policy_2026.pdf"
+      ],
+      "originalQuestion": "ומה במוסך שאינו בהסדר?",
+      "standaloneQuestion": "מהי ההשתתפות העצמית בפוליסת רכב מקיף שהונפקה ב-1.3.2026 במוסך שאינו מוסך הסדר?",
+      "unresolvedReferences": [],
+      "rewriteMs": 1526.0677500000002,
+      "rewritePromptTokens": 593,
+      "rewriteCompletionTokens": 49,
+      "standaloneChecks": {
+        "mustIncludeOk": true,
+        "mustNotIncludeOk": true,
+        "missingIncludes": [],
+        "leakedExcludes": []
+      },
+      "notes": "Keep issue date + comprehensive auto; swap workshop type only."
+    },
+    {
+      "fixtureId": "C02",
+      "title": "תיקון תאריך על ידי המשתמש",
+      "question": "ומה ההשתתפות במוסך שאינו בהסדר?",
+      "status": "answered",
+      "answer": "בהתאם לפוליסה לביטוח רכב מקיף מ-1.3.2026, ההשתתפות העצמית במקרה של נזק חלקי כאשר התיקון נעשה במוסך שאינו מוסך הסדר היא 2,100 ₪. ההשתתפות העצמית צמודה למדד המחירים לצרכן הידוע ביום 1.3.2026.",
+      "answerParts": [
+        {
+          "text": "בהתאם לפוליסה לביטוח רכב מקיף מ-1.3.2026, ההשתתפות העצמית במקרה של נזק חלקי כאשר התיקון נעשה במוסך שאינו מוסך הסדר היא 2,100 ₪. ההשתתפות העצמית צמודה למדד המחירים לצרכן הידוע ביום 1.3.2026.",
+          "sourceChunkIds": [
+            "corpus/02_car_comprehensive_policy_2026:c000"
+          ]
+        }
+      ],
+      "sourceChunkIds": [
+        "corpus/02_car_comprehensive_policy_2026:c000"
+      ],
+      "sourceFileNames": [
+        "02_car_comprehensive_policy_2026.pdf"
+      ],
+      "originalQuestion": "ומה ההשתתפות במוסך שאינו בהסדר?",
+      "standaloneQuestion": "מהי ההשתתפות העצמית במוסך שאינו מוסך הסדר בפוליסה מקיפה מ-1.3.2026?",
+      "unresolvedReferences": [
+        "פוליסה מקיפה מ-1.3.2026"
+      ],
+      "rewriteMs": 1290.5797920000005,
+      "rewritePromptTokens": 613,
+      "rewriteCompletionTokens": 56,
+      "standaloneChecks": {
+        "mustIncludeOk": true,
+        "mustNotIncludeOk": true,
+        "missingIncludes": [],
+        "leakedExcludes": []
+      },
+      "notes": "Explicit user correction wins over earlier date."
+    },
+    {
+      "fixtureId": "C03",
+      "title": "מעבר מרכב לכבודה — אין זליגה",
+      "question": "ומה לגבי פיצוי על איחור כבודה של 8 שעות?",
+      "status": "answered",
+      "answer": "במקרה של איחור בכבודה מעל 6 שעות, מגיע פיצוי עד 150 דולר לרכישת פריטים חיוניים. במקרה של איחור מעל 24 שעות, מגיע פיצוי נוסף של עד 150 דולר.\n\nכדי לקבל את הפיצוי יש להגיש לחברת התעופה דו\"ח אי-הגעת כבודה (PIR) בשדה התעופה.",
+      "answerParts": [
+        {
+          "text": "במקרה של איחור בכבודה מעל 6 שעות, מגיע פיצוי עד 150 דולר לרכישת פריטים חיוניים. במקרה של איחור מעל 24 שעות, מגיע פיצוי נוסף של עד 150 דולר.",
+          "sourceChunkIds": [
+            "corpus/16_travel_luggage:c000"
+          ]
+        },
+        {
+          "text": "כדי לקבל את הפיצוי יש להגיש לחברת התעופה דו\"ח אי-הגעת כבודה (PIR) בשדה התעופה.",
+          "sourceChunkIds": [
+            "corpus/16_travel_luggage:c000"
+          ]
+        }
+      ],
+      "sourceChunkIds": [
+        "corpus/16_travel_luggage:c000"
+      ],
+      "sourceFileNames": [
+        "16_travel_luggage.md"
+      ],
+      "originalQuestion": "ומה לגבי פיצוי על איחור כבודה של 8 שעות?",
+      "standaloneQuestion": "מה הפיצוי שמגיע על איחור של 8 שעות בכבודה?",
+      "unresolvedReferences": [
+        "פיצוי על איחור כבודה"
+      ],
+      "rewriteMs": 1452.7814170000001,
+      "rewritePromptTokens": 565,
+      "rewriteCompletionTokens": 38,
+      "standaloneChecks": {
+        "mustIncludeOk": true,
+        "mustNotIncludeOk": true,
+        "missingIncludes": [],
+        "leakedExcludes": []
+      },
+      "notes": "Topic switch must not inherit auto product/date."
+    },
+    {
+      "fixtureId": "C04",
+      "title": "הבהרה → תשובה קצרה (fixture, לא בדיקת D05 חיה)",
+      "question": "רכב מקיף, מוסך הסדר, פוליסה מ-1.3.2026",
+      "clarificationFixture": true,
+      "status": "answered",
+      "answer": "ההשתתפות העצמית בפוליסת רכב מקיף שהונפקה או חודשה החל מ-1.3.2026, כאשר התיקון מתבצע במוסך הסדר, היא 1,100 ₪.",
+      "answerParts": [
+        {
+          "text": "ההשתתפות העצמית בפוליסת רכב מקיף שהונפקה או חודשה החל מ-1.3.2026, כאשר התיקון מתבצע במוסך הסדר, היא 1,100 ₪.",
+          "sourceChunkIds": [
+            "corpus/02_car_comprehensive_policy_2026:c000"
+          ]
+        }
+      ],
+      "sourceChunkIds": [
+        "corpus/02_car_comprehensive_policy_2026:c000"
+      ],
+      "sourceFileNames": [
+        "02_car_comprehensive_policy_2026.pdf"
+      ],
+      "originalQuestion": "רכב מקיף, מוסך הסדר, פוליסה מ-1.3.2026",
+      "standaloneQuestion": "מהי ההשתתפות העצמית בפוליסת רכב מקיף שנרכשה ב-1.3.2026, כאשר התיקון מתבצע במוסך הסדר?",
+      "unresolvedReferences": [],
+      "rewriteMs": 1059.1717909999988,
+      "rewritePromptTokens": 548,
+      "rewriteCompletionTokens": 53,
+      "standaloneChecks": {
+        "mustIncludeOk": true,
+        "mustNotIncludeOk": true,
+        "missingIncludes": [],
+        "leakedExcludes": []
+      },
+      "notes": "Join short clarification reply to prior clarify question."
+    },
+    {
+      "fixtureId": "C05a",
+      "title": "אותו ניסוח המשך — הקשר רכב",
+      "question": "ומה במקרה של נזק חלקי?",
+      "status": "answered",
+      "answer": "בפוליסת רכב מקיף מ-1.3.2026 של אופק ביטוח, במקרה של נזק חלקי כאשר התיקון נעשה במוסך הסדר, סכום ההשתתפות העצמית הוא 1,100 ₪.",
+      "answerParts": [
+        {
+          "text": "בפוליסת רכב מקיף מ-1.3.2026 של אופק ביטוח, במקרה של נזק חלקי כאשר התיקון נעשה במוסך הסדר, סכום ההשתתפות העצמית הוא 1,100 ₪.",
+          "sourceChunkIds": [
+            "corpus/02_car_comprehensive_policy_2026:c000"
+          ]
+        }
+      ],
+      "sourceChunkIds": [
+        "corpus/02_car_comprehensive_policy_2026:c000"
+      ],
+      "sourceFileNames": [
+        "02_car_comprehensive_policy_2026.pdf"
+      ],
+      "originalQuestion": "ומה במקרה של נזק חלקי?",
+      "standaloneQuestion": "מהי ההשתתפות העצמית במוסך הסדר במקרה של נזק חלקי בפוליסת רכב מקיף מ-1.3.2026?",
+      "unresolvedReferences": [
+        "נזק חלקי"
+      ],
+      "rewriteMs": 1132.6259999999984,
+      "rewritePromptTokens": 557,
+      "rewriteCompletionTokens": 52,
+      "standaloneChecks": {
+        "mustIncludeOk": true,
+        "mustNotIncludeOk": true,
+        "missingIncludes": [],
+        "leakedExcludes": []
+      },
+      "notes": "Same follow-up wording, auto context."
+    },
+    {
+      "fixtureId": "C05b",
+      "title": "אותו ניסוח המשך — הקשר כבודה",
+      "question": "ומה במקרה של נזק חלקי?",
+      "status": "clarification_needed",
+      "answer": "האם השאלה מתייחסת לנזק חלקי לכבודה במסגרת ביטוח דירה או לנזק חלקי לרכב במסגרת ביטוח רכב מקיף?",
+      "answerParts": [
+        {
+          "text": "האם השאלה מתייחסת לנזק חלקי לכבודה במסגרת ביטוח דירה או לנזק חלקי לרכב במסגרת ביטוח רכב מקיף?",
+          "sourceChunkIds": []
+        }
+      ],
+      "sourceChunkIds": [],
+      "sourceFileNames": [],
+      "originalQuestion": "ומה במקרה של נזק חלקי?",
+      "standaloneQuestion": "מה הפיצוי במקרה של נזק חלקי לכבודה?",
+      "unresolvedReferences": [
+        "כבודה"
+      ],
+      "rewriteMs": 959.7472080000007,
+      "rewritePromptTokens": 549,
+      "rewriteCompletionTokens": 27,
+      "standaloneChecks": {
+        "mustIncludeOk": true,
+        "mustNotIncludeOk": true,
+        "missingIncludes": [],
+        "leakedExcludes": []
+      },
+      "notes": "Same follow-up wording, baggage context — must not leak auto."
+    },
+    {
+      "fixtureId": "C06",
+      "title": "תשובת assistant שגויה אינה הופכת לראיה",
+      "question": "אתה בטוח? מה כתוב במסמכים?",
+      "status": "insufficient_evidence",
+      "answer": "לא מצאתי במקורות שסופקו מידע מספיק כדי לענות על השאלה.",
+      "answerParts": [],
+      "sourceChunkIds": [],
+      "sourceFileNames": [],
+      "originalQuestion": "אתה בטוח? מה כתוב במסמכים?",
+      "standaloneQuestion": "מהן שעות פעילות מוקד השירות ביום שישי כפי שמופיע במסמכים הרשמיים של אופק ביטוח?",
+      "unresolvedReferences": [
+        "מסמכים רשמיים של אופק ביטוח לגבי שעות מוקד ביום שישי"
+      ],
+      "rewriteMs": 1169.737374999997,
+      "rewritePromptTokens": 555,
+      "rewriteCompletionTokens": 56,
+      "standaloneChecks": {
+        "mustIncludeOk": true,
+        "mustNotIncludeOk": true,
+        "missingIncludes": [],
+        "leakedExcludes": []
+      },
+      "notes": "Prior wrong assistant hours must not become factual evidence; corpus wins."
+    },
+    {
+      "fixtureId": "C07",
+      "title": "הפניה שלא ניתן לפתור — בלי המצאה",
+      "question": "מה ההשתתפות של אותו מוצר שדיברנו עליו?",
+      "status": "clarification_needed",
+      "answer": "אנא ציין באיזו גרסת פוליסה מדובר או פרט נוסף על המוצר כדי שאוכל לספק את סכום ההשתתפות העצמית המדויק.",
+      "answerParts": [
+        {
+          "text": "אנא ציין באיזו גרסת פוליסה מדובר או פרט נוסף על המוצר כדי שאוכל לספק את סכום ההשתתפות העצמית המדויק.",
+          "sourceChunkIds": []
+        }
+      ],
+      "sourceChunkIds": [],
+      "sourceFileNames": [],
+      "originalQuestion": "מה ההשתתפות של אותו מוצר שדיברנו עליו?",
+      "standaloneQuestion": "מהי ההשתתפות העצמית בפוליסה שלך?",
+      "unresolvedReferences": [
+        "אותו מוצר שדיברנו עליו"
+      ],
+      "rewriteMs": 1181.804082999999,
+      "rewritePromptTokens": 542,
+      "rewriteCompletionTokens": 34,
+      "standaloneChecks": {
+        "mustIncludeOk": true,
+        "mustNotIncludeOk": true,
+        "missingIncludes": [],
+        "leakedExcludes": []
+      },
+      "notes": "No product was established — unresolvedReferences expected; no invent."
+    }
+  ]
+}

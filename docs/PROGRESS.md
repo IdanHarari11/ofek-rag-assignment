@@ -1,67 +1,68 @@
-# סטטוס התקדמות
+# Progress status
 
-## שלב 0 — סקירה ותכנון
+## Stage 0 — Review and plan
 
-- **סטטוס:** הושלם
+- **Status:** Done
 
-## שלב 1 — HomeDemo UI + Mock
+## Stage 1 — HomeDemo UI + Mock
 
-- **סטטוס:** הושלם
-- UI מ-HomeDemo @ `9845a8ba…`; Runtime מופרד; Mock מסומן
+- **Status:** Done
+- UI from HomeDemo @ `9845a8ba…`; runtime separated; mock labeled
 
-## שלב 2 — Ingestion לקורפוס
+## Stage 2 — Corpus ingestion
 
-- **סטטוס:** הושלם (כולל תיקון ממוקד לטבלאות PDF מרובות-שורות)
-- ספריות: `unpdf` (PDF+עברית+מיקומים), `mammoth` (DOCX+טבלאות HTML), `unified`/`remark-parse`/`remark-gfm` (Markdown), `node-html-parser` (HTML מ-mammoth)
-- תוצאה אחרונה: **33 מסמכים** — success=24, success_with_warnings=9, failure=0; אין `extractionIncomplete` בטבלאות שנבדקו
-- פקודות: `pnpm ingest`, `pnpm test:ingestion`
-- בדיקות: typecheck, lint, 7 בדיקות שימור מידע — עברו (כולל איחוד תאים מרובי שורות בקטלוג טפסים, השתתפויות, תמ״א 38, ורווחים לפי מיקומים)
+- **Status:** Done (including targeted fix for multi-row PDF tables)
+- Libraries: `unpdf` (PDF+Hebrew+positions), `mammoth` (DOCX+HTML tables), `unified`/`remark-parse`/`remark-gfm` (Markdown), `node-html-parser` (HTML from mammoth)
+- Last result: **33 documents** — success=24, success_with_warnings=9, failure=0; no `extractionIncomplete` on checked tables
+- Commands: `pnpm ingest`, `pnpm test:ingestion`
+- Tests: typecheck, lint, 7 preservation tests — passed (including multi-row cell merge in forms catalog, deductibles, TAMA 38, spacing by position)
 
-### תיקון איכות PDF (לאחר שלב 2)
+### PDF quality fix (after stage 2)
 
-- **בעיה:** שורות המשך מרובות-עמודות סומנו כשורות חדשות (`startsNewRow` לפי מספר clusters), ולכן תוכן כמו 4401 פוצל לשורות נפרדות; בנוסף `join("")` הדביק טוקנים בלי רווח
-- **תיקון:** שורת חדשה רק כשעמודת המפתח מלאה (או מזהה טופס); המשכים מתמזגים לתאים; רווחים לפי פער אופקי בין text items; עצירת אזור טבלה לפני פרוזה
-- **סימון איכות:** `structureInferred` = הסקת מבנה; `extractionIncomplete` / אזהרת `Partial extraction` = חשד לאובדן/שיוך שגוי (לא אותו דבר)
+- **Issue:** Continuation rows across columns marked as new rows (`startsNewRow` by cluster count), splitting content like 4401; `join("")` glued tokens without spaces
+- **Fix:** New row only when key column full (or form id); continuations merge into cells; spaces from horizontal gap between text items; stop table region before prose
+- **Quality flags:** `structureInferred` = inferred layout; `extractionIncomplete` / `Partial extraction` = suspected loss/mis-association (different things)
 
-### אזהרות אופייניות
+### Typical warnings
 
-- PDF: מבנה טבלה מחושב ממיקומי טקסט (`structureInferred`); אובדן מידע מסומן בנפרד אם זוהה
-- DOCX: סגנון `Compact` לא ממופה ב-mammoth (לא פוגע בטבלאות שנבדקו)
-- Markdown: הסרת HTML comments מטקסט החיפוש
+- PDF: table structure from text positions (`structureInferred`); loss flagged separately if detected
+- DOCX: `Compact` style unmapped in mammoth (checked tables OK)
+- Markdown: HTML comments removed from search text
 
-## שלב 3 — Chunking
+## Stage 3 — Chunking
 
-- **סטטוס:** הושלם
-- מודול: `src/chunking/` (עצמאי מ-Next.js)
-- פקודות: `pnpm chunk`, `pnpm test:chunking`, `pnpm test:rag-prep`
-- פלט: `data/chunks.json`, `data/chunking-report.json`
-- תוצאה אחרונה: **33 מסמכים → 49 קטעים** — success=24, warnings=9 (מורשות מ-ingestion), failure=0
-- אורך משוער (heuristic): min≈50, median≈130, max≈359; **אין חריגות מעל יעד 700**
-- מדיניות: מסמכים קצרים נשארים קטע אחד; `03_car_general_terms` מפוצל לפי סעיפים ממוספרים; קטלוג טפסים מפוצל לקבוצות שורות עם כותרות חוזרות
-- בדיקות: 8 בדיקות chunking + 7 ingestion — עברו; typecheck/lint — עברו
+- **Status:** Done
+- Module: `src/chunking/` (independent of Next.js)
+- Commands: `pnpm chunk`, `pnpm test:chunking`, `pnpm test:rag-prep`
+- Output: `data/chunks.json`, `data/chunking-report.json`
+- Last result: **33 documents → 49 chunks** — success=24, warnings=9 (from ingestion), failure=0
+- Estimated length (heuristic): min≈50, median≈130, max≈359; **no outliers above 700 target**
+- Policy: short docs one chunk; `03_car_general_terms` split by numbered sections; forms catalog split by row groups with repeated headers
+- Tests: 8 chunking + 7 ingestion — passed; typecheck/lint — passed
 
-## שלב 4 — Embeddings + שליפה + הערכת שליפה
+## Stage 4 — Embeddings + retrieval + retrieval eval
 
-- **סטטוס:** הושלם כולל הרצה חיה (אחרי תיקון billing)
-- מודולים: `src/rag/`, `src/eval/`; פקודות `pnpm index` / `retrieve` / `eval:retrieval`
-- אינדקס: **49** קטעים, `text-embedding-3-small`, dims=**1536**, formatVersion=1 → `data/index/embeddings.json`
-- שימוש API באינדוקס: prompt/total **23,084** טוקנים; הרצה שנייה: **reuse מלא** (0 embeddings חדשים לקטעים)
-- `eval:retrieval` (14 שאלות עם מקורות; D04=N/A): R@1≈**0.357**, R@3≈**0.536**, R@5≈**0.643**, MRR≈**0.589**; טוקני שאלות **737**; זמן ממוצע embed≈303ms / search≈0.4ms
-- דוחות: `eval_results/retrieval-eval.json`, `retrieval-eval.md`
-- ממצא מרכזי: Document Recall ≠ מספיק למענה (למשל D06 מוצא `03_car_general_terms` אבל לא סעיפי הגדרה/חריג; D03 מדרג 2024 לפני 2026)
-- **לא** שונו chunking/retrieval לשיפור ציון בשלב זה
+- **Status:** Done including live run (after billing fix)
+- Modules: `src/rag/`, `src/eval/`; commands `pnpm index` / `retrieve` / `eval:retrieval`
+- Index: **49** chunks, `text-embedding-3-small`, dims=**1536**, formatVersion=1 → `data/index/embeddings.json`
+- API usage at index: prompt/total **23,084** tokens; second run: **full reuse** (0 new chunk embeddings)
+- `eval:retrieval` (14 questions with sources; D04=N/A): R@1≈**0.357**, R@3≈**0.536**, R@5≈**0.643**, MRR≈**0.589**; query tokens **737**; avg embed≈303ms / search≈0.4ms
+- Reports: `eval_results/retrieval-eval.json`, `retrieval-eval.md`
+- Key finding: Document Recall ≠ enough to answer (e.g. D06 finds `03_car_general_terms` but not definition/exception sections; D03 ranks 2024 before 2026)
+- **Did not** change chunking/retrieval to chase scores at this stage
 
-### ביקורת תקינות אינדקס/דירוג (אחרי D09/D12)
+### Index/ranking sanity review (after D09/D12)
 
-- **מסקנה:** לא נמצא באג מימוש; הכשלים עקביים עם מגבלת vector-only על השאלות האלה.
-- נבדק: התאמת `chunkId→embeddingText→וקטור→אחסון`; hashes של קלט/טקסטים; ממדים 1536; אין וקטור-אפס; 49 hashes ייחודיים ל-49 טקסטים; שימוש ב-`item.index` ב-batch; cache תלוי טקסט+מודל+ממדים.
-- אימות עצמאי: embedding חדש (ללא cache) ל-`12_home_contents_limits` ול-`07_towing_roadside` — cosine מול השמור ≈0.9998 / ≈0.99999; חיפוש עם הווקטור החדש מחזיר את אותו קטע ב-#1.
-- D08/D09/D12 (דירוג מול כל 49): המידע הנדרש **כן** ב-`embeddingText` של היעד; דירוג היעד 8 / 9 / 17 בהתאמה; cosine ישיר ≡ ציון ב-retrieve; top1 של retrieve עקבי בחישוב חוזר.
-### ניסוי Hybrid — BM25 + RRF (תצורה אחת, ללא כוונון)
+- **Conclusion:** No implementation bug found; failures consistent with vector-only limits on those questions.
+- Checked: `chunkId→embeddingText→vector→storage`; input/text hashes; dims 1536; no zero vectors; 49 unique hashes; batch `item.index`; cache keyed by text+model+dims.
+- Independent check: fresh embedding (no cache) for `12_home_contents_limits` and `07_towing_roadside` — cosine vs stored ≈0.9998 / ≈0.99999; search with fresh vector returns same chunk #1.
+- D08/D09/D12 (rank vs all 49): needed info **is** in target `embeddingText`; target ranks 8 / 9 / 17; direct cosine ≡ retrieve score; top1 stable on recompute.
 
-- **תצורה:** BM25 k1=1.2 b=0.75 על `embeddingText`; RRF c=60 משקל שווה; טוקניזציה NFKC ללא stemming
-- **פקודה:** `pnpm eval:hybrid` → `eval_results/hybrid-comparison.*` (דוחות vector המקוריים **לא** נדרסו)
-- **ממוצעים (14 שאלות עם מקורות):**
+### Hybrid experiment — BM25 + RRF (single config, no tuning)
+
+- **Config:** BM25 k1=1.2 b=0.75 on `embeddingText`; RRF c=60 equal weight; NFKC tokenization, no stemming
+- **Command:** `pnpm eval:hybrid` → `eval_results/hybrid-comparison.*` (original vector reports **not** overwritten)
+- **Averages (14 questions with sources):**
 
   | Mode | R@1 | R@3 | R@5 | MRR |
   | --- | --- | --- | --- | --- |
@@ -69,174 +70,239 @@
   | lexical | 0.750 | 0.857 | 0.857 | 0.952 |
   | hybrid | 0.429 | 0.821 | 0.929 | 0.732 |
 
-- Hybrid מול vector: R@5 **+5 / −0 / =9**; RR **+6 / −0 / =8**
-- תוכן: D08/D09/D12 — מסמך+מידע ב-hybrid top5; D06 עדיין בלי ס׳2/ס׳12; D01/D02/D10/D14 ללא נסיגת R@5/RR
-- **המלצת אימוץ (dev בלבד):** Hybrid עדיף כברירת מחדל על vector-only בקורפוס הזה; lexical חזק מאוד כאן אך מחליש multi-doc (D06 R@5=0.5). מגבלות: בלי stemming, D05 עמומה, דירוג גרסאות לא נפתר, אין הוכחה לשאלות חדשות
+- Hybrid vs vector: R@5 **+5 / −0 / =9**; RR **+6 / −0 / =8**
+- Content: D08/D09/D12 — doc+info in hybrid top5; D06 still missing §2/§12; D01/D02/D10/D14 no R@5/RR regression
+- **Adoption recommendation (dev only):** Hybrid preferred over vector-only on this corpus; lexical very strong but weakens multi-doc (D06 R@5=0.5). Limits: no stemming, D05 ambiguous, version ranking not solved, no proof on new questions
 
-## שלב 5 — Generation מבוסס מקורות (Hybrid כברירת מחדל)
+## Stage 5 — Grounded generation (Hybrid default)
 
-- **סטטוס:** הושלם בקוד + הרצת E2E על 15 שאלות; עצירה לפני UI / GenUI / Push / Deploy
-- מודולים: `context-builder`, `generate`, `validate-answer`, `ask`; פקודות `pnpm ask`, `pnpm eval:ask`
-- מודל מענה: **`gpt-4.1-mini`** (`GENERATION_MODEL`; Structured Outputs לפי תיעוד OpenAI)
-- תקציב הקשר: **3500** טוקנים משוערים (אותה היוריסטיקה כמו chunking); קטעים שלמים; retrieved קודם, הרחבה לפי `documentId` אחר כך
-- E2E (`eval_results/ask-eval.*`): 15/15 ללא system_error; סטטוסים: answered=14, insufficient_evidence=1 (D04)
-- בדיקת הזרקה סינתטית (מחוץ לקורפוס): המודל לא מילא הוראת pirate / לא המציא OfekPets — **אין הבטחת חסינות מלאה**
-- בדיקות: `pnpm test:rag` (26 עברו + 1 skip בלי מפתח), typecheck, lint — עברו
+- **Status:** Done in code + E2E on 15 questions; stopped before UI / GenUI / push / deploy
+- Modules: `context-builder`, `generate`, `validate-answer`, `ask`; commands `pnpm ask`, `pnpm eval:ask`
+- Answer model: **`gpt-4.1-mini`** (`GENERATION_MODEL`; Structured Outputs per OpenAI)
+- Context budget: **3500** estimated tokens (same heuristic as chunking); whole chunks; retrieved first, then `documentId` expansion
+- E2E (`eval_results/ask-eval.*`): 15/15 no system_error; statuses: answered=14, insufficient_evidence=1 (D04)
+- Synthetic injection test (outside corpus): model did not follow pirate instruction / did not invent OfekPets — **no guarantee of full robustness**
+- Tests: `pnpm test:rag` (26 passed + 1 skip without key), typecheck, lint — passed
 
-### סקירה ידנית (לא מדד אוטומטי)
+### Manual review (not an automatic metric)
 
-שיטה: אחרי `ask()`, השוואה ל-`reference_answer`/`sources` בממדים נכונות / תמיכה בטענות / שלמות + בדיקות FOCUS. ייחוס לא נכנס לפרומפט.
+Method: after `ask()`, compare to `reference_answer`/`sources` on correctness / claim support / completeness + FOCUS checks. Reference not in prompt.
 
-| id | FOCUS / הערה |
+| id | FOCUS / note |
 | --- | --- |
-| D03 | **pass** — נבחרה גרסת 2026 (1,100 ₪) למרות דירוג 2024 בראש השליפה |
-| D04 | **pass** — `insufficient_evidence`, בלי המצאת ביטוח חיות מחמד |
-| D05 | **partial** — לא ביקש הבהרה (`clarification_needed`); הציג אפשרויות רכב (מותר לפי ייחוס) אך דילג על דירה |
-| D06 | **partial** — הרחבה הביאה הגדרות (§2/c002); חריג §12 (c012) נפל מתקציב; המענה נכון דרך נספח+הגדרה |
-| D08 | **partial** — עדכון 2025 (החזר מלא ב־14 יום) יושם, אך נוספה ניסוח pro-rata סותר |
-| D10 | **pass** — מגבלות כתב השירות נשמרו מול השיווק |
+| D03 | **pass** — 2026 version (1,100 ₪) despite 2024 ranking first |
+| D04 | **pass** — `insufficient_evidence`, no pet insurance invention |
+| D05 | **partial** — no `clarification_needed`; showed car options (allowed by reference) but skipped home |
+| D06 | **partial** — expansion brought definitions (§2/c002); exception §12 (c012) dropped by budget; answer correct via annex+definition |
+| D08 | **partial** — 2025 update (full refund in 14 days) applied, but contradictory pro-rata wording added |
+| D10 | **pass** — service letter limits preserved vs marketing |
 
-### כשלים שנשארו (בלי סבב כוונון) — לפני 5.1
+### Remaining failures (no tuning round) — before 5.1
 
-- D05 לא עובר ל-`clarification_needed`
-- D06: §12 לא תמיד נכנס להקשר בתקציב הנוכחי כשיש הרבה אחים במסמך
-- D08: ערבוב חלקי עם ניסוח ישן (pro-rata) לצד עדכון 2025
-- הרחבה לפי documentId יכולה למלא הקשר בקטעים לא רלוונטיים כשמסמך גדול מופיע ב-top5 (רעש, לא שינוי Recall@5)
+- D05 does not move to `clarification_needed`
+- D06: §12 not always in context at current budget when many siblings in doc
+- D08: partial mix of old pro-rata with 2025 update
+- Expansion by documentId can add irrelevant siblings when large doc in top5 (noise, not Recall@5 change)
 
-## שלב 5.1 — תיקון ממוקד איכות מענה + הערכה
+## Stage 5.1 — Targeted answer quality + eval
 
-- **סטטוס:** סבב תיקון אחד; מודל ושליפה ללא שינוי; דוח מקורי נשמר כ-`ask-eval-stage5-baseline.*`
-- מדיניות מענה חוזקה ב-`generate.ts` (עמימות / אין-מידע / תחולה / דיוק / אי-סתירה) — ללא זיהוי D01–D15
-- הערכה: 4 ממדים נפרדים — conclusion / claimSupport / completeness / behavior; chunkId = טכני בלבד
-- ביקורת תביעות: `docs/stage5.1-claim-audit.md`
-- הרצה: `ask-eval-stage5.1.*` + השוואה `ask-eval-stage5.1-comparison.md`
-- בדיקות נוספות (לא בסט ייחוס): X01 עמימות → `clarification_needed`; X02 נושא חסר → `insufficient_evidence`
+- **Status:** One fix round; model and retrieval unchanged; original report kept as `ask-eval-stage5-baseline.*`
+- Stronger policy in `generate.ts` (ambiguity / no-info / applicability / precision / non-contradiction) — without D01–D15 id tuning
+- Eval: 4 separate dimensions — conclusion / claimSupport / completeness / behavior; chunkId = technical only
+- Claim audit: `docs/stage5.1-claim-audit.md`
+- Run: `ask-eval-stage5.1.*` + comparison `ask-eval-stage5.1-comparison.md`
+- Extra tests (not in reference set): X01 ambiguity → `clarification_needed`; X02 missing topic → `insufficient_evidence`
 
-### תוצאות ממוקדות (אחרי)
+### Targeted results (after)
 
-| id | שינוי |
+| id | Change |
 | --- | --- |
-| D04 | שיפור ניסוח (מגבלת מקורות שסופקו); התנהגות abstention עברה; claimSupport עדיין חלקי בציטוט |
-| D05 | **לא נפתר** — עדיין `answered` עם סכומי רכב (כשל התנהגות) |
-| D06 | מסקנה נתמכת בהגדרה+נספח; §12 עדיין מחוץ לתקציב |
-| D08 | **נפתר במענה** — החזר מלא בלי סתירת pro-rata בטקסט; ציטוטי pro-rata עדיין ברשימת citations |
-| D10 | נותר תקין; גניבה/אובדן נתמכים |
-| D11 | **נפתר** — PIR נכלל |
-| D14 | בסיס חישוב תקין |
+| D04 | Wording improved (limited sources); abstention behavior pass; claimSupport still partial on citation |
+| D05 | **Not fixed** — still `answered` with car deductibles (behavior failure) |
+| D06 | Conclusion supported by definition+annex; §12 still outside budget |
+| D08 | **Fixed in answer text** — full refund without pro-rata contradiction; pro-rata citations may remain in list |
+| D10 | Still correct; theft/total loss supported |
+| D11 | **Fixed** — PIR included |
+| D14 | Calculation base correct |
 
-### כשלים שלא נפתרו אחרי 5.1
+### Unfixed after 5.1
 
-- **D05:** עדיין לא מבקש הבהרה כשהמוצר לא צוין
-- **D06:** §12 לא נכנס להקשר (תקציב; ללא הגדלה בשלב זה)
-- **D08:** טקסט מענה נקי, אך מערך `citations` עדיין עשוי לכלול טענות pro-rata מהקטע
-- **D04:** ציטוט עלול עדיין להכליל מעט על תוכן המקורות
-- רעש הרחבת מסמך גדול ב-top5 — ללא שינוי
+- **D05:** still no clarification when product unspecified
+- **D06:** §12 not in context (budget; not enlarged at this stage)
+- **D08:** clean answer text but `citations` may still list pro-rata claims from chunk
+- **D04:** citation may still slightly overstate source scope
+- Large-doc expansion noise — unchanged
 
-## שלב 5.2 — תיקון ליבת מענה אחרון (לפני UI)
+## Stage 5.2 — Last core fix attempt (before UI)
 
-- **סטטוס:** ממומש; דוחות קודמים נשמרו (`stage5-baseline`, `stage5.1*`)
-- **ללא שינוי:** מודל, אינדקס, שליפה, תקציב הקשר
-- Clarify לפני retrieve (`src/rag/clarify.ts`); `answerParts` → הרכבת answer/citations בשרת; insufficient ניטרלי
-- הרצה: `ask-eval-stage5.2.*` + `ask-eval-stage5.2-comparison.md`
-- עלות שער הבהרה (15+X01/X02): ~5000 טוקנים, ~16s סה״כ
+- **Status:** Implemented; prior reports kept (`stage5-baseline`, `stage5.1*`)
+- **Unchanged:** model, index, retrieval, context budget
+- Clarify before retrieve (`src/rag/clarify.ts`); `answerParts` → server answer/citations; neutral insufficient
+- Run: `ask-eval-stage5.2.*` + `ask-eval-stage5.2-comparison.md`
+- Clarify gate cost (15+X01/X02): ~5000 tokens, ~16s total
 
-### D05 — שלילת באג העברת שאלה
+### D05 — ruled out question-passing bug
 
-- נוסח מדויק: `"מה ההשתתפות העצמית?"`
-- ב-5/5.1 הועבר כ-`trim()` ל-retrieve ואז ל-generation — **אין תקלת העברה**
-- הכשל היה הסקת מוצר אחרי שליפה; לכן שער הבהרה **לפני** שליפה
+- Exact text: `"מה ההשתתפות העצמית?"`
+- In 5/5.1 passed as `trim()` to retrieve then generation — **no transport bug**
+- Failure was product inference after retrieval; hence clarify gate **before** retrieval
 
-### תוצאות ממוקדות
+### Targeted results
 
-| יעד | תוצאה |
+| Target | Result |
 | --- | --- |
-| D05 הבהרה רצויה | עבר (`skippedRetrieval`) — **1/10** ההבהרות |
-| 9 נסיגות הבהרה | D03, D06, D08, D09, D10, D11, D12, D13, D14 |
-| D04 / X02 ניטרלי | עבר |
-| D01/D02/D07/D15 | נשארו answered |
+| Wanted D05 clarification | Pass (`skippedRetrieval`) — **1/10** clarifications |
+| 9 clarification regressions | D03, D06, D08, D09, D10, D11, D12, D13, D14 |
+| D04 / X02 neutral | Pass |
+| D01/D02/D07/D15 | Stayed answered |
 
-### מדוע נדחה ניסוי השער המקדים
+### Why pre-retrieve gate was **rejected**
 
-- פתר עמימות אחת (D05) אך גרם ל־**9 הבהרות מיותרות** על שאלות שניתן לענות עליהן.
-- סה״כ 10 `clarification_needed` בסט ה־15: 9 נסיגות + D05 רצויה.
+- Fixed one ambiguity (D05) but caused **9 unnecessary clarifications** on answerable questions.
+- Total 10 `clarification_needed` on 15-set: 9 regressions + wanted D05.
 
-## שלב 5.3 — חזרה ממוקדת משער Clarify (שמירת שיפורי 5.1/5.2 מבניים)
+## Stage 5.3 — Roll back Clarify gate (keep 5.1/5.2 structural wins)
 
-- **מסלול פעיל:** Hybrid → context → generation (בלי קריאת Clarify מקדימה)
-- **נשמרו:** `answerParts`, אימות chunkId, insufficient ניטרלי, מדיניות 5.1, דוחות היסטוריים
-- **clarify.ts:** נשאר לקובץ היסטורי בלבד — לא מחובר ל-`ask()`
-- הרצה: `ask-eval-stage5.3.*` + `ask-eval-stage5.3-comparison.md`
-- עלות בפועל (15+X, ללא clarify): embed_prompt≈806, gen_total≈74k, wall≈31s
+- **Active path:** Hybrid → context → generation (**no** pre-Clarify call)
+- **Kept:** `answerParts`, chunkId validation, neutral insufficient, 5.1 policy, historical reports
+- **`clarify.ts`:** historical file only — **not** wired to `ask()`
+- Run: `ask-eval-stage5.3.*` + `ask-eval-stage5.3-comparison.md`
+- Actual cost (15+X, no clarify): embed_prompt≈806, gen_total≈74k, wall≈31s
 
-### תוצאות 5.3
+### 5.3 results
 
 | | |
 | --- | --- |
-| סטטוסים | answered=14, insufficient=1 (אין clarification בסט ה־15) |
-| 9 שנסוגו ב־5.2 | **חזרו ל-answered** (D03, D06, D08–D14) |
-| D08 | חלק תשובה יחיד + מקור 2025 בלבד; אין סתירת pro-rata |
-| D04/X02 | ניסוח ניטרלי; citations=[] |
-| D06 (הרצה זו) | מסקנה נתמכת (c002+נספח); §12 omitted — completeness חלקי |
-| D05 | **מגבלה פתוחה:** עדיין `answered` עם סכומי רכב |
-| X01 | `clarification_needed` (בדיקה נוספת עברה) |
-| D11 | סכומים נתמכים; PIR הושמט מהמענה בהרצה זו |
+| Statuses | answered=14, insufficient=1 (no clarification in 15-set) |
+| 9 regressed in 5.2 | **Back to answered** (D03, D06, D08–D14) |
+| D08 | Single answer + 2025 source only; no pro-rata contradiction |
+| D04/X02 | Neutral wording; citations=[] |
+| D06 (this run) | Conclusion supported (c002+annex); §12 omitted — partial completeness |
+| D05 | **Open:** still `answered` with car amounts |
+| X01 | `clarification_needed` (extra test passed) |
+| D11 | Amounts supported; PIR **omitted** in this run |
 
-### מבנה פלט
+### Output shape
 
-- תקין בכל השאלות שנבדקו: answer נגזר מ-parts; citations=מקורות החלקים בלבד; אין system_error.
+- Valid on all checked questions: answer from parts; citations=part sources only; no system_error.
 
-## שלב 6 — חיבור assistant-ui ל-`ask()`
+## Stage 6 — Wire assistant-ui to `ask()`
 
-- **סטטוס:** הושלם בקוד + בדיקות fixture; עצירה לפני Push / Deploy
-- **חיבור:** `useLocalRuntime(ragChatModelAdapter)` → `POST /api/ask` (Node) → אותה `ask()` כמו CLI
-- **ללא שינוי:** מודל, פרומפטים, שליפה, chunking, תקציב הקשר
-- **DTO תצוגה:** `status`, `answer`, `answerParts`, `citations`, `sources` (+ מטא); בלי dump אבחון מלא
-- **UI:** `answerParts` עם הפניות לחיצות; כרטיס מקור מציג שם/סעיף/עמודים + טקסט קטע מהאינדקס; RTL; אין "תשובה מאומתת"
-- **שיחה:** כל שאלה עצמאית (הערה ליד composer); ניהול threads מקומי נשמר ללא הבטחת persistence אחרי רענון
-- **מושבתים:** בחירת מודל / מיקרופון / קבצים; תווית מודל מהשרת (`GET /api/ask`)
-- **בדיקות fixture:** `pnpm test:api` (16) — answered+מקורות, clarification, insufficient ללא מקורות, שגיאת שרת, abort, DTO בלי dump אבחון
-- **typecheck / lint / build:** עברו (אחרי הסרת `runtime`/`dynamic` לטובת `connection()` תחת cacheComponents)
-- **מגבלות נשארות:** D05 (עמימות בלי הבהרה), השמטת PIR ב-D11 — מתועדות; לא תוקנו ב-UI
+- **Status:** Done in code + fixture tests; stopped before push / deploy
+- **Wiring:** `useLocalRuntime(ragChatModelAdapter)` → `POST /api/ask` (Node) → same `ask()` as CLI
+- **Unchanged:** model, prompts (until Stage 7 translation), retrieval, chunking, context budget
+- **Display DTO:** `status`, `answer`, `answerParts`, `citations`, `sources` (+ meta); no full diagnostic dump
+- **UI:** `answerParts` with clickable refs; source card shows name/section/pages + chunk text; RTL; no “verified answer” label
+- **Conversation (current):** follow-ups supported — active branch history sent to API; composer hint in Hebrew; rewrite when history present. **Historical (early stage 6 note):** initially documented as each question isolated — superseded by conversation checklist below.
+- **localStorage:** thread list/messages persist **browser-only** (`ofek-rag:` prefix) — not cloud; clearing site data loses threads
+- **Disabled:** model picker / mic / attachments; model label from server (`GET /api/ask`)
+- **Fixture tests:** `pnpm test:api` (16) — answered+sources, clarification, insufficient without sources, server error, abort, DTO without diagnostic dump
+- **typecheck / lint / build:** passed (after removing `runtime`/`dynamic` for `connection()` under cacheComponents)
+- **Remaining:** D05, D11 PIR omission — documented; not fixed in UI
 
-### אימות דפדפן / API חי (שלב 6)
+### Live browser / API (stage 6)
 
-| בדיקה | סוג | תוצאה |
+| Check | Type | Result |
 | --- | --- | --- |
-| שעות מוקד בשישי | חי (API+UI) | `answered` + מקור `28_call_center_hours`; פתיחת מקור מציגה טקסט מהאינדקס |
-| טופס ביטול 4401 | חי (API) | `answered`; מקורות כוללים קטלוג טפסים + נוהל ביטול |
-| ביטוח חיות מחמד | חי (API+UI) | `insufficient_evidence`; בלי אזור מקורות ריק |
-| כבודה / איחור 8ש׳ | חי (API+UI) | `answered` עם 150$; **השמטת תנאי PIR** (כמו מגבלת D11) — לא תוקן ב-UI |
-| RTL / שיחה חדשה / הפרדת הודעות | UI | תקין |
-| ביטול בקשה | UI + fetch abort | אחרי Cancel אין תשובה מאוחרת בהודעה; AbortError ב-fetch |
-| שגיאת קלט | fixture HTTP | 400 empty/invalid_type עם הודעה בטוחה |
-| צילומים | UI | `docs/screenshots-stage6/` |
+| Call center hours Friday | live (API+UI) | `answered` + `28_call_center_hours`; source shows index text |
+| Cancel form 4401 | live (API) | `answered`; sources include forms catalog + cancel procedure |
+| Pet insurance | live (API+UI) | `insufficient_evidence`; no empty sources panel |
+| Baggage / 8h delay | live (API+UI) | `answered` with $150; **PIR omitted** (D11 class) — not fixed in UI |
+| RTL / new thread / message separation | UI | OK |
+| Cancel request | UI + fetch abort | No late answer after Cancel; AbortError on fetch |
+| Bad input | fixture HTTP | 400 empty/invalid_type with safe message |
+| Screenshots | UI | `docs/screenshots-stage6/` |
 
-## שלב 7 — הכנה להגשה והדגמה
+## Stage 7 — Submission prep + demo docs (+ English developer docs)
 
-- **סטטוס:** הושלם בתיעוד + שערי בדיקה; **ללא** שינוי לוגיקת RAG; **ללא** Push/Deploy
-- Checklist דרישות מול PDF: `docs/REQUIREMENTS-CHECKLIST.md` (צוינה קריאות חלקית בעמ׳ 1)
-- התקנה: `docs/INSTALL.md` + `pnpm prepare:rag`; אימות עותק זמני ללא secrets
-- דוח הערכה מסכם: `docs/EVALUATION-SUMMARY.md` (שליפה + stage5.3 + ממצא חי PIR בנפרד)
-- כשלים / עוד שבוע: `docs/FAILURES-AND-NEXT-WEEK.md`
-- הדגמה + מפת קוד: `docs/DEMO-SCRIPT.md`, `docs/CODE-MAP.md`
-- README מעודכן להסברת המערכת
-- `eval_results/` מיועדים להגשה (הוסרו מ־gitignore הכללי)
-- שערי בדיקה: `pnpm test:gates` — typecheck, lint, 50+16 בדיקות, build — עברו (2026-10-21)
-- הערה להגשה: תיקיית העבודה **ללא `.git`** כרגע; יש ליצור ריפו לפני העלאה ל־GitHub
+- **Status:** Documentation and developer-facing prompts in English; **no** RAG logic change intended for translation pass; no push/deploy
+- Requirements checklist vs PDF: `docs/REQUIREMENTS-CHECKLIST.md`
+- Install: `docs/INSTALL.md` + `pnpm prepare:rag`; clean-copy verify without secrets
+- Eval summary: `docs/EVALUATION-SUMMARY.md`
+- Failures / one more week: `docs/FAILURES-AND-NEXT-WEEK.md`
+- Demo + code map: `docs/DEMO-SCRIPT.md`, `docs/CODE-MAP.md`
+- README updated for system explanation
+- `eval_results/` kept for submission (removed from broad gitignore)
+- Gates: `pnpm test:gates` — typecheck, lint, 50+16 tests, build — passed (2026-10-21)
+- Submission note: workspace may lack `.git`; create repo before GitHub upload
+- **Regression after English prompts:** reuse Stage 6 holdout — not unseen evaluation
 
-## שלב 8 — אימות הגשה סופי + Git מקומי
+## Stage 8 — Final submission verify + local Git
 
-- **סטטוס:** הושלם; **ללא** שינוי לוגיקת RAG; **ללא** Push/Deploy
-- PDF נקרא חזותית (רינדור עמודים) — `docs/SUBMISSION-VERIFY.md` + checklist מעודכן
-- E2E מאפס: `pnpm install --frozen-lockfile` + `prepare:rag` (33/49/אינדקס) + CLI ask + API ask
-- `allowBuilds.esbuild: true` ב־`pnpm-workspace.yaml` ל־pnpm 12
-- Git מקומי: ראו סיכום שלב 8 / `git log -1`
+- **Status:** Done; **no** RAG logic change; **no** push/deploy
+- PDF read visually — `docs/SUBMISSION-VERIFY.md` + updated checklist
+- E2E from zero: `pnpm install --frozen-lockfile` + `prepare:rag` (33/49/index) + CLI ask + API ask
+- `allowBuilds.esbuild: true` in `pnpm-workspace.yaml` for pnpm 12
+- Local Git: see stage 8 summary / `git log -1`
 
-### שלבים הבאים (מחוץ להיקף הנוכחי)
+### Next steps (out of current scope)
 
-- הוספת remote + Push ל־GitHub / Deploy — רק בבקשה מפורשת
-- שיפורי D05/D11 לפי מסמך הכשלים
+- Add remote + push to GitHub / deploy — only on explicit request
+- D05/D11 improvements per failures doc
 
-## כלי AI בשימוש עד כה
+## Checklist — Tracing for ask path
 
-- Cursor Agent — סקירה, UI, Ingestion, Chunking, Embeddings/Retrieval, Hybrid, Generation/ask, חיבור UI↔API, תיעוד הגשה
+- **Status:** Done; **no** push / deploy / answer logic change
+- `requestId` per ask; returned by API (success+error) and CLI
+- Events: start → stages (rewrite/embedding/retrieval/context/generation/validation) → end (success|error|cancelled)
+- Embedding nested under retrieval (not a separate top-level stage)
+- JSONL in `data/traces/` (privacy: no question/answer/history text); write failure does not break ask
+- `pnpm trace -- <requestId>`; thread titles not in trace
+- Tests: fixtures parallel/cancel/error/rotation + two live requests
+- **Unchanged:** prompts (until Stage 7), models, retrieval, RTL, persistence, timing tests
+- **Tracing overhead:** not measured separately from stage totals; no extra A/B
+
+## Checklist — Conversation context (not Ingestion)
+
+- **Status:** Done in code + fixtures + live eval + browser check; **no** tracing / push / deploy
+- Contract: `ask(question, { history? })` backward compatible; no history → no rewrite
+- Window: `HISTORY_MAX_TURNS=6`, `HISTORY_MAX_TOTAL_CHARS=6000`; role validation (no client system/developer)
+- UI: active branch only → `/api/ask`; localStorage persistence; composer: «אפשר לשאול שאלות המשך באותה שיחה.»
+- Rewrite → retrieve(`standaloneQuestion`) → generation(original + standalone + unresolved)
+- Rewrite diagnostics in CLI/eval only (not in chat bubble)
+- Commands: `pnpm eval:conversation`, `pnpm eval:ask-stage2`
+- **Unchanged:** embedding, chunking, Hybrid
+- Conversation eval (2026-10-21): 8/8 standalone checks; rewrite ≈8.4s / prompt≈4522 / completion≈360 for 8 turns → `eval_results/conversation-eval-2026-10-21T11-58-39-775Z.*`
+- No-history regression: 15 questions, status like 5.3 (answered=14, insufficient=1) → `eval_results/ask-eval-stage2-nohistory.*`
+- Remaining: C07 may answer wrong product; C05b/C06 sometimes clarification; D05 open
+
+## Checklist — Applicability, versions, partial updates (Stage 4)
+
+- **Status:** Done in code + deterministic tests + live eval; **no** push / deploy; **before** semantic review experiment (stage 5)
+- **Kept:** Hybrid, conversation/rewrite, `answerParts`, tracing
+- Curated manifest: `config/document-relations.manifest.json` (explicit evidence only; `sourceHash` enforced vs index)
+- Mapped corpus rules: car 2024↔2026 (issue/renewal from 1.3.2026); cancel 2025 partial update for refund section only; marketing → binding terms
+- Context: Hybrid top-K kept for metrics; relation/version expansion separate; rejected version omitted from generation; partial update keeps base+update; budget not silently exceeded
+- Generation gets sources + applicability summary with evidence refs (metadata ≠ substitute for chunk text)
+- Tracing `context` stage: relations, version decision / unresolved, `dateKindUsed`, omissions, `manifestVersion`
+- Tests: `src/rag/document-relations/*.test.ts` + `pnpm eval:ask-stage4`
+- Reports: `eval_results/ask-eval-stage4.*` + comparison vs stage5.3
+- **Tracing overhead:** not measured separately
+- **Unchanged:** re-embed (embeddingText unchanged); no D-ids/canned answers in manifest
+
+## Checklist — Extended evaluation (Stage 6)
+
+- **Status:** Done in docs + holdout + runs; **no** RAG/prompt/model changes in stage; **review=off**; **no** push / deploy
+- Config freeze: `docs/stage6-config-freeze.md` (`prompt-ceab49598eebb4b9` **before** Stage 7 English prompts; index hashes; dirty tree — commit not full runnable snapshot)
+- Reviewer experiment closure (no re-run): `docs/stage6-reviewer-experiment-closure.md` (D09 = decision change, not answer improvement)
+- Holdout 20: `dev_set/extended_eval_stage6.json` + `.sha256` (AI-assisted during development)
+- Runs: `pnpm eval:ask-stage6-extended`, `pnpm eval:conversation-stage6`
+- Three-group summary: `docs/stage6-quality-summary.md`; updated EVALUATION-SUMMARY + FAILURES
+- **No** tuning to holdout after seeing results; next three improvements documented only
+- **Stage 7+:** same holdout for post–prompt-translation **regression**
+
+## Checklist — Claim support / completeness review (Stage 5)
+
+- **Status:** Implemented as **experiment option**; **default off**; **no** push / deploy; followed by Stage 6 extended eval
+- **Kept:** Hybrid, rewrite, document-relations, context budget, model `gpt-4.1-mini`
+- Module: `src/rag/answer-review/` (review → revision×1 → re-review; structured findings; not absolute truth validator)
+- Budget: one generation + up to 2 reviews + one revision; failure → `answer_review_failed` (not `insufficient_evidence`); technical failure → `answer_review_error`
+- Tracing: `semantic_review` / `revision` separate from `validation` (schema/chunkIds)
+- Enable: `ANSWER_REVIEW_ENABLED=1` or `ask({ answerReviewEnabled: true })`
+- Eval: `pnpm eval:ask-stage5-paired` + `ask-eval-stage5-comparison.md`; conversation with review: `pnpm eval:conversation-stage5`
+- **Why default off:** like 5.2 lesson — false blocks (D04 abstention, D13) + misses D05/D11 + cost even on pass-first
+- Stage 4 reports not overwritten
+
+## AI tools used so far
+
+- **Cursor Agent** — review, UI, ingestion, chunking, embeddings/retrieval, hybrid, generation/ask, UI↔API wiring, conversation context, tracing, applicability/versions, answer review experiment, extended holdout, Stage 7 English developer documentation and prompt translation scope

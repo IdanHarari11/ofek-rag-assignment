@@ -1,58 +1,99 @@
-# ניתוח כשלים ו«עם עוד שבוע»
+# Failure analysis and “with one more week”
 
-מבוסס על הרצת המענה השמורה **`ask-eval-stage5.3`** (לוגיקה נוכחית) + ממצאים חיים משלב 6.  
-לא מערבבים ציונים מהרצות 5.1/5.2 כאילו היו אותה הרצה.
+Based on:
 
-## כשלים ומגבלות מתועדים
+- **Active config:** Hybrid + applicability, **`ANSWER_REVIEW_ENABLED=false`** (`docs/stage6-config-freeze.md`)
+- 15 dev: `ask-eval-stage4.*` (+ historical quality dimensions from stage5.3 where noted)
+- Holdout 20: `ask-eval-stage6-extended.*` / `docs/stage6-quality-summary.md`
+- Conversations: `conversation-eval-2026-10-21T13-32-26-763Z.*`
 
-### D05 — עמימות שלא תמיד מובילה להבהרה
+Do **not** pool scores across groups as if they were one run.
 
-- שאלה: «מה ההשתתפות העצמית?» בלי מוצר/אירוע.
-- בהרצת 5.3: `answered` עם סכומי רכב (ושמשות); **behavior=fail**, completeness=fail.
-- הסיבה: המודל מסיק מוצר מדירוג השליפה במקום `clarification_needed`.
-- ניסוי שנדחה (5.2): שער Clarify **לפני** שליפה תיקן את D05 אך גרם ל־**9 נסיגות הבהרה** על שאלות שניתן לענות עליהן → הוסר ב־5.3.
+**Rejected experiments (not active):** pre-retrieve Clarify gate (Stage 5.2); semantic answer review on by default (Stage 5 paired).
 
-### D11 — השמטת תנאי מהותי למרות שנשלף
+## Documented failures and limits
 
-- **בהרצת 5.3:** סכומי פיצוי נכונים; תנאי **PIR** היה ב־`contextChunks` אך הושמט מהמענה → completeness=partial.
-- **ממצא חי נפרד (שלב 6, UI/API):** אותה השמטה נצפתה שוב — **לא** מעדכן לאחור את ציון ההרצה ההיסטורית; מתועד בנפרד ב־`EVALUATION-SUMMARY.md`.
+### D05 — ambiguity not always → clarification
 
-### הרחבת הקשר מול תקציב
+- Question: «מה ההשתתפות העצמית?» without product/event.
+- In **stage4 (Hebrew prompts)**: still `answered` with car amounts.
+- After **Stage 7 prompt-EN regression** (`ask-eval-stage7-dev15.*`): `clarification_needed` — improved vs ambiguity policy; **not** claimed as a tuned fix (prompt translation side-effect).
+- Holdout parallel: **E16** («מה ההטבות שלי?») — still fails (product dump / Ofek Plus) on Stage 7 extended run.
+- Rejected experiment (5.2): Clarify before retrieve fixed D05 but caused 9 clarification regressions.
 
-- אחרי top-K, מורחבים אחים לפי `documentId` עד תקציב משוער **3500** טוקנים.
-- ב־D06: §12 (`c012`) נשמט מהתקציב; המסקנה עדיין נתמכה מהגדרה+נספח (completeness=partial).
-- רעש: מסמך גדול ב־top5 יכול למלא הקשר בקטעים פחות רלוונטיים.
+### D11 — omission of material condition (PIR)
 
-### אימות מקור טכני ≠ תמיכה סמנטית
+- In stage4: amount given without PIR guarantee — **not considered fixed**.
+- Historical UI finding matches; old run scores are not rewritten.
 
-- בדיקת `chunkId` בשרת מוודאת שהמקור סופק למודל — לא שכל טענה נתמכת בתוכן.
-- לכן ממדי הסקירה הידנית מופרדים; אין «תשובה מאומתת» ב־UI.
+### E14 / E15 — language gap (retrieval)
 
-### סט dev קטן ששימש גם לפיתוח
+- Hebrew questions about agent rules that appear **only** in `30_agent_faq_en.md`.
+- R@5=0; system answered customer cancel fees (E14) or asked clarification (E15) instead of 5% agent discount.
 
-- 15 שאלות (+X01/X02) — בלי הוכחת הכללה לסט סודי בשיחת המשך.
-- Document Recall ≠ מספיק ראיות למענה מלא.
+### E04 — procedure sequence fidelity
 
-### אין זיכרון שיחה / streaming
+- Source: SMS/email then cancel notice if not resolved within 21 days.
+- Answer invented an **extra** 21-day window — generation failure despite full retrieval.
 
-- `ask(question)` עצמאי; ההיסטוריה לא נשלחת למודל.
-- מתועד ליד ה־composer; לא באג UI.
+### E07 — partial evidence in context (not an answer failure)
 
-## ניסוי שנדחה (פירוט)
+- Metric `evidenceCoverage=partial`: transition chunk from `02_car_comprehensive_policy_2026.pdf` missing from prompt context; **2024** policy chunk present.
+- Active run: **950 ₪** for issue 28.2.2026 — correct; all manual quality dimensions **pass**. Citing 2024 alone is acceptable per frozen rubric (`acceptableSourceAlternatives`). Partial flags **context completeness for eval**, not “unsupported answer.”
 
-| | |
+### E17 — ambiguous SLA (rubric frozen)
+
+- Set JSON lists `expectedBehavior: clarification_needed`, but reference allows **stating both car (3 business days) and home (>10k ₪, 5 days) as explicit alternatives**.
+- Stage 6 run: `answered` with both options — scored **pass** on behavior/conclusion. **Do not retroactively change the rubric.**
+- Stage 7 prompt-EN regression: `answered` with **car-only** SLA — **regression** vs frozen rubric (single target without stating dependence). Documented in `docs/stage7-prompt-translation-regression.md`; no question-specific patch.
+
+### C05b / C06 / C07 (conversations)
+
+- Historical instability on C05b/C06; Stage 6 run (review off): C05b=clarification, C06=insufficient, C07=clarification.
+- Stage 7 regression: C05b/C07 still clarification; **C06** → `answered` with corpus Friday hours (08:00–12:00), aligning with fixture note (“corpus wins” over wrong assistant) — improvement vs Stage 6 abstention.
+- **Do not assume C07 is permanently fixed** — earlier runs dumped car amounts without user confirmation.
+- Rewrite success metric is separate from answer correctness (here standalone_ok=true for all turns).
+
+### Answer reviewer experiment (Stage 5) — off by default
+
+- Closure: `docs/stage6-reviewer-experiment-closure.md`
+- D09: identical answer before/after → reviewer decision changed, not proven answer improvement
+- False blocks D04/D13; misses D05/D11; cost ~1.2s/~4.6k tokens even on first-pass pass
+- Post-experiment abstention guard added **after** paired run — not re-evaluated on live set
+
+### Context expansion vs budget / technical validation
+
+- Budget ~3500; Document Recall ≠ sufficient evidence for claims.
+- `chunkId` validation ≠ semantic support.
+
+### Holdout authored during development
+
+- 20 new questions AI-assisted during build — not an external independent gold set; disclosed in Stage 6 docs.
+- After Stage 7 prompt translation, same file is used for **regression only** — not unseen testing.
+
+## Rejected experiments (detail)
+
+| Experiment | Outcome |
 | --- | --- |
-| ניסוי | Clarify gate לפני retrieve (שלב 5.2) |
-| תוצאה | 10 `clarification_needed` בסט ה־15: 9 נסיגות + D05 רצויה |
-| החלטה | הסרה; שמירת `answerParts` + מדיניות 5.1 |
-| דוחות | `eval_results/ask-eval-stage5.2.*`, `ask-eval-stage5.3-comparison.md` |
+| Clarify before retrieve (5.2) | 9 clarification regressions |
+| Semantic review on by default (5 paired) | False blocks + cost; remains opt-in flag |
 
-## עם עוד שבוע — עד שלושה שיפורים (לפי כשלים שנצפו)
+## With one more week — top three (measured failures; not implemented in Stage 6)
 
-| עדיפות | שיפור | למה | מדידה |
+| Priority | Improvement | Why | Measure |
 | --- | --- | --- | --- |
-| 1 | **הבהרה לעמימות מוצר בלי שער מקדים גורף** — למשל כללי generation מחמירים יותר כשהשאלה חסרה מוצר/אירוע, או סיגנל קל אחרי retrieve בלי לסווג את כל השאלות כעמומות | D05 נשאר פתוח; 5.2 הוכיח ששער גלובלי מזיק | על D01–D15: behavior של D05 → `clarification_needed`; **אפס** נסיגות behavior על D03/D06/D08–D14 מול baseline 5.3 |
-| 2 | **שלמות תנאי זכאות לציטוט** — כשהמודל מצטט קטע עם טבלת סכומים+תנאי (PIR וכו׳), לחייב לכלול תנאי מהותיים ב־`answerParts` או לסמן incompleteness | D11 / ממצא חי Stage 6 | רגרסיה ידנית על D11: completeness=pass אם PIR מופיע; בלי רגרסיה על D01/D04 |
-| 3 | **תקציב הקשר / סדר הרחבה חכם יותר** — העדפת סעיפי הגדרה/חריג לפני מילוי אחים ארוכים | D06 §12 נשמט מתקציב | מדידת `omittedExpansions` + completeness ל־D06; R@5 hybrid ללא שינוי לרעה |
+| 1 | **Retrieval / language bridge** for `30_agent_faq_en.md` (or controlled bilingual embeddingText) | E14/E15 | R@5>0 on E14/E15; clawback/5% answers without D01–D03 regression |
+| 2 | **Product ambiguity without global pre-gate** | D05, E16, C07 | Clarify when product unknown; no regressions on explicit questions |
+| 3 | **Faithful procedure / eligibility in citations** | E04, D11 | No invented intermediate steps; PIR when citing baggage delay compensation |
 
-לא נכללו כאן: streaming, זיכרון שיחה, GenUI חופשי — פחות קשורים לכשלי הנכונות/שלמות שנצפו בסט.
+Not prioritized here: streaming, free GenUI, re-enabling reviewer by default.
+
+## Score label meanings (manual review)
+
+| Label | Meaning |
+| --- | --- |
+| **pass** | Meets dimension for that question |
+| **partial** | Material gap but conclusion not fully unsupported |
+| **fail** | Dimension failed |
+| **n_a** | Dimension not applicable (e.g. conclusion on pure clarification cases) |
+| **unknown** | Not used in saved rubric tables — treat as unscored |

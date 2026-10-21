@@ -12,7 +12,9 @@ import { DemoShell } from "./shell";
  * License: MIT (see docs/licenses/assistant-ui-MIT.txt)
  *
  * Runtime (DemoRuntimeProvider) stays outside the visual shell.
- * Active path: LocalRuntime + ragChatModelAdapter → POST /api/ask → ask().
+ * Active path: localStorage RemoteThreadList + LocalRuntime +
+ * ragChatModelAdapter → POST /api/ask → ask().
+ * History is browser-local display only — not model memory.
  */
 export function HomeDemo(): ReactNode {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);

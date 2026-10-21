@@ -21,6 +21,8 @@
 
 # local RAG artifacts (parsed/chunks/index — regenerate locally)
 /data/
+# ask-path traces (also under data/traces when using default path)
+/logs/
 
 # Keep committed evaluation reports for submission; ignore ad-hoc local scratch only.
 /eval_results/.scratch/

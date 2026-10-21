@@ -1,11 +1,14 @@
+import { HE_INSUFFICIENT_EVIDENCE } from "@/lib/user-facing-he";
 import type { RetrievalHit } from "./types";
+import type { ApplicabilitySummary } from "./document-relations/types";
+import type { AnswerReviewMeta } from "./answer-review/types";
 
 export type AnswerStatus =
   | "answered"
   | "clarification_needed"
   | "insufficient_evidence";
 
-export type ContextOrigin = "retrieved" | "expanded";
+export type ContextOrigin = "retrieved" | "expanded" | "linked";
 
 export interface ContextChunk {
   chunkId: string;
@@ -32,6 +35,12 @@ export interface ContextBuildResult {
   budgetTokens: number;
   tokenEstimateMethod: string;
   contextComplete: boolean;
+  /** Stage 4 applicability / version summary when enrichment ran. */
+  applicability?: ApplicabilitySummary;
+  linkedChunkIds?: string[];
+  enrichmentOmissions?: Array<{ chunkId: string; reasonCode: string }>;
+  /** Original Hybrid top-K ids (Recall@5 must not count linked expansions). */
+  hybridTopKChunkIds?: string[];
 }
 
 /** One grounded fragment: text plus the chunkIds that support it. */
@@ -67,12 +76,33 @@ export interface AnswerSource {
   origin: ContextOrigin;
 }
 
-/** Neutral server copy for insufficient_evidence (Hebrew). */
-export const NEUTRAL_INSUFFICIENT_ANSWER =
-  "לא מצאתי במקורות שסופקו מידע מספיק כדי לענות על השאלה.";
+/** Neutral server copy for insufficient_evidence (Hebrew, user-facing). */
+export const NEUTRAL_INSUFFICIENT_ANSWER = HE_INSUFFICIENT_EVIDENCE;
+
+/** Stage 2 rewriting diagnostics (CLI/eval only — not shown in chat UI). */
+export interface AskRewriteDiagnostics {
+  originalQuestion: string;
+  standaloneQuestion: string;
+  unresolvedReferences: string[];
+  model: string;
+  usage?: {
+    promptTokens?: number;
+    completionTokens?: number;
+    totalTokens?: number;
+  };
+  rewriteMs: number;
+}
 
 export interface AskResult {
+  /** Server-assigned id for this ask invocation (tracing / support). */
+  requestId: string;
+  /** Original user question for this turn (not the rewritten form). */
   question: string;
+  /** Question used for retrieval (equals question when no history). */
+  standaloneQuestion: string;
+  unresolvedReferences: string[];
+  /** Present only when history triggered query rewriting. */
+  rewrite?: AskRewriteDiagnostics;
   status: AnswerStatus;
   answer: string;
   /** Server-assembled parts that produced answer + citations. */
@@ -88,6 +118,10 @@ export interface AskResult {
     contextComplete: boolean;
     omittedRetrieved: ContextBuildResult["omittedRetrieved"];
     omittedExpansions: ContextBuildResult["omittedExpansions"];
+    applicability?: ApplicabilitySummary;
+    linkedChunkIds?: string[];
+    enrichmentOmissions?: Array<{ chunkId: string; reasonCode: string }>;
+    hybridTopKChunkIds?: string[];
   };
   validation: {
     structureOk: boolean;
@@ -102,13 +136,28 @@ export interface AskResult {
     generationPromptTokens?: number;
     generationCompletionTokens?: number;
     generationTotalTokens?: number;
+    rewritePromptTokens?: number;
+    rewriteCompletionTokens?: number;
+    rewriteTotalTokens?: number;
+    reviewPromptTokens?: number;
+    reviewCompletionTokens?: number;
+    reviewTotalTokens?: number;
+    revisionPromptTokens?: number;
+    revisionCompletionTokens?: number;
+    revisionTotalTokens?: number;
   };
   timingsMs: {
+    rewriteMs?: number;
     retrieveMs: number;
     contextMs: number;
     generationMs: number;
     totalMs: number;
+    /** Sum of semantic review call(s); omitted when review disabled. */
+    reviewMs?: number;
+    revisionMs?: number;
   };
+  /** Stage 5 semantic review metadata (absent when disabled). */
+  answerReview?: AnswerReviewMeta;
 }
 
 export class GenerationSystemError extends Error {

@@ -1,48 +1,56 @@
-# תסריט הדגמה (~5 דקות)
+# Demo script (~5 minutes)
 
-מטרה: להראות מערכת חיה, מקורות, תחולה, הימנעות, וכשל ידוע בכנות.
+Goal: show a live system, sources, applicability, abstention, and one known failure honestly.
 
-## הכנה (לפני השיחה)
+**Not a production demo** — answers are RAG outputs, not validated policy advice.
+
+## Prep (before the call)
 
 ```bash
-pnpm dev   # אינדקס קיים + .env עם מפתח
+pnpm dev   # existing index + .env with key
 ```
 
-פתיחת הדפדפן ב־localhost; מומלץ שיחה חדשה לפני כל תרחיש.
+Open localhost in the browser; start a **new thread** before each scenario if you want a clean history window.
 
-## דקה 0–1 — שאלה עובדתית + פתיחת מקור
+## Minute 0–1 — working question + open source
 
-1. לחצו על ההצעה **«שעות מוקד בשישי»** (או הקלידו את השאלה).
-2. המתינו לתשובה המלאה (אין streaming) — צפוי ~08:00–12:00.
-3. לחצו **מקור** / `[1]` והראו את טקסט הקטע מ־`28_call_center_hours` (מהאינדקס, לא סיכום שהמודל המציא).
-4. ציינו בקצרה: `retrieved ≠ context ≠ sources שצוטטו`.
+1. Click the **«שעות מוקד בשישי»** suggestion (or type the question).
+2. Wait for the full answer (no streaming) — expect ~08:00–12:00.
+3. Open **source** / `[1]` and show chunk text from `28_call_center_hours` (from the index, not a model summary).
+4. Briefly note: `retrieved ≠ context ≠ sources` (only cited chunks appear as sources).
 
-## דקה 1–2.5 — בחירת גרסה לפי תחולה
+## Minute 1–2.5 — version pick by applicability
 
-שאלה:
+Question:
 
 > מה ההשתתפות העצמית בתיקון במוסך הסדר בפוליסת מקיף שהונפקה באפריל 2026?
 
-צפוי: **1,100 ₪** מגרסת 2026 (גם אם 2024 מדורג גבוה בשליפה).  
-הסבירו: המודל קיבל הקשר עם שתי הגרסאות; מדיניות התחולה בפרומפט דורשת התאמה לתאריך ההנפקה.
+Expected: **1,100 ₪** from the 2026 version (even if 2024 ranks high in retrieval).  
+Explain: the model received context with both versions; prompt applicability policy requires matching the **issue date**.
 
-## דקה 2.5–3.5 — הימנעות כשאין מידע
+## Minute 2.5–3.5 — abstention when there is no evidence
 
-שאלה: **ביטוח חיות מחמד**.  
-צפוי: `insufficient_evidence`, ניסוח ניטרלי, **בלי** אזור מקורות ריק.
+Question: **ביטוח חיות מחמד**.  
+Expected: `insufficient_evidence`, neutral wording, **no** empty sources panel.
 
-## דקה 3.5–5 — כשל ידוע + איך הייתי משפר
+## Minute 3.5–5 — known failure + how you would improve
 
-שאלה על **איחור כבודה 8 שעות**.  
-המערכת תציג סכום (עד 150$) — ציינו בכנות:
+Question about **איחור כבודה 8 שעות**.  
+The system will show an amount (up to $150) — state honestly:
 
-- בהרצת ההערכה השמורה (`ask-eval-stage5.3`) ובבדיקה חיה בשלב 6: **תנאי PIR הושמט** למרות שנמצא בהקשר.
-- זה כשל **שלמות / ניסוח**, לא כשל שליפה ולא "אימות chunkId".
-- שיפור מוצע (מתוך "עוד שבוע"): מדיניות completeness מחייבת תנאי זכאות מהקטע שצוטט + בדיקת רגרסיה על D11.
+- In saved eval (`ask-eval-stage5.3`) and live checks in Stage 6: **PIR condition was omitted** despite being in context.
+- This is a **completeness / wording** failure, not retrieval failure and not “chunkId validation.”
+- Proposed fix (from “one more week” doc): mandatory eligibility conditions from cited chunks + regression on D11.
 
-אל תתקנו את הלוגיקה באמצע ההדגמה אלא אם התבקשתם.
+Do not patch logic mid-demo unless asked.
 
-## סגירה (30 שניות)
+## Optional — follow-up in the same thread (30 seconds)
 
-- הצביעו על הערת ה־composer: כל שאלה עצמאית.
-- הציגו את `docs/CODE-MAP.md` אם מבקשים שינוי קוד בזמן אמת.
+- Composer hint (Hebrew UI): follow-ups are allowed in the **same conversation**.
+- Ask a short follow-up that needs prior turn context; mention rewrite → retrieve on `standaloneQuestion`.
+- Note limits: **6 turns / 6000 chars** history; dropped turns are not sent; persistence is **browser localStorage only**.
+
+## Close (30 seconds)
+
+- Point to `docs/CODE-MAP.md` if they ask where to change code live.
+- Mention active config: Hybrid + applicability ON, answer review OFF (`docs/stage6-config-freeze.md`).

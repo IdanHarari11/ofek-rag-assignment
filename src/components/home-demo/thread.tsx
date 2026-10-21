@@ -45,8 +45,8 @@ export function Thread(): ReactNode {
             role="status"
             className="animate-in fade-in fill-mode-both mx-auto flex w-full max-w-(--thread-max-width) flex-col gap-y-6 [animation-delay:150ms] [animation-duration:200ms]"
           >
-            <span className="sr-only">Loading conversation</span>
-            <Skeleton className="rounded-thread ml-auto h-9 w-2/5 motion-reduce:animate-none" />
+            <span className="sr-only">טוען שיחה</span>
+            <Skeleton className="rounded-thread ms-auto h-9 w-2/5 motion-reduce:animate-none" />
             <div className="flex flex-col gap-y-2">
               <Skeleton className="h-4 w-11/12 motion-reduce:animate-none" />
               <Skeleton className="h-4 w-4/5 motion-reduce:animate-none" />
@@ -75,7 +75,7 @@ export function Thread(): ReactNode {
           <ThreadPrimitive.ScrollToBottom asChild>
             <button
               type="button"
-              aria-label="Scroll to bottom"
+              aria-label="גלול לתחתית"
               className="border-foreground/10 bg-background hover:border-foreground/25 rounded-control absolute -top-11 z-10 grid size-8 place-items-center self-center border transition-colors disabled:invisible"
             >
               <ArrowDownIcon className="size-4" />

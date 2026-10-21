@@ -1,0 +1,371 @@
+{
+  "generatedAt": "2026-10-21T13:14:33.422Z",
+  "stageLabel": "stage5-paired-review",
+  "model": "gpt-4.1-mini",
+  "note": "Same draft+context for baseline vs review. Reviewer verdict is not proof it was correct; compare answers to sources independently. Stage 4 reports left untouched.",
+  "questionCount": 15,
+  "revisedCount": 4,
+  "answerChangedCount": 2,
+  "statusChangedCount": 2,
+  "reviewFailedCount": 2,
+  "avgReviewMs": 1875.6832641333326,
+  "avgReviewTokens": 6238.2,
+  "rows": [
+    {
+      "id": "D01",
+      "question": "מה שעות הפעילות של מוקד שירות הלקוחות ביום שישי?",
+      "baselineStatus": "answered",
+      "baselineAnswer": "שעות הפעילות של מוקד שירות הלקוחות ביום שישי הן מ-08:00 עד 12:00.",
+      "baselineSources": [
+        "28_call_center_hours.md"
+      ],
+      "reviewOutcome": "passed_first_review",
+      "revised": false,
+      "finalStatus": "answered",
+      "finalAnswer": "שעות הפעילות של מוקד שירות הלקוחות ביום שישי הן מ-08:00 עד 12:00.",
+      "finalSources": [
+        "28_call_center_hours.md"
+      ],
+      "problemTypes": [],
+      "materialFindingCount": 0,
+      "reviewMs": 2783.1460409999995,
+      "reviewTotalTokens": 2152,
+      "answerChanged": false,
+      "statusChanged": false
+    },
+    {
+      "id": "D02",
+      "question": "איזה טופס ממלאים כדי לבקש ביטול פוליסה?",
+      "baselineStatus": "answered",
+      "baselineAnswer": "כדי לבקש ביטול פוליסה יש למלא את טופס מספר 4401, שנקרא \"בקשה לביטול פוליסה\". טופס זה משמש לביטול פוליסה ביוזמת הלקוח וניתן להגישו באזור האישי או במוקד.",
+      "baselineSources": [
+        "20_forms_catalog.pdf",
+        "22_cancellation_procedure_2023.md"
+      ],
+      "reviewOutcome": "passed_first_review",
+      "revised": false,
+      "finalStatus": "answered",
+      "finalAnswer": "כדי לבקש ביטול פוליסה יש למלא את טופס מספר 4401, שנקרא \"בקשה לביטול פוליסה\". טופס זה משמש לביטול פוליסה ביוזמת הלקוח וניתן להגישו באזור האישי או במוקד.",
+      "finalSources": [
+        "20_forms_catalog.pdf",
+        "22_cancellation_procedure_2023.md"
+      ],
+      "problemTypes": [],
+      "materialFindingCount": 0,
+      "reviewMs": 892.0289169999996,
+      "reviewTotalTokens": 3300,
+      "answerChanged": false,
+      "statusChanged": false
+    },
+    {
+      "id": "D03",
+      "question": "מה ההשתתפות העצמית בתיקון במוסך הסדר בפוליסת מקיף שהונפקה באפריל 2026?",
+      "baselineStatus": "answered",
+      "baselineAnswer": "בהתאם לפוליסת ביטוח רכב מקיף שהונפקה באפריל 2026, סכום ההשתתפות העצמית בתיקון במוסך הסדר הוא 1,100 ₪. סכום זה צמוד למדד המחירים לצרכן הידוע ביום 1.3.2026.",
+      "baselineSources": [
+        "02_car_comprehensive_policy_2026.pdf"
+      ],
+      "reviewOutcome": "passed_first_review",
+      "revised": false,
+      "finalStatus": "answered",
+      "finalAnswer": "בהתאם לפוליסת ביטוח רכב מקיף שהונפקה באפריל 2026, סכום ההשתתפות העצמית בתיקון במוסך הסדר הוא 1,100 ₪. סכום זה צמוד למדד המחירים לצרכן הידוע ביום 1.3.2026.",
+      "finalSources": [
+        "02_car_comprehensive_policy_2026.pdf"
+      ],
+      "problemTypes": [],
+      "materialFindingCount": 0,
+      "reviewMs": 1088.6560420000005,
+      "reviewTotalTokens": 6501,
+      "answerChanged": false,
+      "statusChanged": false
+    },
+    {
+      "id": "D04",
+      "question": "האם אופק ביטוח מציעה ביטוח לחיות מחמד?",
+      "baselineStatus": "insufficient_evidence",
+      "baselineAnswer": "לא מצאתי במקורות שסופקו מידע מספיק כדי לענות על השאלה.",
+      "baselineSources": [],
+      "reviewOutcome": "failed_after_revision",
+      "revised": true,
+      "finalStatus": "answer_review_failed",
+      "finalAnswer": "",
+      "finalSources": [],
+      "problemTypes": [
+        "unsupported_claim"
+      ],
+      "materialFindingCount": 2,
+      "reviewMs": 5994.036708999996,
+      "revisionMs": 968.369375000002,
+      "reviewTotalTokens": 10612,
+      "revisionTotalTokens": 5900,
+      "answerChanged": true,
+      "statusChanged": true,
+      "errorCode": "answer_review_failed"
+    },
+    {
+      "id": "D05",
+      "question": "מה ההשתתפות העצמית?",
+      "baselineStatus": "answered",
+      "baselineAnswer": "ההשתתפות העצמית בפוליסת ביטוח רכב מקיף של אופק ביטוח משתנה לפי סוג האירוע והגרסה של הפוליסה. בגרסת 2024 ההשתתפות העצמית היא: נזק חלקי במוסך הסדר – 950 ₪, נזק חלקי במוסך שאינו בהסדר – 1,850 ₪, גניבה או אובדן גמור – 5% מערך הרכב ולא פחות מ-2,500 ₪, ונזק לשמשות לפי כתב שירות שמשות.\n\nבגרסת 2026 ההשתתפות העצמית היא: נזק חלקי במוסך הסדר – 1,100 ₪, נזק חלקי במוסך שאינו בהסדר – 2,100 ₪, גניבה או אובדן גמור – 5% מערך הרכב ולא פחות מ-3,000 ₪, ונזק לשמשות לפי כתב שירות שמשות.\n\nלגבי נזק לשמשות, ההשתתפות העצמית לפי כתב שירות שמשות היא: ברשת שמשות אופק אין השתתפות עצמית, ומחוץ לרשת ההשתתפות העצמית היא 400 ₪ בניכוי החזר עד מחיר הרשת, בכפוף לחשבונית מקורית.",
+      "baselineSources": [
+        "01_car_comprehensive_policy_2024.pdf",
+        "02_car_comprehensive_policy_2026.pdf",
+        "06_windshield_service.md"
+      ],
+      "reviewOutcome": "passed_first_review",
+      "revised": false,
+      "finalStatus": "answered",
+      "finalAnswer": "ההשתתפות העצמית בפוליסת ביטוח רכב מקיף של אופק ביטוח משתנה לפי סוג האירוע והגרסה של הפוליסה. בגרסת 2024 ההשתתפות העצמית היא: נזק חלקי במוסך הסדר – 950 ₪, נזק חלקי במוסך שאינו בהסדר – 1,850 ₪, גניבה או אובדן גמור – 5% מערך הרכב ולא פחות מ-2,500 ₪, ונזק לשמשות לפי כתב שירות שמשות.\n\nבגרסת 2026 ההשתתפות העצמית היא: נזק חלקי במוסך הסדר – 1,100 ₪, נזק חלקי במוסך שאינו בהסדר – 2,100 ₪, גניבה או אובדן גמור – 5% מערך הרכב ולא פחות מ-3,000 ₪, ונזק לשמשות לפי כתב שירות שמשות.\n\nלגבי נזק לשמשות, ההשתתפות העצמית לפי כתב שירות שמשות היא: ברשת שמשות אופק אין השתתפות עצמית, ומחוץ לרשת ההשתתפות העצמית היא 400 ₪ בניכוי החזר עד מחיר הרשת, בכפוף לחשבונית מקורית.",
+      "finalSources": [
+        "01_car_comprehensive_policy_2024.pdf",
+        "02_car_comprehensive_policy_2026.pdf",
+        "06_windshield_service.md"
+      ],
+      "problemTypes": [],
+      "materialFindingCount": 0,
+      "reviewMs": 1009.5719580000004,
+      "reviewTotalTokens": 6399,
+      "answerChanged": false,
+      "statusChanged": false
+    },
+    {
+      "id": "D06",
+      "question": "נהג בן 22 נהג ברכב עם פוליסת 'כל נהג' בלי נספח נהג צעיר ועשה תאונה. האם יש כיסוי?",
+      "baselineStatus": "answered",
+      "baselineAnswer": "בפוליסת 'כל נהג' הכיסוי חל על כל נהג מורשה, כלומר כל אדם שבידו רישיון נהיגה בתוקף לסוג הרכב, שגילו 24 ומעלה ושהוותק שלו בנהיגה לפחות שנתיים, וכן נהג צעיר שנכלל בנספח נהג צעיר בתוקף.\n\nנהג בן 22 נחשב לנהג צעיר, ולכן כדי שיהיה לו כיסוי בפוליסת 'כל נהג' יש צורך בנספח נהג צעיר שנרכש בפוליסה, הכולל את שמו של הנהג, תשלום תוספת פרמיה מתאימה, והחזקת רישיון נהיגה בתוקף.\n\nאם הנהג הצעיר לא נקוב בנספח נהג צעיר בפוליסה, האירוע שבו הוא נהג אינו מכוסה, בהתאם לחריג בדבר נהג שאינו נהג מורשה בתנאים הכלליים.",
+      "baselineSources": [
+        "01_car_comprehensive_policy_2024.pdf",
+        "02_car_comprehensive_policy_2026.pdf",
+        "03_car_general_terms.pdf",
+        "04_young_driver_annex.docx"
+      ],
+      "reviewOutcome": "passed_first_review",
+      "revised": false,
+      "finalStatus": "answered",
+      "finalAnswer": "בפוליסת 'כל נהג' הכיסוי חל על כל נהג מורשה, כלומר כל אדם שבידו רישיון נהיגה בתוקף לסוג הרכב, שגילו 24 ומעלה ושהוותק שלו בנהיגה לפחות שנתיים, וכן נהג צעיר שנכלל בנספח נהג צעיר בתוקף.\n\nנהג בן 22 נחשב לנהג צעיר, ולכן כדי שיהיה לו כיסוי בפוליסת 'כל נהג' יש צורך בנספח נהג צעיר שנרכש בפוליסה, הכולל את שמו של הנהג, תשלום תוספת פרמיה מתאימה, והחזקת רישיון נהיגה בתוקף.\n\nאם הנהג הצעיר לא נקוב בנספח נהג צעיר בפוליסה, האירוע שבו הוא נהג אינו מכוסה, בהתאם לחריג בדבר נהג שאינו נהג מורשה בתנאים הכלליים.",
+      "finalSources": [
+        "01_car_comprehensive_policy_2024.pdf",
+        "02_car_comprehensive_policy_2026.pdf",
+        "03_car_general_terms.pdf",
+        "04_young_driver_annex.docx"
+      ],
+      "problemTypes": [],
+      "materialFindingCount": 0,
+      "reviewMs": 868.0430840000045,
+      "reviewTotalTokens": 6601,
+      "answerChanged": false,
+      "statusChanged": false
+    },
+    {
+      "id": "D07",
+      "question": "תוך כמה זמן חתמות רפואית עונה לבקשה של סוכן לגבי מצב רפואי קודם בביטוח נסיעות?",
+      "baselineStatus": "answered",
+      "baselineAnswer": "חתמות רפואית עונה לבקשה של סוכן לגבי מצב רפואי קודם בביטוח נסיעות בתוך 3 ימי עסקים.\n\nבמקרה של בקשה דחופה, למשל כאשר הנסיעה מתוכננת בתוך 48 שעות, יש לסמן \"דחוף\" בטופס כדי לקבל מענה מהיר יותר.",
+      "baselineSources": [
+        "15_travel_preexisting_conditions.docx"
+      ],
+      "reviewOutcome": "passed_first_review",
+      "revised": false,
+      "finalStatus": "answered",
+      "finalAnswer": "חתמות רפואית עונה לבקשה של סוכן לגבי מצב רפואי קודם בביטוח נסיעות בתוך 3 ימי עסקים.\n\nבמקרה של בקשה דחופה, למשל כאשר הנסיעה מתוכננת בתוך 48 שעות, יש לסמן \"דחוף\" בטופס כדי לקבל מענה מהיר יותר.",
+      "finalSources": [
+        "15_travel_preexisting_conditions.docx"
+      ],
+      "problemTypes": [],
+      "materialFindingCount": 0,
+      "reviewMs": 848.1159169999955,
+      "reviewTotalTokens": 2339,
+      "answerChanged": false,
+      "statusChanged": false
+    },
+    {
+      "id": "D08",
+      "question": "לקוח מבטל פוליסה 10 ימים אחרי הרכישה ולא הגיש תביעות. כמה יקבל בחזרה?",
+      "baselineStatus": "answered",
+      "baselineAnswer": "לקוח שמבטל פוליסה בתוך 14 יום ממועד הרכישה, ולא הגיש תביעה, יקבל החזר מלא של דמי הביטוח ששילם, ללא דמי טיפול.",
+      "baselineSources": [
+        "23_cancellation_procedure_update_2025.md"
+      ],
+      "reviewOutcome": "passed_first_review",
+      "revised": false,
+      "finalStatus": "answered",
+      "finalAnswer": "לקוח שמבטל פוליסה בתוך 14 יום ממועד הרכישה, ולא הגיש תביעה, יקבל החזר מלא של דמי הביטוח ששילם, ללא דמי טיפול.",
+      "finalSources": [
+        "23_cancellation_procedure_update_2025.md"
+      ],
+      "problemTypes": [],
+      "materialFindingCount": 0,
+      "reviewMs": 920.4204170000012,
+      "reviewTotalTokens": 2351,
+      "answerChanged": false,
+      "statusChanged": false
+    },
+    {
+      "id": "D09",
+      "question": "מה תקרת הכיסוי למזומן בביטוח תכולה?",
+      "baselineStatus": "answered",
+      "baselineAnswer": "תקרת הכיסוי למזומן בביטוח תכולה היא עד 2,000 ₪.",
+      "baselineSources": [
+        "12_home_contents_limits.docx"
+      ],
+      "reviewOutcome": "passed_after_revision",
+      "revised": true,
+      "finalStatus": "answered",
+      "finalAnswer": "תקרת הכיסוי למזומן בביטוח תכולה היא עד 2,000 ₪.",
+      "finalSources": [
+        "12_home_contents_limits.docx"
+      ],
+      "problemTypes": [
+        "unsupported_claim"
+      ],
+      "materialFindingCount": 1,
+      "reviewMs": 2595.2017089999936,
+      "revisionMs": 2128.189250000003,
+      "reviewTotalTokens": 11802,
+      "revisionTotalTokens": 6561,
+      "answerChanged": false,
+      "statusChanged": false
+    },
+    {
+      "id": "D10",
+      "question": "האם רכב חלופי ניתן לכל תקופת התיקון?",
+      "baselineStatus": "answered",
+      "baselineAnswer": "רכב חלופי ניתן רק למבוטחים שרכשו כתב שירות רכב חלופי, והוא אינו חלק מהכיסוי הבסיסי בפוליסת מקיף. במקרה של תאונה, רכב חלופי ניתן כל עוד הרכב בתיקון במוסך הסדר, לתקופה מקסימלית של עד 21 ימים. במקרה של גניבה או אובדן גמור, ניתן רכב חלופי לתקופה מקסימלית של עד 30 ימים. במקרה של תקלה מכנית, לא ניתן רכב חלופי כלל. בנוסף, תאונה שבה הרכב מתוקן במוסך שאינו בהסדר אינה מזכה ברכב חלופי.",
+      "baselineSources": [
+        "08_replacement_car.md"
+      ],
+      "reviewOutcome": "passed_after_revision",
+      "revised": true,
+      "finalStatus": "answered",
+      "finalAnswer": "רכב חלופי ניתן רק למבוטחים שרכשו כתב שירות רכב חלופי, והוא אינו חלק מהכיסוי הבסיסי בפוליסת מקיף. במקרה של תאונה, רכב חלופי ניתן כל עוד הרכב בתיקון במוסך הסדר, לתקופה מקסימלית של עד 21 ימים. במקרה של גניבה או אובדן גמור, ניתן רכב חלופי לתקופה מקסימלית של עד 30 ימים. במקרה של תקלה מכנית, לא ניתן רכב חלופי כלל. בנוסף, תאונה שבה הרכב מתוקן במוסך שאינו בהסדר אינה מזכה ברכב חלופי.",
+      "finalSources": [
+        "08_replacement_car.md"
+      ],
+      "problemTypes": [
+        "unsupported_claim"
+      ],
+      "materialFindingCount": 1,
+      "reviewMs": 3151.099709000002,
+      "revisionMs": 3033.8587909999987,
+      "reviewTotalTokens": 12476,
+      "revisionTotalTokens": 7034,
+      "answerChanged": false,
+      "statusChanged": false
+    },
+    {
+      "id": "D11",
+      "question": "המזוודה של נוסע הגיעה באיחור של 8 שעות. לכמה פיצוי הוא זכאי?",
+      "baselineStatus": "answered",
+      "baselineAnswer": "במקרה של עיכוב בהגעת המזוודה מעל 6 שעות, הנוסע זכאי לפיצוי של עד 150 דולר עבור רכישת פריטים חיוניים.\n\nמכיוון שהמזוודה הגיעה באיחור של 8 שעות, הפיצוי יהיה עד 150 דולר בהתאם לתנאי הביטוח.",
+      "baselineSources": [
+        "16_travel_luggage.md"
+      ],
+      "reviewOutcome": "passed_first_review",
+      "revised": false,
+      "finalStatus": "answered",
+      "finalAnswer": "במקרה של עיכוב בהגעת המזוודה מעל 6 שעות, הנוסע זכאי לפיצוי של עד 150 דולר עבור רכישת פריטים חיוניים.\n\nמכיוון שהמזוודה הגיעה באיחור של 8 שעות, הפיצוי יהיה עד 150 דולר בהתאם לתנאי הביטוח.",
+      "finalSources": [
+        "16_travel_luggage.md"
+      ],
+      "problemTypes": [],
+      "materialFindingCount": 0,
+      "reviewMs": 1048.0030409999963,
+      "reviewTotalTokens": 5883,
+      "answerChanged": false,
+      "statusChanged": false
+    },
+    {
+      "id": "D12",
+      "question": "כמה גרירות מקבלים בשנת ביטוח?",
+      "baselineStatus": "answered",
+      "baselineAnswer": "בשנת ביטוח ניתן לקבל עד 4 גרירות לאחר תאונה או תקלה, בהתאם לכתב שירות גרירה ושירותי דרך של אופק ביטוח.",
+      "baselineSources": [
+        "07_towing_roadside.md"
+      ],
+      "reviewOutcome": "passed_first_review",
+      "revised": false,
+      "finalStatus": "answered",
+      "finalAnswer": "בשנת ביטוח ניתן לקבל עד 4 גרירות לאחר תאונה או תקלה, בהתאם לכתב שירות גרירה ושירותי דרך של אופק ביטוח.",
+      "finalSources": [
+        "07_towing_roadside.md"
+      ],
+      "problemTypes": [],
+      "materialFindingCount": 0,
+      "reviewMs": 973.8938340000022,
+      "reviewTotalTokens": 6153,
+      "answerChanged": false,
+      "statusChanged": false
+    },
+    {
+      "id": "D13",
+      "question": "נוסעת בשבוע 28 להריון. האם סיבוכי הריון מכוסים בחו\"ל?",
+      "baselineStatus": "answered",
+      "baselineAnswer": "סיבוכי הריון מכוסים במסגרת ביטוח נסיעות לחו\"ל רק עד שבוע 26 להריון. החל משבוע 27 ואילך, סיבוכי הריון אינם מכוסים בביטוח נסיעות, אלא אם הוצהרו מראש ואושרו על ידי חתמות רפואית, אך לפי התנאים הרגילים, מעל שבוע 26 אין כיסוי לסיבוכי הריון.",
+      "baselineSources": [
+        "15_travel_preexisting_conditions.docx"
+      ],
+      "reviewOutcome": "failed_after_revision",
+      "revised": true,
+      "finalStatus": "answer_review_failed",
+      "finalAnswer": "",
+      "finalSources": [],
+      "problemTypes": [
+        "unsupported_claim"
+      ],
+      "materialFindingCount": 2,
+      "reviewMs": 3322.400250000006,
+      "revisionMs": 3948.9185829999915,
+      "reviewTotalTokens": 8011,
+      "revisionTotalTokens": 4607,
+      "answerChanged": true,
+      "statusChanged": true,
+      "errorCode": "answer_review_failed"
+    },
+    {
+      "id": "D14",
+      "question": "מה ההשתתפות העצמית ברעידת אדמה בפרק המבנה?",
+      "baselineStatus": "answered",
+      "baselineAnswer": "ההשתתפות העצמית ברעידת אדמה בפרק המבנה היא 10% מסכום ביטוח המבנה.\n\nבמקרה של דירה בבניין שעבר חיזוק לפי תמ\"א 38, ההשתתפות העצמית בפרק המבנה היא 5% מסכום ביטוח המבנה.",
+      "baselineSources": [
+        "13_home_earthquake_annex.pdf"
+      ],
+      "reviewOutcome": "passed_first_review",
+      "revised": false,
+      "finalStatus": "answered",
+      "finalAnswer": "ההשתתפות העצמית ברעידת אדמה בפרק המבנה היא 10% מסכום ביטוח המבנה.\n\nבמקרה של דירה בבניין שעבר חיזוק לפי תמ\"א 38, ההשתתפות העצמית בפרק המבנה היא 5% מסכום ביטוח המבנה.",
+      "finalSources": [
+        "13_home_earthquake_annex.pdf"
+      ],
+      "problemTypes": [],
+      "materialFindingCount": 0,
+      "reviewMs": 1318.585958999989,
+      "reviewTotalTokens": 2665,
+      "answerChanged": false,
+      "statusChanged": false
+    },
+    {
+      "id": "D15",
+      "question": "תוך כמה זמן יש להגיש תלונה במשטרה על גניבת רכב?",
+      "baselineStatus": "answered",
+      "baselineAnswer": "על המבוטח להגיש תלונה במשטרה על גניבת רכב בתוך 24 שעות ממועד הגילוי ולהמציא למבטח את אישור התלונה.\n\nבנוסף, בעת דיווח התביעה לחברת הביטוח יש להגיש טופס 1003 ואישור תלונה במשטרה שהוגשה בתוך 24 שעות.",
+      "baselineSources": [
+        "03_car_general_terms.pdf",
+        "18_claims_process_car.md"
+      ],
+      "reviewOutcome": "passed_first_review",
+      "revised": false,
+      "finalStatus": "answered",
+      "finalAnswer": "על המבוטח להגיש תלונה במשטרה על גניבת רכב בתוך 24 שעות ממועד הגילוי ולהמציא למבטח את אישור התלונה.\n\nבנוסף, בעת דיווח התביעה לחברת הביטוח יש להגיש טופס 1003 ואישור תלונה במשטרה שהוגשה בתוך 24 שעות.",
+      "finalSources": [
+        "03_car_general_terms.pdf",
+        "18_claims_process_car.md"
+      ],
+      "problemTypes": [],
+      "materialFindingCount": 0,
+      "reviewMs": 1322.0453750000015,
+      "reviewTotalTokens": 6328,
+      "answerChanged": false,
+      "statusChanged": false
+    }
+  ]
+}

@@ -9,6 +9,7 @@ import {
   SquareIcon,
 } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
+import { HE_UI } from "@/lib/user-facing-he";
 
 /**
  * Layout matches the HomeDemo composer. Model / mic / attachments stay disabled.
@@ -47,7 +48,7 @@ export function Composer(): ReactNode {
           <ComposerPrimitive.Input asChild>
             <textarea
               data-composer-input
-              placeholder="שאלה בעברית…"
+              placeholder={HE_UI.composerPlaceholder}
               rows={1}
               dir="auto"
               className="placeholder:text-muted-foreground field-sizing-content max-h-48 w-full resize-none bg-transparent px-4 pt-3 pb-2 text-base leading-6 focus:outline-none"
@@ -59,7 +60,7 @@ export function Composer(): ReactNode {
                 type="button"
                 disabled
                 title="קבצים — לא מחובר"
-                aria-label="הוספת קובץ (לא זמין)"
+                aria-label={HE_UI.attachUnavailable}
                 className="text-muted-foreground rounded-control grid size-7 shrink-0 place-items-center opacity-40"
               >
                 <PlusIcon className="size-4" />
@@ -68,7 +69,7 @@ export function Composer(): ReactNode {
                 type="button"
                 disabled
                 title="מודל השרת (תצוגה בלבד)"
-                aria-label={`מודל: ${modelLabel}`}
+                aria-label={HE_UI.modelLabel(modelLabel)}
                 className="text-muted-foreground rounded-control flex h-7 min-w-0 items-center gap-1 px-2 text-[13px] font-normal opacity-70"
               >
                 <span className="truncate">{modelLabel}</span>
@@ -86,7 +87,7 @@ export function Composer(): ReactNode {
                 type="button"
                 disabled
                 title="קלט קולי — לא מחובר"
-                aria-label="הקלטה (לא זמין)"
+                aria-label={HE_UI.micUnavailable}
                 className="text-muted-foreground rounded-control grid size-7 place-items-center opacity-40"
               >
                 <MicIcon className="size-4" />
@@ -95,7 +96,7 @@ export function Composer(): ReactNode {
                 <ComposerPrimitive.Send asChild>
                   <button
                     type="button"
-                    aria-label="שלח"
+                    aria-label={HE_UI.send}
                     className="bg-primary text-primary-foreground rounded-control grid size-7 place-items-center transition-opacity disabled:opacity-40"
                   >
                     <ArrowUpIcon className="size-4" />
@@ -118,7 +119,7 @@ export function Composer(): ReactNode {
         </div>
       </ComposerPrimitive.Root>
       <p className="text-muted-foreground px-1 text-[11px] leading-snug" dir="rtl">
-        בשלב זה כל שאלה נענית בנפרד; יש לכלול בה את הפרטים הרלוונטיים.
+        {HE_UI.followUpHint}
       </p>
     </div>
   );

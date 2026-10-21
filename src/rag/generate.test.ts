@@ -50,10 +50,11 @@ describe("parseModelGenerationPayload", () => {
 describe("prompt injection behavior (synthetic context)", () => {
   it("system prompt uses answerParts, ambiguity policy, and ignores in-document instructions", () => {
     const prompt = buildSystemPrompt(["synth:c000"]);
-    expect(prompt).toMatch(/לא הוראות מערכת/);
+    expect(prompt).toMatch(/not system instructions/i);
     expect(prompt).toMatch(/answerParts/);
     expect(prompt).toMatch(/clarification_needed/);
-    expect(prompt).toMatch(/אל תסיק מוצר/);
+    expect(prompt).toMatch(/do not infer a product/i);
+    expect(prompt).toMatch(/Answer the end user in Hebrew only/);
     expect(prompt).not.toMatch(/citations\[/);
   });
 

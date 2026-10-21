@@ -39,6 +39,46 @@ export { defaultChunksPath, defaultIndexPath, defaultEvalDir } from "./paths";
 export { ask } from "./ask";
 export type { AskOptions, AskDependencies } from "./ask";
 export {
+  DOCUMENT_RELATIONS_MANIFEST_VERSION,
+  defaultManifestPath,
+  loadDocumentRelationsManifest,
+  validateManifestAgainstIndex,
+  getValidatedManifest,
+  extractUserTemporalFacts,
+  resolveVersionDecisions,
+  buildEnrichedGenerationContext,
+  ManifestValidationError,
+} from "./document-relations";
+export type {
+  DocumentRelationsManifest,
+  ApplicabilitySummary,
+  UserTemporalFacts,
+  VersionDecision,
+} from "./document-relations";
+// Trace writer/session (used by ask). Reader CLI imports from ./trace/read directly
+// so Next.js routes that import @/rag do not pull filesystem log scanning.
+export {
+  TRACE_SCHEMA_VERSION,
+  TRACE_LOG_POLICY,
+  TRACE_SCOPE_NOTE,
+  createRequestId,
+  AskTraceSession,
+  JsonlTraceWriter,
+  MemoryTraceWriter,
+  getDefaultTraceWriter,
+  toTraceTokenUsage,
+  isAbortError,
+  safeErrorCode,
+} from "./trace";
+export type {
+  TraceEvent,
+  TraceOutcome,
+  TraceStageName,
+  TraceTokenUsage,
+  TraceWriter,
+  TraceSource,
+} from "./trace";
+export {
   DEFAULT_CONTEXT_BUDGET_TOKENS,
   CONTEXT_BUDGET_NOTES,
   buildGenerationContext,
@@ -54,6 +94,24 @@ export {
   buildSystemPrompt,
   buildUserPrompt,
 } from "./generate";
+export {
+  HISTORY_MAX_TURNS,
+  HISTORY_MAX_TOTAL_CHARS,
+  HISTORY_MAX_MESSAGE_CHARS,
+  HISTORY_WINDOW_NOTES,
+  HistoryValidationError,
+  parseAndValidateHistory,
+  applyHistoryWindow,
+  formatHistoryForPrompt,
+} from "./history";
+export type { ChatHistoryMessage, ChatHistoryRole } from "./history";
+export {
+  rewriteQuery,
+  parseRewritePayload,
+  RewriteSystemError,
+  REWRITE_SYSTEM_PROMPT,
+} from "./rewrite-query";
+export type { RewriteQueryResult } from "./rewrite-query";
 export { assembleAnswerFromParts } from "./validate-answer";
 // clarify.ts exists as historical Stage 5.2 experiment — not exported on the active path.
 export {
@@ -65,9 +123,30 @@ export type {
   AnswerSource,
   AnswerPart,
   AskResult,
+  AskRewriteDiagnostics,
   Citation,
   ContextChunk,
   ContextBuildResult,
   ContextOrigin,
   ModelGenerationPayload,
 } from "./ask-types";
+export {
+  isAnswerReviewEnabled,
+  runAnswerReviewPipeline,
+  reviewAnswerDraft,
+  reviseAnswerDraft,
+  parseReviewResultPayload,
+  shouldAttemptRevision,
+  AnswerReviewFailedError,
+  AnswerReviewSystemError,
+  MAX_REVIEW_ATTEMPTS,
+  MAX_REVISION_ATTEMPTS,
+  REVIEW_PROBLEM_TYPES,
+} from "./answer-review";
+export type {
+  AnswerReviewMeta,
+  AnswerReviewOutcome,
+  ReviewFinding,
+  ReviewProblemType,
+  ReviewResultPayload,
+} from "./answer-review";

@@ -44,10 +44,10 @@ export function UserMessage(): ReactNode {
         <ActionBarPrimitive.Root
           hideWhenRunning
           autohide="not-last"
-          className="absolute start-0 top-1/2 -translate-x-full -translate-y-1/2 pe-1.5 peer-empty:hidden"
+          className="absolute end-full top-1/2 -translate-y-1/2 pe-1.5 peer-empty:hidden"
         >
           <ActionBarPrimitive.Edit
-            aria-label="Edit message"
+            aria-label="עריכת הודעה"
             className={actionButtonClass}
           >
             <PencilIcon className="size-4" />
@@ -105,7 +105,7 @@ export function AssistantMessage(): ReactNode {
           <Sources />
         </AuiIf>
         <MessagePrimitive.Error>
-          <ErrorPrimitive.Root className="text-destructive mt-2 border-l-2 border-destructive/60 pl-3 text-[13px]">
+          <ErrorPrimitive.Root className="text-destructive mt-2 border-s-2 border-destructive/60 ps-3 text-[13px]">
             <ErrorPrimitive.Message className="line-clamp-3" />
             <div className="mt-2">
               <ActionBarPrimitive.Reload
@@ -140,14 +140,24 @@ function BranchPicker({ className }: { className?: string }): ReactNode {
       )}
     >
       <BranchPickerPrimitive.Previous asChild>
-        <button type="button" className={actionButtonClass} aria-label="Previous">
-          <ChevronLeftIcon className="size-3.5" />
+        <button
+          type="button"
+          className={actionButtonClass}
+          aria-label="גרסה קודמת"
+        >
+          <ChevronLeftIcon className="size-3.5 rtl:-scale-x-100" />
         </button>
       </BranchPickerPrimitive.Previous>
-      <BranchPickerPrimitive.Number /> / <BranchPickerPrimitive.Count />
+      <span dir="ltr" className="inline-flex items-center gap-0.5 tabular-nums">
+        <BranchPickerPrimitive.Number /> / <BranchPickerPrimitive.Count />
+      </span>
       <BranchPickerPrimitive.Next asChild>
-        <button type="button" className={actionButtonClass} aria-label="Next">
-          <ChevronRightIcon className="size-3.5" />
+        <button
+          type="button"
+          className={actionButtonClass}
+          aria-label="גרסה הבאה"
+        >
+          <ChevronRightIcon className="size-3.5 rtl:-scale-x-100" />
         </button>
       </BranchPickerPrimitive.Next>
     </BranchPickerPrimitive.Root>
@@ -162,7 +172,7 @@ function AssistantActionBar(): ReactNode {
       className="flex items-center gap-1.5"
     >
       <ActionBarPrimitive.Copy
-        aria-label="Copy response"
+        aria-label="העתקת תשובה"
         className={actionButtonClass}
       >
         <AuiIf condition={(s) => s.message.isCopied}>
@@ -173,7 +183,7 @@ function AssistantActionBar(): ReactNode {
         </AuiIf>
       </ActionBarPrimitive.Copy>
       <ActionBarPrimitive.Reload
-        aria-label="Regenerate"
+        aria-label="יצירה מחדש"
         className={actionButtonClass}
       >
         <RefreshCwIcon className="size-4" />

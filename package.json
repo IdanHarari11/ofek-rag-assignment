@@ -17,20 +17,31 @@
     "prepare:rag": "pnpm ingest && pnpm chunk && pnpm index",
     "retrieve": "tsx scripts/retrieve.ts",
     "ask": "tsx scripts/ask.ts",
+    "trace": "tsx scripts/trace.ts",
     "eval:retrieval": "tsx scripts/eval-retrieval.ts",
     "eval:hybrid": "tsx scripts/eval-hybrid.ts",
     "eval:ask": "tsx scripts/eval-ask.ts",
+    "eval:conversation": "tsx scripts/eval-conversation.ts",
+    "eval:ask-stage2": "tsx scripts/eval-ask-stage2-regression.ts",
+    "eval:ask-stage4": "tsx scripts/eval-ask-stage4.ts",
+    "eval:ask-stage5": "tsx scripts/eval-ask-stage5.ts",
+    "eval:ask-stage5-paired": "tsx scripts/eval-ask-stage5-paired.ts",
+    "eval:conversation-stage5": "tsx scripts/eval-conversation-stage5.ts",
+    "eval:ask-stage6-extended": "tsx scripts/eval-ask-stage6-extended.ts",
+    "eval:conversation-stage6": "tsx scripts/eval-conversation-stage6.ts",
     "test:ingestion": "vitest run src/ingestion",
     "test:chunking": "vitest run src/chunking",
     "test:rag": "vitest run src/rag src/eval",
-    "test:api": "vitest run src/lib/ask-display.test.ts src/lib/rag-chat-model-adapter.test.ts src/app/api/ask/route.test.ts",
+    "test:api": "vitest run src/lib/ask-display.test.ts src/lib/rag-chat-model-adapter.test.ts src/lib/chat-history.test.ts src/lib/thread-title.test.ts src/lib/ofek-thread-list-adapter.test.ts src/lib/ofek-thread-list-adapter.race.test.ts src/app/api/ask/route.test.ts",
     "test:rag-prep": "vitest run src/ingestion src/chunking src/rag src/eval",
     "test:gates": "pnpm typecheck && pnpm lint && pnpm test:rag-prep && pnpm test:api && pnpm build"
   },
   "dependencies": {
+    "@assistant-ui/core": "^0.3.30",
     "@assistant-ui/react": "^0.15.30",
     "@assistant-ui/react-markdown": "^0.14.23",
     "@base-ui/react": "^1.9.0",
+    "assistant-stream": "^0.3.53",
     "class-variance-authority": "^0.7.1",
     "cn": "^0.5.0",
     "dotenv": "^18.0.8",
@@ -66,6 +77,8 @@
   },
   "packageManager": "pnpm@12.11.2",
   "pnpm": {
-    "onlyBuiltDependencies": ["esbuild"]
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
   }
 }
