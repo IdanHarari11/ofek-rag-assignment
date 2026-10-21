@@ -1,0 +1,140 @@
+[
+  {
+    "id": "D01",
+    "category": "factual",
+    "question": "מה שעות הפעילות של מוקד שירות הלקוחות ביום שישי?",
+    "reference_answer": "08:00–12:00.",
+    "sources": [
+      "28_call_center_hours.md"
+    ]
+  },
+  {
+    "id": "D02",
+    "category": "table",
+    "question": "איזה טופס ממלאים כדי לבקש ביטול פוליסה?",
+    "reference_answer": "טופס 4401 – בקשה לביטול פוליסה.",
+    "sources": [
+      "20_forms_catalog.pdf"
+    ]
+  },
+  {
+    "id": "D03",
+    "category": "version",
+    "question": "מה ההשתתפות העצמית בתיקון במוסך הסדר בפוליסת מקיף שהונפקה באפריל 2026?",
+    "reference_answer": "1,100 ₪ (גרסת 2026, שחלה על פוליסות שהונפקו או חודשו מ-1.3.2026).",
+    "sources": [
+      "02_car_comprehensive_policy_2026.pdf"
+    ]
+  },
+  {
+    "id": "D04",
+    "category": "no_answer",
+    "question": "האם אופק ביטוח מציעה ביטוח לחיות מחמד?",
+    "reference_answer": "המידע לא מופיע במסמכים. המערכת צריכה לומר שלא מצאה תשובה, ולא להמציא.",
+    "sources": []
+  },
+  {
+    "id": "D05",
+    "category": "ambiguous",
+    "question": "מה ההשתתפות העצמית?",
+    "reference_answer": "השאלה עמומה: תלויה בקו המוצר ובסוג האירוע. תשובה טובה מבקשת הבהרה, או מציגה בקצרה את האפשרויות העיקריות עם מקורות.",
+    "sources": [
+      "02_car_comprehensive_policy_2026.pdf",
+      "10_home_policy_overview.md"
+    ]
+  },
+  {
+    "id": "D06",
+    "category": "multi_hop",
+    "question": "נהג בן 22 נהג ברכב עם פוליסת 'כל נהג' בלי נספח נהג צעיר ועשה תאונה. האם יש כיסוי?",
+    "reference_answer": "לא. לפי הגדרת 'נהג מורשה' (סעיף 2) נהג מתחת לגיל 24 אינו נהג מורשה אלא אם נכלל בנספח נהג צעיר, וסעיף 12(א) מחריג נזק בעת נהיגה בידי מי שאינו נהג מורשה.",
+    "sources": [
+      "03_car_general_terms.pdf",
+      "04_young_driver_annex.docx"
+    ]
+  },
+  {
+    "id": "D07",
+    "category": "cross_lingual",
+    "question": "תוך כמה זמן חתמות רפואית עונה לבקשה של סוכן לגבי מצב רפואי קודם בביטוח נסיעות?",
+    "reference_answer": "בתוך 3 ימי עסקים.",
+    "sources": [
+      "30_agent_faq_en.md",
+      "15_travel_preexisting_conditions.docx"
+    ]
+  },
+  {
+    "id": "D08",
+    "category": "partial_override",
+    "question": "לקוח מבטל פוליסה 10 ימים אחרי הרכישה ולא הגיש תביעות. כמה יקבל בחזרה?",
+    "reference_answer": "החזר מלא של דמי הביטוח, ללא דמי טיפול (תקופת התחרטות של 14 יום לפי עדכון 2025).",
+    "sources": [
+      "23_cancellation_procedure_update_2025.md"
+    ]
+  },
+  {
+    "id": "D09",
+    "category": "table",
+    "question": "מה תקרת הכיסוי למזומן בביטוח תכולה?",
+    "reference_answer": "2,000 ₪.",
+    "sources": [
+      "12_home_contents_limits.docx"
+    ]
+  },
+  {
+    "id": "D10",
+    "category": "conflict",
+    "question": "האם רכב חלופי ניתן לכל תקופת התיקון?",
+    "reference_answer": "לא. רכב חלופי ניתן רק למי שרכש כתב שירות רכב חלופי, ובתאונה עד 21 ימים ורק בתיקון במוסך הסדר. העלון השיווקי אומר אחרת, אך הוא אינו מחייב.",
+    "sources": [
+      "08_replacement_car.md",
+      "09_marketing_brochure_car.md"
+    ]
+  },
+  {
+    "id": "D11",
+    "category": "table",
+    "question": "המזוודה של נוסע הגיעה באיחור של 8 שעות. לכמה פיצוי הוא זכאי?",
+    "reference_answer": "עד 150 $ לרכישת פריטים חיוניים, בכפוף לדו\"ח PIR מחברת התעופה.",
+    "sources": [
+      "16_travel_luggage.md"
+    ]
+  },
+  {
+    "id": "D12",
+    "category": "factual",
+    "question": "כמה גרירות מקבלים בשנת ביטוח?",
+    "reference_answer": "עד 4 גרירות בשנת ביטוח (למי שרכש כתב שירות גרירה).",
+    "sources": [
+      "07_towing_roadside.md"
+    ]
+  },
+  {
+    "id": "D13",
+    "category": "table",
+    "question": "נוסעת בשבוע 28 להריון. האם סיבוכי הריון מכוסים בחו\"ל?",
+    "reference_answer": "לא. סיבוכי הריון מכוסים רק עד שבוע 26.",
+    "sources": [
+      "15_travel_preexisting_conditions.docx"
+    ]
+  },
+  {
+    "id": "D14",
+    "category": "table",
+    "question": "מה ההשתתפות העצמית ברעידת אדמה בפרק המבנה?",
+    "reference_answer": "10% מסכום ביטוח המבנה (5% בבניין שעבר חיזוק לפי תמ\"א 38).",
+    "sources": [
+      "13_home_earthquake_annex.pdf"
+    ]
+  },
+  {
+    "id": "D15",
+    "category": "factual",
+    "question": "תוך כמה זמן יש להגיש תלונה במשטרה על גניבת רכב?",
+    "reference_answer": "בתוך 24 שעות ממועד הגילוי.",
+    "sources": [
+      "03_car_general_terms.pdf",
+      "18_claims_process_car.md"
+    ]
+  }
+]

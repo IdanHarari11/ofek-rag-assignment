@@ -1,0 +1,1446 @@
+{
+  "generatedAt": "2026-10-21T06:18:06.851Z",
+  "stageLabel": "stage5.2-final-core",
+  "retrievalMode": "hybrid",
+  "generationModel": "gpt-4.1-mini",
+  "questionCount": 15,
+  "systemErrorCount": 0,
+  "statusCounts": {
+    "answered": 4,
+    "clarification_needed": 10,
+    "insufficient_evidence": 1
+  },
+  "manualReviewMethod": "After ask() returns, a human scores four separate dimensions (pass/partial/fail/n_a/pending): (1) conclusionCorrectness — is the main conclusion right for the question? (2) claimSupport — do cited/stated claims have support in the supplied context? (3) essentialCompleteness — are material eligibility/exceptions/calc bases present? (4) behaviorAppropriateness — answered vs clarification_needed vs abstention when warranted. Examples: D05 without clarification = behavior fail; D08 with material contradiction = answer fail; D04 may pass abstention behavior while failing claimSupport on an unsupported corpus-wide claim. Citation-id validation is automatic and technical only; it is not a faithfulness score. Do not average these into a single automatic metric.",
+  "disclaimer": "Manual review dimensions are human judgments, not automatic metrics. Citation-id validation ≠ claim support. API/parse failures are system_error, not insufficient_evidence. Extra probes (X*) are behavior checks outside the reference set.",
+  "questions": [
+    {
+      "id": "D01",
+      "category": "factual",
+      "question": "מה שעות הפעילות של מוקד שירות הלקוחות ביום שישי?",
+      "referenceAnswer": "08:00–12:00.",
+      "referenceSources": [
+        "28_call_center_hours.md"
+      ],
+      "extraProbe": false,
+      "status": "answered",
+      "answer": "שעות הפעילות של מוקד שירות הלקוחות ביום שישי הן מ-08:00 עד 12:00.",
+      "answerParts": [
+        {
+          "text": "שעות הפעילות של מוקד שירות הלקוחות ביום שישי הן מ-08:00 עד 12:00.",
+          "sourceChunkIds": [
+            "corpus/28_call_center_hours:c000"
+          ]
+        }
+      ],
+      "citations": [
+        {
+          "chunkId": "corpus/28_call_center_hours:c000",
+          "claims": [
+            "שעות הפעילות של מוקד שירות הלקוחות ביום שישי הן מ-08:00 עד 12:00."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "chunkId": "corpus/28_call_center_hours:c000",
+          "documentId": "corpus/28_call_center_hours",
+          "relativePath": "corpus/28_call_center_hours.md",
+          "fileName": "28_call_center_hours.md",
+          "documentTitle": "שעות פעילות ומספרי מוקד",
+          "sectionPath": [
+            "שעות פעילות ומספרי מוקד"
+          ],
+          "claims": [
+            "שעות הפעילות של מוקד שירות הלקוחות ביום שישי הן מ-08:00 עד 12:00."
+          ],
+          "origin": "retrieved"
+        }
+      ],
+      "retrievedChunkIds": [
+        "corpus/28_call_center_hours:c000",
+        "corpus/07_towing_roadside:c000",
+        "corpus/06_windshield_service:c000",
+        "corpus/21_claims_sla:c000",
+        "corpus/17_travel_claims:c000"
+      ],
+      "contextChunkIds": [
+        "corpus/28_call_center_hours:c000",
+        "corpus/07_towing_roadside:c000",
+        "corpus/06_windshield_service:c000",
+        "corpus/21_claims_sla:c000",
+        "corpus/17_travel_claims:c000"
+      ],
+      "expandedChunkIds": [],
+      "contextMeta": {
+        "budgetTokens": 3500,
+        "estimatedContextTokens": 915,
+        "tokenEstimateMethod": "heuristic_he_en_v1_max(words*1.3, chars/2.8)",
+        "contextComplete": true,
+        "omittedRetrieved": [],
+        "omittedExpansions": []
+      },
+      "clarification": {
+        "needsClarification": false,
+        "missingDetails": [],
+        "clarificationQuestion": ""
+      },
+      "skippedRetrieval": false,
+      "validation": {
+        "structureOk": true,
+        "citationsOk": true,
+        "invalidCitationIds": []
+      },
+      "citationIdValidationOk": true,
+      "retrievalMode": "hybrid",
+      "generationModel": "gpt-4.1-mini",
+      "usage": {
+        "clarificationPromptTokens": 255,
+        "clarificationCompletionTokens": 17,
+        "clarificationTotalTokens": 272,
+        "embeddingPromptTokens": 42,
+        "generationPromptTokens": 1844,
+        "generationCompletionTokens": 52,
+        "generationTotalTokens": 1896
+      },
+      "timingsMs": {
+        "clarifyMs": 1996.7291250000003,
+        "retrieveMs": 587.455375,
+        "contextMs": 0.6862080000000788,
+        "generationMs": 1023.1810839999998,
+        "totalMs": 3631.98
+      },
+      "manualReview": {
+        "conclusionCorrectness": "pass",
+        "claimSupport": "pass",
+        "essentialCompleteness": "pass",
+        "behaviorAppropriateness": "pass",
+        "focusNotes": [],
+        "overallNotes": "Clear factual; no over-clarify."
+      }
+    },
+    {
+      "id": "D02",
+      "category": "table",
+      "question": "איזה טופס ממלאים כדי לבקש ביטול פוליסה?",
+      "referenceAnswer": "טופס 4401 – בקשה לביטול פוליסה.",
+      "referenceSources": [
+        "20_forms_catalog.pdf"
+      ],
+      "extraProbe": false,
+      "status": "answered",
+      "answer": "כדי לבקש ביטול פוליסה יש למלא את טופס מספר 4401 בשם \"בקשה לביטול פוליסה\".\n\nבנוסף, ניתן להגיש את בקשת הביטול גם בשיחה מוקלטת במוקד לאחר זיהוי מלא של הלקוח.",
+      "answerParts": [
+        {
+          "text": "כדי לבקש ביטול פוליסה יש למלא את טופס מספר 4401 בשם \"בקשה לביטול פוליסה\".",
+          "sourceChunkIds": [
+            "corpus/20_forms_catalog:c001"
+          ]
+        },
+        {
+          "text": "בנוסף, ניתן להגיש את בקשת הביטול גם בשיחה מוקלטת במוקד לאחר זיהוי מלא של הלקוח.",
+          "sourceChunkIds": [
+            "corpus/22_cancellation_procedure_2023:c000"
+          ]
+        }
+      ],
+      "citations": [
+        {
+          "chunkId": "corpus/20_forms_catalog:c001",
+          "claims": [
+            "כדי לבקש ביטול פוליסה יש למלא את טופס מספר 4401 בשם \"בקשה לביטול פוליסה\"."
+          ]
+        },
+        {
+          "chunkId": "corpus/22_cancellation_procedure_2023:c000",
+          "claims": [
+            "בנוסף, ניתן להגיש את בקשת הביטול גם בשיחה מוקלטת במוקד לאחר זיהוי מלא של הלקוח."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "chunkId": "corpus/20_forms_catalog:c001",
+          "documentId": "corpus/20_forms_catalog",
+          "relativePath": "corpus/20_forms_catalog.pdf",
+          "fileName": "20_forms_catalog.pdf",
+          "documentTitle": "קטלוג טפסים – אופק ביטוח",
+          "sectionPath": [
+            "קטלוג טפסים – אופק ביטוח"
+          ],
+          "pages": [
+            1
+          ],
+          "claims": [
+            "כדי לבקש ביטול פוליסה יש למלא את טופס מספר 4401 בשם \"בקשה לביטול פוליסה\"."
+          ],
+          "origin": "retrieved"
+        },
+        {
+          "chunkId": "corpus/22_cancellation_procedure_2023:c000",
+          "documentId": "corpus/22_cancellation_procedure_2023",
+          "relativePath": "corpus/22_cancellation_procedure_2023.md",
+          "fileName": "22_cancellation_procedure_2023.md",
+          "documentTitle": "נוהל ביטול פוליסה – 2023",
+          "sectionPath": [
+            "נוהל ביטול פוליסה – 2023"
+          ],
+          "claims": [
+            "בנוסף, ניתן להגיש את בקשת הביטול גם בשיחה מוקלטת במוקד לאחר זיהוי מלא של הלקוח."
+          ],
+          "origin": "retrieved"
+        }
+      ],
+      "retrievedChunkIds": [
+        "corpus/20_forms_catalog:c001",
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/20_forms_catalog:c000",
+        "corpus/14_travel_policy_overview:c000",
+        "corpus/33_customer_identification:c000"
+      ],
+      "contextChunkIds": [
+        "corpus/20_forms_catalog:c001",
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/20_forms_catalog:c000",
+        "corpus/14_travel_policy_overview:c000",
+        "corpus/33_customer_identification:c000"
+      ],
+      "expandedChunkIds": [],
+      "contextMeta": {
+        "budgetTokens": 3500,
+        "estimatedContextTokens": 1317,
+        "tokenEstimateMethod": "heuristic_he_en_v1_max(words*1.3, chars/2.8)",
+        "contextComplete": true,
+        "omittedRetrieved": [],
+        "omittedExpansions": []
+      },
+      "clarification": {
+        "needsClarification": false,
+        "missingDetails": [],
+        "clarificationQuestion": ""
+      },
+      "skippedRetrieval": false,
+      "validation": {
+        "structureOk": true,
+        "citationsOk": true,
+        "invalidCitationIds": []
+      },
+      "citationIdValidationOk": true,
+      "retrievalMode": "hybrid",
+      "generationModel": "gpt-4.1-mini",
+      "usage": {
+        "clarificationPromptTokens": 257,
+        "clarificationCompletionTokens": 17,
+        "clarificationTotalTokens": 274,
+        "embeddingPromptTokens": 38,
+        "generationPromptTokens": 2492,
+        "generationCompletionTokens": 107,
+        "generationTotalTokens": 2599
+      },
+      "timingsMs": {
+        "clarifyMs": 806.6537080000003,
+        "retrieveMs": 452.544167,
+        "contextMs": 0.38724999999976717,
+        "generationMs": 1564.985791,
+        "totalMs": 2849.4344159999996
+      },
+      "manualReview": {
+        "conclusionCorrectness": "pass",
+        "claimSupport": "pass",
+        "essentialCompleteness": "pass",
+        "behaviorAppropriateness": "pass",
+        "focusNotes": [],
+        "overallNotes": "Form number question; no over-clarify."
+      }
+    },
+    {
+      "id": "D03",
+      "category": "version",
+      "question": "מה ההשתתפות העצמית בתיקון במוסך הסדר בפוליסת מקיף שהונפקה באפריל 2026?",
+      "referenceAnswer": "1,100 ₪ (גרסת 2026, שחלה על פוליסות שהונפקו או חודשו מ-1.3.2026).",
+      "referenceSources": [
+        "02_car_comprehensive_policy_2026.pdf"
+      ],
+      "extraProbe": false,
+      "status": "clarification_needed",
+      "answer": "איזו פוליסת מקיף ומה תאריך הנפקה מדויק?",
+      "answerParts": [
+        {
+          "text": "איזו פוליסת מקיף ומה תאריך הנפקה מדויק?",
+          "sourceChunkIds": []
+        }
+      ],
+      "citations": [],
+      "sources": [],
+      "retrievedChunkIds": [],
+      "contextChunkIds": [],
+      "expandedChunkIds": [],
+      "contextMeta": null,
+      "clarification": {
+        "needsClarification": true,
+        "missingDetails": [
+          "פוליסת מקיף",
+          "תאריך הנפקה"
+        ],
+        "clarificationQuestion": "איזו פוליסת מקיף ומה תאריך הנפקה מדויק?"
+      },
+      "skippedRetrieval": true,
+      "validation": {
+        "structureOk": true,
+        "citationsOk": true,
+        "invalidCitationIds": []
+      },
+      "citationIdValidationOk": true,
+      "retrievalMode": "hybrid",
+      "generationModel": "gpt-4.1-mini",
+      "usage": {
+        "clarificationPromptTokens": 273,
+        "clarificationCompletionTokens": 45,
+        "clarificationTotalTokens": 318
+      },
+      "timingsMs": {
+        "clarifyMs": 1309.9822919999997,
+        "retrieveMs": 0,
+        "contextMs": 0,
+        "generationMs": 0,
+        "totalMs": 1310.6285829999997
+      },
+      "manualReview": {
+        "conclusionCorrectness": "n_a",
+        "claimSupport": "n_a",
+        "essentialCompleteness": "n_a",
+        "behaviorAppropriateness": "fail",
+        "focusNotes": [
+          "REGRESSION: question already specifies Apr 2026 network-garage deductible — should not clarify."
+        ],
+        "overallNotes": "Over-clarification."
+      }
+    },
+    {
+      "id": "D04",
+      "category": "no_answer",
+      "question": "האם אופק ביטוח מציעה ביטוח לחיות מחמד?",
+      "referenceAnswer": "המידע לא מופיע במסמכים. המערכת צריכה לומר שלא מצאה תשובה, ולא להמציא.",
+      "referenceSources": [],
+      "extraProbe": false,
+      "status": "insufficient_evidence",
+      "answer": "לא מצאתי במקורות שסופקו מידע מספיק כדי לענות על השאלה.",
+      "answerParts": [],
+      "citations": [],
+      "sources": [],
+      "retrievedChunkIds": [
+        "corpus/03_car_general_terms:c009",
+        "corpus/03_car_general_terms:c011",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c013",
+        "corpus/03_car_general_terms:c014"
+      ],
+      "contextChunkIds": [
+        "corpus/03_car_general_terms:c009",
+        "corpus/03_car_general_terms:c011",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c013",
+        "corpus/03_car_general_terms:c014",
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c010",
+        "corpus/03_car_general_terms:c012",
+        "corpus/03_car_general_terms:c015"
+      ],
+      "expandedChunkIds": [
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c010",
+        "corpus/03_car_general_terms:c012",
+        "corpus/03_car_general_terms:c015"
+      ],
+      "contextMeta": {
+        "budgetTokens": 3500,
+        "estimatedContextTokens": 2869,
+        "tokenEstimateMethod": "heuristic_he_en_v1_max(words*1.3, chars/2.8)",
+        "contextComplete": true,
+        "omittedRetrieved": [],
+        "omittedExpansions": []
+      },
+      "clarification": {
+        "needsClarification": false,
+        "missingDetails": [],
+        "clarificationQuestion": ""
+      },
+      "skippedRetrieval": false,
+      "validation": {
+        "structureOk": true,
+        "citationsOk": true,
+        "invalidCitationIds": []
+      },
+      "citationIdValidationOk": true,
+      "retrievalMode": "hybrid",
+      "generationModel": "gpt-4.1-mini",
+      "usage": {
+        "clarificationPromptTokens": 256,
+        "clarificationCompletionTokens": 17,
+        "clarificationTotalTokens": 273,
+        "embeddingPromptTokens": 35,
+        "generationPromptTokens": 4771,
+        "generationCompletionTokens": 12,
+        "generationTotalTokens": 4783
+      },
+      "timingsMs": {
+        "clarifyMs": 706.0428750000001,
+        "retrieveMs": 218.9369999999999,
+        "contextMs": 0.6370000000006257,
+        "generationMs": 727.405917,
+        "totalMs": 1678.0553329999993
+      },
+      "manualReview": {
+        "conclusionCorrectness": "pass",
+        "claimSupport": "pass",
+        "essentialCompleteness": "pass",
+        "behaviorAppropriateness": "pass",
+        "focusNotes": [
+          "Neutral insufficient wording; no corpus-wide claim; no irrelevant citation."
+        ],
+        "overallNotes": "Fixed."
+      }
+    },
+    {
+      "id": "D05",
+      "category": "ambiguous",
+      "question": "מה ההשתתפות העצמית?",
+      "referenceAnswer": "השאלה עמומה: תלויה בקו המוצר ובסוג האירוע. תשובה טובה מבקשת הבהרה, או מציגה בקצרה את האפשרויות העיקריות עם מקורות.",
+      "referenceSources": [
+        "02_car_comprehensive_policy_2026.pdf",
+        "10_home_policy_overview.md"
+      ],
+      "extraProbe": false,
+      "status": "clarification_needed",
+      "answer": "איזו פוליסה אתה מתכוון אליה?",
+      "answerParts": [
+        {
+          "text": "איזו פוליסה אתה מתכוון אליה?",
+          "sourceChunkIds": []
+        }
+      ],
+      "citations": [],
+      "sources": [],
+      "retrievedChunkIds": [],
+      "contextChunkIds": [],
+      "expandedChunkIds": [],
+      "contextMeta": null,
+      "clarification": {
+        "needsClarification": true,
+        "missingDetails": [
+          "סוג הפוליסה"
+        ],
+        "clarificationQuestion": "איזו פוליסה אתה מתכוון אליה?"
+      },
+      "skippedRetrieval": true,
+      "validation": {
+        "structureOk": true,
+        "citationsOk": true,
+        "invalidCitationIds": []
+      },
+      "citationIdValidationOk": true,
+      "retrievalMode": "hybrid",
+      "generationModel": "gpt-4.1-mini",
+      "usage": {
+        "clarificationPromptTokens": 249,
+        "clarificationCompletionTokens": 33,
+        "clarificationTotalTokens": 282
+      },
+      "timingsMs": {
+        "clarifyMs": 842.4806250000001,
+        "retrieveMs": 0,
+        "contextMs": 0,
+        "generationMs": 0,
+        "totalMs": 842.9227910000009
+      },
+      "manualReview": {
+        "conclusionCorrectness": "n_a",
+        "claimSupport": "n_a",
+        "essentialCompleteness": "n_a",
+        "behaviorAppropriateness": "pass",
+        "focusNotes": [
+          "clarification_needed before retrieve; skippedRetrieval=true."
+        ],
+        "overallNotes": "Target behavior achieved."
+      }
+    },
+    {
+      "id": "D06",
+      "category": "multi_hop",
+      "question": "נהג בן 22 נהג ברכב עם פוליסת 'כל נהג' בלי נספח נהג צעיר ועשה תאונה. האם יש כיסוי?",
+      "referenceAnswer": "לא. לפי הגדרת 'נהג מורשה' (סעיף 2) נהג מתחת לגיל 24 אינו נהג מורשה אלא אם נכלל בנספח נהג צעיר, וסעיף 12(א) מחריג נזק בעת נהיגה בידי מי שאינו נהג מורשה.",
+      "referenceSources": [
+        "03_car_general_terms.pdf",
+        "04_young_driver_annex.docx"
+      ],
+      "extraProbe": false,
+      "status": "clarification_needed",
+      "answer": "האם תוכל לספק פרטים נוספים על סוג הפוליסה והכיסויים שלה?",
+      "answerParts": [
+        {
+          "text": "האם תוכל לספק פרטים נוספים על סוג הפוליסה והכיסויים שלה?",
+          "sourceChunkIds": []
+        }
+      ],
+      "citations": [],
+      "sources": [],
+      "retrievedChunkIds": [],
+      "contextChunkIds": [],
+      "expandedChunkIds": [],
+      "contextMeta": null,
+      "clarification": {
+        "needsClarification": true,
+        "missingDetails": [
+          "פוליסת ביטוח ספציפית",
+          "פרטי הפוליסה לגבי כיסוי נהגים צעירים"
+        ],
+        "clarificationQuestion": "האם תוכל לספק פרטים נוספים על סוג הפוליסה והכיסויים שלה?"
+      },
+      "skippedRetrieval": true,
+      "validation": {
+        "structureOk": true,
+        "citationsOk": true,
+        "invalidCitationIds": []
+      },
+      "citationIdValidationOk": true,
+      "retrievalMode": "hybrid",
+      "generationModel": "gpt-4.1-mini",
+      "usage": {
+        "clarificationPromptTokens": 277,
+        "clarificationCompletionTokens": 60,
+        "clarificationTotalTokens": 337
+      },
+      "timingsMs": {
+        "clarifyMs": 973.3345419999987,
+        "retrieveMs": 0,
+        "contextMs": 0,
+        "generationMs": 0,
+        "totalMs": 974.5558329999985
+      },
+      "manualReview": {
+        "conclusionCorrectness": "n_a",
+        "claimSupport": "n_a",
+        "essentialCompleteness": "n_a",
+        "behaviorAppropriateness": "fail",
+        "focusNotes": [
+          "REGRESSION: scenario already specific (age 22, כל נהג, no annex). §12 expansion issue not re-tested this run."
+        ],
+        "overallNotes": "Over-clarification; prior finding (def+annex suffice; §12 omitted) still stands from 5.1."
+      }
+    },
+    {
+      "id": "D07",
+      "category": "cross_lingual",
+      "question": "תוך כמה זמן חתמות רפואית עונה לבקשה של סוכן לגבי מצב רפואי קודם בביטוח נסיעות?",
+      "referenceAnswer": "בתוך 3 ימי עסקים.",
+      "referenceSources": [
+        "30_agent_faq_en.md",
+        "15_travel_preexisting_conditions.docx"
+      ],
+      "extraProbe": false,
+      "status": "answered",
+      "answer": "חתמות רפואית עונה לבקשות לגבי מצב רפואי קודם בביטוח נסיעות בתוך 3 ימי עסקים.\n\nבמקרה של בקשה דחופה, למשל כאשר הנסיעה מתוכננת בתוך 48 שעות, יש לסמן \"דחוף\" בטופס כדי לקבל מענה מהיר יותר.",
+      "answerParts": [
+        {
+          "text": "חתמות רפואית עונה לבקשות לגבי מצב רפואי קודם בביטוח נסיעות בתוך 3 ימי עסקים.",
+          "sourceChunkIds": [
+            "corpus/15_travel_preexisting_conditions:c000"
+          ]
+        },
+        {
+          "text": "במקרה של בקשה דחופה, למשל כאשר הנסיעה מתוכננת בתוך 48 שעות, יש לסמן \"דחוף\" בטופס כדי לקבל מענה מהיר יותר.",
+          "sourceChunkIds": [
+            "corpus/15_travel_preexisting_conditions:c000"
+          ]
+        }
+      ],
+      "citations": [
+        {
+          "chunkId": "corpus/15_travel_preexisting_conditions:c000",
+          "claims": [
+            "חתמות רפואית עונה לבקשות לגבי מצב רפואי קודם בביטוח נסיעות בתוך 3 ימי עסקים.",
+            "במקרה של בקשה דחופה, למשל כאשר הנסיעה מתוכננת בתוך 48 שעות, יש לסמן \"דחוף\" בטופס כדי לקבל מענה מהיר יותר."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "chunkId": "corpus/15_travel_preexisting_conditions:c000",
+          "documentId": "corpus/15_travel_preexisting_conditions",
+          "relativePath": "corpus/15_travel_preexisting_conditions.docx",
+          "fileName": "15_travel_preexisting_conditions.docx",
+          "documentTitle": "מצב רפואי קודם בביטוח נסיעות",
+          "sectionPath": [
+            "מצב רפואי קודם בביטוח נסיעות",
+            "עיקרון"
+          ],
+          "claims": [
+            "חתמות רפואית עונה לבקשות לגבי מצב רפואי קודם בביטוח נסיעות בתוך 3 ימי עסקים.",
+            "במקרה של בקשה דחופה, למשל כאשר הנסיעה מתוכננת בתוך 48 שעות, יש לסמן \"דחוף\" בטופס כדי לקבל מענה מהיר יותר."
+          ],
+          "origin": "retrieved"
+        }
+      ],
+      "retrievedChunkIds": [
+        "corpus/15_travel_preexisting_conditions:c000",
+        "corpus/14_travel_policy_overview:c000",
+        "corpus/17_travel_claims:c000",
+        "corpus/21_claims_sla:c000",
+        "corpus/32_fraud_red_flags:c000"
+      ],
+      "contextChunkIds": [
+        "corpus/15_travel_preexisting_conditions:c000",
+        "corpus/14_travel_policy_overview:c000",
+        "corpus/17_travel_claims:c000",
+        "corpus/21_claims_sla:c000",
+        "corpus/32_fraud_red_flags:c000"
+      ],
+      "expandedChunkIds": [],
+      "contextMeta": {
+        "budgetTokens": 3500,
+        "estimatedContextTokens": 984,
+        "tokenEstimateMethod": "heuristic_he_en_v1_max(words*1.3, chars/2.8)",
+        "contextComplete": true,
+        "omittedRetrieved": [],
+        "omittedExpansions": []
+      },
+      "clarification": {
+        "needsClarification": false,
+        "missingDetails": [],
+        "clarificationQuestion": ""
+      },
+      "skippedRetrieval": false,
+      "validation": {
+        "structureOk": true,
+        "citationsOk": true,
+        "invalidCitationIds": []
+      },
+      "citationIdValidationOk": true,
+      "retrievalMode": "hybrid",
+      "generationModel": "gpt-4.1-mini",
+      "usage": {
+        "clarificationPromptTokens": 268,
+        "clarificationCompletionTokens": 17,
+        "clarificationTotalTokens": 285,
+        "embeddingPromptTokens": 82,
+        "generationPromptTokens": 1936,
+        "generationCompletionTokens": 118,
+        "generationTotalTokens": 2054
+      },
+      "timingsMs": {
+        "clarifyMs": 696.7700000000004,
+        "retrieveMs": 1034.3295830000006,
+        "contextMs": 0.3236670000005688,
+        "generationMs": 1199.5848750000005,
+        "totalMs": 2957.1440000000002
+      },
+      "manualReview": {
+        "conclusionCorrectness": "pass",
+        "claimSupport": "pass",
+        "essentialCompleteness": "pass",
+        "behaviorAppropriateness": "pass",
+        "focusNotes": [],
+        "overallNotes": "OK."
+      }
+    },
+    {
+      "id": "D08",
+      "category": "partial_override",
+      "question": "לקוח מבטל פוליסה 10 ימים אחרי הרכישה ולא הגיש תביעות. כמה יקבל בחזרה?",
+      "referenceAnswer": "החזר מלא של דמי הביטוח, ללא דמי טיפול (תקופת התחרטות של 14 יום לפי עדכון 2025).",
+      "referenceSources": [
+        "23_cancellation_procedure_update_2025.md"
+      ],
+      "extraProbe": false,
+      "status": "clarification_needed",
+      "answer": "איזה סוג פוליסה הלקוח ביטל ומהם תנאי הביטול שלה?",
+      "answerParts": [
+        {
+          "text": "איזה סוג פוליסה הלקוח ביטל ומהם תנאי הביטול שלה?",
+          "sourceChunkIds": []
+        }
+      ],
+      "citations": [],
+      "sources": [],
+      "retrievedChunkIds": [],
+      "contextChunkIds": [],
+      "expandedChunkIds": [],
+      "contextMeta": null,
+      "clarification": {
+        "needsClarification": true,
+        "missingDetails": [
+          "סוג הפוליסה",
+          "תנאי הביטול בפוליסה"
+        ],
+        "clarificationQuestion": "איזה סוג פוליסה הלקוח ביטל ומהם תנאי הביטול שלה?"
+      },
+      "skippedRetrieval": true,
+      "validation": {
+        "structureOk": true,
+        "citationsOk": true,
+        "invalidCitationIds": []
+      },
+      "citationIdValidationOk": true,
+      "retrievalMode": "hybrid",
+      "generationModel": "gpt-4.1-mini",
+      "usage": {
+        "clarificationPromptTokens": 267,
+        "clarificationCompletionTokens": 49,
+        "clarificationTotalTokens": 316
+      },
+      "timingsMs": {
+        "clarifyMs": 858.6635419999984,
+        "retrieveMs": 0,
+        "contextMs": 0,
+        "generationMs": 0,
+        "totalMs": 859.0352919999987
+      },
+      "manualReview": {
+        "conclusionCorrectness": "n_a",
+        "claimSupport": "n_a",
+        "essentialCompleteness": "n_a",
+        "behaviorAppropriateness": "fail",
+        "focusNotes": [
+          "REGRESSION: 10-day cancel / no claims is specific enough for cooling-off rule."
+        ],
+        "overallNotes": "Could not re-verify answerParts consistency this run."
+      }
+    },
+    {
+      "id": "D09",
+      "category": "table",
+      "question": "מה תקרת הכיסוי למזומן בביטוח תכולה?",
+      "referenceAnswer": "2,000 ₪.",
+      "referenceSources": [
+        "12_home_contents_limits.docx"
+      ],
+      "extraProbe": false,
+      "status": "clarification_needed",
+      "answer": "איזו פוליסת ביטוח תכולה יש לך ומה הגרסה שלה?",
+      "answerParts": [
+        {
+          "text": "איזו פוליסת ביטוח תכולה יש לך ומה הגרסה שלה?",
+          "sourceChunkIds": []
+        }
+      ],
+      "citations": [],
+      "sources": [],
+      "retrievedChunkIds": [],
+      "contextChunkIds": [],
+      "expandedChunkIds": [],
+      "contextMeta": null,
+      "clarification": {
+        "needsClarification": true,
+        "missingDetails": [
+          "סוג פוליסה",
+          "גרסת פוליסה"
+        ],
+        "clarificationQuestion": "איזו פוליסת ביטוח תכולה יש לך ומה הגרסה שלה?"
+      },
+      "skippedRetrieval": true,
+      "validation": {
+        "structureOk": true,
+        "citationsOk": true,
+        "invalidCitationIds": []
+      },
+      "citationIdValidationOk": true,
+      "retrievalMode": "hybrid",
+      "generationModel": "gpt-4.1-mini",
+      "usage": {
+        "clarificationPromptTokens": 257,
+        "clarificationCompletionTokens": 44,
+        "clarificationTotalTokens": 301
+      },
+      "timingsMs": {
+        "clarifyMs": 906.7180420000004,
+        "retrieveMs": 0,
+        "contextMs": 0,
+        "generationMs": 0,
+        "totalMs": 907.6102090000004
+      },
+      "manualReview": {
+        "conclusionCorrectness": "n_a",
+        "claimSupport": "n_a",
+        "essentialCompleteness": "n_a",
+        "behaviorAppropriateness": "fail",
+        "focusNotes": [
+          "REGRESSION: cash contents limit is a clear table ask."
+        ],
+        "overallNotes": "Over-clarify."
+      }
+    },
+    {
+      "id": "D10",
+      "category": "conflict",
+      "question": "האם רכב חלופי ניתן לכל תקופת התיקון?",
+      "referenceAnswer": "לא. רכב חלופי ניתן רק למי שרכש כתב שירות רכב חלופי, ובתאונה עד 21 ימים ורק בתיקון במוסך הסדר. העלון השיווקי אומר אחרת, אך הוא אינו מחייב.",
+      "referenceSources": [
+        "08_replacement_car.md",
+        "09_marketing_brochure_car.md"
+      ],
+      "extraProbe": false,
+      "status": "clarification_needed",
+      "answer": "איזו פוליסה וגרסה יש לך?",
+      "answerParts": [
+        {
+          "text": "איזו פוליסה וגרסה יש לך?",
+          "sourceChunkIds": []
+        }
+      ],
+      "citations": [],
+      "sources": [],
+      "retrievedChunkIds": [],
+      "contextChunkIds": [],
+      "expandedChunkIds": [],
+      "contextMeta": null,
+      "clarification": {
+        "needsClarification": true,
+        "missingDetails": [
+          "סוג הפוליסה",
+          "גרסת הפוליסה"
+        ],
+        "clarificationQuestion": "איזו פוליסה וגרסה יש לך?"
+      },
+      "skippedRetrieval": true,
+      "validation": {
+        "structureOk": true,
+        "citationsOk": true,
+        "invalidCitationIds": []
+      },
+      "citationIdValidationOk": true,
+      "retrievalMode": "hybrid",
+      "generationModel": "gpt-4.1-mini",
+      "usage": {
+        "clarificationPromptTokens": 255,
+        "clarificationCompletionTokens": 38,
+        "clarificationTotalTokens": 293
+      },
+      "timingsMs": {
+        "clarifyMs": 858.5572499999998,
+        "retrieveMs": 0,
+        "contextMs": 0,
+        "generationMs": 0,
+        "totalMs": 858.954749999999
+      },
+      "manualReview": {
+        "conclusionCorrectness": "n_a",
+        "claimSupport": "n_a",
+        "essentialCompleteness": "n_a",
+        "behaviorAppropriateness": "fail",
+        "focusNotes": [
+          "REGRESSION."
+        ],
+        "overallNotes": "Over-clarify."
+      }
+    },
+    {
+      "id": "D11",
+      "category": "table",
+      "question": "המזוודה של נוסע הגיעה באיחור של 8 שעות. לכמה פיצוי הוא זכאי?",
+      "referenceAnswer": "עד 150 $ לרכישת פריטים חיוניים, בכפוף לדו\"ח PIR מחברת התעופה.",
+      "referenceSources": [
+        "16_travel_luggage.md"
+      ],
+      "extraProbe": false,
+      "status": "clarification_needed",
+      "answer": "איזה סוג ביטוח יש לנוסע ומה גרסת הפוליסה?",
+      "answerParts": [
+        {
+          "text": "איזה סוג ביטוח יש לנוסע ומה גרסת הפוליסה?",
+          "sourceChunkIds": []
+        }
+      ],
+      "citations": [],
+      "sources": [],
+      "retrievedChunkIds": [],
+      "contextChunkIds": [],
+      "expandedChunkIds": [],
+      "contextMeta": null,
+      "clarification": {
+        "needsClarification": true,
+        "missingDetails": [
+          "סוג ביטוח",
+          "גרסת פוליסה"
+        ],
+        "clarificationQuestion": "איזה סוג ביטוח יש לנוסע ומה גרסת הפוליסה?"
+      },
+      "skippedRetrieval": true,
+      "validation": {
+        "structureOk": true,
+        "citationsOk": true,
+        "invalidCitationIds": []
+      },
+      "citationIdValidationOk": true,
+      "retrievalMode": "hybrid",
+      "generationModel": "gpt-4.1-mini",
+      "usage": {
+        "clarificationPromptTokens": 266,
+        "clarificationCompletionTokens": 42,
+        "clarificationTotalTokens": 308
+      },
+      "timingsMs": {
+        "clarifyMs": 828.4558749999997,
+        "retrieveMs": 0,
+        "contextMs": 0,
+        "generationMs": 0,
+        "totalMs": 828.8542500000003
+      },
+      "manualReview": {
+        "conclusionCorrectness": "n_a",
+        "claimSupport": "n_a",
+        "essentialCompleteness": "n_a",
+        "behaviorAppropriateness": "fail",
+        "focusNotes": [
+          "REGRESSION: 8h luggage delay is specific."
+        ],
+        "overallNotes": "Over-clarify."
+      }
+    },
+    {
+      "id": "D12",
+      "category": "factual",
+      "question": "כמה גרירות מקבלים בשנת ביטוח?",
+      "referenceAnswer": "עד 4 גרירות בשנת ביטוח (למי שרכש כתב שירות גרירה).",
+      "referenceSources": [
+        "07_towing_roadside.md"
+      ],
+      "extraProbe": false,
+      "status": "clarification_needed",
+      "answer": "איזו פוליסה ושנת ביטוח אתה מתכוון אליהם?",
+      "answerParts": [
+        {
+          "text": "איזו פוליסה ושנת ביטוח אתה מתכוון אליהם?",
+          "sourceChunkIds": []
+        }
+      ],
+      "citations": [],
+      "sources": [],
+      "retrievedChunkIds": [],
+      "contextChunkIds": [],
+      "expandedChunkIds": [],
+      "contextMeta": null,
+      "clarification": {
+        "needsClarification": true,
+        "missingDetails": [
+          "סוג פוליסה",
+          "שנת ביטוח ספציפית"
+        ],
+        "clarificationQuestion": "איזו פוליסה ושנת ביטוח אתה מתכוון אליהם?"
+      },
+      "skippedRetrieval": true,
+      "validation": {
+        "structureOk": true,
+        "citationsOk": true,
+        "invalidCitationIds": []
+      },
+      "citationIdValidationOk": true,
+      "retrievalMode": "hybrid",
+      "generationModel": "gpt-4.1-mini",
+      "usage": {
+        "clarificationPromptTokens": 250,
+        "clarificationCompletionTokens": 45,
+        "clarificationTotalTokens": 295
+      },
+      "timingsMs": {
+        "clarifyMs": 1018.9912499999991,
+        "retrieveMs": 0,
+        "contextMs": 0,
+        "generationMs": 0,
+        "totalMs": 1019.3634590000001
+      },
+      "manualReview": {
+        "conclusionCorrectness": "n_a",
+        "claimSupport": "n_a",
+        "essentialCompleteness": "n_a",
+        "behaviorAppropriateness": "fail",
+        "focusNotes": [
+          "REGRESSION."
+        ],
+        "overallNotes": "Over-clarify."
+      }
+    },
+    {
+      "id": "D13",
+      "category": "table",
+      "question": "נוסעת בשבוע 28 להריון. האם סיבוכי הריון מכוסים בחו\"ל?",
+      "referenceAnswer": "לא. סיבוכי הריון מכוסים רק עד שבוע 26.",
+      "referenceSources": [
+        "15_travel_preexisting_conditions.docx"
+      ],
+      "extraProbe": false,
+      "status": "clarification_needed",
+      "answer": "איזו פוליסת ביטוח יש לך ומהו אזור הכיסוי שלה?",
+      "answerParts": [
+        {
+          "text": "איזו פוליסת ביטוח יש לך ומהו אזור הכיסוי שלה?",
+          "sourceChunkIds": []
+        }
+      ],
+      "citations": [],
+      "sources": [],
+      "retrievedChunkIds": [],
+      "contextChunkIds": [],
+      "expandedChunkIds": [],
+      "contextMeta": null,
+      "clarification": {
+        "needsClarification": true,
+        "missingDetails": [
+          "סוג פוליסה",
+          "כיסוי גאוגרפי"
+        ],
+        "clarificationQuestion": "איזו פוליסת ביטוח יש לך ומהו אזור הכיסוי שלה?"
+      },
+      "skippedRetrieval": true,
+      "validation": {
+        "structureOk": true,
+        "citationsOk": true,
+        "invalidCitationIds": []
+      },
+      "citationIdValidationOk": true,
+      "retrievalMode": "hybrid",
+      "generationModel": "gpt-4.1-mini",
+      "usage": {
+        "clarificationPromptTokens": 264,
+        "clarificationCompletionTokens": 45,
+        "clarificationTotalTokens": 309
+      },
+      "timingsMs": {
+        "clarifyMs": 879.8453339999978,
+        "retrieveMs": 0,
+        "contextMs": 0,
+        "generationMs": 0,
+        "totalMs": 880.2458750000005
+      },
+      "manualReview": {
+        "conclusionCorrectness": "n_a",
+        "claimSupport": "n_a",
+        "essentialCompleteness": "n_a",
+        "behaviorAppropriateness": "fail",
+        "focusNotes": [
+          "REGRESSION: week 28 pregnancy travel is specific."
+        ],
+        "overallNotes": "Over-clarify."
+      }
+    },
+    {
+      "id": "D14",
+      "category": "table",
+      "question": "מה ההשתתפות העצמית ברעידת אדמה בפרק המבנה?",
+      "referenceAnswer": "10% מסכום ביטוח המבנה (5% בבניין שעבר חיזוק לפי תמ\"א 38).",
+      "referenceSources": [
+        "13_home_earthquake_annex.pdf"
+      ],
+      "extraProbe": false,
+      "status": "clarification_needed",
+      "answer": "איזו פוליסה וגרסה יש לך?",
+      "answerParts": [
+        {
+          "text": "איזו פוליסה וגרסה יש לך?",
+          "sourceChunkIds": []
+        }
+      ],
+      "citations": [],
+      "sources": [],
+      "retrievedChunkIds": [],
+      "contextChunkIds": [],
+      "expandedChunkIds": [],
+      "contextMeta": null,
+      "clarification": {
+        "needsClarification": true,
+        "missingDetails": [
+          "סוג הפוליסה",
+          "גרסת הפוליסה"
+        ],
+        "clarificationQuestion": "איזו פוליסה וגרסה יש לך?"
+      },
+      "skippedRetrieval": true,
+      "validation": {
+        "structureOk": true,
+        "citationsOk": true,
+        "invalidCitationIds": []
+      },
+      "citationIdValidationOk": true,
+      "retrievalMode": "hybrid",
+      "generationModel": "gpt-4.1-mini",
+      "usage": {
+        "clarificationPromptTokens": 259,
+        "clarificationCompletionTokens": 38,
+        "clarificationTotalTokens": 297
+      },
+      "timingsMs": {
+        "clarifyMs": 862.8985420000026,
+        "retrieveMs": 0,
+        "contextMs": 0,
+        "generationMs": 0,
+        "totalMs": 863.2727500000001
+      },
+      "manualReview": {
+        "conclusionCorrectness": "n_a",
+        "claimSupport": "n_a",
+        "essentialCompleteness": "n_a",
+        "behaviorAppropriateness": "fail",
+        "focusNotes": [
+          "REGRESSION: TAMA38 earthquake deductible ask is specific."
+        ],
+        "overallNotes": "Over-clarify."
+      }
+    },
+    {
+      "id": "D15",
+      "category": "factual",
+      "question": "תוך כמה זמן יש להגיש תלונה במשטרה על גניבת רכב?",
+      "referenceAnswer": "בתוך 24 שעות ממועד הגילוי.",
+      "referenceSources": [
+        "03_car_general_terms.pdf",
+        "18_claims_process_car.md"
+      ],
+      "extraProbe": false,
+      "status": "answered",
+      "answer": "על המבוטח להגיש תלונה במשטרה על גניבת רכב בתוך 24 שעות ממועד הגילוי.\n\nבנוסף, יש להמציא למבטח את אישור התלונה במשטרה כדי להמשיך בתהליך התביעה.",
+      "answerParts": [
+        {
+          "text": "על המבוטח להגיש תלונה במשטרה על גניבת רכב בתוך 24 שעות ממועד הגילוי.",
+          "sourceChunkIds": [
+            "corpus/03_car_general_terms:c007"
+          ]
+        },
+        {
+          "text": "בנוסף, יש להמציא למבטח את אישור התלונה במשטרה כדי להמשיך בתהליך התביעה.",
+          "sourceChunkIds": [
+            "corpus/03_car_general_terms:c007",
+            "corpus/18_claims_process_car:c000"
+          ]
+        }
+      ],
+      "citations": [
+        {
+          "chunkId": "corpus/03_car_general_terms:c007",
+          "claims": [
+            "על המבוטח להגיש תלונה במשטרה על גניבת רכב בתוך 24 שעות ממועד הגילוי.",
+            "בנוסף, יש להמציא למבטח את אישור התלונה במשטרה כדי להמשיך בתהליך התביעה."
+          ]
+        },
+        {
+          "chunkId": "corpus/18_claims_process_car:c000",
+          "claims": [
+            "בנוסף, יש להמציא למבטח את אישור התלונה במשטרה כדי להמשיך בתהליך התביעה."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "chunkId": "corpus/03_car_general_terms:c007",
+          "documentId": "corpus/03_car_general_terms",
+          "relativePath": "corpus/03_car_general_terms.pdf",
+          "fileName": "03_car_general_terms.pdf",
+          "documentTitle": "תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ",
+          "sectionPath": [
+            "תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ",
+            "סעיף 7 – הודעה על מקרה ביטוח"
+          ],
+          "pages": [
+            2
+          ],
+          "claims": [
+            "על המבוטח להגיש תלונה במשטרה על גניבת רכב בתוך 24 שעות ממועד הגילוי.",
+            "בנוסף, יש להמציא למבטח את אישור התלונה במשטרה כדי להמשיך בתהליך התביעה."
+          ],
+          "origin": "retrieved"
+        },
+        {
+          "chunkId": "corpus/18_claims_process_car:c000",
+          "documentId": "corpus/18_claims_process_car",
+          "relativePath": "corpus/18_claims_process_car.md",
+          "fileName": "18_claims_process_car.md",
+          "documentTitle": "נוהל טיפול בתביעת רכב – למוקד",
+          "sectionPath": [
+            "נוהל טיפול בתביעת רכב – למוקד",
+            "שלב 1 – קבלת הדיווח"
+          ],
+          "claims": [
+            "בנוסף, יש להמציא למבטח את אישור התלונה במשטרה כדי להמשיך בתהליך התביעה."
+          ],
+          "origin": "retrieved"
+        }
+      ],
+      "retrievedChunkIds": [
+        "corpus/03_car_general_terms:c007",
+        "corpus/16_travel_luggage:c000",
+        "corpus/07_towing_roadside:c000",
+        "corpus/18_claims_process_car:c000",
+        "corpus/01_car_comprehensive_policy_2024:c000"
+      ],
+      "contextChunkIds": [
+        "corpus/03_car_general_terms:c007",
+        "corpus/16_travel_luggage:c000",
+        "corpus/07_towing_roadside:c000",
+        "corpus/18_claims_process_car:c000",
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c009",
+        "corpus/03_car_general_terms:c010",
+        "corpus/03_car_general_terms:c011",
+        "corpus/03_car_general_terms:c013"
+      ],
+      "expandedChunkIds": [
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c009",
+        "corpus/03_car_general_terms:c010",
+        "corpus/03_car_general_terms:c011",
+        "corpus/03_car_general_terms:c013"
+      ],
+      "contextMeta": {
+        "budgetTokens": 3500,
+        "estimatedContextTokens": 3430,
+        "tokenEstimateMethod": "heuristic_he_en_v1_max(words*1.3, chars/2.8)",
+        "contextComplete": false,
+        "omittedRetrieved": [],
+        "omittedExpansions": [
+          {
+            "chunkId": "corpus/03_car_general_terms:c012",
+            "reason": "Would exceed context budget (3259+243 > 3500). Whole chunk kept out — no mid-chunk truncation."
+          },
+          {
+            "chunkId": "corpus/03_car_general_terms:c014",
+            "reason": "Would exceed context budget (3430+135 > 3500). Whole chunk kept out — no mid-chunk truncation."
+          },
+          {
+            "chunkId": "corpus/03_car_general_terms:c015",
+            "reason": "Would exceed context budget (3430+165 > 3500). Whole chunk kept out — no mid-chunk truncation."
+          }
+        ]
+      },
+      "clarification": {
+        "needsClarification": false,
+        "missingDetails": [],
+        "clarificationQuestion": ""
+      },
+      "skippedRetrieval": false,
+      "validation": {
+        "structureOk": true,
+        "citationsOk": true,
+        "invalidCitationIds": []
+      },
+      "citationIdValidationOk": true,
+      "retrievalMode": "hybrid",
+      "generationModel": "gpt-4.1-mini",
+      "usage": {
+        "clarificationPromptTokens": 259,
+        "clarificationCompletionTokens": 17,
+        "clarificationTotalTokens": 276,
+        "embeddingPromptTokens": 49,
+        "generationPromptTokens": 5599,
+        "generationCompletionTokens": 107,
+        "generationTotalTokens": 5706
+      },
+      "timingsMs": {
+        "clarifyMs": 889.362333000001,
+        "retrieveMs": 212.39758299999812,
+        "contextMs": 0.5604999999995925,
+        "generationMs": 1617.20075,
+        "totalMs": 2742.4891659999994
+      },
+      "manualReview": {
+        "conclusionCorrectness": "pass",
+        "claimSupport": "pass",
+        "essentialCompleteness": "pass",
+        "behaviorAppropriateness": "pass",
+        "focusNotes": [],
+        "overallNotes": "OK."
+      }
+    }
+  ],
+  "extraProbes": [
+    {
+      "id": "X01",
+      "category": "extra_ambiguous",
+      "question": "מה גובה ההשתתפות העצמית שלי?",
+      "referenceAnswer": "(extra probe) expected: clarification_needed — product/line/event unspecified; must not dump one product's amounts.",
+      "referenceSources": [],
+      "extraProbe": true,
+      "status": "clarification_needed",
+      "answer": "איזו פוליסה ומספר פוליסה יש לך?",
+      "answerParts": [
+        {
+          "text": "איזו פוליסה ומספר פוליסה יש לך?",
+          "sourceChunkIds": []
+        }
+      ],
+      "citations": [],
+      "sources": [],
+      "retrievedChunkIds": [],
+      "contextChunkIds": [],
+      "expandedChunkIds": [],
+      "contextMeta": null,
+      "clarification": {
+        "needsClarification": true,
+        "missingDetails": [
+          "סוג פוליסה",
+          "מספר פוליסה"
+        ],
+        "clarificationQuestion": "איזו פוליסה ומספר פוליסה יש לך?"
+      },
+      "skippedRetrieval": true,
+      "validation": {
+        "structureOk": true,
+        "citationsOk": true,
+        "invalidCitationIds": []
+      },
+      "citationIdValidationOk": true,
+      "retrievalMode": "hybrid",
+      "generationModel": "gpt-4.1-mini",
+      "usage": {
+        "clarificationPromptTokens": 252,
+        "clarificationCompletionTokens": 37,
+        "clarificationTotalTokens": 289
+      },
+      "timingsMs": {
+        "clarifyMs": 861.5385409999981,
+        "retrieveMs": 0,
+        "contextMs": 0,
+        "generationMs": 0,
+        "totalMs": 861.9285829999972
+      },
+      "manualReview": {
+        "conclusionCorrectness": "n_a",
+        "claimSupport": "n_a",
+        "essentialCompleteness": "n_a",
+        "behaviorAppropriateness": "pass",
+        "focusNotes": [
+          "EXTRA PROBE (not in reference set): clarification_needed — product/line/event unspecified; must not dump one product's amounts."
+        ],
+        "overallNotes": "clarification_needed + skipped retrieve."
+      }
+    },
+    {
+      "id": "X02",
+      "category": "extra_no_evidence",
+      "question": "האם אופק ביטוח מציעה ביטוח רחפנים מסחריים?",
+      "referenceAnswer": "(extra probe) expected: insufficient_evidence — describe limit of provided sources; do not invent coverage or claim company-wide absence.",
+      "referenceSources": [],
+      "extraProbe": true,
+      "status": "insufficient_evidence",
+      "answer": "לא מצאתי במקורות שסופקו מידע מספיק כדי לענות על השאלה.",
+      "answerParts": [],
+      "citations": [],
+      "sources": [],
+      "retrievedChunkIds": [
+        "corpus/03_car_general_terms:c014",
+        "corpus/03_car_general_terms:c009",
+        "corpus/03_car_general_terms:c011",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c010"
+      ],
+      "contextChunkIds": [
+        "corpus/03_car_general_terms:c014",
+        "corpus/03_car_general_terms:c009",
+        "corpus/03_car_general_terms:c011",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c010",
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c012",
+        "corpus/03_car_general_terms:c013",
+        "corpus/03_car_general_terms:c015"
+      ],
+      "expandedChunkIds": [
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c012",
+        "corpus/03_car_general_terms:c013",
+        "corpus/03_car_general_terms:c015"
+      ],
+      "contextMeta": {
+        "budgetTokens": 3500,
+        "estimatedContextTokens": 2868,
+        "tokenEstimateMethod": "heuristic_he_en_v1_max(words*1.3, chars/2.8)",
+        "contextComplete": true,
+        "omittedRetrieved": [],
+        "omittedExpansions": []
+      },
+      "clarification": {
+        "needsClarification": false,
+        "missingDetails": [],
+        "clarificationQuestion": ""
+      },
+      "skippedRetrieval": false,
+      "validation": {
+        "structureOk": true,
+        "citationsOk": true,
+        "invalidCitationIds": []
+      },
+      "citationIdValidationOk": true,
+      "retrievalMode": "hybrid",
+      "generationModel": "gpt-4.1-mini",
+      "usage": {
+        "clarificationPromptTokens": 258,
+        "clarificationCompletionTokens": 17,
+        "clarificationTotalTokens": 275,
+        "embeddingPromptTokens": 42,
+        "generationPromptTokens": 4773,
+        "generationCompletionTokens": 12,
+        "generationTotalTokens": 4785
+      },
+      "timingsMs": {
+        "clarifyMs": 717.250458999999,
+        "retrieveMs": 221.96737500000017,
+        "contextMs": 0.4865410000020347,
+        "generationMs": 732.489292000002,
+        "totalMs": 1697.8242909999972
+      },
+      "manualReview": {
+        "conclusionCorrectness": "pass",
+        "claimSupport": "pass",
+        "essentialCompleteness": "pass",
+        "behaviorAppropriateness": "pass",
+        "focusNotes": [
+          "EXTRA PROBE (not in reference set): insufficient_evidence — describe limit of provided sources; do not invent coverage or claim company-wide absence."
+        ],
+        "overallNotes": "Neutral insufficient; no invent."
+      }
+    }
+  ],
+  "clarifyStepTotals": {
+    "clarificationTotalTokens": 5000,
+    "clarificationMs": 16014.274334999996
+  }
+}
