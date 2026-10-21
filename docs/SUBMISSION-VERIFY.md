@@ -52,4 +52,11 @@
 
 ## 4. Git מקומי
 
-מתועד בסיכום שלב 8 / `git log` אחרי יצירת ה־commit.
+| | |
+| --- | --- |
+| ענף | `main` |
+| Commit | `8f1787e1ac4ebfae23278fbf3ab6414f6ba0d063` |
+| הודעה | `Initial RAG assignment implementation` |
+| Remote | **אין** — commit מקומי בלבד, לא Push |
+
+זהות Git הייתה מוגדרת גלובלית מראש; לא שונו הגדרות Git גלובליות.
