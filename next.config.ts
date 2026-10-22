@@ -5,6 +5,10 @@ const nextConfig: NextConfig = {
   agentRules: false,
   cacheComponents: true,
   partialPrefetching: true,
+  // Include the committed local RAG index in serverless function traces.
+  outputFileTracingIncludes: {
+    "/api/**/*": ["./data/chunks.json", "./data/index/**/*"],
+  },
   turbopack: {
     rules: {
       "*.css": {

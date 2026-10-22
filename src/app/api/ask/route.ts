@@ -29,6 +29,7 @@ import {
  * required to read the local index from disk. With cacheComponents enabled we
  * cannot set `runtime` / `dynamic` segment configs — use `connection()` instead.
  */
+export const maxDuration = 60;
 
 type AskBody = {
   question?: unknown;

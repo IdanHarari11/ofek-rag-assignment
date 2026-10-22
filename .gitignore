@@ -19,8 +19,11 @@
 /build
 /dist
 
-# local RAG artifacts (parsed/chunks/index — regenerate locally)
-/data/
+# local RAG build intermediates / traces (index + chunks are committed for deploy)
+/data/parsed/
+/data/traces/
+/data/ingestion-report.json
+/data/chunking-report.json
 # ask-path traces (also under data/traces when using default path)
 /logs/
 
