@@ -1,6 +1,6 @@
 # Hybrid comparison report (vector vs BM25 vs RRF)
 
-Generated: 2026-10-21T05:50:21.808Z
+Generated: 2026-10-22T08:59:45.304Z
 Experiment: hybrid-bm25-rrf-v1
 Index: text-embedding-3-small dims=1536 chunks=49 hash=cf3e80be3731…
 Config: BM25 k1=1.2 b=0.75; RRF c=60; topK=5
@@ -9,12 +9,12 @@ Config: BM25 k1=1.2 b=0.75; RRF c=60; topK=5
 
 | Mode | R@1 | R@3 | R@5 | MRR | avg local search ms |
 | --- | --- | --- | --- | --- | --- |
-| vector | 0.357 | 0.536 | 0.643 | 0.589 | 0.46 |
-| lexical | 0.750 | 0.857 | 0.857 | 0.952 | 0.96 |
-| hybrid | 0.429 | 0.821 | 0.929 | 0.732 | 0.34 |
+| vector | 0.357 | 0.536 | 0.714 | 0.607 | 0.79 |
+| lexical | 0.821 | 0.857 | 0.893 | 1.000 | 0.92 |
+| hybrid | 0.500 | 0.750 | 0.929 | 0.774 | 0.30 |
 
-Hybrid vs vector (R@5 counts): improved=5, regressed=0, unchanged=9
-API tokens (one embed/question): prompt=737 total=737; avg embed=444.0ms
+Hybrid vs vector (R@5 counts): improved=4, regressed=0, unchanged=10
+API tokens (one embed/question): prompt=737 total=737; avg embed=285.5ms
 
 > Dev-set comparison only — not proof of performance on unseen questions. Document Recall ≠ answer-span sufficiency. Scores are not confidence. D05 remains ambiguous regardless of retrieval mode.
 
@@ -22,7 +22,7 @@ API tokens (one embed/question): prompt=737 total=737; avg embed=444.0ms
 
 **Question:** מה שעות הפעילות של מוקד שירות הלקוחות ביום שישי?
 **Refs:** 28_call_center_hours.md
-**Embed ms:** 1116.9
+**Embed ms:** 646.4
 
 | Mode | R@5 | RR | vs vector R@5 | vs vector RR |
 | --- | --- | --- | --- | --- |
@@ -33,25 +33,25 @@ API tokens (one embed/question): prompt=737 total=737; avg embed=444.0ms
 ### vector top5
 1. `corpus/28_call_center_hours:c000` score=0.5356 semR=1 lexR=- | 28_call_center_hours.md
    מסמך: שעות פעילות ומספרי מוקד סעיף: שעות פעילות ומספרי מוקד מוקד: שירות לקוחות | טלפון: *6789 | שעות: א'–ה' 08:00–19:00, ו' 08:00–12:00 מוקד: גרירה ותביעות דחופות | טלפון: *6789 שלוחה 2 | שעות: 24/7 מוקד: שמשות | טלפון: *6789 שלוחה 4 | שעות
-2. `corpus/21_claims_sla:c000` score=0.4890 semR=2 lexR=- | 21_claims_sla.md
+2. `corpus/21_claims_sla:c000` score=0.4891 semR=2 lexR=- | 21_claims_sla.md
    מסמך: אמנת שירות – זמני טיפול בתביעות סעיף: אמנת שירות – זמני טיפול בתביעות שלב: אישור קבלת תביעה | זמן יעד: עד 2 ימי עסקים שלב: ביקור שמאי – רכב | זמן יעד: עד 3 ימי עסקים שלב: ביקור שמאי – דירה (נזק מעל 10,000 ₪) | זמן יעד: עד 5 ימי עסקים 
-3. `corpus/07_towing_roadside:c000` score=0.4500 semR=3 lexR=- | 07_towing_roadside.md
+3. `corpus/07_towing_roadside:c000` score=0.4501 semR=3 lexR=- | 07_towing_roadside.md
    מסמך: כתב שירות גרירה ושירותי דרך סעיף: כתב שירות גרירה ושירותי דרך השירות ניתן 24 שעות ביממה, 7 ימים בשבוע, דרך מוקד *6789 שלוחה 2. שירות: גרירה לאחר תאונה או תקלה | מגבלה בשנת ביטוח: עד 4 גרירות שירות: שירותי דרך (התנעה, החלפת גלגל, פתיחת
 4. `corpus/27_customer_complaints:c000` score=0.4415 semR=4 lexR=- | 27_customer_complaints.md
    מסמך: טיפול בפניות ותלונות לקוחות סעיף: טיפול בפניות ותלונות לקוחות > מסלול הטיפול 1. נציג – מנסה לפתור במקום. 2. ראש צוות – אם הלקוח לא מרוצה, מעבירים בתוך יום עסקים. 3. ממונה פניות הציבור – תלונה בכתב בטופס 5001 או במייל. מענה בתוך 14 יום
-5. `corpus/06_windshield_service:c000` score=0.4343 semR=5 lexR=- | 06_windshield_service.md
+5. `corpus/06_windshield_service:c000` score=0.4344 semR=5 lexR=- | 06_windshield_service.md
    מסמך: כתב שירות שמשות סעיף: כתב שירות שמשות השירות ניתן באמצעות רשת "שמשות אופק" בלבד, בכל רחבי הארץ. - ברשת שמשות אופק: החלפה או תיקון של שמשה קדמית, אחורית וצדדיות, ללא השתתפות עצמית. - מחוץ לרשת: החזר עד מחיר הרשת, בניכוי השתתפות עצמית ש
 
 ### lexical top5
-1. `corpus/28_call_center_hours:c000` score=8.8494 semR=- lexR=1 | 28_call_center_hours.md
+1. `corpus/28_call_center_hours:c000` score=8.8770 semR=- lexR=1 | 28_call_center_hours.md
    מסמך: שעות פעילות ומספרי מוקד סעיף: שעות פעילות ומספרי מוקד מוקד: שירות לקוחות | טלפון: *6789 | שעות: א'–ה' 08:00–19:00, ו' 08:00–12:00 מוקד: גרירה ותביעות דחופות | טלפון: *6789 שלוחה 2 | שעות: 24/7 מוקד: שמשות | טלפון: *6789 שלוחה 4 | שעות
-2. `corpus/06_windshield_service:c000` score=7.6948 semR=- lexR=2 | 06_windshield_service.md
+2. `corpus/06_windshield_service:c000` score=7.4230 semR=- lexR=2 | 06_windshield_service.md
    מסמך: כתב שירות שמשות סעיף: כתב שירות שמשות השירות ניתן באמצעות רשת "שמשות אופק" בלבד, בכל רחבי הארץ. - ברשת שמשות אופק: החלפה או תיקון של שמשה קדמית, אחורית וצדדיות, ללא השתתפות עצמית. - מחוץ לרשת: החזר עד מחיר הרשת, בניכוי השתתפות עצמית ש
-3. `corpus/07_towing_roadside:c000` score=6.1803 semR=- lexR=3 | 07_towing_roadside.md
+3. `corpus/07_towing_roadside:c000` score=6.2210 semR=- lexR=3 | 07_towing_roadside.md
    מסמך: כתב שירות גרירה ושירותי דרך סעיף: כתב שירות גרירה ושירותי דרך השירות ניתן 24 שעות ביממה, 7 ימים בשבוע, דרך מוקד *6789 שלוחה 2. שירות: גרירה לאחר תאונה או תקלה | מגבלה בשנת ביטוח: עד 4 גרירות שירות: שירותי דרך (התנעה, החלפת גלגל, פתיחת
-4. `corpus/11_home_water_damage:c000` score=5.1640 semR=- lexR=4 | 11_home_water_damage.md
+4. `corpus/11_home_water_damage:c000` score=4.9212 semR=- lexR=4 | 11_home_water_damage.md
    מסמך: נזקי מים בביטוח דירה סעיף: נזקי מים בביטוח דירה > מה מכוסה - נזק שנגרם מפריצה או דליפה פתאומית של צנרת מים בתוך הדירה. - נזק לתכולה כתוצאה מאירוע מים מכוסה (אם נרכש פרק תכולה). - תיקון הצנרת עצמה – עד 2,500 ₪ לאירוע. - איתור נזילה – א
-5. `corpus/05_car_third_party:c000` score=5.0594 semR=- lexR=5 | 05_car_third_party.md
+5. `corpus/05_car_third_party:c000` score=4.7902 semR=- lexR=5 | 05_car_third_party.md
    מסמך: ביטוח צד שלישי (רכוש) – תמצית כיסוי סעיף: ביטוח צד שלישי (רכוש) – תמצית כיסוי ביטוח צד ג' מכסה את חבות המבוטח בגין נזק שגרם הרכב המבוטח לרכוש של אחרים, בעיקר לרכבים אחרים. - גבול אחריות: עד 1,000,000 ₪ לאירוע, לפי הנקוב ברשימה. - השתת
 
 ### hybrid top5
@@ -61,7 +61,7 @@ API tokens (one embed/question): prompt=737 total=737; avg embed=444.0ms
    מסמך: כתב שירות גרירה ושירותי דרך סעיף: כתב שירות גרירה ושירותי דרך השירות ניתן 24 שעות ביממה, 7 ימים בשבוע, דרך מוקד *6789 שלוחה 2. שירות: גרירה לאחר תאונה או תקלה | מגבלה בשנת ביטוח: עד 4 גרירות שירות: שירותי דרך (התנעה, החלפת גלגל, פתיחת
 3. `corpus/06_windshield_service:c000` score=0.0315 semR=5 lexR=2 | 06_windshield_service.md
    מסמך: כתב שירות שמשות סעיף: כתב שירות שמשות השירות ניתן באמצעות רשת "שמשות אופק" בלבד, בכל רחבי הארץ. - ברשת שמשות אופק: החלפה או תיקון של שמשה קדמית, אחורית וצדדיות, ללא השתתפות עצמית. - מחוץ לרשת: החזר עד מחיר הרשת, בניכוי השתתפות עצמית ש
-4. `corpus/21_claims_sla:c000` score=0.0288 semR=2 lexR=19 | 21_claims_sla.md
+4. `corpus/21_claims_sla:c000` score=0.0286 semR=2 lexR=20 | 21_claims_sla.md
    מסמך: אמנת שירות – זמני טיפול בתביעות סעיף: אמנת שירות – זמני טיפול בתביעות שלב: אישור קבלת תביעה | זמן יעד: עד 2 ימי עסקים שלב: ביקור שמאי – רכב | זמן יעד: עד 3 ימי עסקים שלב: ביקור שמאי – דירה (נזק מעל 10,000 ₪) | זמן יעד: עד 5 ימי עסקים 
 5. `corpus/17_travel_claims:c000` score=0.0285 semR=6 lexR=15 | 17_travel_claims.md
    מסמך: הגשת תביעה בביטוח נסיעות סעיף: הגשת תביעה בביטוח נסיעות - מועד הגשה: עד 90 יום מיום החזרה לישראל. - טופס: 3005 – תביעת ביטוח נסיעות. - ערוץ: באזור האישי באתר או באפליקציה. אפשר גם בדואר. 1. כרטיס טיסה וכרטיס עלייה למטוס. 2. קבלות מקור
@@ -70,7 +70,7 @@ API tokens (one embed/question): prompt=737 total=737; avg embed=444.0ms
 
 **Question:** איזה טופס ממלאים כדי לבקש ביטול פוליסה?
 **Refs:** 20_forms_catalog.pdf
-**Embed ms:** 425.0
+**Embed ms:** 195.0
 
 | Mode | R@5 | RR | vs vector R@5 | vs vector RR |
 | --- | --- | --- | --- | --- |
@@ -91,34 +91,34 @@ API tokens (one embed/question): prompt=737 total=737; avg embed=444.0ms
    מסמך: נוהל זיהוי לקוח ומסירת מידע סעיף: נוהל זיהוי לקוח ומסירת מידע > זיהוי בשיחה הלקוח נדרש למסור מספר תעודת זהות, ובנוסף שניים מתוך שלושת הפרטים הבאים: - תאריך לידה - מספר פוליסה - 4 הספרות האחרונות של כרטיס האשראי שבו משולמת הפוליסה - אי
 
 ### lexical top5
-1. `corpus/20_forms_catalog:c001` score=6.3304 semR=- lexR=1 | 20_forms_catalog.pdf
+1. `corpus/20_forms_catalog:c001` score=6.1003 semR=- lexR=1 | 20_forms_catalog.pdf
    מסמך: קטלוג טפסים – אופק ביטוח סעיף: קטלוג טפסים – אופק ביטוח תחולת מקור: מעודכן לספטמבר 2026. יש להשתמש תמיד בגרסה העדכנית מהפורטל. טבלה: קטלוג טפסים – אופק ביטוח מספר טופס: 3005 | שם הטופס: תביעת ביטוח נסיעות | מתי משתמשים: כל תביעה בביטו
-2. `corpus/22_cancellation_procedure_2023:c000` score=6.3117 semR=- lexR=2 | 22_cancellation_procedure_2023.md
+2. `corpus/22_cancellation_procedure_2023:c000` score=6.0123 semR=- lexR=2 | 22_cancellation_procedure_2023.md
    מסמך: נוהל ביטול פוליסה – 2023 סעיף: נוהל ביטול פוליסה – 2023 בתוקף מיום 1.4.2023 - לקוח רשאי לבטל את הפוליסה בכל עת. - בקשת ביטול מוגשת בטופס 4401, או בשיחה מוקלטת במוקד לאחר זיהוי מלא. - הביטול נכנס לתוקף במועד שביקש הלקוח, אך לא לפני מוע
-3. `corpus/18_claims_process_car:c000` score=5.3685 semR=- lexR=3 | 18_claims_process_car.md
+3. `corpus/18_claims_process_car:c000` score=5.4068 semR=- lexR=3 | 18_claims_process_car.md
    מסמך: נוהל טיפול בתביעת רכב – למוקד סעיף: נוהל טיפול בתביעת רכב – למוקד > שלב 1 – קבלת הדיווח - מזהים את הלקוח לפי נוהל זיהוי לקוח. - ממלאים עם הלקוח טופס 1001 (הודעה על תאונת רכב), או טופס 1003 בגניבה. - מוודאים שהאירוע דווח בתוך 30 יום ממ
-4. `corpus/23_cancellation_procedure_update_2025:c000` score=4.4636 semR=- lexR=4 | 23_cancellation_procedure_update_2025.md
+4. `corpus/30_agent_faq_en:c000` score=4.4881 semR=- lexR=4 | 30_agent_faq_en.md
+   מסמך: Agent FAQ – Ofek Insurance (internal, for licensed agents) סעיף: Agent FAQ – Ofek Insurance (internal, for licensed agents) Q: Can an agent approve coverage for a pre-existing medical condition in travel insurance? No. Agents must for
+5. `corpus/23_cancellation_procedure_update_2025:c000` score=4.1786 semR=- lexR=5 | 23_cancellation_procedure_update_2025.md
    מסמך: עדכון לנוהל ביטול פוליסה סעיף: עדכון לנוהל ביטול פוליסה בתוקף מיום 1.1.2025. העדכון משנה את סעיף "חישוב ההחזר" בלבד. שאר הוראות נוהל 2023 נותרו בתוקף. לקוח שמבטל בתוך 14 יום ממועד הרכישה, ולא הגיש תביעה, יקבל החזר מלא של דמי הביטוח שש
-5. `corpus/14_travel_policy_overview:c000` score=3.2976 semR=- lexR=5 | 14_travel_policy_overview.md
-   מסמך: ביטוח נסיעות לחו"ל – סקירת כיסויים סעיף: ביטוח נסיעות לחו"ל – סקירת כיסויים כיסוי: הוצאות רפואיות בחו"ל | סכום מקסימלי: עד 1,000,000 $ כיסוי: קיצור נסיעה עקב מקרה רפואי | סכום מקסימלי: עד 10,000 $ כיסוי: ביטול נסיעה (בהרחבה) | סכום מק
 
 ### hybrid top5
 1. `corpus/20_forms_catalog:c001` score=0.0328 semR=1 lexR=1 | 20_forms_catalog.pdf
    מסמך: קטלוג טפסים – אופק ביטוח סעיף: קטלוג טפסים – אופק ביטוח תחולת מקור: מעודכן לספטמבר 2026. יש להשתמש תמיד בגרסה העדכנית מהפורטל. טבלה: קטלוג טפסים – אופק ביטוח מספר טופס: 3005 | שם הטופס: תביעת ביטוח נסיעות | מתי משתמשים: כל תביעה בביטו
 2. `corpus/22_cancellation_procedure_2023:c000` score=0.0320 semR=3 lexR=2 | 22_cancellation_procedure_2023.md
    מסמך: נוהל ביטול פוליסה – 2023 סעיף: נוהל ביטול פוליסה – 2023 בתוקף מיום 1.4.2023 - לקוח רשאי לבטל את הפוליסה בכל עת. - בקשת ביטול מוגשת בטופס 4401, או בשיחה מוקלטת במוקד לאחר זיהוי מלא. - הביטול נכנס לתוקף במועד שביקש הלקוח, אך לא לפני מוע
-3. `corpus/20_forms_catalog:c000` score=0.0308 semR=2 lexR=8 | 20_forms_catalog.pdf
+3. `corpus/20_forms_catalog:c000` score=0.0306 semR=2 lexR=9 | 20_forms_catalog.pdf
    מסמך: קטלוג טפסים – אופק ביטוח סעיף: קטלוג טפסים – אופק ביטוח תחולת מקור: מעודכן לספטמבר 2026. יש להשתמש תמיד בגרסה העדכנית מהפורטל. טבלה: קטלוג טפסים – אופק ביטוח מספר טופס: 1001 | שם הטופס: הודעה על תאונת רכב | מתי משתמשים: דיווח על תאונה
-4. `corpus/14_travel_policy_overview:c000` score=0.0305 semR=6 lexR=5 | 14_travel_policy_overview.md
+4. `corpus/14_travel_policy_overview:c000` score=0.0303 semR=6 lexR=6 | 14_travel_policy_overview.md
    מסמך: ביטוח נסיעות לחו"ל – סקירת כיסויים סעיף: ביטוח נסיעות לחו"ל – סקירת כיסויים כיסוי: הוצאות רפואיות בחו"ל | סכום מקסימלי: עד 1,000,000 $ כיסוי: קיצור נסיעה עקב מקרה רפואי | סכום מקסימלי: עד 10,000 $ כיסוי: ביטול נסיעה (בהרחבה) | סכום מק
-5. `corpus/33_customer_identification:c000` score=0.0303 semR=5 lexR=7 | 33_customer_identification.md
+5. `corpus/33_customer_identification:c000` score=0.0301 semR=5 lexR=8 | 33_customer_identification.md
    מסמך: נוהל זיהוי לקוח ומסירת מידע סעיף: נוהל זיהוי לקוח ומסירת מידע > זיהוי בשיחה הלקוח נדרש למסור מספר תעודת זהות, ובנוסף שניים מתוך שלושת הפרטים הבאים: - תאריך לידה - מספר פוליסה - 4 הספרות האחרונות של כרטיס האשראי שבו משולמת הפוליסה - אי
 
 ## D03 (version)
 
 **Question:** מה ההשתתפות העצמית בתיקון במוסך הסדר בפוליסת מקיף שהונפקה באפריל 2026?
 **Refs:** 02_car_comprehensive_policy_2026.pdf
-**Embed ms:** 249.5
+**Embed ms:** 911.9
 
 | Mode | R@5 | RR | vs vector R@5 | vs vector RR |
 | --- | --- | --- | --- | --- |
@@ -139,15 +139,15 @@ API tokens (one embed/question): prompt=737 total=737; avg embed=444.0ms
    מסמך: ביטוח הרכב של אופק – הכי פשוט שיש! 🚗 סעיף: ביטוח הרכב של אופק – הכי פשוט שיש! 🚗 מצטרפים לאופק ונוסעים בראש שקט. - השתתפות עצמית החל מ-950 ₪ בלבד! - רכב חלופי לכל תקופת התיקון – בלי כוכביות. - גרירות ללא הגבלה, בכל שעה. - הנחה של עד 
 
 ### lexical top5
-1. `corpus/02_car_comprehensive_policy_2026:c000` score=15.2331 semR=- lexR=1 | 02_car_comprehensive_policy_2026.pdf
+1. `corpus/02_car_comprehensive_policy_2026:c000` score=15.3419 semR=- lexR=1 | 02_car_comprehensive_policy_2026.pdf
    מסמך: אופק ביטוח בע”מ – פוליסה לביטוח רכב מקיף סעיף: אופק ביטוח בע”מ – פוליסה לביטוח רכב מקיף גרסה 2026 | בתוקף לפוליסות שהונפקו או חודשו מיום 1.3.2026 ואילך פוליסות שהונפקו או חודשו לפני 1.3.2026 ממשיכות לפעול לפי גרסת 2024 עד מועד החידוש 
-2. `corpus/01_car_comprehensive_policy_2024:c000` score=14.1446 semR=- lexR=2 | 01_car_comprehensive_policy_2024.pdf
+2. `corpus/01_car_comprehensive_policy_2024:c000` score=14.2526 semR=- lexR=2 | 01_car_comprehensive_policy_2024.pdf
    מסמך: אופק ביטוח בע”מ – פוליסה לביטוח רכב מקיף סעיף: אופק ביטוח בע”מ – פוליסה לביטוח רכב מקיף גרסה 2024 | בתוקף מיום 1.1.2024 מסמך זה מפרט את תנאי הכיסוי בפוליסת רכב מקיף של אופק ביטוח. יש לקרוא אותו יחד עם מסמך “תנאים כלליים לפוליסות רכב” 
-3. `corpus/08_replacement_car:c000` score=12.2775 semR=- lexR=3 | 08_replacement_car.md
+3. `corpus/08_replacement_car:c000` score=12.3691 semR=- lexR=3 | 08_replacement_car.md
    מסמך: כתב שירות רכב חלופי סעיף: כתב שירות רכב חלופי רכב חלופי ניתן רק למבוטחים שרכשו כתב שירות זה. הוא אינו חלק מהכיסוי הבסיסי בפוליסת מקיף. אירוע: תאונה – כל עוד הרכב בתיקון במוסך הסדר | תקופה מקסימלית: עד 21 ימים אירוע: גניבה או אובדן גמו
-4. `corpus/31_ofek_plus_vip:c000` score=12.1908 semR=- lexR=4 | 31_ofek_plus_vip.docx
+4. `corpus/31_ofek_plus_vip:c000` score=12.2801 semR=- lexR=4 | 31_ofek_plus_vip.docx
    מסמך: נוהל לקוחות “אופק פלוס” סעיף: נוהל לקוחות “אופק פלוס” > מי זכאי לקוח שמחזיק 3 פוליסות פעילות או יותר באופק ביטוח (בכל שילוב של רכב, דירה ונסיעות). הטבות הטבה: נציג אישי | פירוט: נציג קבוע עם קו ישיר הטבה: הנחה בהשתתפות עצמית ברכב | פי
-5. `corpus/04_young_driver_annex:c000` score=6.1970 semR=- lexR=5 | 04_young_driver_annex.docx
+5. `corpus/04_young_driver_annex:c000` score=6.2517 semR=- lexR=5 | 04_young_driver_annex.docx
    מסמך: נספח נהג צעיר – ביטוח רכב סעיף: נספח נהג צעיר – ביטוח רכב נספח זה מצורף לפוליסת רכב מקיף או צד ג’ ומרחיב את הגדרת “נהג מורשה” כך שתכלול נהג צעיר הנקוב בשמו בנספח. נהג שגילו מתחת ל-24, או נהג שהוותק שלו בנהיגה פחות משנתיים, בכל גיל. 1.
 
 ### hybrid top5
@@ -159,14 +159,14 @@ API tokens (one embed/question): prompt=737 total=737; avg embed=444.0ms
    מסמך: נוהל לקוחות “אופק פלוס” סעיף: נוהל לקוחות “אופק פלוס” > מי זכאי לקוח שמחזיק 3 פוליסות פעילות או יותר באופק ביטוח (בכל שילוב של רכב, דירה ונסיעות). הטבות הטבה: נציג אישי | פירוט: נציג קבוע עם קו ישיר הטבה: הנחה בהשתתפות עצמית ברכב | פי
 4. `corpus/04_young_driver_annex:c000` score=0.0303 semR=7 lexR=5 | 04_young_driver_annex.docx
    מסמך: נספח נהג צעיר – ביטוח רכב סעיף: נספח נהג צעיר – ביטוח רכב נספח זה מצורף לפוליסת רכב מקיף או צד ג’ ומרחיב את הגדרת “נהג מורשה” כך שתכלול נהג צעיר הנקוב בשמו בנספח. נהג שגילו מתחת ל-24, או נהג שהוותק שלו בנהיגה פחות משנתיים, בכל גיל. 1.
-5. `corpus/22_cancellation_procedure_2023:c000` score=0.0286 semR=8 lexR=12 | 22_cancellation_procedure_2023.md
+5. `corpus/22_cancellation_procedure_2023:c000` score=0.0288 semR=8 lexR=11 | 22_cancellation_procedure_2023.md
    מסמך: נוהל ביטול פוליסה – 2023 סעיף: נוהל ביטול פוליסה – 2023 בתוקף מיום 1.4.2023 - לקוח רשאי לבטל את הפוליסה בכל עת. - בקשת ביטול מוגשת בטופס 4401, או בשיחה מוקלטת במוקד לאחר זיהוי מלא. - הביטול נכנס לתוקף במועד שביקש הלקוח, אך לא לפני מוע
 
 ## D04 (no_answer)
 
 **Question:** האם אופק ביטוח מציעה ביטוח לחיות מחמד?
 **Refs:** (none)
-**Embed ms:** 317.9
+**Embed ms:** 218.2
 
 | Mode | R@5 | RR | vs vector R@5 | vs vector RR |
 | --- | --- | --- | --- | --- |
@@ -187,23 +187,23 @@ API tokens (one embed/question): prompt=737 total=737; avg embed=444.0ms
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 9 – תשלום תגמולי ביטוח סעיף 9 – תשלום תגמולי ביטוח תגמולי הביטוח ישולמו לא יאוחר מ-30 יום ממועד שבו הומצאו למבטח כל המסמכים והמידע הד
 
 ### lexical top5
-1. `corpus/03_car_general_terms:c014` score=1.7248 semR=- lexR=1 | 03_car_general_terms.pdf
+1. `corpus/03_car_general_terms:c014` score=1.6769 semR=- lexR=1 | 03_car_general_terms.pdf
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 14 – התיישנות סעיף 14 – התיישנות תקופת ההתיישנות של תביעה לתגמולי ביטוח היא שלוש שנים מיום קרות מקרה הביטוח.
-2. `corpus/03_car_general_terms:c009` score=1.6726 semR=- lexR=2 | 03_car_general_terms.pdf
-   מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 9 – תשלום תגמולי ביטוח סעיף 9 – תשלום תגמולי ביטוח תגמולי הביטוח ישולמו לא יאוחר מ-30 יום ממועד שבו הומצאו למבטח כל המסמכים והמידע הד
-3. `corpus/03_car_general_terms:c001` score=1.6677 semR=- lexR=3 | 03_car_general_terms.pdf
+2. `corpus/03_car_general_terms:c001` score=1.6256 semR=- lexR=2 | 03_car_general_terms.pdf
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 1 – מבוא סעיף 1 – מבוא תנאים אלה הם חלק בלתי נפרד מכל פוליסת רכב שמנפיקה אופק ביטוח בע”מ (להלן: “המבטח”). בכל מקרה של סתירה בין תנאים
-4. `corpus/03_car_general_terms:c011` score=1.6417 semR=- lexR=4 | 03_car_general_terms.pdf
+3. `corpus/03_car_general_terms:c009` score=1.6250 semR=- lexR=3 | 03_car_general_terms.pdf
+   מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 9 – תשלום תגמולי ביטוח סעיף 9 – תשלום תגמולי ביטוח תגמולי הביטוח ישולמו לא יאוחר מ-30 יום ממועד שבו הומצאו למבטח כל המסמכים והמידע הד
+4. `corpus/03_car_general_terms:c011` score=1.5970 semR=- lexR=4 | 03_car_general_terms.pdf
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 11 – תחלוף סעיף 11 – תחלוף שילם המבטח תגמולי ביטוח, עוברת אליו זכות המבוטח לפיצוי או לשיפוי מצד שלישי, עד גובה התגמולים ששולמו. המבוט
-5. `corpus/03_car_general_terms:c007` score=1.6110 semR=- lexR=5 | 03_car_general_terms.pdf
-   מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 7 – הודעה על מקרה ביטוח סעיף 7 – הודעה על מקרה ביטוח קרה מקרה ביטוח, על המבוטח להודיע על כך למבטח מיד לאחר שנודע לו, ולא יאוחר מ-30 י
+5. `corpus/03_car_general_terms:c006` score=1.5682 semR=- lexR=5 | 03_car_general_terms.pdf
+   מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 6 – אמצעי מיגון סעיף 6 – אמצעי מיגון כאשר נקבע ברשימה כי ברכב יותקן אמצעי מיגון, הכיסוי לגניבה מותנה בכך שאמצעי המיגון הותקן, היה תקי
 
 ### hybrid top5
-1. `corpus/03_car_general_terms:c009` score=0.0315 semR=5 lexR=2 | 03_car_general_terms.pdf
-   מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 9 – תשלום תגמולי ביטוח סעיף 9 – תשלום תגמולי ביטוח תגמולי הביטוח ישולמו לא יאוחר מ-30 יום ממועד שבו הומצאו למבטח כל המסמכים והמידע הד
-2. `corpus/03_car_general_terms:c011` score=0.0315 semR=3 lexR=4 | 03_car_general_terms.pdf
+1. `corpus/03_car_general_terms:c011` score=0.0315 semR=3 lexR=4 | 03_car_general_terms.pdf
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 11 – תחלוף סעיף 11 – תחלוף שילם המבטח תגמולי ביטוח, עוברת אליו זכות המבוטח לפיצוי או לשיפוי מצד שלישי, עד גובה התגמולים ששולמו. המבוט
-3. `corpus/03_car_general_terms:c006` score=0.0308 semR=4 lexR=6 | 03_car_general_terms.pdf
+2. `corpus/03_car_general_terms:c009` score=0.0313 semR=5 lexR=3 | 03_car_general_terms.pdf
+   מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 9 – תשלום תגמולי ביטוח סעיף 9 – תשלום תגמולי ביטוח תגמולי הביטוח ישולמו לא יאוחר מ-30 יום ממועד שבו הומצאו למבטח כל המסמכים והמידע הד
+3. `corpus/03_car_general_terms:c006` score=0.0310 semR=4 lexR=5 | 03_car_general_terms.pdf
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 6 – אמצעי מיגון סעיף 6 – אמצעי מיגון כאשר נקבע ברשימה כי ברכב יותקן אמצעי מיגון, הכיסוי לגניבה מותנה בכך שאמצעי המיגון הותקן, היה תקי
 4. `corpus/03_car_general_terms:c013` score=0.0305 semR=1 lexR=11 | 03_car_general_terms.pdf
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 13 – ביטול הביטוח סעיף 13 – ביטול הביטוח המבוטח רשאי לבטל את הביטוח בכל עת בהודעה למבטח. אופן חישוב ההחזר נקבע בנוהל הביטולים של המבט
@@ -214,7 +214,7 @@ API tokens (one embed/question): prompt=737 total=737; avg embed=444.0ms
 
 **Question:** מה ההשתתפות העצמית?
 **Refs:** 02_car_comprehensive_policy_2026.pdf, 10_home_policy_overview.md
-**Embed ms:** 2178.4
+**Embed ms:** 220.5
 
 | Mode | R@5 | RR | vs vector R@5 | vs vector RR |
 | --- | --- | --- | --- | --- |
@@ -229,21 +229,21 @@ API tokens (one embed/question): prompt=737 total=737; avg embed=444.0ms
    מסמך: ביטוח הרכב של אופק – הכי פשוט שיש! 🚗 סעיף: ביטוח הרכב של אופק – הכי פשוט שיש! 🚗 מצטרפים לאופק ונוסעים בראש שקט. - השתתפות עצמית החל מ-950 ₪ בלבד! - רכב חלופי לכל תקופת התיקון – בלי כוכביות. - גרירות ללא הגבלה, בכל שעה. - הנחה של עד 
 3. `corpus/26_address_change:c000` score=0.2941 semR=3 lexR=- | 26_address_change.md
    מסמך: עדכון כתובת ופרטי קשר סעיף: עדכון כתובת ופרטי קשר - עדכון כתובת, טלפון ומייל אפשרי באזור האישי, באפליקציה או במוקד לאחר זיהוי. - שינוי כתובת בפוליסת דירה הוא שינוי מהותי: מעבירים לחיתום, כי הפוליסה מבטחת דירה מסוימת. - שינוי כתובת בפו
-4. `corpus/12_home_contents_limits:c000` score=0.2768 semR=4 lexR=- | 12_home_contents_limits.docx
-   מסמך: ביטוח תכולה – גבולות אחריות סעיף: ביטוח תכולה – גבולות אחריות תכולה מבוטחת לפי ערך כינון (חדש תמורת ישן), עד סכום ביטוח התכולה הנקוב ברשימה. גבולות אחריות לפריטים מסוימים פריט: תכשיטים ושעונים – ללא רשימה מוערכת | גבול אחריות: 10% מסכ
-5. `corpus/17_travel_claims:c000` score=0.2686 semR=5 lexR=- | 17_travel_claims.md
+4. `corpus/17_travel_claims:c000` score=0.2686 semR=4 lexR=- | 17_travel_claims.md
    מסמך: הגשת תביעה בביטוח נסיעות סעיף: הגשת תביעה בביטוח נסיעות - מועד הגשה: עד 90 יום מיום החזרה לישראל. - טופס: 3005 – תביעת ביטוח נסיעות. - ערוץ: באזור האישי באתר או באפליקציה. אפשר גם בדואר. 1. כרטיס טיסה וכרטיס עלייה למטוס. 2. קבלות מקור
+5. `corpus/29_glossary:c000` score=0.2665 semR=5 lexR=- | 29_glossary.md
+   מסמך: מילון מונחים – Glossary סעיף: מילון מונחים – Glossary עברית: השתתפות עצמית | English: Deductible / Excess | הסבר: הסכום שהמבוטח נושא בו בכל מקרה ביטוח עברית: סכום ביטוח | English: Sum Insured | הסבר: הסכום המרבי שהמבטח ישלם עברית: פרמ
 
 ### lexical top5
-1. `corpus/02_car_comprehensive_policy_2026:c000` score=6.7382 semR=- lexR=1 | 02_car_comprehensive_policy_2026.pdf
+1. `corpus/02_car_comprehensive_policy_2026:c000` score=6.7726 semR=- lexR=1 | 02_car_comprehensive_policy_2026.pdf
    מסמך: אופק ביטוח בע”מ – פוליסה לביטוח רכב מקיף סעיף: אופק ביטוח בע”מ – פוליסה לביטוח רכב מקיף גרסה 2026 | בתוקף לפוליסות שהונפקו או חודשו מיום 1.3.2026 ואילך פוליסות שהונפקו או חודשו לפני 1.3.2026 ממשיכות לפעול לפי גרסת 2024 עד מועד החידוש 
-2. `corpus/01_car_comprehensive_policy_2024:c000` score=6.6858 semR=- lexR=2 | 01_car_comprehensive_policy_2024.pdf
+2. `corpus/01_car_comprehensive_policy_2024:c000` score=6.7202 semR=- lexR=2 | 01_car_comprehensive_policy_2024.pdf
    מסמך: אופק ביטוח בע”מ – פוליסה לביטוח רכב מקיף סעיף: אופק ביטוח בע”מ – פוליסה לביטוח רכב מקיף גרסה 2024 | בתוקף מיום 1.1.2024 מסמך זה מפרט את תנאי הכיסוי בפוליסת רכב מקיף של אופק ביטוח. יש לקרוא אותו יחד עם מסמך “תנאים כלליים לפוליסות רכב” 
-3. `corpus/31_ofek_plus_vip:c000` score=5.4626 semR=- lexR=3 | 31_ofek_plus_vip.docx
+3. `corpus/31_ofek_plus_vip:c000` score=5.4953 semR=- lexR=3 | 31_ofek_plus_vip.docx
    מסמך: נוהל לקוחות “אופק פלוס” סעיף: נוהל לקוחות “אופק פלוס” > מי זכאי לקוח שמחזיק 3 פוליסות פעילות או יותר באופק ביטוח (בכל שילוב של רכב, דירה ונסיעות). הטבות הטבה: נציג אישי | פירוט: נציג קבוע עם קו ישיר הטבה: הנחה בהשתתפות עצמית ברכב | פי
-4. `corpus/03_car_general_terms:c009` score=5.3633 semR=- lexR=4 | 03_car_general_terms.pdf
+4. `corpus/03_car_general_terms:c009` score=5.3922 semR=- lexR=4 | 03_car_general_terms.pdf
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 9 – תשלום תגמולי ביטוח סעיף 9 – תשלום תגמולי ביטוח תגמולי הביטוח ישולמו לא יאוחר מ-30 יום ממועד שבו הומצאו למבטח כל המסמכים והמידע הד
-5. `corpus/04_young_driver_annex:c000` score=4.4066 semR=- lexR=5 | 04_young_driver_annex.docx
+5. `corpus/04_young_driver_annex:c000` score=4.4434 semR=- lexR=5 | 04_young_driver_annex.docx
    מסמך: נספח נהג צעיר – ביטוח רכב סעיף: נספח נהג צעיר – ביטוח רכב נספח זה מצורף לפוליסת רכב מקיף או צד ג’ ומרחיב את הגדרת “נהג מורשה” כך שתכלול נהג צעיר הנקוב בשמו בנספח. נהג שגילו מתחת ל-24, או נהג שהוותק שלו בנהיגה פחות משנתיים, בכל גיל. 1.
 
 ### hybrid top5
@@ -262,7 +262,7 @@ API tokens (one embed/question): prompt=737 total=737; avg embed=444.0ms
 
 **Question:** נהג בן 22 נהג ברכב עם פוליסת 'כל נהג' בלי נספח נהג צעיר ועשה תאונה. האם יש כיסוי?
 **Refs:** 03_car_general_terms.pdf, 04_young_driver_annex.docx
-**Embed ms:** 343.0
+**Embed ms:** 215.3
 
 | Mode | R@5 | RR | vs vector R@5 | vs vector RR |
 | --- | --- | --- | --- | --- |
@@ -283,15 +283,15 @@ API tokens (one embed/question): prompt=737 total=737; avg embed=444.0ms
    מסמך: אופק ביטוח בע”מ – פוליסה לביטוח רכב מקיף סעיף: אופק ביטוח בע”מ – פוליסה לביטוח רכב מקיף גרסה 2024 | בתוקף מיום 1.1.2024 מסמך זה מפרט את תנאי הכיסוי בפוליסת רכב מקיף של אופק ביטוח. יש לקרוא אותו יחד עם מסמך “תנאים כלליים לפוליסות רכב” 
 
 ### lexical top5
-1. `corpus/04_young_driver_annex:c000` score=10.9845 semR=- lexR=1 | 04_young_driver_annex.docx
+1. `corpus/04_young_driver_annex:c000` score=11.0457 semR=- lexR=1 | 04_young_driver_annex.docx
    מסמך: נספח נהג צעיר – ביטוח רכב סעיף: נספח נהג צעיר – ביטוח רכב נספח זה מצורף לפוליסת רכב מקיף או צד ג’ ומרחיב את הגדרת “נהג מורשה” כך שתכלול נהג צעיר הנקוב בשמו בנספח. נהג שגילו מתחת ל-24, או נהג שהוותק שלו בנהיגה פחות משנתיים, בכל גיל. 1.
-2. `corpus/25_adding_driver:c000` score=10.3175 semR=- lexR=2 | 25_adding_driver.md
+2. `corpus/25_adding_driver:c000` score=10.3650 semR=- lexR=2 | 25_adding_driver.md
    מסמך: נוהל הוספת נהג לפוליסת רכב סעיף: נוהל הוספת נהג לפוליסת רכב - ההוספה נעשית בטופס 1007 (הוספת נהג / הצהרת נהג). - הכיסוי לנהג החדש נכנס לתוקף ביום שלאחר אישור הבקשה, לא באופן רטרואקטיבי. - נהג בגיל 24 ומעלה עם ותק של שנתיים ומעלה: אפשר
-3. `corpus/01_car_comprehensive_policy_2024:c000` score=9.9756 semR=- lexR=3 | 01_car_comprehensive_policy_2024.pdf
+3. `corpus/01_car_comprehensive_policy_2024:c000` score=10.0698 semR=- lexR=3 | 01_car_comprehensive_policy_2024.pdf
    מסמך: אופק ביטוח בע”מ – פוליסה לביטוח רכב מקיף סעיף: אופק ביטוח בע”מ – פוליסה לביטוח רכב מקיף גרסה 2024 | בתוקף מיום 1.1.2024 מסמך זה מפרט את תנאי הכיסוי בפוליסת רכב מקיף של אופק ביטוח. יש לקרוא אותו יחד עם מסמך “תנאים כלליים לפוליסות רכב” 
-4. `corpus/31_ofek_plus_vip:c000` score=9.3074 semR=- lexR=4 | 31_ofek_plus_vip.docx
+4. `corpus/31_ofek_plus_vip:c000` score=9.3619 semR=- lexR=4 | 31_ofek_plus_vip.docx
    מסמך: נוהל לקוחות “אופק פלוס” סעיף: נוהל לקוחות “אופק פלוס” > מי זכאי לקוח שמחזיק 3 פוליסות פעילות או יותר באופק ביטוח (בכל שילוב של רכב, דירה ונסיעות). הטבות הטבה: נציג אישי | פירוט: נציג קבוע עם קו ישיר הטבה: הנחה בהשתתפות עצמית ברכב | פי
-5. `corpus/05_car_third_party:c000` score=8.2312 semR=- lexR=5 | 05_car_third_party.md
+5. `corpus/05_car_third_party:c000` score=8.1461 semR=- lexR=5 | 05_car_third_party.md
    מסמך: ביטוח צד שלישי (רכוש) – תמצית כיסוי סעיף: ביטוח צד שלישי (רכוש) – תמצית כיסוי ביטוח צד ג' מכסה את חבות המבוטח בגין נזק שגרם הרכב המבוטח לרכוש של אחרים, בעיקר לרכבים אחרים. - גבול אחריות: עד 1,000,000 ₪ לאירוע, לפי הנקוב ברשימה. - השתת
 
 ### hybrid top5
@@ -310,12 +310,12 @@ API tokens (one embed/question): prompt=737 total=737; avg embed=444.0ms
 
 **Question:** תוך כמה זמן חתמות רפואית עונה לבקשה של סוכן לגבי מצב רפואי קודם בביטוח נסיעות?
 **Refs:** 30_agent_faq_en.md, 15_travel_preexisting_conditions.docx
-**Embed ms:** 234.2
+**Embed ms:** 191.8
 
 | Mode | R@5 | RR | vs vector R@5 | vs vector RR |
 | --- | --- | --- | --- | --- |
 | vector | 0.5 | 1 | - | - |
-| lexical | 0.5 | 1 | unchanged | unchanged |
+| lexical | 1 | 1 | improved | unchanged |
 | hybrid | 0.5 | 1 | unchanged | unchanged |
 
 ### vector top5
@@ -331,16 +331,16 @@ API tokens (one embed/question): prompt=737 total=737; avg embed=444.0ms
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 9 – תשלום תגמולי ביטוח סעיף 9 – תשלום תגמולי ביטוח תגמולי הביטוח ישולמו לא יאוחר מ-30 יום ממועד שבו הומצאו למבטח כל המסמכים והמידע הד
 
 ### lexical top5
-1. `corpus/15_travel_preexisting_conditions:c000` score=27.0486 semR=- lexR=1 | 15_travel_preexisting_conditions.docx
+1. `corpus/15_travel_preexisting_conditions:c000` score=27.2072 semR=- lexR=1 | 15_travel_preexisting_conditions.docx
    מסמך: מצב רפואי קודם בביטוח נסיעות סעיף: מצב רפואי קודם בביטוח נסיעות > עיקרון מצב רפואי שהיה קיים לפני הנסיעה מכוסה רק אם הוצהר מראש ואושר על ידי חתמות רפואית. 1. מילוי הצהרת בריאות (טופס 3002). 2. המצב יציב: לא חל שינוי בטיפול התרופתי ולא
-2. `corpus/14_travel_policy_overview:c000` score=12.1653 semR=- lexR=2 | 14_travel_policy_overview.md
+2. `corpus/14_travel_policy_overview:c000` score=12.2546 semR=- lexR=2 | 14_travel_policy_overview.md
    מסמך: ביטוח נסיעות לחו"ל – סקירת כיסויים סעיף: ביטוח נסיעות לחו"ל – סקירת כיסויים כיסוי: הוצאות רפואיות בחו"ל | סכום מקסימלי: עד 1,000,000 $ כיסוי: קיצור נסיעה עקב מקרה רפואי | סכום מקסימלי: עד 10,000 $ כיסוי: ביטול נסיעה (בהרחבה) | סכום מק
-3. `corpus/20_forms_catalog:c000` score=8.9601 semR=- lexR=3 | 20_forms_catalog.pdf
+3. `corpus/20_forms_catalog:c000` score=9.0264 semR=- lexR=3 | 20_forms_catalog.pdf
    מסמך: קטלוג טפסים – אופק ביטוח סעיף: קטלוג טפסים – אופק ביטוח תחולת מקור: מעודכן לספטמבר 2026. יש להשתמש תמיד בגרסה העדכנית מהפורטל. טבלה: קטלוג טפסים – אופק ביטוח מספר טופס: 1001 | שם הטופס: הודעה על תאונת רכב | מתי משתמשים: דיווח על תאונה
-4. `corpus/17_travel_claims:c000` score=7.9456 semR=- lexR=4 | 17_travel_claims.md
+4. `corpus/17_travel_claims:c000` score=7.9914 semR=- lexR=4 | 17_travel_claims.md
    מסמך: הגשת תביעה בביטוח נסיעות סעיף: הגשת תביעה בביטוח נסיעות - מועד הגשה: עד 90 יום מיום החזרה לישראל. - טופס: 3005 – תביעת ביטוח נסיעות. - ערוץ: באזור האישי באתר או באפליקציה. אפשר גם בדואר. 1. כרטיס טיסה וכרטיס עלייה למטוס. 2. קבלות מקור
-5. `corpus/16_travel_luggage:c000` score=4.9324 semR=- lexR=5 | 16_travel_luggage.md
-   מסמך: כבודה בביטוח נסיעות סעיף: כבודה בביטוח נסיעות > אובדן, גניבה או נזק - עד 500 $ לפריט. - עד 2,000 $ לנוסע לכל תקופת הנסיעה. - טלפון נייד, מחשב נייד, טאבלט ומצלמה: מכוסים רק עם הרחבת "גאדג'טים", עד 1,000 $ לפריט. משך העיכוב: מעל 6 שעות 
+5. `corpus/30_agent_faq_en:c000` score=6.5519 semR=- lexR=5 | 30_agent_faq_en.md
+   מסמך: Agent FAQ – Ofek Insurance (internal, for licensed agents) סעיף: Agent FAQ – Ofek Insurance (internal, for licensed agents) Q: Can an agent approve coverage for a pre-existing medical condition in travel insurance? No. Agents must for
 
 ### hybrid top5
 1. `corpus/15_travel_preexisting_conditions:c000` score=0.0328 semR=1 lexR=1 | 15_travel_preexisting_conditions.docx
@@ -349,16 +349,16 @@ API tokens (one embed/question): prompt=737 total=737; avg embed=444.0ms
    מסמך: ביטוח נסיעות לחו"ל – סקירת כיסויים סעיף: ביטוח נסיעות לחו"ל – סקירת כיסויים כיסוי: הוצאות רפואיות בחו"ל | סכום מקסימלי: עד 1,000,000 $ כיסוי: קיצור נסיעה עקב מקרה רפואי | סכום מקסימלי: עד 10,000 $ כיסוי: ביטול נסיעה (בהרחבה) | סכום מק
 3. `corpus/17_travel_claims:c000` score=0.0303 semR=8 lexR=4 | 17_travel_claims.md
    מסמך: הגשת תביעה בביטוח נסיעות סעיף: הגשת תביעה בביטוח נסיעות - מועד הגשה: עד 90 יום מיום החזרה לישראל. - טופס: 3005 – תביעת ביטוח נסיעות. - ערוץ: באזור האישי באתר או באפליקציה. אפשר גם בדואר. 1. כרטיס טיסה וכרטיס עלייה למטוס. 2. קבלות מקור
-4. `corpus/21_claims_sla:c000` score=0.0299 semR=7 lexR=7 | 21_claims_sla.md
+4. `corpus/21_claims_sla:c000` score=0.0296 semR=7 lexR=8 | 21_claims_sla.md
    מסמך: אמנת שירות – זמני טיפול בתביעות סעיף: אמנת שירות – זמני טיפול בתביעות שלב: אישור קבלת תביעה | זמן יעד: עד 2 ימי עסקים שלב: ביקור שמאי – רכב | זמן יעד: עד 3 ימי עסקים שלב: ביקור שמאי – דירה (נזק מעל 10,000 ₪) | זמן יעד: עד 5 ימי עסקים 
-5. `corpus/32_fraud_red_flags:c000` score=0.0294 semR=10 lexR=6 | 32_fraud_red_flags.md
+5. `corpus/32_fraud_red_flags:c000` score=0.0292 semR=10 lexR=7 | 32_fraud_red_flags.md
    מסמך: סימנים מחשידים בתביעות – פנימי סעיף: סימנים מחשידים בתביעות – פנימי נציג שמזהה אחד או יותר מהסימנים הבאים מסמן את התביעה "לבדיקה" ואינו משתף את הלקוח בחשד. - דיווח על תאונה בתוך 30 יום מתחילת הפוליסה. - גניבת רכב ללא אפשרות להציג את ש
 
 ## D08 (partial_override)
 
 **Question:** לקוח מבטל פוליסה 10 ימים אחרי הרכישה ולא הגיש תביעות. כמה יקבל בחזרה?
 **Refs:** 23_cancellation_procedure_update_2025.md
-**Embed ms:** 224.0
+**Embed ms:** 205.3
 
 | Mode | R@5 | RR | vs vector R@5 | vs vector RR |
 | --- | --- | --- | --- | --- |
@@ -379,16 +379,16 @@ API tokens (one embed/question): prompt=737 total=737; avg embed=444.0ms
    מסמך: אמנת שירות – זמני טיפול בתביעות סעיף: אמנת שירות – זמני טיפול בתביעות שלב: אישור קבלת תביעה | זמן יעד: עד 2 ימי עסקים שלב: ביקור שמאי – רכב | זמן יעד: עד 3 ימי עסקים שלב: ביקור שמאי – דירה (נזק מעל 10,000 ₪) | זמן יעד: עד 5 ימי עסקים 
 
 ### lexical top5
-1. `corpus/23_cancellation_procedure_update_2025:c000` score=18.2415 semR=- lexR=1 | 23_cancellation_procedure_update_2025.md
+1. `corpus/23_cancellation_procedure_update_2025:c000` score=18.2014 semR=- lexR=1 | 23_cancellation_procedure_update_2025.md
    מסמך: עדכון לנוהל ביטול פוליסה סעיף: עדכון לנוהל ביטול פוליסה בתוקף מיום 1.1.2025. העדכון משנה את סעיף "חישוב ההחזר" בלבד. שאר הוראות נוהל 2023 נותרו בתוקף. לקוח שמבטל בתוך 14 יום ממועד הרכישה, ולא הגיש תביעה, יקבל החזר מלא של דמי הביטוח שש
-2. `corpus/32_fraud_red_flags:c000` score=9.7722 semR=- lexR=2 | 32_fraud_red_flags.md
+2. `corpus/32_fraud_red_flags:c000` score=9.8304 semR=- lexR=2 | 32_fraud_red_flags.md
    מסמך: סימנים מחשידים בתביעות – פנימי סעיף: סימנים מחשידים בתביעות – פנימי נציג שמזהה אחד או יותר מהסימנים הבאים מסמן את התביעה "לבדיקה" ואינו משתף את הלקוח בחשד. - דיווח על תאונה בתוך 30 יום מתחילת הפוליסה. - גניבת רכב ללא אפשרות להציג את ש
-3. `corpus/33_customer_identification:c000` score=5.6225 semR=- lexR=3 | 33_customer_identification.md
+3. `corpus/33_customer_identification:c000` score=5.4443 semR=- lexR=3 | 33_customer_identification.md
    מסמך: נוהל זיהוי לקוח ומסירת מידע סעיף: נוהל זיהוי לקוח ומסירת מידע > זיהוי בשיחה הלקוח נדרש למסור מספר תעודת זהות, ובנוסף שניים מתוך שלושת הפרטים הבאים: - תאריך לידה - מספר פוליסה - 4 הספרות האחרונות של כרטיס האשראי שבו משולמת הפוליסה - אי
-4. `corpus/19_claims_process_home:c000` score=4.8671 semR=- lexR=4 | 19_claims_process_home.md
+4. `corpus/30_agent_faq_en:c000` score=5.3896 semR=- lexR=4 | 30_agent_faq_en.md
+   מסמך: Agent FAQ – Ofek Insurance (internal, for licensed agents) סעיף: Agent FAQ – Ofek Insurance (internal, for licensed agents) Q: Can an agent approve coverage for a pre-existing medical condition in travel insurance? No. Agents must for
+5. `corpus/19_claims_process_home:c000` score=4.8934 semR=- lexR=5 | 19_claims_process_home.md
    מסמך: נוהל טיפול בתביעת דירה – למוקד סעיף: נוהל טיפול בתביעת דירה – למוקד 1. זיהוי הלקוח לפי נוהל זיהוי לקוח. 2. מילוי טופס 2010 – הודעה על נזק בדירה. 3. בקשת צילומים של הנזק לפני כל תיקון. 4. בפריצה: אישור תלונה במשטרה. 5. בנזקי מים: חשבונ
-5. `corpus/08_replacement_car:c000` score=4.0539 semR=- lexR=5 | 08_replacement_car.md
-   מסמך: כתב שירות רכב חלופי סעיף: כתב שירות רכב חלופי רכב חלופי ניתן רק למבוטחים שרכשו כתב שירות זה. הוא אינו חלק מהכיסוי הבסיסי בפוליסת מקיף. אירוע: תאונה – כל עוד הרכב בתיקון במוסך הסדר | תקופה מקסימלית: עד 21 ימים אירוע: גניבה או אובדן גמו
 
 ### hybrid top5
 1. `corpus/32_fraud_red_flags:c000` score=0.0320 semR=3 lexR=2 | 32_fraud_red_flags.md
@@ -397,7 +397,7 @@ API tokens (one embed/question): prompt=737 total=737; avg embed=444.0ms
    מסמך: נוהל ביטול פוליסה – 2023 סעיף: נוהל ביטול פוליסה – 2023 בתוקף מיום 1.4.2023 - לקוח רשאי לבטל את הפוליסה בכל עת. - בקשת ביטול מוגשת בטופס 4401, או בשיחה מוקלטת במוקד לאחר זיהוי מלא. - הביטול נכנס לתוקף במועד שביקש הלקוח, אך לא לפני מוע
 3. `corpus/23_cancellation_procedure_update_2025:c000` score=0.0311 semR=8 lexR=1 | 23_cancellation_procedure_update_2025.md
    מסמך: עדכון לנוהל ביטול פוליסה סעיף: עדכון לנוהל ביטול פוליסה בתוקף מיום 1.1.2025. העדכון משנה את סעיף "חישוב ההחזר" בלבד. שאר הוראות נוהל 2023 נותרו בתוקף. לקוח שמבטל בתוך 14 יום ממועד הרכישה, ולא הגיש תביעה, יקבל החזר מלא של דמי הביטוח שש
-4. `corpus/24_payment_methods:c000` score=0.0291 semR=2 lexR=17 | 24_payment_methods.md
+4. `corpus/24_payment_methods:c000` score=0.0289 semR=2 lexR=18 | 24_payment_methods.md
    מסמך: אמצעי תשלום ופריסת תשלומים סעיף: אמצעי תשלום ופריסת תשלומים אמצעי תשלום: כרטיס אשראי | פריסה מקסימלית: עד 12 תשלומים ללא ריבית אמצעי תשלום: הוראת קבע מחשבון בנק | פריסה מקסימלית: עד 10 תשלומים אמצעי תשלום: העברה בנקאית | פריסה מקסימלי
 5. `corpus/21_claims_sla:c000` score=0.0285 semR=5 lexR=16 | 21_claims_sla.md
    מסמך: אמנת שירות – זמני טיפול בתביעות סעיף: אמנת שירות – זמני טיפול בתביעות שלב: אישור קבלת תביעה | זמן יעד: עד 2 ימי עסקים שלב: ביקור שמאי – רכב | זמן יעד: עד 3 ימי עסקים שלב: ביקור שמאי – דירה (נזק מעל 10,000 ₪) | זמן יעד: עד 5 ימי עסקים 
@@ -406,13 +406,13 @@ API tokens (one embed/question): prompt=737 total=737; avg embed=444.0ms
 
 **Question:** מה תקרת הכיסוי למזומן בביטוח תכולה?
 **Refs:** 12_home_contents_limits.docx
-**Embed ms:** 200.8
+**Embed ms:** 191.7
 
 | Mode | R@5 | RR | vs vector R@5 | vs vector RR |
 | --- | --- | --- | --- | --- |
-| vector | 0 | 0 | - | - |
-| lexical | 1 | 0.3333333333333333 | improved | improved |
-| hybrid | 1 | 0.3333333333333333 | improved | improved |
+| vector | 1 | 0.25 | - | - |
+| lexical | 1 | 1 | unchanged | improved |
+| hybrid | 1 | 1 | unchanged | improved |
 
 ### vector top5
 1. `corpus/03_car_general_terms:c006` score=0.5823 semR=1 lexR=- | 03_car_general_terms.pdf
@@ -421,40 +421,40 @@ API tokens (one embed/question): prompt=737 total=737; avg embed=444.0ms
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 9 – תשלום תגמולי ביטוח סעיף 9 – תשלום תגמולי ביטוח תגמולי הביטוח ישולמו לא יאוחר מ-30 יום ממועד שבו הומצאו למבטח כל המסמכים והמידע הד
 3. `corpus/03_car_general_terms:c004` score=0.5445 semR=3 lexR=- | 03_car_general_terms.pdf
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 4 – דמי הביטוח והצמדה סעיף 4 – דמי הביטוח והצמדה דמי הביטוח וכל סכום אחר המגיע מהמבוטח צמודים למדד המחירים לצרכן. דמי הביטוח ישולמו ב
-4. `corpus/03_car_general_terms:c013` score=0.5259 semR=4 lexR=- | 03_car_general_terms.pdf
+4. `corpus/12_home_contents_limits:c000` score=0.5264 semR=4 lexR=- | 12_home_contents_limits.docx
+   מסמך: ביטוח תכולה – גבולות אחריות סעיף: ביטוח תכולה – גבולות אחריות תכולה מבוטחת לפי ערך כינון (חדש תמורת ישן), עד סכום ביטוח התכולה הנקוב ברשימה. גבולות אחריות לפריטים מסוימים פריט: תכשיטים ושעונים – ללא רשימה מוערכת | גבול אחריות: 10% מסכ
+5. `corpus/03_car_general_terms:c013` score=0.5259 semR=5 lexR=- | 03_car_general_terms.pdf
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 13 – ביטול הביטוח סעיף 13 – ביטול הביטוח המבוטח רשאי לבטל את הביטוח בכל עת בהודעה למבטח. אופן חישוב ההחזר נקבע בנוהל הביטולים של המבט
-5. `corpus/14_travel_policy_overview:c000` score=0.5207 semR=5 lexR=- | 14_travel_policy_overview.md
-   מסמך: ביטוח נסיעות לחו"ל – סקירת כיסויים סעיף: ביטוח נסיעות לחו"ל – סקירת כיסויים כיסוי: הוצאות רפואיות בחו"ל | סכום מקסימלי: עד 1,000,000 $ כיסוי: קיצור נסיעה עקב מקרה רפואי | סכום מקסימלי: עד 10,000 $ כיסוי: ביטול נסיעה (בהרחבה) | סכום מק
 
 ### lexical top5
-1. `corpus/11_home_water_damage:c000` score=7.2334 semR=- lexR=1 | 11_home_water_damage.md
-   מסמך: נזקי מים בביטוח דירה סעיף: נזקי מים בביטוח דירה > מה מכוסה - נזק שנגרם מפריצה או דליפה פתאומית של צנרת מים בתוך הדירה. - נזק לתכולה כתוצאה מאירוע מים מכוסה (אם נרכש פרק תכולה). - תיקון הצנרת עצמה – עד 2,500 ₪ לאירוע. - איתור נזילה – א
-2. `corpus/05_car_third_party:c000` score=4.9774 semR=- lexR=2 | 05_car_third_party.md
-   מסמך: ביטוח צד שלישי (רכוש) – תמצית כיסוי סעיף: ביטוח צד שלישי (רכוש) – תמצית כיסוי ביטוח צד ג' מכסה את חבות המבוטח בגין נזק שגרם הרכב המבוטח לרכוש של אחרים, בעיקר לרכבים אחרים. - גבול אחריות: עד 1,000,000 ₪ לאירוע, לפי הנקוב ברשימה. - השתת
-3. `corpus/12_home_contents_limits:c000` score=3.0342 semR=- lexR=3 | 12_home_contents_limits.docx
+1. `corpus/12_home_contents_limits:c000` score=7.1759 semR=- lexR=1 | 12_home_contents_limits.docx
    מסמך: ביטוח תכולה – גבולות אחריות סעיף: ביטוח תכולה – גבולות אחריות תכולה מבוטחת לפי ערך כינון (חדש תמורת ישן), עד סכום ביטוח התכולה הנקוב ברשימה. גבולות אחריות לפריטים מסוימים פריט: תכשיטים ושעונים – ללא רשימה מוערכת | גבול אחריות: 10% מסכ
-4. `corpus/03_car_general_terms:c006` score=3.0259 semR=- lexR=4 | 03_car_general_terms.pdf
-   מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 6 – אמצעי מיגון סעיף 6 – אמצעי מיגון כאשר נקבע ברשימה כי ברכב יותקן אמצעי מיגון, הכיסוי לגניבה מותנה בכך שאמצעי המיגון הותקן, היה תקי
-5. `corpus/01_car_comprehensive_policy_2024:c000` score=3.0196 semR=- lexR=5 | 01_car_comprehensive_policy_2024.pdf
+2. `corpus/11_home_water_damage:c000` score=7.0439 semR=- lexR=2 | 11_home_water_damage.md
+   מסמך: נזקי מים בביטוח דירה סעיף: נזקי מים בביטוח דירה > מה מכוסה - נזק שנגרם מפריצה או דליפה פתאומית של צנרת מים בתוך הדירה. - נזק לתכולה כתוצאה מאירוע מים מכוסה (אם נרכש פרק תכולה). - תיקון הצנרת עצמה – עד 2,500 ₪ לאירוע. - איתור נזילה – א
+3. `corpus/05_car_third_party:c000` score=4.7654 semR=- lexR=3 | 05_car_third_party.md
+   מסמך: ביטוח צד שלישי (רכוש) – תמצית כיסוי סעיף: ביטוח צד שלישי (רכוש) – תמצית כיסוי ביטוח צד ג' מכסה את חבות המבוטח בגין נזק שגרם הרכב המבוטח לרכוש של אחרים, בעיקר לרכבים אחרים. - גבול אחריות: עד 1,000,000 ₪ לאירוע, לפי הנקוב ברשימה. - השתת
+4. `corpus/01_car_comprehensive_policy_2024:c000` score=3.0411 semR=- lexR=4 | 01_car_comprehensive_policy_2024.pdf
    מסמך: אופק ביטוח בע”מ – פוליסה לביטוח רכב מקיף סעיף: אופק ביטוח בע”מ – פוליסה לביטוח רכב מקיף גרסה 2024 | בתוקף מיום 1.1.2024 מסמך זה מפרט את תנאי הכיסוי בפוליסת רכב מקיף של אופק ביטוח. יש לקרוא אותו יחד עם מסמך “תנאים כלליים לפוליסות רכב” 
+5. `corpus/03_car_general_terms:c006` score=3.0407 semR=- lexR=5 | 03_car_general_terms.pdf
+   מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 6 – אמצעי מיגון סעיף 6 – אמצעי מיגון כאשר נקבע ברשימה כי ברכב יותקן אמצעי מיגון, הכיסוי לגניבה מותנה בכך שאמצעי המיגון הותקן, היה תקי
 
 ### hybrid top5
-1. `corpus/03_car_general_terms:c006` score=0.0320 semR=1 lexR=4 | 03_car_general_terms.pdf
-   מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 6 – אמצעי מיגון סעיף 6 – אמצעי מיגון כאשר נקבע ברשימה כי ברכב יותקן אמצעי מיגון, הכיסוי לגניבה מותנה בכך שאמצעי המיגון הותקן, היה תקי
-2. `corpus/11_home_water_damage:c000` score=0.0313 semR=7 lexR=1 | 11_home_water_damage.md
-   מסמך: נזקי מים בביטוח דירה סעיף: נזקי מים בביטוח דירה > מה מכוסה - נזק שנגרם מפריצה או דליפה פתאומית של צנרת מים בתוך הדירה. - נזק לתכולה כתוצאה מאירוע מים מכוסה (אם נרכש פרק תכולה). - תיקון הצנרת עצמה – עד 2,500 ₪ לאירוע. - איתור נזילה – א
-3. `corpus/12_home_contents_limits:c000` score=0.0304 semR=9 lexR=3 | 12_home_contents_limits.docx
+1. `corpus/12_home_contents_limits:c000` score=0.0320 semR=4 lexR=1 | 12_home_contents_limits.docx
    מסמך: ביטוח תכולה – גבולות אחריות סעיף: ביטוח תכולה – גבולות אחריות תכולה מבוטחת לפי ערך כינון (חדש תמורת ישן), עד סכום ביטוח התכולה הנקוב ברשימה. גבולות אחריות לפריטים מסוימים פריט: תכשיטים ושעונים – ללא רשימה מוערכת | גבול אחריות: 10% מסכ
-4. `corpus/05_car_third_party:c000` score=0.0302 semR=11 lexR=2 | 05_car_third_party.md
+2. `corpus/03_car_general_terms:c006` score=0.0318 semR=1 lexR=5 | 03_car_general_terms.pdf
+   מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 6 – אמצעי מיגון סעיף 6 – אמצעי מיגון כאשר נקבע ברשימה כי ברכב יותקן אמצעי מיגון, הכיסוי לגניבה מותנה בכך שאמצעי המיגון הותקן, היה תקי
+3. `corpus/11_home_water_damage:c000` score=0.0308 semR=8 lexR=2 | 11_home_water_damage.md
+   מסמך: נזקי מים בביטוח דירה סעיף: נזקי מים בביטוח דירה > מה מכוסה - נזק שנגרם מפריצה או דליפה פתאומית של צנרת מים בתוך הדירה. - נזק לתכולה כתוצאה מאירוע מים מכוסה (אם נרכש פרק תכולה). - תיקון הצנרת עצמה – עד 2,500 ₪ לאירוע. - איתור נזילה – א
+4. `corpus/05_car_third_party:c000` score=0.0300 semR=11 lexR=3 | 05_car_third_party.md
    מסמך: ביטוח צד שלישי (רכוש) – תמצית כיסוי סעיף: ביטוח צד שלישי (רכוש) – תמצית כיסוי ביטוח צד ג' מכסה את חבות המבוטח בגין נזק שגרם הרכב המבוטח לרכוש של אחרים, בעיקר לרכבים אחרים. - גבול אחריות: עד 1,000,000 ₪ לאירוע, לפי הנקוב ברשימה. - השתת
-5. `corpus/14_travel_policy_overview:c000` score=0.0289 semR=5 lexR=14 | 14_travel_policy_overview.md
+5. `corpus/14_travel_policy_overview:c000` score=0.0287 semR=6 lexR=14 | 14_travel_policy_overview.md
    מסמך: ביטוח נסיעות לחו"ל – סקירת כיסויים סעיף: ביטוח נסיעות לחו"ל – סקירת כיסויים כיסוי: הוצאות רפואיות בחו"ל | סכום מקסימלי: עד 1,000,000 $ כיסוי: קיצור נסיעה עקב מקרה רפואי | סכום מקסימלי: עד 10,000 $ כיסוי: ביטול נסיעה (בהרחבה) | סכום מק
 
 ## D10 (conflict)
 
 **Question:** האם רכב חלופי ניתן לכל תקופת התיקון?
 **Refs:** 08_replacement_car.md, 09_marketing_brochure_car.md
-**Embed ms:** 231.8
+**Embed ms:** 184.9
 
 | Mode | R@5 | RR | vs vector R@5 | vs vector RR |
 | --- | --- | --- | --- | --- |
@@ -475,15 +475,15 @@ API tokens (one embed/question): prompt=737 total=737; avg embed=444.0ms
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 8 – בירור החבות סעיף 8 – בירור החבות על המבוטח למסור למבטח, בתוך זמן סביר, את המידע והמסמכים הדרושים לבירור החבות. המבטח רשאי למנות ש
 
 ### lexical top5
-1. `corpus/09_marketing_brochure_car:c000` score=12.3250 semR=- lexR=1 | 09_marketing_brochure_car.md
+1. `corpus/09_marketing_brochure_car:c000` score=12.4049 semR=- lexR=1 | 09_marketing_brochure_car.md
    מסמך: ביטוח הרכב של אופק – הכי פשוט שיש! 🚗 סעיף: ביטוח הרכב של אופק – הכי פשוט שיש! 🚗 מצטרפים לאופק ונוסעים בראש שקט. - השתתפות עצמית החל מ-950 ₪ בלבד! - רכב חלופי לכל תקופת התיקון – בלי כוכביות. - גרירות ללא הגבלה, בכל שעה. - הנחה של עד 
-2. `corpus/08_replacement_car:c000` score=7.1307 semR=- lexR=2 | 08_replacement_car.md
+2. `corpus/08_replacement_car:c000` score=7.1650 semR=- lexR=2 | 08_replacement_car.md
    מסמך: כתב שירות רכב חלופי סעיף: כתב שירות רכב חלופי רכב חלופי ניתן רק למבוטחים שרכשו כתב שירות זה. הוא אינו חלק מהכיסוי הבסיסי בפוליסת מקיף. אירוע: תאונה – כל עוד הרכב בתיקון במוסך הסדר | תקופה מקסימלית: עד 21 ימים אירוע: גניבה או אובדן גמו
-3. `corpus/16_travel_luggage:c000` score=4.9535 semR=- lexR=3 | 16_travel_luggage.md
+3. `corpus/16_travel_luggage:c000` score=4.9912 semR=- lexR=3 | 16_travel_luggage.md
    מסמך: כבודה בביטוח נסיעות סעיף: כבודה בביטוח נסיעות > אובדן, גניבה או נזק - עד 500 $ לפריט. - עד 2,000 $ לנוסע לכל תקופת הנסיעה. - טלפון נייד, מחשב נייד, טאבלט ומצלמה: מכוסים רק עם הרחבת "גאדג'טים", עד 1,000 $ לפריט. משך העיכוב: מעל 6 שעות 
-4. `corpus/03_car_general_terms:c003` score=4.6101 semR=- lexR=4 | 03_car_general_terms.pdf
+4. `corpus/03_car_general_terms:c003` score=4.6214 semR=- lexR=4 | 03_car_general_terms.pdf
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 3 – תקופת הביטוח סעיף 3 – תקופת הביטוח תקופת הביטוח היא התקופה הנקובה ברשימה. הביטוח יתחדש רק בהסכמת שני הצדדים. חידוש הפוליסה כפוף ל
-5. `corpus/03_car_general_terms:c014` score=3.7090 semR=- lexR=5 | 03_car_general_terms.pdf
+5. `corpus/03_car_general_terms:c014` score=3.7228 semR=- lexR=5 | 03_car_general_terms.pdf
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 14 – התיישנות סעיף 14 – התיישנות תקופת ההתיישנות של תביעה לתגמולי ביטוח היא שלוש שנים מיום קרות מקרה הביטוח.
 
 ### hybrid top5
@@ -491,18 +491,18 @@ API tokens (one embed/question): prompt=737 total=737; avg embed=444.0ms
    מסמך: כתב שירות רכב חלופי סעיף: כתב שירות רכב חלופי רכב חלופי ניתן רק למבוטחים שרכשו כתב שירות זה. הוא אינו חלק מהכיסוי הבסיסי בפוליסת מקיף. אירוע: תאונה – כל עוד הרכב בתיקון במוסך הסדר | תקופה מקסימלית: עד 21 ימים אירוע: גניבה או אובדן גמו
 2. `corpus/09_marketing_brochure_car:c000` score=0.0323 semR=3 lexR=1 | 09_marketing_brochure_car.md
    מסמך: ביטוח הרכב של אופק – הכי פשוט שיש! 🚗 סעיף: ביטוח הרכב של אופק – הכי פשוט שיש! 🚗 מצטרפים לאופק ונוסעים בראש שקט. - השתתפות עצמית החל מ-950 ₪ בלבד! - רכב חלופי לכל תקופת התיקון – בלי כוכביות. - גרירות ללא הגבלה, בכל שעה. - הנחה של עד 
-3. `corpus/03_car_general_terms:c003` score=0.0291 semR=14 lexR=4 | 03_car_general_terms.pdf
+3. `corpus/03_car_general_terms:c003` score=0.0293 semR=13 lexR=4 | 03_car_general_terms.pdf
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 3 – תקופת הביטוח סעיף 3 – תקופת הביטוח תקופת הביטוח היא התקופה הנקובה ברשימה. הביטוח יתחדש רק בהסכמת שני הצדדים. חידוש הפוליסה כפוף ל
 4. `corpus/03_car_general_terms:c006` score=0.0288 semR=4 lexR=16 | 03_car_general_terms.pdf
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 6 – אמצעי מיגון סעיף 6 – אמצעי מיגון כאשר נקבע ברשימה כי ברכב יותקן אמצעי מיגון, הכיסוי לגניבה מותנה בכך שאמצעי המיגון הותקן, היה תקי
-5. `corpus/03_car_general_terms:c014` score=0.0284 semR=17 lexR=5 | 03_car_general_terms.pdf
+5. `corpus/03_car_general_terms:c014` score=0.0285 semR=16 lexR=5 | 03_car_general_terms.pdf
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 14 – התיישנות סעיף 14 – התיישנות תקופת ההתיישנות של תביעה לתגמולי ביטוח היא שלוש שנים מיום קרות מקרה הביטוח.
 
 ## D11 (table)
 
 **Question:** המזוודה של נוסע הגיעה באיחור של 8 שעות. לכמה פיצוי הוא זכאי?
 **Refs:** 16_travel_luggage.md
-**Embed ms:** 233.0
+**Embed ms:** 223.2
 
 | Mode | R@5 | RR | vs vector R@5 | vs vector RR |
 | --- | --- | --- | --- | --- |
@@ -523,16 +523,16 @@ API tokens (one embed/question): prompt=737 total=737; avg embed=444.0ms
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 7 – הודעה על מקרה ביטוח סעיף 7 – הודעה על מקרה ביטוח קרה מקרה ביטוח, על המבוטח להודיע על כך למבטח מיד לאחר שנודע לו, ולא יאוחר מ-30 י
 
 ### lexical top5
-1. `corpus/16_travel_luggage:c000` score=6.9798 semR=- lexR=1 | 16_travel_luggage.md
+1. `corpus/16_travel_luggage:c000` score=7.0125 semR=- lexR=1 | 16_travel_luggage.md
    מסמך: כבודה בביטוח נסיעות סעיף: כבודה בביטוח נסיעות > אובדן, גניבה או נזק - עד 500 $ לפריט. - עד 2,000 $ לנוסע לכל תקופת הנסיעה. - טלפון נייד, מחשב נייד, טאבלט ומצלמה: מכוסים רק עם הרחבת "גאדג'טים", עד 1,000 $ לפריט. משך העיכוב: מעל 6 שעות 
-2. `corpus/03_car_general_terms:c008` score=4.4972 semR=- lexR=2 | 03_car_general_terms.pdf
+2. `corpus/03_car_general_terms:c008` score=4.5156 semR=- lexR=2 | 03_car_general_terms.pdf
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 8 – בירור החבות סעיף 8 – בירור החבות על המבוטח למסור למבטח, בתוך זמן סביר, את המידע והמסמכים הדרושים לבירור החבות. המבטח רשאי למנות ש
-3. `corpus/08_replacement_car:c000` score=4.3298 semR=- lexR=3 | 08_replacement_car.md
+3. `corpus/08_replacement_car:c000` score=4.3648 semR=- lexR=3 | 08_replacement_car.md
    מסמך: כתב שירות רכב חלופי סעיף: כתב שירות רכב חלופי רכב חלופי ניתן רק למבוטחים שרכשו כתב שירות זה. הוא אינו חלק מהכיסוי הבסיסי בפוליסת מקיף. אירוע: תאונה – כל עוד הרכב בתיקון במוסך הסדר | תקופה מקסימלית: עד 21 ימים אירוע: גניבה או אובדן גמו
-4. `corpus/09_marketing_brochure_car:c000` score=3.9653 semR=- lexR=4 | 09_marketing_brochure_car.md
+4. `corpus/09_marketing_brochure_car:c000` score=3.9317 semR=- lexR=4 | 09_marketing_brochure_car.md
    מסמך: ביטוח הרכב של אופק – הכי פשוט שיש! 🚗 סעיף: ביטוח הרכב של אופק – הכי פשוט שיש! 🚗 מצטרפים לאופק ונוסעים בראש שקט. - השתתפות עצמית החל מ-950 ₪ בלבד! - רכב חלופי לכל תקופת התיקון – בלי כוכביות. - גרירות ללא הגבלה, בכל שעה. - הנחה של עד 
-5. `corpus/31_ofek_plus_vip:c000` score=3.4769 semR=- lexR=5 | 31_ofek_plus_vip.docx
-   מסמך: נוהל לקוחות “אופק פלוס” סעיף: נוהל לקוחות “אופק פלוס” > מי זכאי לקוח שמחזיק 3 פוליסות פעילות או יותר באופק ביטוח (בכל שילוב של רכב, דירה ונסיעות). הטבות הטבה: נציג אישי | פירוט: נציג קבוע עם קו ישיר הטבה: הנחה בהשתתפות עצמית ברכב | פי
+5. `corpus/03_car_general_terms:c010` score=3.4879 semR=- lexR=5 | 03_car_general_terms.pdf
+   מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 10 – ריבוי ביטוחים סעיף 10 – ריבוי ביטוחים בוטח הרכב אצל יותר ממבטח אחד לאותו סיכון ולאותה תקופה, על המבוטח להודיע על כך למבטח מיד. ב
 
 ### hybrid top5
 1. `corpus/16_travel_luggage:c000` score=0.0325 semR=2 lexR=1 | 16_travel_luggage.md
@@ -543,25 +543,25 @@ API tokens (one embed/question): prompt=737 total=737; avg embed=444.0ms
    מסמך: ביטוח נסיעות לחו"ל – סקירת כיסויים סעיף: ביטוח נסיעות לחו"ל – סקירת כיסויים כיסוי: הוצאות רפואיות בחו"ל | סכום מקסימלי: עד 1,000,000 $ כיסוי: קיצור נסיעה עקב מקרה רפואי | סכום מקסימלי: עד 10,000 $ כיסוי: ביטול נסיעה (בהרחבה) | סכום מק
 4. `corpus/03_car_general_terms:c007` score=0.0295 semR=5 lexR=11 | 03_car_general_terms.pdf
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 7 – הודעה על מקרה ביטוח סעיף 7 – הודעה על מקרה ביטוח קרה מקרה ביטוח, על המבוטח להודיע על כך למבטח מיד לאחר שנודע לו, ולא יאוחר מ-30 י
-5. `corpus/03_car_general_terms:c010` score=0.0290 semR=12 lexR=6 | 03_car_general_terms.pdf
+5. `corpus/03_car_general_terms:c010` score=0.0293 semR=12 lexR=5 | 03_car_general_terms.pdf
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 10 – ריבוי ביטוחים סעיף 10 – ריבוי ביטוחים בוטח הרכב אצל יותר ממבטח אחד לאותו סיכון ולאותה תקופה, על המבוטח להודיע על כך למבטח מיד. ב
 
 ## D12 (factual)
 
 **Question:** כמה גרירות מקבלים בשנת ביטוח?
 **Refs:** 07_towing_roadside.md
-**Embed ms:** 214.7
+**Embed ms:** 205.4
 
 | Mode | R@5 | RR | vs vector R@5 | vs vector RR |
 | --- | --- | --- | --- | --- |
 | vector | 0 | 0 | - | - |
 | lexical | 1 | 1 | improved | improved |
-| hybrid | 1 | 0.3333333333333333 | improved | improved |
+| hybrid | 1 | 0.25 | improved | improved |
 
 ### vector top5
 1. `corpus/03_car_general_terms:c014` score=0.5400 semR=1 lexR=- | 03_car_general_terms.pdf
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 14 – התיישנות סעיף 14 – התיישנות תקופת ההתיישנות של תביעה לתגמולי ביטוח היא שלוש שנים מיום קרות מקרה הביטוח.
-2. `corpus/12_home_contents_limits:c000` score=0.5220 semR=2 lexR=- | 12_home_contents_limits.docx
+2. `corpus/12_home_contents_limits:c000` score=0.5275 semR=2 lexR=- | 12_home_contents_limits.docx
    מסמך: ביטוח תכולה – גבולות אחריות סעיף: ביטוח תכולה – גבולות אחריות תכולה מבוטחת לפי ערך כינון (חדש תמורת ישן), עד סכום ביטוח התכולה הנקוב ברשימה. גבולות אחריות לפריטים מסוימים פריט: תכשיטים ושעונים – ללא רשימה מוערכת | גבול אחריות: 10% מסכ
 3. `corpus/05_car_third_party:c000` score=0.5193 semR=3 lexR=- | 05_car_third_party.md
    מסמך: ביטוח צד שלישי (רכוש) – תמצית כיסוי סעיף: ביטוח צד שלישי (רכוש) – תמצית כיסוי ביטוח צד ג' מכסה את חבות המבוטח בגין נזק שגרם הרכב המבוטח לרכוש של אחרים, בעיקר לרכבים אחרים. - גבול אחריות: עד 1,000,000 ₪ לאירוע, לפי הנקוב ברשימה. - השתת
@@ -571,15 +571,15 @@ API tokens (one embed/question): prompt=737 total=737; avg embed=444.0ms
    מסמך: מילון מונחים – Glossary סעיף: מילון מונחים – Glossary עברית: השתתפות עצמית | English: Deductible / Excess | הסבר: הסכום שהמבוטח נושא בו בכל מקרה ביטוח עברית: סכום ביטוח | English: Sum Insured | הסבר: הסכום המרבי שהמבטח ישלם עברית: פרמ
 
 ### lexical top5
-1. `corpus/07_towing_roadside:c000` score=7.4438 semR=- lexR=1 | 07_towing_roadside.md
+1. `corpus/07_towing_roadside:c000` score=7.4449 semR=- lexR=1 | 07_towing_roadside.md
    מסמך: כתב שירות גרירה ושירותי דרך סעיף: כתב שירות גרירה ושירותי דרך השירות ניתן 24 שעות ביממה, 7 ימים בשבוע, דרך מוקד *6789 שלוחה 2. שירות: גרירה לאחר תאונה או תקלה | מגבלה בשנת ביטוח: עד 4 גרירות שירות: שירותי דרך (התנעה, החלפת גלגל, פתיחת
-2. `corpus/32_fraud_red_flags:c000` score=4.0797 semR=- lexR=2 | 32_fraud_red_flags.md
+2. `corpus/32_fraud_red_flags:c000` score=4.1040 semR=- lexR=2 | 32_fraud_red_flags.md
    מסמך: סימנים מחשידים בתביעות – פנימי סעיף: סימנים מחשידים בתביעות – פנימי נציג שמזהה אחד או יותר מהסימנים הבאים מסמן את התביעה "לבדיקה" ואינו משתף את הלקוח בחשד. - דיווח על תאונה בתוך 30 יום מתחילת הפוליסה. - גניבת רכב ללא אפשרות להציג את ש
-3. `corpus/09_marketing_brochure_car:c000` score=3.7578 semR=- lexR=3 | 09_marketing_brochure_car.md
+3. `corpus/09_marketing_brochure_car:c000` score=3.7501 semR=- lexR=3 | 09_marketing_brochure_car.md
    מסמך: ביטוח הרכב של אופק – הכי פשוט שיש! 🚗 סעיף: ביטוח הרכב של אופק – הכי פשוט שיש! 🚗 מצטרפים לאופק ונוסעים בראש שקט. - השתתפות עצמית החל מ-950 ₪ בלבד! - רכב חלופי לכל תקופת התיקון – בלי כוכביות. - גרירות ללא הגבלה, בכל שעה. - הנחה של עד 
-4. `corpus/06_windshield_service:c000` score=3.2187 semR=- lexR=4 | 06_windshield_service.md
+4. `corpus/06_windshield_service:c000` score=3.2110 semR=- lexR=4 | 06_windshield_service.md
    מסמך: כתב שירות שמשות סעיף: כתב שירות שמשות השירות ניתן באמצעות רשת "שמשות אופק" בלבד, בכל רחבי הארץ. - ברשת שמשות אופק: החלפה או תיקון של שמשה קדמית, אחורית וצדדיות, ללא השתתפות עצמית. - מחוץ לרשת: החזר עד מחיר הרשת, בניכוי השתתפות עצמית ש
-5. `corpus/31_ofek_plus_vip:c000` score=3.0866 semR=- lexR=5 | 31_ofek_plus_vip.docx
+5. `corpus/31_ofek_plus_vip:c000` score=3.0665 semR=- lexR=5 | 31_ofek_plus_vip.docx
    מסמך: נוהל לקוחות “אופק פלוס” סעיף: נוהל לקוחות “אופק פלוס” > מי זכאי לקוח שמחזיק 3 פוליסות פעילות או יותר באופק ביטוח (בכל שילוב של רכב, דירה ונסיעות). הטבות הטבה: נציג אישי | פירוט: נציג קבוע עם קו ישיר הטבה: הנחה בהשתתפות עצמית ברכב | פי
 
 ### hybrid top5
@@ -587,18 +587,18 @@ API tokens (one embed/question): prompt=737 total=737; avg embed=444.0ms
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 14 – התיישנות סעיף 14 – התיישנות תקופת ההתיישנות של תביעה לתגמולי ביטוח היא שלוש שנים מיום קרות מקרה הביטוח.
 2. `corpus/03_car_general_terms:c009` score=0.0306 semR=4 lexR=7 | 03_car_general_terms.pdf
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 9 – תשלום תגמולי ביטוח סעיף 9 – תשלום תגמולי ביטוח תגמולי הביטוח ישולמו לא יאוחר מ-30 יום ממועד שבו הומצאו למבטח כל המסמכים והמידע הד
-3. `corpus/07_towing_roadside:c000` score=0.0294 semR=17 lexR=1 | 07_towing_roadside.md
+3. `corpus/12_home_contents_limits:c000` score=0.0296 semR=2 lexR=14 | 12_home_contents_limits.docx
+   מסמך: ביטוח תכולה – גבולות אחריות סעיף: ביטוח תכולה – גבולות אחריות תכולה מבוטחת לפי ערך כינון (חדש תמורת ישן), עד סכום ביטוח התכולה הנקוב ברשימה. גבולות אחריות לפריטים מסוימים פריט: תכשיטים ושעונים – ללא רשימה מוערכת | גבול אחריות: 10% מסכ
+4. `corpus/07_towing_roadside:c000` score=0.0292 semR=18 lexR=1 | 07_towing_roadside.md
    מסמך: כתב שירות גרירה ושירותי דרך סעיף: כתב שירות גרירה ושירותי דרך השירות ניתן 24 שעות ביממה, 7 ימים בשבוע, דרך מוקד *6789 שלוחה 2. שירות: גרירה לאחר תאונה או תקלה | מגבלה בשנת ביטוח: עד 4 גרירות שירות: שירותי דרך (התנעה, החלפת גלגל, פתיחת
-4. `corpus/05_car_third_party:c000` score=0.0292 semR=3 lexR=15 | 05_car_third_party.md
+5. `corpus/05_car_third_party:c000` score=0.0290 semR=3 lexR=16 | 05_car_third_party.md
    מסמך: ביטוח צד שלישי (רכוש) – תמצית כיסוי סעיף: ביטוח צד שלישי (רכוש) – תמצית כיסוי ביטוח צד ג' מכסה את חבות המבוטח בגין נזק שגרם הרכב המבוטח לרכוש של אחרים, בעיקר לרכבים אחרים. - גבול אחריות: עד 1,000,000 ₪ לאירוע, לפי הנקוב ברשימה. - השתת
-5. `corpus/09_marketing_brochure_car:c000` score=0.0290 semR=16 lexR=3 | 09_marketing_brochure_car.md
-   מסמך: ביטוח הרכב של אופק – הכי פשוט שיש! 🚗 סעיף: ביטוח הרכב של אופק – הכי פשוט שיש! 🚗 מצטרפים לאופק ונוסעים בראש שקט. - השתתפות עצמית החל מ-950 ₪ בלבד! - רכב חלופי לכל תקופת התיקון – בלי כוכביות. - גרירות ללא הגבלה, בכל שעה. - הנחה של עד 
 
 ## D13 (table)
 
 **Question:** נוסעת בשבוע 28 להריון. האם סיבוכי הריון מכוסים בחו"ל?
 **Refs:** 15_travel_preexisting_conditions.docx
-**Embed ms:** 205.0
+**Embed ms:** 209.4
 
 | Mode | R@5 | RR | vs vector R@5 | vs vector RR |
 | --- | --- | --- | --- | --- |
@@ -619,15 +619,15 @@ API tokens (one embed/question): prompt=737 total=737; avg embed=444.0ms
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 5 – שינוי בעניין מהותי סעיף 5 – שינוי בעניין מהותי על המבוטח להודיע למבטח מיד על כל שינוי בעניין מהותי, לרבות שינוי בזהות הנהגים, שינ
 
 ### lexical top5
-1. `corpus/15_travel_preexisting_conditions:c000` score=8.5005 semR=- lexR=1 | 15_travel_preexisting_conditions.docx
+1. `corpus/15_travel_preexisting_conditions:c000` score=8.5413 semR=- lexR=1 | 15_travel_preexisting_conditions.docx
    מסמך: מצב רפואי קודם בביטוח נסיעות סעיף: מצב רפואי קודם בביטוח נסיעות > עיקרון מצב רפואי שהיה קיים לפני הנסיעה מכוסה רק אם הוצהר מראש ואושר על ידי חתמות רפואית. 1. מילוי הצהרת בריאות (טופס 3002). 2. המצב יציב: לא חל שינוי בטיפול התרופתי ולא
-2. `corpus/14_travel_policy_overview:c000` score=5.3494 semR=- lexR=2 | 14_travel_policy_overview.md
+2. `corpus/14_travel_policy_overview:c000` score=5.2691 semR=- lexR=2 | 14_travel_policy_overview.md
    מסמך: ביטוח נסיעות לחו"ל – סקירת כיסויים סעיף: ביטוח נסיעות לחו"ל – סקירת כיסויים כיסוי: הוצאות רפואיות בחו"ל | סכום מקסימלי: עד 1,000,000 $ כיסוי: קיצור נסיעה עקב מקרה רפואי | סכום מקסימלי: עד 10,000 $ כיסוי: ביטול נסיעה (בהרחבה) | סכום מק
-3. `corpus/07_towing_roadside:c000` score=3.3086 semR=- lexR=3 | 07_towing_roadside.md
+3. `corpus/07_towing_roadside:c000` score=3.3365 semR=- lexR=3 | 07_towing_roadside.md
    מסמך: כתב שירות גרירה ושירותי דרך סעיף: כתב שירות גרירה ושירותי דרך השירות ניתן 24 שעות ביממה, 7 ימים בשבוע, דרך מוקד *6789 שלוחה 2. שירות: גרירה לאחר תאונה או תקלה | מגבלה בשנת ביטוח: עד 4 גרירות שירות: שירותי דרך (התנעה, החלפת גלגל, פתיחת
-4. `corpus/16_travel_luggage:c000` score=2.7068 semR=- lexR=4 | 16_travel_luggage.md
+4. `corpus/16_travel_luggage:c000` score=2.7274 semR=- lexR=4 | 16_travel_luggage.md
    מסמך: כבודה בביטוח נסיעות סעיף: כבודה בביטוח נסיעות > אובדן, גניבה או נזק - עד 500 $ לפריט. - עד 2,000 $ לנוסע לכל תקופת הנסיעה. - טלפון נייד, מחשב נייד, טאבלט ומצלמה: מכוסים רק עם הרחבת "גאדג'טים", עד 1,000 $ לפריט. משך העיכוב: מעל 6 שעות 
-5. `corpus/12_home_contents_limits:c000` score=2.3478 semR=- lexR=5 | 12_home_contents_limits.docx
+5. `corpus/12_home_contents_limits:c000` score=2.2274 semR=- lexR=5 | 12_home_contents_limits.docx
    מסמך: ביטוח תכולה – גבולות אחריות סעיף: ביטוח תכולה – גבולות אחריות תכולה מבוטחת לפי ערך כינון (חדש תמורת ישן), עד סכום ביטוח התכולה הנקוב ברשימה. גבולות אחריות לפריטים מסוימים פריט: תכשיטים ושעונים – ללא רשימה מוערכת | גבול אחריות: 10% מסכ
 
 ### hybrid top5
@@ -646,7 +646,7 @@ API tokens (one embed/question): prompt=737 total=737; avg embed=444.0ms
 
 **Question:** מה ההשתתפות העצמית ברעידת אדמה בפרק המבנה?
 **Refs:** 13_home_earthquake_annex.pdf
-**Embed ms:** 275.4
+**Embed ms:** 274.2
 
 | Mode | R@5 | RR | vs vector R@5 | vs vector RR |
 | --- | --- | --- | --- | --- |
@@ -661,21 +661,21 @@ API tokens (one embed/question): prompt=737 total=737; avg embed=444.0ms
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 12 – חריגים כלליים סעיף 12 – חריגים כלליים המבטח לא יהיה אחראי לאובדן או לנזק שנגרמו: (א) בעת שהרכב היה נהוג בידי מי שאינו נהג מורשה 
 3. `corpus/19_claims_process_home:c000` score=0.2284 semR=3 lexR=- | 19_claims_process_home.md
    מסמך: נוהל טיפול בתביעת דירה – למוקד סעיף: נוהל טיפול בתביעת דירה – למוקד 1. זיהוי הלקוח לפי נוהל זיהוי לקוח. 2. מילוי טופס 2010 – הודעה על נזק בדירה. 3. בקשת צילומים של הנזק לפני כל תיקון. 4. בפריצה: אישור תלונה במשטרה. 5. בנזקי מים: חשבונ
-4. `corpus/09_marketing_brochure_car:c000` score=0.2279 semR=4 lexR=- | 09_marketing_brochure_car.md
+4. `corpus/09_marketing_brochure_car:c000` score=0.2278 semR=4 lexR=- | 09_marketing_brochure_car.md
    מסמך: ביטוח הרכב של אופק – הכי פשוט שיש! 🚗 סעיף: ביטוח הרכב של אופק – הכי פשוט שיש! 🚗 מצטרפים לאופק ונוסעים בראש שקט. - השתתפות עצמית החל מ-950 ₪ בלבד! - רכב חלופי לכל תקופת התיקון – בלי כוכביות. - גרירות ללא הגבלה, בכל שעה. - הנחה של עד 
-5. `corpus/21_claims_sla:c000` score=0.2187 semR=5 lexR=- | 21_claims_sla.md
+5. `corpus/21_claims_sla:c000` score=0.2186 semR=5 lexR=- | 21_claims_sla.md
    מסמך: אמנת שירות – זמני טיפול בתביעות סעיף: אמנת שירות – זמני טיפול בתביעות שלב: אישור קבלת תביעה | זמן יעד: עד 2 ימי עסקים שלב: ביקור שמאי – רכב | זמן יעד: עד 3 ימי עסקים שלב: ביקור שמאי – דירה (נזק מעל 10,000 ₪) | זמן יעד: עד 5 ימי עסקים 
 
 ### lexical top5
-1. `corpus/13_home_earthquake_annex:c000` score=18.4446 semR=- lexR=1 | 13_home_earthquake_annex.pdf
+1. `corpus/13_home_earthquake_annex:c000` score=18.5410 semR=- lexR=1 | 13_home_earthquake_annex.pdf
    מסמך: נספח רעידת אדמה ונזקי טבע – ביטוח דירה סעיף: נספח רעידת אדמה ונזקי טבע – ביטוח דירה נספח זה חל על מבוטחים שרכשו כיסוי רעידת אדמה בפרק המבנה ו/או בפרק התכולה. השתתפות עצמית ברעידת אדמה נספח רעידת אדמה ונזקי טבע – ביטוח דירה פרק: מבנה |
-2. `corpus/10_home_policy_overview:c000` score=7.1715 semR=- lexR=2 | 10_home_policy_overview.md
+2. `corpus/10_home_policy_overview:c000` score=7.2173 semR=- lexR=2 | 10_home_policy_overview.md
    מסמך: ביטוח דירה – מבנה הפוליסה סעיף: ביטוח דירה – מבנה הפוליסה פוליסת הדירה של אופק בנויה משני פרקים עצמאיים. אפשר לרכוש אחד מהם או את שניהם. מכסה את מבנה הדירה, לרבות מערכות קבועות (צנרת, חשמל, ריצוף, מטבח קבוע), מפני אש, נזקי מים, פריצה,
-3. `corpus/02_car_comprehensive_policy_2026:c000` score=6.7382 semR=- lexR=3 | 02_car_comprehensive_policy_2026.pdf
+3. `corpus/02_car_comprehensive_policy_2026:c000` score=6.7726 semR=- lexR=3 | 02_car_comprehensive_policy_2026.pdf
    מסמך: אופק ביטוח בע”מ – פוליסה לביטוח רכב מקיף סעיף: אופק ביטוח בע”מ – פוליסה לביטוח רכב מקיף גרסה 2026 | בתוקף לפוליסות שהונפקו או חודשו מיום 1.3.2026 ואילך פוליסות שהונפקו או חודשו לפני 1.3.2026 ממשיכות לפעול לפי גרסת 2024 עד מועד החידוש 
-4. `corpus/01_car_comprehensive_policy_2024:c000` score=6.6858 semR=- lexR=4 | 01_car_comprehensive_policy_2024.pdf
+4. `corpus/01_car_comprehensive_policy_2024:c000` score=6.7202 semR=- lexR=4 | 01_car_comprehensive_policy_2024.pdf
    מסמך: אופק ביטוח בע”מ – פוליסה לביטוח רכב מקיף סעיף: אופק ביטוח בע”מ – פוליסה לביטוח רכב מקיף גרסה 2024 | בתוקף מיום 1.1.2024 מסמך זה מפרט את תנאי הכיסוי בפוליסת רכב מקיף של אופק ביטוח. יש לקרוא אותו יחד עם מסמך “תנאים כלליים לפוליסות רכב” 
-5. `corpus/31_ofek_plus_vip:c000` score=5.4626 semR=- lexR=5 | 31_ofek_plus_vip.docx
+5. `corpus/31_ofek_plus_vip:c000` score=5.4953 semR=- lexR=5 | 31_ofek_plus_vip.docx
    מסמך: נוהל לקוחות “אופק פלוס” סעיף: נוהל לקוחות “אופק פלוס” > מי זכאי לקוח שמחזיק 3 פוליסות פעילות או יותר באופק ביטוח (בכל שילוב של רכב, דירה ונסיעות). הטבות הטבה: נציג אישי | פירוט: נציג קבוע עם קו ישיר הטבה: הנחה בהשתתפות עצמית ברכב | פי
 
 ### hybrid top5
@@ -685,16 +685,16 @@ API tokens (one embed/question): prompt=737 total=737; avg embed=444.0ms
    מסמך: ביטוח דירה – מבנה הפוליסה סעיף: ביטוח דירה – מבנה הפוליסה פוליסת הדירה של אופק בנויה משני פרקים עצמאיים. אפשר לרכוש אחד מהם או את שניהם. מכסה את מבנה הדירה, לרבות מערכות קבועות (צנרת, חשמל, ריצוף, מטבח קבוע), מפני אש, נזקי מים, פריצה,
 3. `corpus/31_ofek_plus_vip:c000` score=0.0303 semR=7 lexR=5 | 31_ofek_plus_vip.docx
    מסמך: נוהל לקוחות “אופק פלוס” סעיף: נוהל לקוחות “אופק פלוס” > מי זכאי לקוח שמחזיק 3 פוליסות פעילות או יותר באופק ביטוח (בכל שילוב של רכב, דירה ונסיעות). הטבות הטבה: נציג אישי | פירוט: נציג קבוע עם קו ישיר הטבה: הנחה בהשתתפות עצמית ברכב | פי
-4. `corpus/06_windshield_service:c000` score=0.0275 semR=18 lexR=8 | 06_windshield_service.md
+4. `corpus/06_windshield_service:c000` score=0.0277 semR=17 lexR=8 | 06_windshield_service.md
    מסמך: כתב שירות שמשות סעיף: כתב שירות שמשות השירות ניתן באמצעות רשת "שמשות אופק" בלבד, בכל רחבי הארץ. - ברשת שמשות אופק: החלפה או תיקון של שמשה קדמית, אחורית וצדדיות, ללא השתתפות עצמית. - מחוץ לרשת: החזר עד מחיר הרשת, בניכוי השתתפות עצמית ש
-5. `corpus/11_home_water_damage:c000` score=0.0266 semR=21 lexR=10 | 11_home_water_damage.md
+5. `corpus/11_home_water_damage:c000` score=0.0268 semR=20 lexR=10 | 11_home_water_damage.md
    מסמך: נזקי מים בביטוח דירה סעיף: נזקי מים בביטוח דירה > מה מכוסה - נזק שנגרם מפריצה או דליפה פתאומית של צנרת מים בתוך הדירה. - נזק לתכולה כתוצאה מאירוע מים מכוסה (אם נרכש פרק תכולה). - תיקון הצנרת עצמה – עד 2,500 ₪ לאירוע. - איתור נזילה – א
 
 ## D15 (factual)
 
 **Question:** תוך כמה זמן יש להגיש תלונה במשטרה על גניבת רכב?
 **Refs:** 03_car_general_terms.pdf, 18_claims_process_car.md
-**Embed ms:** 209.8
+**Embed ms:** 189.5
 
 | Mode | R@5 | RR | vs vector R@5 | vs vector RR |
 | --- | --- | --- | --- | --- |
@@ -715,15 +715,15 @@ API tokens (one embed/question): prompt=737 total=737; avg embed=444.0ms
    מסמך: כבודה בביטוח נסיעות סעיף: כבודה בביטוח נסיעות > אובדן, גניבה או נזק - עד 500 $ לפריט. - עד 2,000 $ לנוסע לכל תקופת הנסיעה. - טלפון נייד, מחשב נייד, טאבלט ומצלמה: מכוסים רק עם הרחבת "גאדג'טים", עד 1,000 $ לפריט. משך העיכוב: מעל 6 שעות 
 
 ### lexical top5
-1. `corpus/03_car_general_terms:c007` score=10.7847 semR=- lexR=1 | 03_car_general_terms.pdf
+1. `corpus/03_car_general_terms:c007` score=10.8487 semR=- lexR=1 | 03_car_general_terms.pdf
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 7 – הודעה על מקרה ביטוח סעיף 7 – הודעה על מקרה ביטוח קרה מקרה ביטוח, על המבוטח להודיע על כך למבטח מיד לאחר שנודע לו, ולא יאוחר מ-30 י
-2. `corpus/32_fraud_red_flags:c000` score=9.4571 semR=- lexR=2 | 32_fraud_red_flags.md
+2. `corpus/32_fraud_red_flags:c000` score=9.5092 semR=- lexR=2 | 32_fraud_red_flags.md
    מסמך: סימנים מחשידים בתביעות – פנימי סעיף: סימנים מחשידים בתביעות – פנימי נציג שמזהה אחד או יותר מהסימנים הבאים מסמן את התביעה "לבדיקה" ואינו משתף את הלקוח בחשד. - דיווח על תאונה בתוך 30 יום מתחילת הפוליסה. - גניבת רכב ללא אפשרות להציג את ש
-3. `corpus/19_claims_process_home:c000` score=6.5209 semR=- lexR=3 | 19_claims_process_home.md
+3. `corpus/19_claims_process_home:c000` score=6.5619 semR=- lexR=3 | 19_claims_process_home.md
    מסמך: נוהל טיפול בתביעת דירה – למוקד סעיף: נוהל טיפול בתביעת דירה – למוקד 1. זיהוי הלקוח לפי נוהל זיהוי לקוח. 2. מילוי טופס 2010 – הודעה על נזק בדירה. 3. בקשת צילומים של הנזק לפני כל תיקון. 4. בפריצה: אישור תלונה במשטרה. 5. בנזקי מים: חשבונ
-4. `corpus/27_customer_complaints:c000` score=6.2277 semR=- lexR=4 | 27_customer_complaints.md
+4. `corpus/27_customer_complaints:c000` score=6.2639 semR=- lexR=4 | 27_customer_complaints.md
    מסמך: טיפול בפניות ותלונות לקוחות סעיף: טיפול בפניות ותלונות לקוחות > מסלול הטיפול 1. נציג – מנסה לפתור במקום. 2. ראש צוות – אם הלקוח לא מרוצה, מעבירים בתוך יום עסקים. 3. ממונה פניות הציבור – תלונה בכתב בטופס 5001 או במייל. מענה בתוך 14 יום
-5. `corpus/16_travel_luggage:c000` score=5.8889 semR=- lexR=5 | 16_travel_luggage.md
+5. `corpus/16_travel_luggage:c000` score=5.9268 semR=- lexR=5 | 16_travel_luggage.md
    מסמך: כבודה בביטוח נסיעות סעיף: כבודה בביטוח נסיעות > אובדן, גניבה או נזק - עד 500 $ לפריט. - עד 2,000 $ לנוסע לכל תקופת הנסיעה. - טלפון נייד, מחשב נייד, טאבלט ומצלמה: מכוסים רק עם הרחבת "גאדג'טים", עד 1,000 $ לפריט. משך העיכוב: מעל 6 שעות 
 
 ### hybrid top5

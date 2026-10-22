@@ -63,17 +63,21 @@ Embedding choice: cheap/fast for a small Hebrew+English corpus with a local inde
 
 ## Retrieval — why Hybrid
 
-One experiment (no heavy tuning) on 14 questions with reference sources:
+Active path: **hybrid** (BM25 + vector via equal-weight RRF). `pnpm eval:retrieval` defaults to **vector** only — do not mix those numbers with Hybrid.
 
-| Mode | R@5 | MRR |
-| --- | --- | --- |
-| vector | 0.643 | 0.589 |
-| lexical | 0.857 | 0.952 |
-| **hybrid** | **0.929** | **0.732** |
+Dev-set (14 scored questions), post search-only retrieval aliases (2026-10-22):
 
-Hybrid improved R@5 vs vector on 5 questions with no regressions on that set. Lexical is strong here but weakens some multi-doc cases. Details: `eval_results/hybrid-comparison.md`, summary: `docs/EVALUATION-SUMMARY.md`.
+| Mode | R@5 | MRR | Report |
+| --- | --- | --- | --- |
+| vector | 0.714 | 0.607 | `eval:retrieval` / hybrid-comparison vector column |
+| lexical | 0.893 | 1.000 | hybrid-comparison |
+| **hybrid (active)** | **0.929** | **0.774** | `eval_results/hybrid-comparison-after-aliases-2026-10-22.*` |
 
-**R@5 and MRR are retrieval metrics** (whether reference documents appear in top‑K **chunks**). They are **not** answer correctness percentages.
+Pre-alias Hybrid baseline (2026-10-21): R@5=0.929, MRR=0.732 — same R@5 after aliases. Alignment notes: `docs/retrieval-metrics-alignment-2026-10-22.md`.
+
+**R@5 / MRR** = whether reference **documents** appear in top‑K **chunks** — not answer correctness.
+
+Search-only **retrieval aliases** (Hebrew bridges for EN FAQ / home cash ceilings) live in `embeddingText` only; cited source cards show chunk body text, never aliases.
 
 D04 is excluded from source-match averages (no reference sources).
 
@@ -96,7 +100,7 @@ After retrieve: sibling expansion by `documentId` up to ~**3500** estimated toke
 | --- | --- |
 | `retrievedChunks` | top‑K from Hybrid retrieval |
 | `contextChunks` | what enters the prompt after expansion + budget |
-| `sources` (UI) | only chunks cited in `answerParts` + text from index |
+| `sources` (UI) | only chunks cited in `answerParts` + text from index; stable `[n]` numbers across the answer; version labels from relations manifest when verified |
 
 ## Sources UI
 
@@ -110,28 +114,27 @@ pnpm dev                  # UI + API
 pnpm ask -- "שאלה"          # prints requestId; writes trace to data/traces/
 pnpm trace -- <requestId>   # stages/tokens/sources summary from JSONL
 pnpm retrieve -- "שאלה" [--mode hybrid]
-pnpm eval:retrieval       # vector baseline
-pnpm eval:hybrid
-pnpm eval:ask             # writes ask-eval.*; for submission use saved stage5.3
-pnpm eval:conversation    # conversation fixtures (rewrite + answer)
-pnpm eval:ask-stage2      # 15-question no-history regression (new report)
+pnpm eval:retrieval       # vector-only baseline (historical; not submission path)
+pnpm eval:hybrid          # vector vs lexical vs hybrid on 15-dev
+pnpm eval:submission-final  # frozen Hybrid suite → ask 15 + extended 20 + conversations + manual-fail
+pnpm eval:ask / eval:conversation  # individual Hybrid runners
 pnpm test:gates           # typecheck + lint + tests + build
-pnpm test:ingestion && pnpm test:chunking && pnpm test:rag && pnpm test:api
 ```
 
-## Submission docs
+## Submission docs (start here)
 
 | Doc | Content |
 | --- | --- |
-| [`docs/REQUIREMENTS-CHECKLIST.md`](docs/REQUIREMENTS-CHECKLIST.md) | Assignment PDF ↔ implementation / gaps |
+| **[`docs/submission-final-evaluation-2026-10-22.md`](docs/submission-final-evaluation-2026-10-22.md)** | **Final frozen-config evaluation** (Hybrid; denominators; remaining failures) |
+| [`docs/submission-config-freeze-2026-10-22.md`](docs/submission-config-freeze-2026-10-22.md) | Submission freeze: models, hashes, `promptBundleId`, knobs |
 | [`docs/INSTALL.md`](docs/INSTALL.md) | Install + clean-copy verify |
-| [`docs/EVALUATION-SUMMARY.md`](docs/EVALUATION-SUMMARY.md) | Retrieval + answer + time/cost |
-| [`docs/FAILURES-AND-NEXT-WEEK.md`](docs/FAILURES-AND-NEXT-WEEK.md) | Failures + improvements |
-| [`docs/DEMO-SCRIPT.md`](docs/DEMO-SCRIPT.md) | ~5 minute demo |
+| [`docs/FAILURES-AND-NEXT-WEEK.md`](docs/FAILURES-AND-NEXT-WEEK.md) | Failures + “with another week” |
 | [`docs/CODE-MAP.md`](docs/CODE-MAP.md) | Where to change what |
-| [`docs/PROGRESS.md`](docs/PROGRESS.md) / [`docs/PLAN.md`](docs/PLAN.md) | Progress and plan |
+| [`docs/REQUIREMENTS-CHECKLIST.md`](docs/REQUIREMENTS-CHECKLIST.md) | Assignment PDF ↔ implementation / gaps |
+| [`docs/DEMO-SCRIPT.md`](docs/DEMO-SCRIPT.md) | ~5 minute demo |
+| [`docs/EVALUATION-SUMMARY.md`](docs/EVALUATION-SUMMARY.md) | Historical run index (not the final freeze result) |
 
-Raw reports: `eval_results/`.
+Raw / historical reports: `eval_results/` (keep as history; do not treat older stage* files as the final configuration).
 
 ## Time and cost (brief)
 
@@ -150,7 +153,7 @@ Core decisions (Hybrid default, context budget, policies, rejected pre-retrieve 
 ## Stage 7 — developer docs + English prompts
 
 - **Developer-facing** markdown (this README and `docs/*` prose) is in **English**; Hebrew **user** copy, corpus, and eval Q/A examples stay Hebrew.
-- **System/developer prompts** were translated to English where they were Hebrew; **`promptBundleId`:** `prompt-11221afce7f41ed1` (was `prompt-ceab49598eebb4b9`). Translation can shift model behavior even when intent is preserved. Regression report: [`docs/stage7-prompt-translation-regression.md`](docs/stage7-prompt-translation-regression.md) on the **same** Stage 6 holdout — **not** unseen testing.
+- **System/developer prompts** are English; user answers remain Hebrew. Current submission `promptBundleId`: **`prompt-939569b5812dce49`** (see freeze doc). Stage 7 translation regression notes: [`docs/stage7-prompt-translation-regression.md`](docs/stage7-prompt-translation-regression.md) on the **same** exposed extended set — **not** unseen testing.
 
 ## Tracing (ask path)
 
@@ -193,10 +196,18 @@ Core decisions (Hybrid default, context budget, policies, rejected pre-retrieve 
 - Thread list and messages persist in **browser `localStorage` only** (`ofek-rag:` prefix) for demo convenience — **not** cloud sync, not shared across devices, cleared if user clears site data.
 - Follow-up context for `ask()` is taken from the **active branch** sent to `/api/ask`, subject to the history caps above.
 
-## Known limitations
+## Known limitations (submission)
 
-D05 (ambiguity), D11 (PIR omission), context budget, no streaming, bounded history window, small dev sets without generalization proof — see `docs/FAILURES-AND-NEXT-WEEK.md`.
+- **Hybrid R@5 is not answer accuracy**; Document Recall ≠ claim support.
+- **Computed temporal / day-diff facts do not guarantee** correct Generation use (clock mix-ups can remain).
+- Threads persist in **browser `localStorage` only**; history window is capped (6 turns / 6000 chars).
+- **No streaming**; experimental semantic **answer review is off**.
+- Generation **model-comparison** conclusions are from **limited** experiments.
+- Dollar **costs are estimates** when usage splits are incomplete.
+- Remaining quality gaps (E15 retrieval, E16 ambiguity, D11 PIR, MF-D clocks): [`docs/submission-final-evaluation-2026-10-22.md`](docs/submission-final-evaluation-2026-10-22.md), [`docs/FAILURES-AND-NEXT-WEEK.md`](docs/FAILURES-AND-NEXT-WEEK.md).
 
 ## Active configuration (summary)
 
-Hybrid + rewrite (when history present) + document-relations/applicability **ON**; answer review **OFF**; generation `gpt-4.1-mini`; embeddings `text-embedding-3-small` 1536; context budget **3500**. Freeze details: `docs/stage6-config-freeze.md`.
+**Submission freeze:** Hybrid + search-only retrieval aliases + document-relations (incl. multi-scenario keep) + computed temporal facts + rewrite (with history) + `answerParts`/citations; answer review **OFF**; `gpt-4.1-mini`; embeddings `text-embedding-3-small` 1536; context budget **3500**.
+
+Details: [`docs/submission-config-freeze-2026-10-22.md`](docs/submission-config-freeze-2026-10-22.md). Older Stage 6 freeze docs are historical.

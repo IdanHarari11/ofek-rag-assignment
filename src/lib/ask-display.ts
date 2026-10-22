@@ -16,9 +16,14 @@ export interface AskDisplaySource {
   fileName: string;
   relativePath: string;
   documentTitle?: string;
+  /** Verified manifest versionLabel when known; omit on legacy stored messages. */
+  versionLabel?: string;
   sectionPath?: string[];
   pages?: number[];
-  /** Chunk body from the index/context (not model-invented summary). */
+  /**
+   * Chunk body from the index/context (citation text).
+   * Never includes retrieval aliases or computed temporal fact blocks.
+   */
   text: string;
   origin: ContextOrigin;
   claims: string[];
@@ -58,6 +63,7 @@ export function toAskDisplayResponse(result: AskResult): AskDisplayResponse {
     fileName: source.fileName,
     relativePath: source.relativePath,
     documentTitle: source.documentTitle,
+    ...(source.versionLabel ? { versionLabel: source.versionLabel } : {}),
     sectionPath: source.sectionPath,
     pages: source.pages,
     text: textById.get(source.chunkId) ?? "",

@@ -19,7 +19,12 @@ import {
 import type { ReactNode } from "react";
 import { MarkdownText } from "@/components/assistant-ui/elements/markdown-text";
 import { cn } from "@/lib/utils";
-import { PartCitations, Sources, useMessageRag } from "./sources";
+import {
+  PartCitations,
+  Sources,
+  useCitationNumbers,
+  useMessageRag,
+} from "./sources";
 import { actionButtonClass } from "./styles";
 
 const BidirectionalText: TextMessagePartComponent = ({ text }) => (
@@ -61,6 +66,7 @@ export function UserMessage(): ReactNode {
 
 function AssistantBody(): ReactNode {
   const rag = useMessageRag();
+  const numbers = useCitationNumbers(rag);
 
   if (rag && rag.answerParts.length > 0 && rag.status === "answered") {
     return (
@@ -71,6 +77,7 @@ function AssistantBody(): ReactNode {
             <PartCitations
               sourceChunkIds={part.sourceChunkIds}
               sources={rag.sources}
+              numbers={numbers}
             />
           </p>
         ))}

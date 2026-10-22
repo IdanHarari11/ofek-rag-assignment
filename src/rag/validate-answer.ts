@@ -12,6 +12,7 @@ import {
   NEUTRAL_INSUFFICIENT_ANSWER,
 } from "./ask-types";
 import { allowedChunkIds } from "./context-builder";
+import { verifiedVersionLabel } from "./document-relations/version-label";
 
 export interface AssembledAnswer {
   status: AnswerStatus;
@@ -112,12 +113,14 @@ export function assembleAnswerFromParts(
 
   const sources: AnswerSource[] = citations.map((citation) => {
     const chunk = byId.get(citation.chunkId)!;
+    const versionLabel = verifiedVersionLabel(chunk.documentId);
     return {
       chunkId: chunk.chunkId,
       documentId: chunk.documentId,
       relativePath: chunk.relativePath,
       fileName: path.basename(chunk.relativePath),
       documentTitle: chunk.documentTitle,
+      ...(versionLabel ? { versionLabel } : {}),
       sectionPath: chunk.sectionPath,
       pages: chunk.pages,
       claims: citation.claims,

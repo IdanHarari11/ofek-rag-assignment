@@ -1,13 +1,14 @@
 # Failure analysis and “with one more week”
 
+**Final submission:** [`docs/submission-final-evaluation-2026-10-22.md`](submission-final-evaluation-2026-10-22.md) (frozen Hybrid). Historical bullets below remain for lineage.
+
 Based on:
 
-- **Active config:** Hybrid + applicability, **`ANSWER_REVIEW_ENABLED=false`** (`docs/stage6-config-freeze.md`)
-- 15 dev: `ask-eval-stage4.*` (+ historical quality dimensions from stage5.3 where noted)
-- Holdout 20: `ask-eval-stage6-extended.*` / `docs/stage6-quality-summary.md`
-- Conversations: `conversation-eval-2026-10-21T13-32-26-763Z.*`
+- **Submission config:** Hybrid + aliases + applicability + temporal facts; review off (`docs/submission-config-freeze-2026-10-22.md`)
+- Final suite artifacts: `eval_results/*submission-2026-10-22*`
+- Historical: stage4 / stage6 / conversations below — not the final freeze alone
 
-Do **not** pool scores across groups as if they were one run.
+Do **not** pool scores across groups as if they were one run. The extended 20 set is **exposed**, not a new holdout.
 
 **Rejected experiments (not active):** pre-retrieve Clarify gate (Stage 5.2); semantic answer review on by default (Stage 5 paired).
 
@@ -29,7 +30,10 @@ Do **not** pool scores across groups as if they were one run.
 ### E14 / E15 — language gap (retrieval)
 
 - Hebrew questions about agent rules that appear **only** in `30_agent_faq_en.md`.
-- R@5=0; system answered customer cancel fees (E14) or asked clarification (E15) instead of 5% agent discount.
+- Historical: R@5=0; wrong customer fees (E14) or clarification (E15).
+- Closure probes (not holdout re-score): HE+EN and HE-only **commission clawback** retrieve `30_agent_faq_en` in hybrid@5 and cite it — **resolved on tested regression cases** for those probes. Customer-fee control still 3%/150 without agent mix.
+- **E15** (5% agent discount): **unresolved / not re-tested** in closure — do not attribute improvement.
+- Active Hybrid R@5 on 15-dev stayed **0.929** after aliases (MRR 0.732→0.774). See `docs/retrieval-metrics-alignment-2026-10-22.md` (do not compare vector↔hybrid).
 
 ### E04 — procedure sequence fidelity
 
@@ -40,6 +44,19 @@ Do **not** pool scores across groups as if they were one run.
 
 - Metric `evidenceCoverage=partial`: transition chunk from `02_car_comprehensive_policy_2026.pdf` missing from prompt context; **2024** policy chunk present.
 - Active run: **950 ₪** for issue 28.2.2026 — correct; all manual quality dimensions **pass**. Citing 2024 alone is acceptable per frozen rubric (`acceptableSourceAlternatives`). Partial flags **context completeness for eval**, not “unsupported answer.”
+
+### Multi-applicability demotion on comparisons — **resolved on tested regression cases** (closure 2026-10-22)
+
+- Was: one global governing date demoted 2024 on three-case garage deductible questions.
+- Now: `multi_scenario_comparison_keep_versions` keeps 2024+2026; single issue+renewal still selects 2026; conversation Apr→Feb correction selects 950. See `docs/closure-multi-retrieval-2026-10-22.md`.
+
+### Home cash ceiling after car turn — **resolved on tested regression cases** (closure 2026-10-22)
+
+- Alias bridge «תקרת כיסוי למזומנים» → `12_home_contents_limits`; hybrid/lex/vec@5 hit; answer 2,000 ₪ citing that doc.
+
+### Computed temporal / clock Generation ignore — **unresolved** (out of scope this round)
+
+- Day-diff facts may still be ignored by the generator; not retuned here.
 
 ### E17 — ambiguous SLA (rubric frozen)
 
@@ -82,7 +99,7 @@ Do **not** pool scores across groups as if they were one run.
 
 | Priority | Improvement | Why | Measure |
 | --- | --- | --- | --- |
-| 1 | **Retrieval / language bridge** for `30_agent_faq_en.md` (or controlled bilingual embeddingText) | E14/E15 | R@5>0 on E14/E15; clawback/5% answers without D01–D03 regression |
+| 1 | **Retrieval / language bridge** for `30_agent_faq_en.md` | E14/E15 | **Partially done** (aliases); measure remaining vector-only HE gap + holdout E14/E15 if re-run |
 | 2 | **Product ambiguity without global pre-gate** | D05, E16, C07 | Clarify when product unknown; no regressions on explicit questions |
 | 3 | **Faithful procedure / eligibility in citations** | E04, D11 | No invented intermediate steps; PIR when citing baggage delay compensation |
 

@@ -55,6 +55,9 @@ describe("prompt injection behavior (synthetic context)", () => {
     expect(prompt).toMatch(/clarification_needed/);
     expect(prompt).toMatch(/do not infer a product/i);
     expect(prompt).toMatch(/Answer the end user in Hebrew only/);
+    expect(prompt).toMatch(/Time bases \(clocks\)/i);
+    expect(prompt).toMatch(/Do not automatically equate purchase/i);
+    expect(prompt).toMatch(/Computed temporal facts/i);
     expect(prompt).not.toMatch(/citations\[/);
   });
 

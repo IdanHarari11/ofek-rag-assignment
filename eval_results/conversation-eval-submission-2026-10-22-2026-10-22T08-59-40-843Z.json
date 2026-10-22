@@ -1,0 +1,297 @@
+{
+  "generatedAt": "2026-10-22T09:01:17.857Z",
+  "stageLabel": "stage2-conversation-fixtures",
+  "retrievalMode": "hybrid",
+  "generationModel": "gpt-4.1-mini",
+  "fixtureCount": 8,
+  "turnCount": 8,
+  "systemErrorCount": 0,
+  "standaloneCheckFailures": 0,
+  "totalRewriteMs": 6666.549416000009,
+  "totalRewritePromptTokens": 3462,
+  "totalRewriteCompletionTokens": 332,
+  "turns": [
+    {
+      "fixtureId": "C01",
+      "title": "רכב מקיף + תאריך → מוסך שאינו בהסדר",
+      "question": "ומה במוסך שאינו בהסדר?",
+      "status": "answered",
+      "answer": "בפוליסת רכב מקיף שהונפקה ב-1.3.2026, ההשתתפות העצמית במקרה של נזק חלקי כאשר התיקון נעשה במוסך שאינו מוסך הסדר היא 2,100 ₪. ההשתתפות העצמית צמודה למדד המחירים לצרכן הידוע ביום 1.3.2026.",
+      "answerParts": [
+        {
+          "text": "בפוליסת רכב מקיף שהונפקה ב-1.3.2026, ההשתתפות העצמית במקרה של נזק חלקי כאשר התיקון נעשה במוסך שאינו מוסך הסדר היא 2,100 ₪. ההשתתפות העצמית צמודה למדד המחירים לצרכן הידוע ביום 1.3.2026.",
+          "sourceChunkIds": [
+            "corpus/02_car_comprehensive_policy_2026:c000"
+          ]
+        }
+      ],
+      "sourceChunkIds": [
+        "corpus/02_car_comprehensive_policy_2026:c000"
+      ],
+      "sourceFileNames": [
+        "02_car_comprehensive_policy_2026.pdf"
+      ],
+      "originalQuestion": "ומה במוסך שאינו בהסדר?",
+      "standaloneQuestion": "מהי ההשתתפות העצמית בפוליסת רכב מקיף שהונפקה ב-1.3.2026 במוסך שאינו מוסך הסדר?",
+      "unresolvedReferences": [],
+      "rewriteMs": 774.3705829999963,
+      "rewritePromptTokens": 461,
+      "rewriteCompletionTokens": 49,
+      "standaloneChecks": {
+        "mustIncludeOk": true,
+        "mustNotIncludeOk": true,
+        "missingIncludes": [],
+        "leakedExcludes": []
+      },
+      "notes": "Keep issue date + comprehensive auto; swap workshop type only."
+    },
+    {
+      "fixtureId": "C02",
+      "title": "תיקון תאריך על ידי המשתמש",
+      "question": "ומה ההשתתפות במוסך שאינו בהסדר?",
+      "status": "answered",
+      "answer": "ההשתתפות העצמית במוסך שאינו מוסך הסדר בפוליסת רכב מקיף החל מ-1.3.2026 היא 2,100 ₪. ההשתתפות העצמית צמודה למדד המחירים לצרכן הידוע ביום 1.3.2026.",
+      "answerParts": [
+        {
+          "text": "ההשתתפות העצמית במוסך שאינו מוסך הסדר בפוליסת רכב מקיף החל מ-1.3.2026 היא 2,100 ₪. ההשתתפות העצמית צמודה למדד המחירים לצרכן הידוע ביום 1.3.2026.",
+          "sourceChunkIds": [
+            "corpus/02_car_comprehensive_policy_2026:c000"
+          ]
+        }
+      ],
+      "sourceChunkIds": [
+        "corpus/02_car_comprehensive_policy_2026:c000"
+      ],
+      "sourceFileNames": [
+        "02_car_comprehensive_policy_2026.pdf"
+      ],
+      "originalQuestion": "ומה ההשתתפות במוסך שאינו בהסדר?",
+      "standaloneQuestion": "מהי ההשתתפות העצמית במוסך שאינו מוסך הסדר בפוליסה של רכב מקיף החל מ-1.3.2026?",
+      "unresolvedReferences": [],
+      "rewriteMs": 923.1411249999946,
+      "rewritePromptTokens": 477,
+      "rewriteCompletionTokens": 46,
+      "standaloneChecks": {
+        "mustIncludeOk": true,
+        "mustNotIncludeOk": true,
+        "missingIncludes": [],
+        "leakedExcludes": []
+      },
+      "notes": "Explicit user correction wins over earlier date."
+    },
+    {
+      "fixtureId": "C03",
+      "title": "מעבר מרכב לכבודה — אין זליגה",
+      "question": "ומה לגבי פיצוי על איחור כבודה של 8 שעות?",
+      "status": "answered",
+      "answer": "ביטוח נסיעות של אופק ביטוח כולל פיצוי על איחור בכבודה מעל 6 שעות, כאשר הפיצוי הוא עד 150 דולר לרכישת פריטים חיוניים. במקרה של איחור של 8 שעות, הפיצוי יהיה במסגרת זו. בנוסף, אם האיחור עולה על 24 שעות, ניתן לקבל פיצוי נוסף של עד 150 דולר.\n\nכדי לקבל את הפיצוי יש להגיש לחברת התעופה דו\"ח אי-הגעת כבודה (PIR) בשדה התעופה.",
+      "answerParts": [
+        {
+          "text": "ביטוח נסיעות של אופק ביטוח כולל פיצוי על איחור בכבודה מעל 6 שעות, כאשר הפיצוי הוא עד 150 דולר לרכישת פריטים חיוניים. במקרה של איחור של 8 שעות, הפיצוי יהיה במסגרת זו. בנוסף, אם האיחור עולה על 24 שעות, ניתן לקבל פיצוי נוסף של עד 150 דולר.",
+          "sourceChunkIds": [
+            "corpus/16_travel_luggage:c000"
+          ]
+        },
+        {
+          "text": "כדי לקבל את הפיצוי יש להגיש לחברת התעופה דו\"ח אי-הגעת כבודה (PIR) בשדה התעופה.",
+          "sourceChunkIds": [
+            "corpus/16_travel_luggage:c000"
+          ]
+        }
+      ],
+      "sourceChunkIds": [
+        "corpus/16_travel_luggage:c000"
+      ],
+      "sourceFileNames": [
+        "16_travel_luggage.md"
+      ],
+      "originalQuestion": "ומה לגבי פיצוי על איחור כבודה של 8 שעות?",
+      "standaloneQuestion": "מה הפיצוי שמציעה חברת אופק ביטוח על איחור של 8 שעות בכבודה?",
+      "unresolvedReferences": [
+        "פיצוי על איחור כבודה"
+      ],
+      "rewriteMs": 1060.6908750000002,
+      "rewritePromptTokens": 433,
+      "rewriteCompletionTokens": 44,
+      "standaloneChecks": {
+        "mustIncludeOk": true,
+        "mustNotIncludeOk": true,
+        "missingIncludes": [],
+        "leakedExcludes": []
+      },
+      "notes": "Topic switch must not inherit auto product/date."
+    },
+    {
+      "fixtureId": "C04",
+      "title": "הבהרה → תשובה קצרה (fixture, לא בדיקת D05 חיה)",
+      "question": "רכב מקיף, מוסך הסדר, פוליסה מ-1.3.2026",
+      "clarificationFixture": true,
+      "status": "answered",
+      "answer": "בהתאם לפוליסת רכב מקיף של אופק ביטוח בע\"מ בתוקף החל מ-1.3.2026, ההשתתפות העצמית במקרה של נזק חלקי עם תיקון במוסך הסדר היא 1,100 ₪.",
+      "answerParts": [
+        {
+          "text": "בהתאם לפוליסת רכב מקיף של אופק ביטוח בע\"מ בתוקף החל מ-1.3.2026, ההשתתפות העצמית במקרה של נזק חלקי עם תיקון במוסך הסדר היא 1,100 ₪.",
+          "sourceChunkIds": [
+            "corpus/02_car_comprehensive_policy_2026:c000"
+          ]
+        }
+      ],
+      "sourceChunkIds": [
+        "corpus/02_car_comprehensive_policy_2026:c000"
+      ],
+      "sourceFileNames": [
+        "02_car_comprehensive_policy_2026.pdf"
+      ],
+      "originalQuestion": "רכב מקיף, מוסך הסדר, פוליסה מ-1.3.2026",
+      "standaloneQuestion": "מהי ההשתתפות העצמית בפוליסת רכב מקיף עם מוסך הסדר, בתוקף החל מ-1.3.2026?",
+      "unresolvedReferences": [],
+      "rewriteMs": 783.3320419999945,
+      "rewritePromptTokens": 416,
+      "rewriteCompletionTokens": 46,
+      "standaloneChecks": {
+        "mustIncludeOk": true,
+        "mustNotIncludeOk": true,
+        "missingIncludes": [],
+        "leakedExcludes": []
+      },
+      "notes": "Join short clarification reply to prior clarify question."
+    },
+    {
+      "fixtureId": "C05a",
+      "title": "אותו ניסוח המשך — הקשר רכב",
+      "question": "ומה במקרה של נזק חלקי?",
+      "status": "answered",
+      "answer": "במקרה של נזק חלקי בפוליסת רכב מקיף שהונפקה או חודשה מ-1.3.2026 ואילך, כאשר התיקון נעשה במוסך הסדר, סכום ההשתתפות העצמית הוא 1,100 ₪. ההשתתפות העצמית צמודה למדד המחירים לצרכן הידוע ביום 1.3.2026.",
+      "answerParts": [
+        {
+          "text": "במקרה של נזק חלקי בפוליסת רכב מקיף שהונפקה או חודשה מ-1.3.2026 ואילך, כאשר התיקון נעשה במוסך הסדר, סכום ההשתתפות העצמית הוא 1,100 ₪. ההשתתפות העצמית צמודה למדד המחירים לצרכן הידוע ביום 1.3.2026.",
+          "sourceChunkIds": [
+            "corpus/02_car_comprehensive_policy_2026:c000"
+          ]
+        }
+      ],
+      "sourceChunkIds": [
+        "corpus/02_car_comprehensive_policy_2026:c000"
+      ],
+      "sourceFileNames": [
+        "02_car_comprehensive_policy_2026.pdf"
+      ],
+      "originalQuestion": "ומה במקרה של נזק חלקי?",
+      "standaloneQuestion": "מהי ההשתתפות עצמית במקרה של נזק חלקי בפוליסת רכב מקיף מ-1.3.2026 במוסך הסדר?",
+      "unresolvedReferences": [],
+      "rewriteMs": 849.1611249999987,
+      "rewritePromptTokens": 425,
+      "rewriteCompletionTokens": 47,
+      "standaloneChecks": {
+        "mustIncludeOk": true,
+        "mustNotIncludeOk": true,
+        "missingIncludes": [],
+        "leakedExcludes": []
+      },
+      "notes": "Same follow-up wording, auto context."
+    },
+    {
+      "fixtureId": "C05b",
+      "title": "אותו ניסוח המשך — הקשר כבודה",
+      "question": "ומה במקרה של נזק חלקי?",
+      "status": "answered",
+      "answer": "במקרה של נזק חלקי לרכב במסגרת ביטוח רכב מקיף, הפוליסה כוללת השתתפות עצמית לתיקון במוסך הסדר או במוסך שאינו בהסדר. בגרסת 2024, סכום ההשתתפות העצמית הוא 950 ₪ במוסך הסדר ו-1,850 ₪ במוסך שאינו בהסדר. בגרסת 2026, סכום ההשתתפות העצמית הוא 1,100 ₪ במוסך הסדר ו-2,100 ₪ במוסך שאינו בהסדר. ההשתתפות העצמית צמודה למדד המחירים לצרכן ביום תחילת הפוליסה.",
+      "answerParts": [
+        {
+          "text": "במקרה של נזק חלקי לרכב במסגרת ביטוח רכב מקיף, הפוליסה כוללת השתתפות עצמית לתיקון במוסך הסדר או במוסך שאינו בהסדר. בגרסת 2024, סכום ההשתתפות העצמית הוא 950 ₪ במוסך הסדר ו-1,850 ₪ במוסך שאינו בהסדר. בגרסת 2026, סכום ההשתתפות העצמית הוא 1,100 ₪ במוסך הסדר ו-2,100 ₪ במוסך שאינו בהסדר. ההשתתפות העצמית צמודה למדד המחירים לצרכן ביום תחילת הפוליסה.",
+          "sourceChunkIds": [
+            "corpus/01_car_comprehensive_policy_2024:c000",
+            "corpus/02_car_comprehensive_policy_2026:c000"
+          ]
+        }
+      ],
+      "sourceChunkIds": [
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/02_car_comprehensive_policy_2026:c000"
+      ],
+      "sourceFileNames": [
+        "01_car_comprehensive_policy_2024.pdf",
+        "02_car_comprehensive_policy_2026.pdf"
+      ],
+      "originalQuestion": "ומה במקרה של נזק חלקי?",
+      "standaloneQuestion": "מה הפיצוי במקרה של נזק חלקי לכבודה?",
+      "unresolvedReferences": [
+        "כבודה"
+      ],
+      "rewriteMs": 713.3194580000127,
+      "rewritePromptTokens": 417,
+      "rewriteCompletionTokens": 27,
+      "standaloneChecks": {
+        "mustIncludeOk": true,
+        "mustNotIncludeOk": true,
+        "missingIncludes": [],
+        "leakedExcludes": []
+      },
+      "notes": "Same follow-up wording, baggage context — must not leak auto."
+    },
+    {
+      "fixtureId": "C06",
+      "title": "תשובת assistant שגויה אינה הופכת לראיה",
+      "question": "אתה בטוח? מה כתוב במסמכים?",
+      "status": "answered",
+      "answer": "שעות פעילות מוקד שירות הלקוחות של אופק ביטוח ביום שישי הן מ-08:00 עד 12:00.",
+      "answerParts": [
+        {
+          "text": "שעות פעילות מוקד שירות הלקוחות של אופק ביטוח ביום שישי הן מ-08:00 עד 12:00.",
+          "sourceChunkIds": [
+            "corpus/28_call_center_hours:c000"
+          ]
+        }
+      ],
+      "sourceChunkIds": [
+        "corpus/28_call_center_hours:c000"
+      ],
+      "sourceFileNames": [
+        "28_call_center_hours.md"
+      ],
+      "originalQuestion": "אתה בטוח? מה כתוב במסמכים?",
+      "standaloneQuestion": "מהן שעות המוקד ביום שישי כפי שמופיע במסמכים של אופק ביטוח?",
+      "unresolvedReferences": [],
+      "rewriteMs": 753.4458330000052,
+      "rewritePromptTokens": 423,
+      "rewriteCompletionTokens": 33,
+      "standaloneChecks": {
+        "mustIncludeOk": true,
+        "mustNotIncludeOk": true,
+        "missingIncludes": [],
+        "leakedExcludes": []
+      },
+      "notes": "Prior wrong assistant hours must not become factual evidence; corpus wins."
+    },
+    {
+      "fixtureId": "C07",
+      "title": "הפניה שלא ניתן לפתור — בלי המצאה",
+      "question": "מה ההשתתפות של אותו מוצר שדיברנו עליו?",
+      "status": "clarification_needed",
+      "answer": "על מנת לספק מידע מדויק לגבי ההשתתפות העצמית, אנא ציין באיזו פוליסה או מוצר ביטוחי מדובר.",
+      "answerParts": [
+        {
+          "text": "על מנת לספק מידע מדויק לגבי ההשתתפות העצמית, אנא ציין באיזו פוליסה או מוצר ביטוחי מדובר.",
+          "sourceChunkIds": []
+        }
+      ],
+      "sourceChunkIds": [],
+      "sourceFileNames": [],
+      "originalQuestion": "מה ההשתתפות של אותו מוצר שדיברנו עליו?",
+      "standaloneQuestion": "מהי ההשתתפות העצמית של המוצר שעליו דיברנו קודם?",
+      "unresolvedReferences": [
+        "אותו מוצר שדיברנו עליו"
+      ],
+      "rewriteMs": 809.0883750000066,
+      "rewritePromptTokens": 410,
+      "rewriteCompletionTokens": 40,
+      "standaloneChecks": {
+        "mustIncludeOk": true,
+        "mustNotIncludeOk": true,
+        "missingIncludes": [],
+        "leakedExcludes": []
+      },
+      "notes": "No product was established — unresolvedReferences expected; no invent."
+    }
+  ]
+}

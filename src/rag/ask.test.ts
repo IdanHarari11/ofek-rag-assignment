@@ -83,6 +83,9 @@ describe("ask()", () => {
       },
       rawText: "{}",
       model: "mock-model",
+      modelRequested: "mock-model",
+      modelReturned: "mock-model",
+      samplingProfile: { kind: "classic_sampling", temperature: 0 },
       usage: { promptTokens: 10, completionTokens: 5, totalTokens: 15 },
       latencyMs: 1,
     });
@@ -122,6 +125,9 @@ describe("ask()", () => {
       },
       rawText: "{}",
       model: "mock-model",
+      modelRequested: "mock-model",
+      modelReturned: "mock-model",
+      samplingProfile: { kind: "classic_sampling", temperature: 0 },
       latencyMs: 1,
     });
 
@@ -139,6 +145,9 @@ describe("ask()", () => {
       payload: { status: "insufficient_evidence", answerParts: [] },
       rawText: "{}",
       model: "mock-model",
+      modelRequested: "mock-model",
+      modelReturned: "mock-model",
+      samplingProfile: { kind: "classic_sampling", temperature: 0 },
       latencyMs: 1,
     });
 
@@ -162,6 +171,9 @@ describe("ask()", () => {
       },
       rawText: "{}",
       model: "mock-model",
+      modelRequested: "mock-model",
+      modelReturned: "mock-model",
+      samplingProfile: { kind: "classic_sampling", temperature: 0 },
       latencyMs: 1,
     });
 
@@ -191,6 +203,9 @@ describe("ask()", () => {
       },
       rawText: "{}",
       model: "mock-model",
+      modelRequested: "mock-model",
+      modelReturned: "mock-model",
+      samplingProfile: { kind: "classic_sampling", temperature: 0 },
       latencyMs: 1,
     });
     const result = await ask(
@@ -209,6 +224,9 @@ describe("ask()", () => {
         "מה ההשתתפות העצמית במוסך שאינו בהסדר לפוליסת רכב מקיף מ-1.3.2026?",
       unresolvedReferences: [] as string[],
       model: "mock-rewrite",
+      modelRequested: "mock-model",
+      modelReturned: "mock-model",
+      samplingProfile: { kind: "classic_sampling", temperature: 0 },
       usage: { promptTokens: 11, completionTokens: 7, totalTokens: 18 },
       latencyMs: 12,
     });
@@ -229,6 +247,9 @@ describe("ask()", () => {
         },
         rawText: "{}",
         model: "mock-model",
+      modelRequested: "mock-model",
+      modelReturned: "mock-model",
+      samplingProfile: { kind: "classic_sampling", temperature: 0 },
         latencyMs: 1,
       };
     };

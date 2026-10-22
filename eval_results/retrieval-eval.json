@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-21T05:34:48.438Z",
+  "generatedAt": "2026-10-22T07:58:14.592Z",
   "model": "text-embedding-3-small",
   "dimensions": 1536,
   "topK": 5,
@@ -11,8 +11,8 @@
   "averages": {
     "documentRecallAt1": 0.35714285714285715,
     "documentRecallAt3": 0.5357142857142857,
-    "documentRecallAt5": 0.6428571428571429,
-    "mrr": 0.5892857142857143
+    "documentRecallAt5": 0.7142857142857143,
+    "mrr": 0.6071428571428571
   },
   "totalUsage": {
     "promptTokens": 737,
@@ -34,8 +34,8 @@
         "reciprocalRank": 1
       },
       "timingsMs": {
-        "questionEmbeddingMs": 375.19191699999993,
-        "localSearchMs": 2.661624999999958
+        "questionEmbeddingMs": 270.396417,
+        "localSearchMs": 2.938291999999933
       },
       "usage": {
         "promptTokens": 42,
@@ -117,8 +117,8 @@
         "reciprocalRank": 1
       },
       "timingsMs": {
-        "questionEmbeddingMs": 1684.504625,
-        "localSearchMs": 0.2947089999997843
+        "questionEmbeddingMs": 189.816917,
+        "localSearchMs": 0.17349999999999
       },
       "usage": {
         "promptTokens": 38,
@@ -211,8 +211,8 @@
         "reciprocalRank": 0.5
       },
       "timingsMs": {
-        "questionEmbeddingMs": 196.55791599999975,
-        "localSearchMs": 0.274167000000034
+        "questionEmbeddingMs": 193.28045899999995,
+        "localSearchMs": 0.12066600000002836
       },
       "usage": {
         "promptTokens": 68,
@@ -306,8 +306,8 @@
         "reciprocalRank": "N/A"
       },
       "timingsMs": {
-        "questionEmbeddingMs": 198.82545800000025,
-        "localSearchMs": 0.2668329999996786
+        "questionEmbeddingMs": 201.69379200000003,
+        "localSearchMs": 0.6944169999999303
       },
       "usage": {
         "promptTokens": 35,
@@ -406,8 +406,8 @@
         "reciprocalRank": 0
       },
       "timingsMs": {
-        "questionEmbeddingMs": 234.21979199999987,
-        "localSearchMs": 0.2885830000000169
+        "questionEmbeddingMs": 210.6567080000002,
+        "localSearchMs": 0.15975000000003092
       },
       "usage": {
         "promptTokens": 19,
@@ -448,17 +448,6 @@
           "warnings": []
         },
         {
-          "chunkId": "corpus/12_home_contents_limits:c000",
-          "documentId": "corpus/12_home_contents_limits",
-          "relativePath": "corpus/12_home_contents_limits.docx",
-          "sectionPath": [
-            "ביטוח תכולה – גבולות אחריות"
-          ],
-          "score": 0.27677239141349896,
-          "text": "מסמך: ביטוח תכולה – גבולות אחריות\nסעיף: ביטוח תכולה – גבולות אחריות\n\nתכולה מבוטחת לפי ערך כינון (חדש תמורת ישן), עד סכום ביטוח התכולה הנקוב ברשימה.\n\nגבולות אחריות לפריטים מסוימים\nפריט: תכשיטים ושעונים – ללא רשימה מוערכת | גבול אחריות: 10% מסכום ביטוח התכולה, ולא יותר מ-15,000 ₪\nפריט: תכשיטים ושעונים – עם רשימה מוערכת (טופס 2015) | גבול אחריות: לפי הרשימה, עד 100,000 ₪\nפריט: מזומנים | גבול אחריות: 2,000 ₪\nפריט: מחשבים ניידים וטאבלטים | גבול אחריות: עד 8,000 ₪ לפריט\nפריט: יצירות אמנות ואוספים | גבול אחריות: רק אם פורטו ברשימה\nפריט: אופניים חשמליים וקורקינטים חשמליים | גבול אחריות: עד 6,000 ₪, ובתנאי שאוחסנו בתוך הדירה או במחסן נעול\n\nתכשיטים שנגנבו מחוץ לדירה מכוסים רק אם נרכשה הרחבת “כל הסיכונים” לתכשיטים.\n\nכלי רכב מנועיים, בעלי חיים, מסמכים ושטרות, וסחורה לצרכי עסק.",
-          "warnings": []
-        },
-        {
           "chunkId": "corpus/17_travel_claims:c000",
           "documentId": "corpus/17_travel_claims",
           "relativePath": "corpus/17_travel_claims.md",
@@ -467,6 +456,17 @@
           ],
           "score": 0.2685538245343202,
           "text": "מסמך: הגשת תביעה בביטוח נסיעות\nסעיף: הגשת תביעה בביטוח נסיעות\n\n- מועד הגשה: עד 90 יום מיום החזרה לישראל.\n- טופס: 3005 – תביעת ביטוח נסיעות.\n- ערוץ: באזור האישי באתר או באפליקציה. אפשר גם בדואר.\n\n1. כרטיס טיסה וכרטיס עלייה למטוס.\n2. קבלות מקוריות על כל הוצאה.\n3. בתביעה רפואית: מסמכים רפואיים מחו\"ל.\n4. בתביעת כבודה: דו\"ח PIR, ובגניבה – אישור משטרה.\n\nהתשלום יועבר בשקלים, לפי שער היציג ביום התשלום, לחשבון הבנק שעודכן בטופס 4410.",
+          "warnings": []
+        },
+        {
+          "chunkId": "corpus/29_glossary:c000",
+          "documentId": "corpus/29_glossary",
+          "relativePath": "corpus/29_glossary.md",
+          "sectionPath": [
+            "מילון מונחים – Glossary"
+          ],
+          "score": 0.2665137445026908,
+          "text": "מסמך: מילון מונחים – Glossary\nסעיף: מילון מונחים – Glossary\n\nעברית: השתתפות עצמית | English: Deductible / Excess | הסבר: הסכום שהמבוטח נושא בו בכל מקרה ביטוח\nעברית: סכום ביטוח | English: Sum Insured | הסבר: הסכום המרבי שהמבטח ישלם\nעברית: פרמיה / דמי ביטוח | English: Premium | הסבר: הסכום שהלקוח משלם עבור הביטוח\nעברית: נספח / הרחבה | English: Rider / Endorsement | הסבר: תוספת לפוליסה שמרחיבה או משנה כיסוי\nעברית: כתב שירות | English: Service Note | הסבר: שירות נלווה (גרירה, שמשות) שניתן על ידי ספק\nעברית: חתמות | English: Underwriting | הסבר: הערכת הסיכון והחלטה אם לבטח ובאיזה מחיר\nעברית: תחלוף | English: Subrogation | הסבר: זכות המבטח לתבוע צד שלישי אחרי ששילם\nעברית: אובדן גמור | English: Total Loss | הסבר: נזק שעלות תיקונו מעל 60% משווי הרכב\nעברית: שמאי | English: Loss Adjuster / Appraiser | הסבר: מעריך הנזק מטעם החברה\nעברית: ערך כינון | English: Replacement Value | הסבר: פיצוי לפי מחיר פריט חדש",
           "warnings": []
         }
       ],
@@ -490,8 +490,8 @@
         "reciprocalRank": 1
       },
       "timingsMs": {
-        "questionEmbeddingMs": 178.4169579999998,
-        "localSearchMs": 0.2609579999998459
+        "questionEmbeddingMs": 240.98466599999983,
+        "localSearchMs": 0.11925000000019281
       },
       "usage": {
         "promptTokens": 86,
@@ -588,8 +588,8 @@
         "reciprocalRank": 1
       },
       "timingsMs": {
-        "questionEmbeddingMs": 188.7284999999997,
-        "localSearchMs": 0.2500419999996666
+        "questionEmbeddingMs": 207.959208,
+        "localSearchMs": 0.3062079999999696
       },
       "usage": {
         "promptTokens": 82,
@@ -684,8 +684,8 @@
         "reciprocalRank": 0
       },
       "timingsMs": {
-        "questionEmbeddingMs": 197.70958299999984,
-        "localSearchMs": 0.2905839999998534
+        "questionEmbeddingMs": 187.95733300000006,
+        "localSearchMs": 0.22583399999984977
       },
       "usage": {
         "promptTokens": 69,
@@ -762,12 +762,12 @@
       "metrics": {
         "documentRecallAt1": 0,
         "documentRecallAt3": 0,
-        "documentRecallAt5": 0,
-        "reciprocalRank": 0
+        "documentRecallAt5": 1,
+        "reciprocalRank": 0.25
       },
       "timingsMs": {
-        "questionEmbeddingMs": 196.5350840000001,
-        "localSearchMs": 0.2748750000000655
+        "questionEmbeddingMs": 192.27124999999978,
+        "localSearchMs": 0.21833300000025702
       },
       "usage": {
         "promptTokens": 37,
@@ -820,6 +820,17 @@
           "warnings": []
         },
         {
+          "chunkId": "corpus/12_home_contents_limits:c000",
+          "documentId": "corpus/12_home_contents_limits",
+          "relativePath": "corpus/12_home_contents_limits.docx",
+          "sectionPath": [
+            "ביטוח תכולה – גבולות אחריות"
+          ],
+          "score": 0.52639981027507,
+          "text": "מסמך: ביטוח תכולה – גבולות אחריות\nסעיף: ביטוח תכולה – גבולות אחריות\n\nתכולה מבוטחת לפי ערך כינון (חדש תמורת ישן), עד סכום ביטוח התכולה הנקוב ברשימה.\n\nגבולות אחריות לפריטים מסוימים\nפריט: תכשיטים ושעונים – ללא רשימה מוערכת | גבול אחריות: 10% מסכום ביטוח התכולה, ולא יותר מ-15,000 ₪\nפריט: תכשיטים ושעונים – עם רשימה מוערכת (טופס 2015) | גבול אחריות: לפי הרשימה, עד 100,000 ₪\nפריט: מזומנים | גבול אחריות: 2,000 ₪\nפריט: מחשבים ניידים וטאבלטים | גבול אחריות: עד 8,000 ₪ לפריט\nפריט: יצירות אמנות ואוספים | גבול אחריות: רק אם פורטו ברשימה\nפריט: אופניים חשמליים וקורקינטים חשמליים | גבול אחריות: עד 6,000 ₪, ובתנאי שאוחסנו בתוך הדירה או במחסן נעול\n\nתכשיטים שנגנבו מחוץ לדירה מכוסים רק אם נרכשה הרחבת “כל הסיכונים” לתכשיטים.\n\nכלי רכב מנועיים, בעלי חיים, מסמכים ושטרות, וסחורה לצרכי עסק.",
+          "warnings": []
+        },
+        {
           "chunkId": "corpus/03_car_general_terms:c013",
           "documentId": "corpus/03_car_general_terms",
           "relativePath": "corpus/03_car_general_terms.pdf",
@@ -832,17 +843,6 @@
           ],
           "score": 0.5258688611168472,
           "text": "מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ\nסעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 13 – ביטול הביטוח\n\nסעיף 13 – ביטול הביטוח\nהמבוטח רשאי לבטל את הביטוח בכל עת בהודעה למבטח. אופן חישוב ההחזר נקבע בנוהל\nהביטולים של המבטח, כפי שיעודכן מעת לעת. המבטח רשאי לבטל את הביטוח בהודעה\nבכתב שתישלח 30 יום לפחות לפני מועד הביטול.",
-          "warnings": []
-        },
-        {
-          "chunkId": "corpus/14_travel_policy_overview:c000",
-          "documentId": "corpus/14_travel_policy_overview",
-          "relativePath": "corpus/14_travel_policy_overview.md",
-          "sectionPath": [
-            "ביטוח נסיעות לחו\"ל – סקירת כיסויים"
-          ],
-          "score": 0.5206779210094931,
-          "text": "מסמך: ביטוח נסיעות לחו\"ל – סקירת כיסויים\nסעיף: ביטוח נסיעות לחו\"ל – סקירת כיסויים\n\nכיסוי: הוצאות רפואיות בחו\"ל | סכום מקסימלי: עד 1,000,000 $\nכיסוי: קיצור נסיעה עקב מקרה רפואי | סכום מקסימלי: עד 10,000 $\nכיסוי: ביטול נסיעה (בהרחבה) | סכום מקסימלי: עד 5,000 $\nכיסוי: חיפוש וחילוץ | סכום מקסימלי: עד 50,000 $\nכיסוי: כבודה | סכום מקסימלי: ראו מסמך כבודה\n\n- ניתן לבטח נוסעים עד גיל 85.\n- נוסע בן 75 ומעלה נדרש למלא הצהרת בריאות (טופס 3002) לפני הנסיעה.\n\n- ספורט חורף (סקי, סנובורד): רק עם הרחבת \"חבילת סקי\".\n- ספורט אתגרי (צניחה, צלילה מעל 30 מ', טיפוס הרים מעל 4,000 מ'): רק עם הרחבת \"ספורט אתגרי\".\n\nראו מסמך \"מצב רפואי קודם בביטוח נסיעות\".",
           "warnings": []
         }
       ],
@@ -865,8 +865,8 @@
         "reciprocalRank": 1
       },
       "timingsMs": {
-        "questionEmbeddingMs": 185.1081250000002,
-        "localSearchMs": 0.12875000000076398
+        "questionEmbeddingMs": 195.13266599999997,
+        "localSearchMs": 0.15279199999986304
       },
       "usage": {
         "promptTokens": 39,
@@ -960,8 +960,8 @@
         "reciprocalRank": 0.5
       },
       "timingsMs": {
-        "questionEmbeddingMs": 192.47366599999987,
-        "localSearchMs": 0.11316700000043056
+        "questionEmbeddingMs": 196.54275000000007,
+        "localSearchMs": 0.12787499999967622
       },
       "usage": {
         "promptTokens": 57,
@@ -1055,8 +1055,8 @@
         "reciprocalRank": 0
       },
       "timingsMs": {
-        "questionEmbeddingMs": 172.47049999999945,
-        "localSearchMs": 0.10687500000040018
+        "questionEmbeddingMs": 209.29674999999997,
+        "localSearchMs": 0.17200000000002547
       },
       "usage": {
         "promptTokens": 28,
@@ -1085,7 +1085,7 @@
           "sectionPath": [
             "ביטוח תכולה – גבולות אחריות"
           ],
-          "score": 0.5219873718035714,
+          "score": 0.5275089122306853,
           "text": "מסמך: ביטוח תכולה – גבולות אחריות\nסעיף: ביטוח תכולה – גבולות אחריות\n\nתכולה מבוטחת לפי ערך כינון (חדש תמורת ישן), עד סכום ביטוח התכולה הנקוב ברשימה.\n\nגבולות אחריות לפריטים מסוימים\nפריט: תכשיטים ושעונים – ללא רשימה מוערכת | גבול אחריות: 10% מסכום ביטוח התכולה, ולא יותר מ-15,000 ₪\nפריט: תכשיטים ושעונים – עם רשימה מוערכת (טופס 2015) | גבול אחריות: לפי הרשימה, עד 100,000 ₪\nפריט: מזומנים | גבול אחריות: 2,000 ₪\nפריט: מחשבים ניידים וטאבלטים | גבול אחריות: עד 8,000 ₪ לפריט\nפריט: יצירות אמנות ואוספים | גבול אחריות: רק אם פורטו ברשימה\nפריט: אופניים חשמליים וקורקינטים חשמליים | גבול אחריות: עד 6,000 ₪, ובתנאי שאוחסנו בתוך הדירה או במחסן נעול\n\nתכשיטים שנגנבו מחוץ לדירה מכוסים רק אם נרכשה הרחבת “כל הסיכונים” לתכשיטים.\n\nכלי רכב מנועיים, בעלי חיים, מסמכים ושטרות, וסחורה לצרכי עסק.",
           "warnings": []
         },
@@ -1145,8 +1145,8 @@
         "reciprocalRank": 0.25
       },
       "timingsMs": {
-        "questionEmbeddingMs": 180.12141699999938,
-        "localSearchMs": 0.14145800000005693
+        "questionEmbeddingMs": 186.3176669999998,
+        "localSearchMs": 0.13062500000023647
       },
       "usage": {
         "promptTokens": 48,
@@ -1236,8 +1236,8 @@
         "reciprocalRank": 1
       },
       "timingsMs": {
-        "questionEmbeddingMs": 175.991583,
-        "localSearchMs": 0.14245799999935116
+        "questionEmbeddingMs": 166.92008300000043,
+        "localSearchMs": 0.17791699999997945
       },
       "usage": {
         "promptTokens": 40,
@@ -1328,8 +1328,8 @@
         "reciprocalRank": 1
       },
       "timingsMs": {
-        "questionEmbeddingMs": 194.2802499999998,
-        "localSearchMs": 0.3169580000003407
+        "questionEmbeddingMs": 215.8765000000003,
+        "localSearchMs": 0.3262080000004062
       },
       "usage": {
         "promptTokens": 49,

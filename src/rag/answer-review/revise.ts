@@ -1,11 +1,17 @@
 import OpenAI from "openai";
+import type { ChatCompletion } from "openai/resources/chat/completions";
 import type { GenerateAnswerResult } from "../generate";
 import {
   buildSystemPrompt,
   getGenerationModel,
   parseModelGenerationPayload,
 } from "../generate";
+import {
+  chatCompletionSamplingForModel,
+  toChatCompletionRequestFields,
+} from "../model-request-params";
 import { formatContextForPrompt } from "../context-builder";
+import { annotateChunksForPartialUpdates } from "../document-relations/annotate-partial-updates";
 import { getOpenAiApiKey, loadEnv } from "../env";
 import { formatHistoryForPrompt } from "../history";
 import { AnswerReviewSystemError, type ReviseDraftInput } from "./types";
@@ -100,7 +106,12 @@ export function buildReviseUserPrompt(input: ReviseDraftInput): string {
     `Allowed chunkIds: ${allowedIds.join(", ") || "(none)"}`,
     "",
     "Context (same sources — no new sources):",
-    formatContextForPrompt(input.contextChunks),
+    formatContextForPrompt(
+      annotateChunksForPartialUpdates(
+        input.contextChunks,
+        input.applicabilitySummary,
+      ),
+    ),
   );
 
   return lines.join("\n");
@@ -122,18 +133,18 @@ export async function reviseAnswerDraft(
   const apiKey = options.apiKey ?? getOpenAiApiKey({ required: true });
   const client = new OpenAI({ apiKey });
   const allowedIds = input.contextChunks.map((c) => c.chunkId);
+  const samplingProfile = chatCompletionSamplingForModel(model);
 
   if (options.signal?.aborted) {
     throw new DOMException("Request aborted", "AbortError");
   }
-
   const started = performance.now();
-  let response;
+  let response: ChatCompletion;
   try {
-    response = await client.chat.completions.create(
+    response = (await client.chat.completions.create(
       {
         model,
-        temperature: 0,
+        ...toChatCompletionRequestFields(samplingProfile),
         response_format: {
           type: "json_schema",
           json_schema: {
@@ -149,9 +160,9 @@ export async function reviseAnswerDraft(
           },
           { role: "user", content: buildReviseUserPrompt(input) },
         ],
-      },
+      } as Parameters<typeof client.chat.completions.create>[0],
       options.signal ? { signal: options.signal } : undefined,
-    );
+    )) as ChatCompletion;
   } catch (error) {
     if (error instanceof DOMException && error.name === "AbortError") throw error;
     const message = error instanceof Error ? error.message : String(error);
@@ -176,7 +187,10 @@ export async function reviseAnswerDraft(
   return {
     payload,
     rawText,
-    model,
+    modelRequested: model,
+    modelReturned: response.model?.trim() || model,
+    model: response.model?.trim() || model,
+    samplingProfile,
     latencyMs,
     usage: {
       promptTokens: response.usage?.prompt_tokens,

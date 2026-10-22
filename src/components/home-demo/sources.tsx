@@ -8,6 +8,12 @@ import {
   type AskDisplayResponse,
   type AskDisplaySource,
 } from "@/lib/ask-display";
+import { buildCitationNumberMap } from "@/lib/citation-numbers";
+import {
+  sourceDisplayHeading,
+  sourcePagesLabel,
+  sourceSectionLabel,
+} from "@/lib/source-display";
 import { cn } from "@/lib/utils";
 
 function readRagPayload(custom: unknown): AskDisplayResponse | null {
@@ -16,29 +22,29 @@ function readRagPayload(custom: unknown): AskDisplayResponse | null {
   return isAskDisplayResponse(rag) ? rag : null;
 }
 
-function sourceLabel(source: AskDisplaySource): string {
-  return source.documentTitle?.trim() || source.fileName;
-}
-
-function sectionLabel(source: AskDisplaySource): string | null {
-  if (!source.sectionPath?.length) return null;
-  return source.sectionPath.join(" › ");
-}
-
 /**
  * Fixed RAG source renderer — reads structured metadata.custom.rag only.
- * Does not invent file URLs; chunk text comes from the server DTO (index).
+ * Citation numbers are consistent across the whole assistant answer.
+ * Chunk text is index body only (no retrieval aliases / computed facts).
+ * chunkId validity ≠ semantic verification — do not claim otherwise.
  */
 export function Sources(): ReactNode {
   const custom = useAuiState((s) => s.message.metadata?.custom);
   const rag = readRagPayload(custom);
   const [openId, setOpenId] = useState<string | null>(null);
 
+  const numbers = useMemo(() => {
+    if (!rag) return new Map<string, number>();
+    return buildCitationNumberMap(rag.answerParts, rag.sources);
+  }, [rag]);
+
   if (!rag || rag.status === "insufficient_evidence" || rag.sources.length === 0) {
     return null;
   }
 
-  const byDoc = groupByDocument(rag.sources);
+  const ordered = [...rag.sources].sort(
+    (a, b) => (numbers.get(a.chunkId) ?? 0) - (numbers.get(b.chunkId) ?? 0),
+  );
 
   return (
     <div className="mt-4 border-t border-foreground/10 pt-3" dir="rtl">
@@ -49,89 +55,84 @@ export function Sources(): ReactNode {
         ) : null}
       </p>
       <ul className="flex flex-col gap-2">
-        {byDoc.map((group) => (
-          <li key={group.key} className="text-[13px]">
-            <div className="font-medium text-foreground/90">{group.label}</div>
-            <ul className="mt-1 flex flex-col gap-1">
-              {group.sources.map((source, index) => {
-                const isOpen = openId === source.chunkId;
-                const pages =
-                  source.pages?.length ? `עמודים ${source.pages.join(", ")}` : null;
-                const section = sectionLabel(source);
-                return (
-                  <li key={source.chunkId}>
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setOpenId(isOpen ? null : source.chunkId)
-                      }
-                      className={cn(
-                        "text-muted-foreground hover:text-foreground rounded-control w-full text-start text-[12px] underline-offset-2 hover:underline",
-                      )}
-                      aria-expanded={isOpen}
-                    >
-                      [{index + 1}] {section ?? source.fileName}
-                      {pages ? ` · ${pages}` : ""}
-                    </button>
-                    {isOpen ? (
-                      <div
-                        className="border-foreground/10 bg-muted/40 mt-1 rounded-control border px-3 py-2 text-[12px] leading-relaxed"
-                        dir="auto"
-                      >
-                        <p
-                          className="text-muted-foreground mb-1 font-mono text-[11px]"
-                          dir="ltr"
-                        >
-                          {source.fileName}
-                          <span dir="rtl">
-                            {section ? ` · ${section}` : ""}
-                            {pages ? ` · ${pages}` : ""}
-                          </span>
-                        </p>
-                        <p className="whitespace-pre-wrap wrap-break-word">
-                          {source.text || "(אין טקסט קטע זמין)"}
-                        </p>
-                      </div>
-                    ) : null}
-                  </li>
-                );
-              })}
-            </ul>
-          </li>
-        ))}
+        {ordered.map((source) => {
+          const n = numbers.get(source.chunkId) ?? 0;
+          const isOpen = openId === source.chunkId;
+          const pages = sourcePagesLabel(source);
+          const section = sourceSectionLabel(source);
+          const heading = sourceDisplayHeading(source);
+          return (
+            <li key={source.chunkId} className="text-[13px]">
+              <button
+                type="button"
+                onClick={() => setOpenId(isOpen ? null : source.chunkId)}
+                className={cn(
+                  "text-muted-foreground hover:text-foreground rounded-control w-full text-start text-[12px] underline-offset-2 hover:underline",
+                )}
+                aria-expanded={isOpen}
+                aria-label={`מקור ${n}: ${heading}`}
+              >
+                <span className="text-foreground/80 font-medium tabular-nums">
+                  [{n}]
+                </span>{" "}
+                {heading}
+                {section ? ` · ${section}` : ""}
+                {pages ? ` · ${pages}` : ""}
+              </button>
+              {isOpen ? (
+                <SourceCard source={source} citationNumber={n} />
+              ) : null}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
 }
 
-function groupByDocument(sources: AskDisplaySource[]) {
-  const map = new Map<
-    string,
-    { key: string; label: string; sources: AskDisplaySource[] }
-  >();
-  for (const source of sources) {
-    const key = source.documentId || source.relativePath;
-    const existing = map.get(key);
-    if (existing) {
-      existing.sources.push(source);
-    } else {
-      map.set(key, {
-        key,
-        label: sourceLabel(source),
-        sources: [source],
-      });
-    }
-  }
-  return [...map.values()];
+function SourceCard({
+  source,
+  citationNumber,
+}: {
+  source: AskDisplaySource;
+  citationNumber: number;
+}): ReactNode {
+  const section = sourceSectionLabel(source);
+  const pages = sourcePagesLabel(source);
+  return (
+    <div
+      className="border-foreground/10 bg-muted/40 mt-1 rounded-control border px-3 py-2 text-[12px] leading-relaxed"
+      dir="auto"
+    >
+      <p className="text-muted-foreground mb-1 text-[11px]">
+        <span className="font-medium tabular-nums text-foreground/80">
+          [{citationNumber}]
+        </span>{" "}
+        <span className="font-mono" dir="ltr">
+          {source.fileName}
+        </span>
+        {source.versionLabel ? (
+          <span dir="rtl"> · {sourceDisplayHeading(source)}</span>
+        ) : null}
+        {section ? <span dir="rtl"> · {section}</span> : null}
+        {pages ? <span dir="rtl"> · {pages}</span> : null}
+      </p>
+      <p className="whitespace-pre-wrap wrap-break-word">
+        {source.text || "(אין טקסט קטע זמין)"}
+      </p>
+    </div>
+  );
 }
 
-/** Inline citation chips next to an answer part. */
+/** Inline citation chips next to an answer part — same numbers as the source list. */
 export function PartCitations({
   sourceChunkIds,
   sources,
+  numbers,
 }: {
   sourceChunkIds: string[];
   sources: AskDisplaySource[];
+  numbers: Map<string, number>;
 }): ReactNode {
   const [openId, setOpenId] = useState<string | null>(null);
   const indexed = useMemo(() => {
@@ -145,27 +146,34 @@ export function PartCitations({
   return (
     <span className="ms-1 inline-flex flex-wrap items-center gap-1 align-super">
       {indexed.map((source) => {
+        const n = numbers.get(source.chunkId) ?? 0;
         const isOpen = openId === source.chunkId;
+        const heading = sourceDisplayHeading(source);
         return (
           <span key={source.chunkId} className="relative inline-block">
             <button
               type="button"
-              className="text-muted-foreground hover:text-foreground rounded-control border-foreground/15 border px-1 py-px text-[10px] leading-none"
-              aria-label={`מקור: ${sourceLabel(source)}`}
+              className="text-muted-foreground hover:text-foreground rounded-control border-foreground/15 border px-1 py-px text-[10px] leading-none tabular-nums"
+              aria-label={`מקור ${n}: ${heading}`}
               onClick={() => setOpenId(isOpen ? null : source.chunkId)}
             >
-              מקור
+              [{n}]
             </button>
             {isOpen ? (
               <span
                 className="border-foreground/10 bg-background absolute end-0 top-full z-20 mt-1 w-[min(22rem,70vw)] rounded-control border p-2 text-[12px] shadow-sm"
                 dir="auto"
               >
-                <span className="text-muted-foreground mb-1 block font-mono text-[11px]">
-                  {sourceLabel(source)}
-                  {sectionLabel(source) ? ` · ${sectionLabel(source)}` : ""}
-                  {source.pages?.length
-                    ? ` · עמודים ${source.pages.join(", ")}`
+                <span className="text-muted-foreground mb-1 block text-[11px]">
+                  <span className="font-medium tabular-nums text-foreground/80">
+                    [{n}]
+                  </span>{" "}
+                  {heading}
+                  {sourceSectionLabel(source)
+                    ? ` · ${sourceSectionLabel(source)}`
+                    : ""}
+                  {sourcePagesLabel(source)
+                    ? ` · ${sourcePagesLabel(source)}`
                     : ""}
                 </span>
                 <span className="block whitespace-pre-wrap wrap-break-word">
@@ -183,4 +191,13 @@ export function PartCitations({
 export function useMessageRag(): AskDisplayResponse | null {
   const custom = useAuiState((s) => s.message.metadata?.custom);
   return readRagPayload(custom);
+}
+
+export function useCitationNumbers(
+  rag: AskDisplayResponse | null,
+): Map<string, number> {
+  return useMemo(() => {
+    if (!rag) return new Map();
+    return buildCitationNumberMap(rag.answerParts, rag.sources);
+  }, [rag]);
 }

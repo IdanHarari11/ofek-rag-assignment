@@ -1,0 +1,2317 @@
+{
+  "generatedAt": "2026-10-22T09:00:55.728Z",
+  "stageLabel": "submission-2026-10-22-extended-exposed",
+  "configNote": "Active freeze: hybrid + Stage-4 applicability + ANSWER_REVIEW_ENABLED=false. See docs/stage6-config-freeze.md.",
+  "setId": "extended_eval_stage6",
+  "setPath": "/Users/idanharari/Projects/mint-rag-assignment/dev_set/extended_eval_stage6.json",
+  "setContentSha256": "92d7081b46b94ee769be6878407841b6bcf6b9247784048b1e0c4e615f962e75",
+  "hashMatched": true,
+  "retrievalMode": "hybrid",
+  "generationModel": "gpt-4.1-mini-2025-04-14",
+  "answerReviewEnabled": false,
+  "questionCount": 20,
+  "systemErrorCount": 0,
+  "statusCounts": {
+    "answered": 16,
+    "insufficient_evidence": 4
+  },
+  "retrievalAverages": {
+    "scoredCount": 15,
+    "documentRecallAt1": 0.6,
+    "documentRecallAt3": 0.9333333333333333,
+    "documentRecallAt5": 0.9333333333333333,
+    "mrr": 0.8
+  },
+  "evidenceCoverageCounts": {
+    "full": 13,
+    "partial": 1,
+    "missing": 1,
+    "n_a": 5
+  },
+  "qualityCounts": {
+    "conclusion": {},
+    "claimSupport": {},
+    "completeness": {},
+    "behavior": {}
+  },
+  "scoringDisclaimer": "Quality dimensions are AI-assisted judgments against corpus evidence and the frozen rubric. They are not an independent human evaluation. The Stage-5 answer-review component is not the judge.",
+  "questions": [
+    {
+      "id": "E01",
+      "category": "factual",
+      "tags": [
+        "ofek_plus",
+        "eligibility"
+      ],
+      "question": "מי זכאי להטבות של תוכנית \"אופק פלוס\"?",
+      "expectedBehavior": "answered",
+      "referenceAnswer": "לקוח שמחזיק לפחות 3 פוליסות פעילות באופק ביטוח (רכב, דירה ונסיעות בכל שילוב).",
+      "referenceSources": [
+        "31_ofek_plus_vip.docx"
+      ],
+      "materialFacts": [
+        "זכאות ללקוח עם 3 פוליסות פעילות או יותר (רכב/דירה/נסיעות בכל שילוב)"
+      ],
+      "forbiddenAssumptions": [
+        "הנחה שהלקוח כבר אופק פלוס בלי מספר פוליסות"
+      ],
+      "evidenceChunkIds": [
+        "corpus/31_ofek_plus_vip:c000"
+      ],
+      "status": "answered",
+      "answer": "זכאי להטבות של תוכנית \"אופק פלוס\" הוא לקוח שמחזיק 3 פוליסות פעילות או יותר באופק ביטוח, בכל שילוב של רכב, דירה ונסיעות.\n\nהטבות התוכנית כוללות נציג אישי עם קו ישיר, הנחה של 50% בהשתתפות העצמית בתיקון במוסך הסדר פעם אחת בשנה, הנחה של 7% על הפוליסה השלישית ואילך, והרחבת גאדג'טים בביטוח נסיעות ללא עלות.\n\nההטבה בהשתתפות העצמית אינה חלה על גניבה, אובדן גמור או מוסך שאינו בהסדר, ואינה מצטברת עם הכפלת ההשתתפות העצמית לנהג צעיר.",
+      "answerParts": [
+        {
+          "text": "זכאי להטבות של תוכנית \"אופק פלוס\" הוא לקוח שמחזיק 3 פוליסות פעילות או יותר באופק ביטוח, בכל שילוב של רכב, דירה ונסיעות.",
+          "sourceChunkIds": [
+            "corpus/31_ofek_plus_vip:c000"
+          ]
+        },
+        {
+          "text": "הטבות התוכנית כוללות נציג אישי עם קו ישיר, הנחה של 50% בהשתתפות העצמית בתיקון במוסך הסדר פעם אחת בשנה, הנחה של 7% על הפוליסה השלישית ואילך, והרחבת גאדג'טים בביטוח נסיעות ללא עלות.",
+          "sourceChunkIds": [
+            "corpus/31_ofek_plus_vip:c000"
+          ]
+        },
+        {
+          "text": "ההטבה בהשתתפות העצמית אינה חלה על גניבה, אובדן גמור או מוסך שאינו בהסדר, ואינה מצטברת עם הכפלת ההשתתפות העצמית לנהג צעיר.",
+          "sourceChunkIds": [
+            "corpus/31_ofek_plus_vip:c000"
+          ]
+        }
+      ],
+      "citations": [
+        {
+          "chunkId": "corpus/31_ofek_plus_vip:c000",
+          "claims": [
+            "זכאי להטבות של תוכנית \"אופק פלוס\" הוא לקוח שמחזיק 3 פוליסות פעילות או יותר באופק ביטוח, בכל שילוב של רכב, דירה ונסיעות.",
+            "הטבות התוכנית כוללות נציג אישי עם קו ישיר, הנחה של 50% בהשתתפות העצמית בתיקון במוסך הסדר פעם אחת בשנה, הנחה של 7% על הפוליסה השלישית ואילך, והרחבת גאדג'טים בביטוח נסיעות ללא עלות.",
+            "ההטבה בהשתתפות העצמית אינה חלה על גניבה, אובדן גמור או מוסך שאינו בהסדר, ואינה מצטברת עם הכפלת ההשתתפות העצמית לנהג צעיר."
+          ]
+        }
+      ],
+      "citedFileNames": [
+        "31_ofek_plus_vip.docx"
+      ],
+      "requestId": "cb7e5fcc-51ee-4fe4-8c5f-b676493c2056",
+      "retrievedChunkIds": [
+        "corpus/31_ofek_plus_vip:c000",
+        "corpus/09_marketing_brochure_car:c000",
+        "corpus/03_car_general_terms:c012",
+        "corpus/03_car_general_terms:c013",
+        "corpus/03_car_general_terms:c011"
+      ],
+      "contextChunkIds": [
+        "corpus/31_ofek_plus_vip:c000",
+        "corpus/09_marketing_brochure_car:c000",
+        "corpus/03_car_general_terms:c012",
+        "corpus/03_car_general_terms:c013",
+        "corpus/03_car_general_terms:c011",
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/02_car_comprehensive_policy_2026:c000",
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008"
+      ],
+      "hybridTopKChunkIds": [
+        "corpus/31_ofek_plus_vip:c000",
+        "corpus/09_marketing_brochure_car:c000",
+        "corpus/03_car_general_terms:c012",
+        "corpus/03_car_general_terms:c013",
+        "corpus/03_car_general_terms:c011"
+      ],
+      "linkedChunkIds": [
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/02_car_comprehensive_policy_2026:c000"
+      ],
+      "retrievalMetrics": {
+        "documentRecallAt1": 1,
+        "documentRecallAt3": 1,
+        "documentRecallAt5": 1,
+        "reciprocalRank": 1
+      },
+      "evidenceCoverage": "full",
+      "evidenceCoverageNote": "All 1 evidence chunkId(s) in context.",
+      "usage": {
+        "embeddingPromptTokens": 36,
+        "generationPromptTokens": 6410,
+        "generationCompletionTokens": 245,
+        "generationTotalTokens": 6655
+      },
+      "timingsMs": {
+        "retrieveMs": 226.3572090000016,
+        "contextMs": 0.4735419999997248,
+        "generationMs": 2476.1166250000024,
+        "totalMs": 2753.7302500000005
+      },
+      "qualityReview": {
+        "conclusionCorrectness": "pending",
+        "claimSupport": "pending",
+        "essentialCompleteness": "pending",
+        "behaviorAppropriateness": "pending",
+        "focusNotes": [
+          "expectedBehavior=answered",
+          "fact: זכאות ללקוח עם 3 פוליסות פעילות או יותר (רכב/דירה/נסיעות בכל שילוב)",
+          "forbid: הנחה שהלקוח כבר אופק פלוס בלי מספר פוליסות"
+        ],
+        "overallNotes": "AI-assisted scoring vs corpus evidence — not an independent human evaluation."
+      }
+    },
+    {
+      "id": "E02",
+      "category": "factual",
+      "tags": [
+        "claims_sla",
+        "car"
+      ],
+      "question": "תוך כמה ימי עסקים אמור להתבצע ביקור שמאי ברכב לפי אמנת השירות?",
+      "expectedBehavior": "answered",
+      "referenceAnswer": "עד 3 ימי עסקים.",
+      "referenceSources": [
+        "21_claims_sla.md"
+      ],
+      "materialFacts": [
+        "עד 3 ימי עסקים לביקור שמאי – רכב"
+      ],
+      "forbiddenAssumptions": [
+        "ערבוב עם יעד שמאי דירה (5 ימים)"
+      ],
+      "evidenceChunkIds": [
+        "corpus/21_claims_sla:c000"
+      ],
+      "status": "answered",
+      "answer": "לפי אמנת השירות של אופק ביטוח, ביקור שמאי ברכב אמור להתבצע בתוך עד 3 ימי עסקים.",
+      "answerParts": [
+        {
+          "text": "לפי אמנת השירות של אופק ביטוח, ביקור שמאי ברכב אמור להתבצע בתוך עד 3 ימי עסקים.",
+          "sourceChunkIds": [
+            "corpus/21_claims_sla:c000",
+            "corpus/18_claims_process_car:c000"
+          ]
+        }
+      ],
+      "citations": [
+        {
+          "chunkId": "corpus/21_claims_sla:c000",
+          "claims": [
+            "לפי אמנת השירות של אופק ביטוח, ביקור שמאי ברכב אמור להתבצע בתוך עד 3 ימי עסקים."
+          ]
+        },
+        {
+          "chunkId": "corpus/18_claims_process_car:c000",
+          "claims": [
+            "לפי אמנת השירות של אופק ביטוח, ביקור שמאי ברכב אמור להתבצע בתוך עד 3 ימי עסקים."
+          ]
+        }
+      ],
+      "citedFileNames": [
+        "21_claims_sla.md",
+        "18_claims_process_car.md"
+      ],
+      "requestId": "989baebc-baa9-414d-86ab-ae695320bbb6",
+      "retrievedChunkIds": [
+        "corpus/21_claims_sla:c000",
+        "corpus/18_claims_process_car:c000",
+        "corpus/03_car_general_terms:c002",
+        "corpus/07_towing_roadside:c000",
+        "corpus/03_car_general_terms:c008"
+      ],
+      "contextChunkIds": [
+        "corpus/21_claims_sla:c000",
+        "corpus/18_claims_process_car:c000",
+        "corpus/03_car_general_terms:c002",
+        "corpus/07_towing_roadside:c000",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c009",
+        "corpus/03_car_general_terms:c010",
+        "corpus/03_car_general_terms:c011",
+        "corpus/03_car_general_terms:c012",
+        "corpus/03_car_general_terms:c013",
+        "corpus/03_car_general_terms:c014"
+      ],
+      "hybridTopKChunkIds": [
+        "corpus/21_claims_sla:c000",
+        "corpus/18_claims_process_car:c000",
+        "corpus/03_car_general_terms:c002",
+        "corpus/07_towing_roadside:c000",
+        "corpus/03_car_general_terms:c008"
+      ],
+      "linkedChunkIds": [],
+      "retrievalMetrics": {
+        "documentRecallAt1": 1,
+        "documentRecallAt3": 1,
+        "documentRecallAt5": 1,
+        "reciprocalRank": 1
+      },
+      "evidenceCoverage": "full",
+      "evidenceCoverageNote": "All 1 evidence chunkId(s) in context.",
+      "usage": {
+        "embeddingPromptTokens": 59,
+        "generationPromptTokens": 5967,
+        "generationCompletionTokens": 70,
+        "generationTotalTokens": 6037
+      },
+      "timingsMs": {
+        "retrieveMs": 309.5459169999958,
+        "contextMs": 0.4323339999973541,
+        "generationMs": 1091.5502500000002,
+        "totalMs": 1446.0135420000006
+      },
+      "qualityReview": {
+        "conclusionCorrectness": "pending",
+        "claimSupport": "pending",
+        "essentialCompleteness": "pending",
+        "behaviorAppropriateness": "pending",
+        "focusNotes": [
+          "expectedBehavior=answered",
+          "fact: עד 3 ימי עסקים לביקור שמאי – רכב",
+          "forbid: ערבוב עם יעד שמאי דירה (5 ימים)"
+        ],
+        "overallNotes": "AI-assisted scoring vs corpus evidence — not an independent human evaluation."
+      }
+    },
+    {
+      "id": "E03",
+      "category": "factual",
+      "tags": [
+        "identification",
+        "privacy"
+      ],
+      "question": "בשיחת מוקד, אילו פרטים נדרשים לזיהוי לקוח מעבר למספר תעודת זהות?",
+      "expectedBehavior": "answered",
+      "referenceAnswer": "מספר ת.ז. ועוד שניים מתוך: תאריך לידה, מספר פוליסה, או 4 הספרות האחרונות של כרטיס האשראי לתשלום.",
+      "referenceSources": [
+        "33_customer_identification.md"
+      ],
+      "materialFacts": [
+        "תעודת זהות + שניים מתוך: תאריך לידה, מספר פוליסה, 4 ספרות אחרונות של כרטיס האשראי"
+      ],
+      "forbiddenAssumptions": [
+        "מסירת מידע לבן זוג בלי הרשאה"
+      ],
+      "evidenceChunkIds": [
+        "corpus/33_customer_identification:c000"
+      ],
+      "status": "answered",
+      "answer": "בשיחת מוקד, מעבר למספר תעודת זהות, הלקוח נדרש למסור שניים מתוך שלושת הפרטים הבאים: תאריך לידה, מספר פוליסה, ו-4 הספרות האחרונות של כרטיס האשראי שבו משולמת הפוליסה.",
+      "answerParts": [
+        {
+          "text": "בשיחת מוקד, מעבר למספר תעודת זהות, הלקוח נדרש למסור שניים מתוך שלושת הפרטים הבאים: תאריך לידה, מספר פוליסה, ו-4 הספרות האחרונות של כרטיס האשראי שבו משולמת הפוליסה.",
+          "sourceChunkIds": [
+            "corpus/33_customer_identification:c000"
+          ]
+        }
+      ],
+      "citations": [
+        {
+          "chunkId": "corpus/33_customer_identification:c000",
+          "claims": [
+            "בשיחת מוקד, מעבר למספר תעודת זהות, הלקוח נדרש למסור שניים מתוך שלושת הפרטים הבאים: תאריך לידה, מספר פוליסה, ו-4 הספרות האחרונות של כרטיס האשראי שבו משולמת הפוליסה."
+          ]
+        }
+      ],
+      "citedFileNames": [
+        "33_customer_identification.md"
+      ],
+      "requestId": "52a90b2f-e869-456b-99ce-7c95ac6c539f",
+      "retrievedChunkIds": [
+        "corpus/33_customer_identification:c000",
+        "corpus/28_call_center_hours:c000",
+        "corpus/06_windshield_service:c000",
+        "corpus/19_claims_process_home:c000",
+        "corpus/18_claims_process_car:c000"
+      ],
+      "contextChunkIds": [
+        "corpus/33_customer_identification:c000",
+        "corpus/28_call_center_hours:c000",
+        "corpus/06_windshield_service:c000",
+        "corpus/19_claims_process_home:c000",
+        "corpus/18_claims_process_car:c000"
+      ],
+      "hybridTopKChunkIds": [
+        "corpus/33_customer_identification:c000",
+        "corpus/28_call_center_hours:c000",
+        "corpus/06_windshield_service:c000",
+        "corpus/19_claims_process_home:c000",
+        "corpus/18_claims_process_car:c000"
+      ],
+      "linkedChunkIds": [],
+      "retrievalMetrics": {
+        "documentRecallAt1": 1,
+        "documentRecallAt3": 1,
+        "documentRecallAt5": 1,
+        "reciprocalRank": 1
+      },
+      "evidenceCoverage": "full",
+      "evidenceCoverageNote": "All 1 evidence chunkId(s) in context.",
+      "usage": {
+        "embeddingPromptTokens": 63,
+        "generationPromptTokens": 2521,
+        "generationCompletionTokens": 87,
+        "generationTotalTokens": 2608
+      },
+      "timingsMs": {
+        "retrieveMs": 196.27291699999478,
+        "contextMs": 0.17829200000414858,
+        "generationMs": 1290.755833999996,
+        "totalMs": 1531.8387500000026
+      },
+      "qualityReview": {
+        "conclusionCorrectness": "pending",
+        "claimSupport": "pending",
+        "essentialCompleteness": "pending",
+        "behaviorAppropriateness": "pending",
+        "focusNotes": [
+          "expectedBehavior=answered",
+          "fact: תעודת זהות + שניים מתוך: תאריך לידה, מספר פוליסה, 4 ספרות אחרונות של כרטיס האשראי",
+          "forbid: מסירת מידע לבן זוג בלי הרשאה"
+        ],
+        "overallNotes": "AI-assisted scoring vs corpus evidence — not an independent human evaluation."
+      }
+    },
+    {
+      "id": "E04",
+      "category": "table",
+      "tags": [
+        "payment",
+        "installments"
+      ],
+      "question": "מה פריסת התשלומים המקסימלית בכרטיס אשראי, ומה קורה אם תשלום לא נפרע בתוך 21 יום?",
+      "expectedBehavior": "answered",
+      "referenceAnswer": "עד 12 תשלומים ללא ריבית בכרטיס אשראי. אם התשלום לא הוסדר תוך 21 יום נשלחת הודעה בכתב על ביטול הפוליסה.",
+      "referenceSources": [
+        "24_payment_methods.md"
+      ],
+      "materialFacts": [
+        "כרטיס אשראי: עד 12 תשלומים ללא ריבית",
+        "אם לא הוסדר בתוך 21 יום — הודעה בכתב על ביטול הפוליסה"
+      ],
+      "forbiddenAssumptions": [
+        "ערבוב עם מגבלת הוראת קבע (10 תשלומים) כתשובה יחידה"
+      ],
+      "evidenceChunkIds": [
+        "corpus/24_payment_methods:c000",
+        "corpus/24_payment_methods:c000"
+      ],
+      "status": "answered",
+      "answer": "פריסת התשלומים המקסימלית בכרטיס אשראי היא עד 12 תשלומים ללא ריבית.\n\nאם התשלום לא נפרע בתוך 21 יום, נשלחת ללקוח הודעה בכתב על ביטול הפוליסה.",
+      "answerParts": [
+        {
+          "text": "פריסת התשלומים המקסימלית בכרטיס אשראי היא עד 12 תשלומים ללא ריבית.",
+          "sourceChunkIds": [
+            "corpus/24_payment_methods:c000"
+          ]
+        },
+        {
+          "text": "אם התשלום לא נפרע בתוך 21 יום, נשלחת ללקוח הודעה בכתב על ביטול הפוליסה.",
+          "sourceChunkIds": [
+            "corpus/24_payment_methods:c000"
+          ]
+        }
+      ],
+      "citations": [
+        {
+          "chunkId": "corpus/24_payment_methods:c000",
+          "claims": [
+            "פריסת התשלומים המקסימלית בכרטיס אשראי היא עד 12 תשלומים ללא ריבית.",
+            "אם התשלום לא נפרע בתוך 21 יום, נשלחת ללקוח הודעה בכתב על ביטול הפוליסה."
+          ]
+        }
+      ],
+      "citedFileNames": [
+        "24_payment_methods.md"
+      ],
+      "requestId": "bf5a0be8-717a-43b3-961a-1a80f7f898a6",
+      "retrievedChunkIds": [
+        "corpus/24_payment_methods:c000",
+        "corpus/03_car_general_terms:c004",
+        "corpus/27_customer_complaints:c000",
+        "corpus/03_car_general_terms:c009",
+        "corpus/18_claims_process_car:c000"
+      ],
+      "contextChunkIds": [
+        "corpus/24_payment_methods:c000",
+        "corpus/03_car_general_terms:c004",
+        "corpus/27_customer_complaints:c000",
+        "corpus/03_car_general_terms:c009",
+        "corpus/18_claims_process_car:c000",
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c010",
+        "corpus/03_car_general_terms:c011",
+        "corpus/03_car_general_terms:c012",
+        "corpus/03_car_general_terms:c013",
+        "corpus/03_car_general_terms:c014"
+      ],
+      "hybridTopKChunkIds": [
+        "corpus/24_payment_methods:c000",
+        "corpus/03_car_general_terms:c004",
+        "corpus/27_customer_complaints:c000",
+        "corpus/03_car_general_terms:c009",
+        "corpus/18_claims_process_car:c000"
+      ],
+      "linkedChunkIds": [],
+      "retrievalMetrics": {
+        "documentRecallAt1": 1,
+        "documentRecallAt3": 1,
+        "documentRecallAt5": 1,
+        "reciprocalRank": 1
+      },
+      "evidenceCoverage": "full",
+      "evidenceCoverageNote": "All 2 evidence chunkId(s) in context.",
+      "usage": {
+        "embeddingPromptTokens": 78,
+        "generationPromptTokens": 5926,
+        "generationCompletionTokens": 96,
+        "generationTotalTokens": 6022
+      },
+      "timingsMs": {
+        "retrieveMs": 194.2700840000034,
+        "contextMs": 0.7533750000002328,
+        "generationMs": 1308.0867089999956,
+        "totalMs": 1550.3192089999939
+      },
+      "qualityReview": {
+        "conclusionCorrectness": "pending",
+        "claimSupport": "pending",
+        "essentialCompleteness": "pending",
+        "behaviorAppropriateness": "pending",
+        "focusNotes": [
+          "expectedBehavior=answered",
+          "fact: כרטיס אשראי: עד 12 תשלומים ללא ריבית",
+          "fact: אם לא הוסדר בתוך 21 יום — הודעה בכתב על ביטול הפוליסה",
+          "forbid: ערבוב עם מגבלת הוראת קבע (10 תשלומים) כתשובה יחידה"
+        ],
+        "overallNotes": "AI-assisted scoring vs corpus evidence — not an independent human evaluation."
+      }
+    },
+    {
+      "id": "E05",
+      "category": "table",
+      "tags": [
+        "home",
+        "water",
+        "deductible"
+      ],
+      "question": "מה ההשתתפות העצמית בנזקי מים בדירה, ומה משתנה אם משתמשים באינסטלטור מרשת אופק עם כתב שירות אינסטלציה?",
+      "expectedBehavior": "answered",
+      "referenceAnswer": "750 ₪ לאירוע; עם כתב שירות אינסטלציה ואינסטלטור מרשת אופק — 250 ₪ לביקור כולל איתור נזילה.",
+      "referenceSources": [
+        "11_home_water_damage.md"
+      ],
+      "materialFacts": [
+        "750 ₪ לאירוע נזקי מים",
+        "עם כתב שירות אינסטלציה ואינסטלטור רשת: 250 ₪ לביקור כולל איתור נזילה"
+      ],
+      "forbiddenAssumptions": [
+        "שאיתור נזילה מכוסה תמיד בלי כתב שירות"
+      ],
+      "evidenceChunkIds": [
+        "corpus/11_home_water_damage:c000",
+        "corpus/11_home_water_damage:c000"
+      ],
+      "status": "answered",
+      "answer": "ההשתתפות העצמית בנזקי מים בדירה היא 750 ₪ לכל אירוע נזקי מים.\n\nאם המבוטח רכש כתב שירות אינסטלציה ומשתמש באינסטלטור מרשת אופק, ההשתתפות העצמית יורדת ל-250 ₪ לכל ביקור, כולל איתור נזילה.",
+      "answerParts": [
+        {
+          "text": "ההשתתפות העצמית בנזקי מים בדירה היא 750 ₪ לכל אירוע נזקי מים.",
+          "sourceChunkIds": [
+            "corpus/11_home_water_damage:c000"
+          ]
+        },
+        {
+          "text": "אם המבוטח רכש כתב שירות אינסטלציה ומשתמש באינסטלטור מרשת אופק, ההשתתפות העצמית יורדת ל-250 ₪ לכל ביקור, כולל איתור נזילה.",
+          "sourceChunkIds": [
+            "corpus/11_home_water_damage:c000"
+          ]
+        }
+      ],
+      "citations": [
+        {
+          "chunkId": "corpus/11_home_water_damage:c000",
+          "claims": [
+            "ההשתתפות העצמית בנזקי מים בדירה היא 750 ₪ לכל אירוע נזקי מים.",
+            "אם המבוטח רכש כתב שירות אינסטלציה ומשתמש באינסטלטור מרשת אופק, ההשתתפות העצמית יורדת ל-250 ₪ לכל ביקור, כולל איתור נזילה."
+          ]
+        }
+      ],
+      "citedFileNames": [
+        "11_home_water_damage.md"
+      ],
+      "requestId": "6e560a48-1755-4dec-a345-27cb7061fefa",
+      "retrievedChunkIds": [
+        "corpus/11_home_water_damage:c000",
+        "corpus/19_claims_process_home:c000",
+        "corpus/06_windshield_service:c000",
+        "corpus/10_home_policy_overview:c000",
+        "corpus/01_car_comprehensive_policy_2024:c000"
+      ],
+      "contextChunkIds": [
+        "corpus/11_home_water_damage:c000",
+        "corpus/19_claims_process_home:c000",
+        "corpus/06_windshield_service:c000",
+        "corpus/10_home_policy_overview:c000",
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/02_car_comprehensive_policy_2026:c000",
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c011"
+      ],
+      "hybridTopKChunkIds": [
+        "corpus/11_home_water_damage:c000",
+        "corpus/19_claims_process_home:c000",
+        "corpus/06_windshield_service:c000",
+        "corpus/10_home_policy_overview:c000",
+        "corpus/01_car_comprehensive_policy_2024:c000"
+      ],
+      "linkedChunkIds": [
+        "corpus/02_car_comprehensive_policy_2026:c000",
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c011"
+      ],
+      "retrievalMetrics": {
+        "documentRecallAt1": 1,
+        "documentRecallAt3": 1,
+        "documentRecallAt5": 1,
+        "reciprocalRank": 1
+      },
+      "evidenceCoverage": "full",
+      "evidenceCoverageNote": "All 2 evidence chunkId(s) in context.",
+      "usage": {
+        "embeddingPromptTokens": 101,
+        "generationPromptTokens": 6359,
+        "generationCompletionTokens": 116,
+        "generationTotalTokens": 6475
+      },
+      "timingsMs": {
+        "retrieveMs": 206.04904199999874,
+        "contextMs": 3.2753329999977723,
+        "generationMs": 1410.1389170000039,
+        "totalMs": 1663.689624999999
+      },
+      "qualityReview": {
+        "conclusionCorrectness": "pending",
+        "claimSupport": "pending",
+        "essentialCompleteness": "pending",
+        "behaviorAppropriateness": "pending",
+        "focusNotes": [
+          "expectedBehavior=answered",
+          "fact: 750 ₪ לאירוע נזקי מים",
+          "fact: עם כתב שירות אינסטלציה ואינסטלטור רשת: 250 ₪ לביקור כולל איתור נזילה",
+          "forbid: שאיתור נזילה מכוסה תמיד בלי כתב שירות"
+        ],
+        "overallNotes": "AI-assisted scoring vs corpus evidence — not an independent human evaluation."
+      }
+    },
+    {
+      "id": "E06",
+      "category": "table",
+      "tags": [
+        "earthquake",
+        "deductible",
+        "calc_base"
+      ],
+      "question": "מה בסיס חישוב ההשתתפות העצמית ברעידת אדמה לפרק המבנה, ומה שיעור ההשתתפות בדירה שעברה חיזוק תמ\"א 38?",
+      "expectedBehavior": "answered",
+      "referenceAnswer": "10% מסכום ביטוח המבנה; בדירה מחוזקת לפי תמ\"א 38 — 5% מסכום ביטוח המבנה.",
+      "referenceSources": [
+        "13_home_earthquake_annex.pdf"
+      ],
+      "materialFacts": [
+        "מבנה רגיל: 10% מסכום ביטוח המבנה",
+        "מבנה עם תמ\"א 38: 5% מסכום ביטוח המבנה"
+      ],
+      "forbiddenAssumptions": [
+        "חישוב לפי סכום הנזק לפרק המבנה במקום סכום הביטוח"
+      ],
+      "evidenceChunkIds": [
+        "corpus/13_home_earthquake_annex:c000",
+        "corpus/13_home_earthquake_annex:c000"
+      ],
+      "status": "answered",
+      "answer": "בסיס חישוב ההשתתפות העצמית ברעידת אדמה לפרק המבנה הוא 10% מסכום ביטוח המבנה.\n\nלגבי דירה שעברה חיזוק לפי תמ\"א 38, שיעור ההשתתפות העצמית ברעידת אדמה בפרק המבנה הוא 5% מסכום ביטוח המבנה.",
+      "answerParts": [
+        {
+          "text": "בסיס חישוב ההשתתפות העצמית ברעידת אדמה לפרק המבנה הוא 10% מסכום ביטוח המבנה.",
+          "sourceChunkIds": [
+            "corpus/13_home_earthquake_annex:c000"
+          ]
+        },
+        {
+          "text": "לגבי דירה שעברה חיזוק לפי תמ\"א 38, שיעור ההשתתפות העצמית ברעידת אדמה בפרק המבנה הוא 5% מסכום ביטוח המבנה.",
+          "sourceChunkIds": [
+            "corpus/13_home_earthquake_annex:c000"
+          ]
+        }
+      ],
+      "citations": [
+        {
+          "chunkId": "corpus/13_home_earthquake_annex:c000",
+          "claims": [
+            "בסיס חישוב ההשתתפות העצמית ברעידת אדמה לפרק המבנה הוא 10% מסכום ביטוח המבנה.",
+            "לגבי דירה שעברה חיזוק לפי תמ\"א 38, שיעור ההשתתפות העצמית ברעידת אדמה בפרק המבנה הוא 5% מסכום ביטוח המבנה."
+          ]
+        }
+      ],
+      "citedFileNames": [
+        "13_home_earthquake_annex.pdf"
+      ],
+      "requestId": "0ec7e096-9f17-4bb5-a52f-d32dd07d8587",
+      "retrievedChunkIds": [
+        "corpus/13_home_earthquake_annex:c000",
+        "corpus/10_home_policy_overview:c000",
+        "corpus/19_claims_process_home:c000",
+        "corpus/03_car_general_terms:c012",
+        "corpus/04_young_driver_annex:c000"
+      ],
+      "contextChunkIds": [
+        "corpus/13_home_earthquake_annex:c000",
+        "corpus/10_home_policy_overview:c000",
+        "corpus/19_claims_process_home:c000",
+        "corpus/03_car_general_terms:c012",
+        "corpus/04_young_driver_annex:c000",
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c009",
+        "corpus/03_car_general_terms:c010",
+        "corpus/03_car_general_terms:c011"
+      ],
+      "hybridTopKChunkIds": [
+        "corpus/13_home_earthquake_annex:c000",
+        "corpus/10_home_policy_overview:c000",
+        "corpus/19_claims_process_home:c000",
+        "corpus/03_car_general_terms:c012",
+        "corpus/04_young_driver_annex:c000"
+      ],
+      "linkedChunkIds": [],
+      "retrievalMetrics": {
+        "documentRecallAt1": 1,
+        "documentRecallAt3": 1,
+        "documentRecallAt5": 1,
+        "reciprocalRank": 1
+      },
+      "evidenceCoverage": "full",
+      "evidenceCoverageNote": "All 2 evidence chunkId(s) in context.",
+      "usage": {
+        "embeddingPromptTokens": 93,
+        "generationPromptTokens": 6115,
+        "generationCompletionTokens": 130,
+        "generationTotalTokens": 6245
+      },
+      "timingsMs": {
+        "retrieveMs": 172.61074999999983,
+        "contextMs": 0.4056669999990845,
+        "generationMs": 1451.8554999999978,
+        "totalMs": 1670.2484169999952
+      },
+      "qualityReview": {
+        "conclusionCorrectness": "pending",
+        "claimSupport": "pending",
+        "essentialCompleteness": "pending",
+        "behaviorAppropriateness": "pending",
+        "focusNotes": [
+          "expectedBehavior=answered",
+          "fact: מבנה רגיל: 10% מסכום ביטוח המבנה",
+          "fact: מבנה עם תמ\"א 38: 5% מסכום ביטוח המבנה",
+          "forbid: חישוב לפי סכום הנזק לפרק המבנה במקום סכום הביטוח"
+        ],
+        "overallNotes": "AI-assisted scoring vs corpus evidence — not an independent human evaluation."
+      }
+    },
+    {
+      "id": "E07",
+      "category": "applicability",
+      "tags": [
+        "car",
+        "version",
+        "before_transition"
+      ],
+      "question": "מה ההשתתפות העצמית בתיקון במוסך הסדר בפוליסת מקיף שהונפקה ב-28.2.2026?",
+      "expectedBehavior": "answered",
+      "referenceAnswer": "950 ₪ (גרסת 2024 — הנפקה לפני 1.3.2026).",
+      "referenceSources": [
+        "01_car_comprehensive_policy_2024.pdf",
+        "02_car_comprehensive_policy_2026.pdf"
+      ],
+      "materialFacts": [
+        "הנפקה לפני 1.3.2026 → גרסת 2024 → 950 ₪ במוסך הסדר"
+      ],
+      "forbiddenAssumptions": [
+        "יישום סכומי 2026 על הנפקה בפברואר 2026"
+      ],
+      "evidenceChunkIds": [
+        "corpus/02_car_comprehensive_policy_2026:c000",
+        "corpus/01_car_comprehensive_policy_2024:c000"
+      ],
+      "status": "answered",
+      "answer": "ההשתתפות העצמית בתיקון במוסך הסדר בפוליסת מקיף שהונפקה ב-28.2.2026 היא 950 ש\"ח. ההשתתפות העצמית צמודה למדד המחירים לצרכן הידוע ביום 1.1.2024.",
+      "answerParts": [
+        {
+          "text": "ההשתתפות העצמית בתיקון במוסך הסדר בפוליסת מקיף שהונפקה ב-28.2.2026 היא 950 ש\"ח. ההשתתפות העצמית צמודה למדד המחירים לצרכן הידוע ביום 1.1.2024.",
+          "sourceChunkIds": [
+            "corpus/01_car_comprehensive_policy_2024:c000"
+          ]
+        }
+      ],
+      "citations": [
+        {
+          "chunkId": "corpus/01_car_comprehensive_policy_2024:c000",
+          "claims": [
+            "ההשתתפות העצמית בתיקון במוסך הסדר בפוליסת מקיף שהונפקה ב-28.2.2026 היא 950 ש\"ח. ההשתתפות העצמית צמודה למדד המחירים לצרכן הידוע ביום 1.1.2024."
+          ]
+        }
+      ],
+      "citedFileNames": [
+        "01_car_comprehensive_policy_2024.pdf"
+      ],
+      "requestId": "62110e45-7f88-4970-8097-c1314d3fa8bd",
+      "retrievedChunkIds": [
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/02_car_comprehensive_policy_2026:c000",
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/26_address_change:c000",
+        "corpus/24_payment_methods:c000"
+      ],
+      "contextChunkIds": [
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/26_address_change:c000",
+        "corpus/24_payment_methods:c000",
+        "corpus/03_car_general_terms:c000",
+        "corpus/23_cancellation_procedure_update_2025:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c009",
+        "corpus/03_car_general_terms:c010",
+        "corpus/03_car_general_terms:c011",
+        "corpus/03_car_general_terms:c013"
+      ],
+      "hybridTopKChunkIds": [
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/02_car_comprehensive_policy_2026:c000",
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/26_address_change:c000",
+        "corpus/24_payment_methods:c000"
+      ],
+      "linkedChunkIds": [
+        "corpus/03_car_general_terms:c000",
+        "corpus/23_cancellation_procedure_update_2025:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c009",
+        "corpus/03_car_general_terms:c010",
+        "corpus/03_car_general_terms:c011",
+        "corpus/03_car_general_terms:c013"
+      ],
+      "retrievalMetrics": {
+        "documentRecallAt1": 0.5,
+        "documentRecallAt3": 1,
+        "documentRecallAt5": 1,
+        "reciprocalRank": 1
+      },
+      "evidenceCoverage": "partial",
+      "evidenceCoverageNote": "Partial: files 1/2, chunks 1/2.",
+      "usage": {
+        "embeddingPromptTokens": 66,
+        "generationPromptTokens": 6776,
+        "generationCompletionTokens": 98,
+        "generationTotalTokens": 6874
+      },
+      "timingsMs": {
+        "retrieveMs": 193.59274999999616,
+        "contextMs": 0.5497079999986454,
+        "generationMs": 1266.3764579999988,
+        "totalMs": 1503.735624999994
+      },
+      "qualityReview": {
+        "conclusionCorrectness": "pending",
+        "claimSupport": "pending",
+        "essentialCompleteness": "pending",
+        "behaviorAppropriateness": "pending",
+        "focusNotes": [
+          "expectedBehavior=answered",
+          "fact: הנפקה לפני 1.3.2026 → גרסת 2024 → 950 ₪ במוסך הסדר",
+          "forbid: יישום סכומי 2026 על הנפקה בפברואר 2026"
+        ],
+        "overallNotes": "AI-assisted scoring vs corpus evidence — not an independent human evaluation."
+      },
+      "failureStageHint": "context"
+    },
+    {
+      "id": "E08",
+      "category": "applicability",
+      "tags": [
+        "car",
+        "version",
+        "on_transition"
+      ],
+      "question": "מה ההשתתפות העצמית במוסך הסדר בפוליסת מקיף שהונפקה בדיוק ב-1.3.2026?",
+      "expectedBehavior": "answered",
+      "referenceAnswer": "1,100 ₪ לפי גרסת 2026.",
+      "referenceSources": [
+        "02_car_comprehensive_policy_2026.pdf"
+      ],
+      "materialFacts": [
+        "הנפקה ב-1.3.2026 נכללת בגרסת 2026 → 1,100 ₪"
+      ],
+      "forbiddenAssumptions": [
+        "טענה שרק אחרי 1.3.2026 בלי לכלול את היום עצמו"
+      ],
+      "evidenceChunkIds": [
+        "corpus/02_car_comprehensive_policy_2026:c000",
+        "corpus/02_car_comprehensive_policy_2026:c000"
+      ],
+      "status": "answered",
+      "answer": "בפוליסת ביטוח רכב מקיף שהונפקה ב-1.3.2026, ההשתתפות העצמית בנזק חלקי לתיקון במוסך הסדר היא 1,100 ₪. ההשתתפות העצמית צמודה למדד המחירים לצרכן הידוע ביום ההנפקה, כלומר ביום 1.3.2026.",
+      "answerParts": [
+        {
+          "text": "בפוליסת ביטוח רכב מקיף שהונפקה ב-1.3.2026, ההשתתפות העצמית בנזק חלקי לתיקון במוסך הסדר היא 1,100 ₪. ההשתתפות העצמית צמודה למדד המחירים לצרכן הידוע ביום ההנפקה, כלומר ביום 1.3.2026.",
+          "sourceChunkIds": [
+            "corpus/02_car_comprehensive_policy_2026:c000"
+          ]
+        }
+      ],
+      "citations": [
+        {
+          "chunkId": "corpus/02_car_comprehensive_policy_2026:c000",
+          "claims": [
+            "בפוליסת ביטוח רכב מקיף שהונפקה ב-1.3.2026, ההשתתפות העצמית בנזק חלקי לתיקון במוסך הסדר היא 1,100 ₪. ההשתתפות העצמית צמודה למדד המחירים לצרכן הידוע ביום ההנפקה, כלומר ביום 1.3.2026."
+          ]
+        }
+      ],
+      "citedFileNames": [
+        "02_car_comprehensive_policy_2026.pdf"
+      ],
+      "requestId": "e36eaa8c-f79e-4dc0-8361-a44d78d390d7",
+      "retrievedChunkIds": [
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/02_car_comprehensive_policy_2026:c000",
+        "corpus/26_address_change:c000",
+        "corpus/08_replacement_car:c000",
+        "corpus/22_cancellation_procedure_2023:c000"
+      ],
+      "contextChunkIds": [
+        "corpus/02_car_comprehensive_policy_2026:c000",
+        "corpus/26_address_change:c000",
+        "corpus/08_replacement_car:c000",
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/03_car_general_terms:c000",
+        "corpus/23_cancellation_procedure_update_2025:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c009",
+        "corpus/03_car_general_terms:c010",
+        "corpus/03_car_general_terms:c011",
+        "corpus/03_car_general_terms:c014"
+      ],
+      "hybridTopKChunkIds": [
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/02_car_comprehensive_policy_2026:c000",
+        "corpus/26_address_change:c000",
+        "corpus/08_replacement_car:c000",
+        "corpus/22_cancellation_procedure_2023:c000"
+      ],
+      "linkedChunkIds": [
+        "corpus/03_car_general_terms:c000",
+        "corpus/23_cancellation_procedure_update_2025:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c009",
+        "corpus/03_car_general_terms:c010",
+        "corpus/03_car_general_terms:c011",
+        "corpus/03_car_general_terms:c014"
+      ],
+      "retrievalMetrics": {
+        "documentRecallAt1": 0,
+        "documentRecallAt3": 1,
+        "documentRecallAt5": 1,
+        "reciprocalRank": 0.5
+      },
+      "evidenceCoverage": "full",
+      "evidenceCoverageNote": "All 2 evidence chunkId(s) in context.",
+      "usage": {
+        "embeddingPromptTokens": 65,
+        "generationPromptTokens": 6816,
+        "generationCompletionTokens": 114,
+        "generationTotalTokens": 6930
+      },
+      "timingsMs": {
+        "retrieveMs": 231.51654199999757,
+        "contextMs": 0.41420900000230176,
+        "generationMs": 1480.9532499999987,
+        "totalMs": 1756.370167000001
+      },
+      "qualityReview": {
+        "conclusionCorrectness": "pending",
+        "claimSupport": "pending",
+        "essentialCompleteness": "pending",
+        "behaviorAppropriateness": "pending",
+        "focusNotes": [
+          "expectedBehavior=answered",
+          "fact: הנפקה ב-1.3.2026 נכללת בגרסת 2026 → 1,100 ₪",
+          "forbid: טענה שרק אחרי 1.3.2026 בלי לכלול את היום עצמו"
+        ],
+        "overallNotes": "AI-assisted scoring vs corpus evidence — not an independent human evaluation."
+      }
+    },
+    {
+      "id": "E09",
+      "category": "applicability",
+      "tags": [
+        "cancellation",
+        "partial_update",
+        "fees"
+      ],
+      "question": "מה דמי הטיפול בהחזר אם הלקוח מבטל פוליסה אחרי יותר מ-14 יום ממועד הרכישה (לאחר תחילת עדכון 2025)?",
+      "expectedBehavior": "answered",
+      "referenceAnswer": "3% מסכום ההחזר, ולא יותר מ-150 ₪ (עדכון 2025; לא 5%).",
+      "referenceSources": [
+        "23_cancellation_procedure_update_2025.md"
+      ],
+      "materialFacts": [
+        "דמי טיפול 3% מסכום ההחזר ולא יותר מ-150 ₪"
+      ],
+      "forbiddenAssumptions": [
+        "ציון דמי טיפול 5% ככלל החל"
+      ],
+      "evidenceChunkIds": [
+        "corpus/23_cancellation_procedure_update_2025:c000"
+      ],
+      "status": "answered",
+      "answer": "אם הלקוח מבטל פוליסה אחרי יותר מ-14 יום ממועד הרכישה, דמי הטיפול בהחזר הם 3% מסכום ההחזר, ולא יותר מ-150 ₪. ההחזר מחושב באופן יחסי (pro-rata).",
+      "answerParts": [
+        {
+          "text": "אם הלקוח מבטל פוליסה אחרי יותר מ-14 יום ממועד הרכישה, דמי הטיפול בהחזר הם 3% מסכום ההחזר, ולא יותר מ-150 ₪. ההחזר מחושב באופן יחסי (pro-rata).",
+          "sourceChunkIds": [
+            "corpus/23_cancellation_procedure_update_2025:c000"
+          ]
+        }
+      ],
+      "citations": [
+        {
+          "chunkId": "corpus/23_cancellation_procedure_update_2025:c000",
+          "claims": [
+            "אם הלקוח מבטל פוליסה אחרי יותר מ-14 יום ממועד הרכישה, דמי הטיפול בהחזר הם 3% מסכום ההחזר, ולא יותר מ-150 ₪. ההחזר מחושב באופן יחסי (pro-rata)."
+          ]
+        }
+      ],
+      "citedFileNames": [
+        "23_cancellation_procedure_update_2025.md"
+      ],
+      "requestId": "0ea1711c-3ebc-4e3f-bc8c-1c119fb5bb39",
+      "retrievedChunkIds": [
+        "corpus/23_cancellation_procedure_update_2025:c000",
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/27_customer_complaints:c000",
+        "corpus/18_claims_process_car:c000",
+        "corpus/03_car_general_terms:c004"
+      ],
+      "contextChunkIds": [
+        "corpus/23_cancellation_procedure_update_2025:c000",
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/27_customer_complaints:c000",
+        "corpus/18_claims_process_car:c000",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c009",
+        "corpus/03_car_general_terms:c010",
+        "corpus/03_car_general_terms:c011",
+        "corpus/03_car_general_terms:c012",
+        "corpus/03_car_general_terms:c013"
+      ],
+      "hybridTopKChunkIds": [
+        "corpus/23_cancellation_procedure_update_2025:c000",
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/27_customer_complaints:c000",
+        "corpus/18_claims_process_car:c000",
+        "corpus/03_car_general_terms:c004"
+      ],
+      "linkedChunkIds": [],
+      "retrievalMetrics": {
+        "documentRecallAt1": 1,
+        "documentRecallAt3": 1,
+        "documentRecallAt5": 1,
+        "reciprocalRank": 1
+      },
+      "evidenceCoverage": "full",
+      "evidenceCoverageNote": "All 1 evidence chunkId(s) in context.",
+      "usage": {
+        "embeddingPromptTokens": 90,
+        "generationPromptTokens": 6503,
+        "generationCompletionTokens": 90,
+        "generationTotalTokens": 6593
+      },
+      "timingsMs": {
+        "retrieveMs": 208.39066699999967,
+        "contextMs": 0.6599580000038259,
+        "generationMs": 1746.9938330000004,
+        "totalMs": 1991.2179590000014
+      },
+      "qualityReview": {
+        "conclusionCorrectness": "pending",
+        "claimSupport": "pending",
+        "essentialCompleteness": "pending",
+        "behaviorAppropriateness": "pending",
+        "focusNotes": [
+          "expectedBehavior=answered",
+          "fact: דמי טיפול 3% מסכום ההחזר ולא יותר מ-150 ₪",
+          "forbid: ציון דמי טיפול 5% ככלל החל"
+        ],
+        "overallNotes": "AI-assisted scoring vs corpus evidence — not an independent human evaluation."
+      }
+    },
+    {
+      "id": "E10",
+      "category": "applicability",
+      "tags": [
+        "cancellation",
+        "partial_update",
+        "unchanged_rule"
+      ],
+      "question": "מתי נכנס לתוקף ביטול פוליסה לפי הנוהל, והאם עדכון 2025 שינה את הכלל הזה?",
+      "expectedBehavior": "answered",
+      "referenceAnswer": "במועד שביקש הלקוח ולא לפני קבלת הבקשה; עדכון 2025 לא החליף כלל זה (רק חישוב ההחזר).",
+      "referenceSources": [
+        "22_cancellation_procedure_2023.md",
+        "23_cancellation_procedure_update_2025.md"
+      ],
+      "materialFacts": [
+        "הביטול נכנס לתוקף במועד שביקש הלקוח, אך לא לפני מועד קבלת הבקשה",
+        "עדכון 2025 משנה רק את סעיף חישוב ההחזר — שאר הוראות 2023 נותרו בתוקף"
+      ],
+      "forbiddenAssumptions": [
+        "\"החדש תמיד גובר\" על כל סעיפי הביטול"
+      ],
+      "evidenceChunkIds": [
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/23_cancellation_procedure_update_2025:c000"
+      ],
+      "status": "answered",
+      "answer": "לפי נוהל ביטול פוליסה של אופק ביטוח מ-2023, הביטול נכנס לתוקף במועד שביקש הלקוח, אך לא לפני מועד קבלת בקשת הביטול. כלומר, מועד כניסת הביטול הוא מועד קבלת הבקשה או מועד מאוחר יותר לפי בקשת הלקוח.\n\nבעדכון נוהל ביטול הפוליסה מ-2025, שנכנס לתוקף מיום 1.1.2025, לא שונה כלל הכלל לגבי מועד כניסת הביטול לתוקף. העדכון שינה רק את סעיף חישוב ההחזר, אך שאר הוראות הנוהל מ-2023, כולל מועד כניסת הביטול לתוקף, נותרו בתוקף ללא שינוי.",
+      "answerParts": [
+        {
+          "text": "לפי נוהל ביטול פוליסה של אופק ביטוח מ-2023, הביטול נכנס לתוקף במועד שביקש הלקוח, אך לא לפני מועד קבלת בקשת הביטול. כלומר, מועד כניסת הביטול הוא מועד קבלת הבקשה או מועד מאוחר יותר לפי בקשת הלקוח.",
+          "sourceChunkIds": [
+            "corpus/22_cancellation_procedure_2023:c000"
+          ]
+        },
+        {
+          "text": "בעדכון נוהל ביטול הפוליסה מ-2025, שנכנס לתוקף מיום 1.1.2025, לא שונה כלל הכלל לגבי מועד כניסת הביטול לתוקף. העדכון שינה רק את סעיף חישוב ההחזר, אך שאר הוראות הנוהל מ-2023, כולל מועד כניסת הביטול לתוקף, נותרו בתוקף ללא שינוי.",
+          "sourceChunkIds": [
+            "corpus/23_cancellation_procedure_update_2025:c000",
+            "corpus/22_cancellation_procedure_2023:c000"
+          ]
+        }
+      ],
+      "citations": [
+        {
+          "chunkId": "corpus/22_cancellation_procedure_2023:c000",
+          "claims": [
+            "לפי נוהל ביטול פוליסה של אופק ביטוח מ-2023, הביטול נכנס לתוקף במועד שביקש הלקוח, אך לא לפני מועד קבלת בקשת הביטול. כלומר, מועד כניסת הביטול הוא מועד קבלת הבקשה או מועד מאוחר יותר לפי בקשת הלקוח.",
+            "בעדכון נוהל ביטול הפוליסה מ-2025, שנכנס לתוקף מיום 1.1.2025, לא שונה כלל הכלל לגבי מועד כניסת הביטול לתוקף. העדכון שינה רק את סעיף חישוב ההחזר, אך שאר הוראות הנוהל מ-2023, כולל מועד כניסת הביטול לתוקף, נותרו בתוקף ללא שינוי."
+          ]
+        },
+        {
+          "chunkId": "corpus/23_cancellation_procedure_update_2025:c000",
+          "claims": [
+            "בעדכון נוהל ביטול הפוליסה מ-2025, שנכנס לתוקף מיום 1.1.2025, לא שונה כלל הכלל לגבי מועד כניסת הביטול לתוקף. העדכון שינה רק את סעיף חישוב ההחזר, אך שאר הוראות הנוהל מ-2023, כולל מועד כניסת הביטול לתוקף, נותרו בתוקף ללא שינוי."
+          ]
+        }
+      ],
+      "citedFileNames": [
+        "22_cancellation_procedure_2023.md",
+        "23_cancellation_procedure_update_2025.md"
+      ],
+      "requestId": "e3625e5f-8cc3-4aa1-9124-d9386c5fe2e2",
+      "retrievedChunkIds": [
+        "corpus/23_cancellation_procedure_update_2025:c000",
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/20_forms_catalog:c000",
+        "corpus/03_car_general_terms:c013"
+      ],
+      "contextChunkIds": [
+        "corpus/23_cancellation_procedure_update_2025:c000",
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/20_forms_catalog:c000",
+        "corpus/03_car_general_terms:c013",
+        "corpus/02_car_comprehensive_policy_2026:c000",
+        "corpus/20_forms_catalog:c001",
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006"
+      ],
+      "hybridTopKChunkIds": [
+        "corpus/23_cancellation_procedure_update_2025:c000",
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/20_forms_catalog:c000",
+        "corpus/03_car_general_terms:c013"
+      ],
+      "linkedChunkIds": [
+        "corpus/02_car_comprehensive_policy_2026:c000"
+      ],
+      "retrievalMetrics": {
+        "documentRecallAt1": 0.5,
+        "documentRecallAt3": 1,
+        "documentRecallAt5": 1,
+        "reciprocalRank": 1
+      },
+      "evidenceCoverage": "full",
+      "evidenceCoverageNote": "All 2 evidence chunkId(s) in context.",
+      "usage": {
+        "embeddingPromptTokens": 70,
+        "generationPromptTokens": 6693,
+        "generationCompletionTokens": 244,
+        "generationTotalTokens": 6937
+      },
+      "timingsMs": {
+        "retrieveMs": 195.09458299999824,
+        "contextMs": 0.7814589999979944,
+        "generationMs": 2361.4235839999965,
+        "totalMs": 2597.6436659999963
+      },
+      "qualityReview": {
+        "conclusionCorrectness": "pending",
+        "claimSupport": "pending",
+        "essentialCompleteness": "pending",
+        "behaviorAppropriateness": "pending",
+        "focusNotes": [
+          "expectedBehavior=answered",
+          "fact: הביטול נכנס לתוקף במועד שביקש הלקוח, אך לא לפני מועד קבלת הבקשה",
+          "fact: עדכון 2025 משנה רק את סעיף חישוב ההחזר — שאר הוראות 2023 נותרו בתוקף",
+          "forbid: \"החדש תמיד גובר\" על כל סעיפי הביטול"
+        ],
+        "overallNotes": "AI-assisted scoring vs corpus evidence — not an independent human evaluation."
+      }
+    },
+    {
+      "id": "E11",
+      "category": "multi_doc",
+      "tags": [
+        "marketing_vs_binding",
+        "towing"
+      ],
+      "question": "העלון השיווקי מציע \"גרירות ללא הגבלה\". כמה גרירות מותרות בפועל לפי כתב השירות, ומה מעמד העלון?",
+      "expectedBehavior": "answered",
+      "referenceAnswer": "עד 4 גרירות בשנה לפי כתב השירות; העלון שיווקי בלבד ואינו גובר על כתב השירות.",
+      "referenceSources": [
+        "07_towing_roadside.md",
+        "09_marketing_brochure_car.md"
+      ],
+      "materialFacts": [
+        "כתב שירות: עד 4 גרירות בשנת ביטוח",
+        "העלון שיווקי בלבד; התנאים המחייבים הם הפוליסה וכתבי השירות"
+      ],
+      "forbiddenAssumptions": [
+        "אימוץ \"ללא הגבלה\" מהשיווק ככלל מחייב"
+      ],
+      "evidenceChunkIds": [
+        "corpus/07_towing_roadside:c000",
+        "corpus/09_marketing_brochure_car:c000"
+      ],
+      "status": "answered",
+      "answer": "לפי כתב השירות לגרירה ושירותי דרך, מותרות עד 4 גרירות בשנה ביטוחית.\n\nהעלון השיווקי מציע \"גרירות ללא הגבלה\" אך מצוין בו שהמידע הוא שיווקי בלבד והתנאים המחייבים הם תנאי הפוליסה וכתבי השירות.",
+      "answerParts": [
+        {
+          "text": "לפי כתב השירות לגרירה ושירותי דרך, מותרות עד 4 גרירות בשנה ביטוחית.",
+          "sourceChunkIds": [
+            "corpus/07_towing_roadside:c000"
+          ]
+        },
+        {
+          "text": "העלון השיווקי מציע \"גרירות ללא הגבלה\" אך מצוין בו שהמידע הוא שיווקי בלבד והתנאים המחייבים הם תנאי הפוליסה וכתבי השירות.",
+          "sourceChunkIds": [
+            "corpus/09_marketing_brochure_car:c000"
+          ]
+        }
+      ],
+      "citations": [
+        {
+          "chunkId": "corpus/07_towing_roadside:c000",
+          "claims": [
+            "לפי כתב השירות לגרירה ושירותי דרך, מותרות עד 4 גרירות בשנה ביטוחית."
+          ]
+        },
+        {
+          "chunkId": "corpus/09_marketing_brochure_car:c000",
+          "claims": [
+            "העלון השיווקי מציע \"גרירות ללא הגבלה\" אך מצוין בו שהמידע הוא שיווקי בלבד והתנאים המחייבים הם תנאי הפוליסה וכתבי השירות."
+          ]
+        }
+      ],
+      "citedFileNames": [
+        "07_towing_roadside.md",
+        "09_marketing_brochure_car.md"
+      ],
+      "requestId": "cc3009ba-afe4-438a-8b5f-eda57c4e6fcf",
+      "retrievedChunkIds": [
+        "corpus/12_home_contents_limits:c000",
+        "corpus/07_towing_roadside:c000",
+        "corpus/09_marketing_brochure_car:c000",
+        "corpus/19_claims_process_home:c000",
+        "corpus/06_windshield_service:c000"
+      ],
+      "contextChunkIds": [
+        "corpus/12_home_contents_limits:c000",
+        "corpus/07_towing_roadside:c000",
+        "corpus/09_marketing_brochure_car:c000",
+        "corpus/19_claims_process_home:c000",
+        "corpus/06_windshield_service:c000",
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/02_car_comprehensive_policy_2026:c000"
+      ],
+      "hybridTopKChunkIds": [
+        "corpus/12_home_contents_limits:c000",
+        "corpus/07_towing_roadside:c000",
+        "corpus/09_marketing_brochure_car:c000",
+        "corpus/19_claims_process_home:c000",
+        "corpus/06_windshield_service:c000"
+      ],
+      "linkedChunkIds": [
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/02_car_comprehensive_policy_2026:c000"
+      ],
+      "retrievalMetrics": {
+        "documentRecallAt1": 0,
+        "documentRecallAt3": 1,
+        "documentRecallAt5": 1,
+        "reciprocalRank": 0.5
+      },
+      "evidenceCoverage": "full",
+      "evidenceCoverageNote": "All 2 evidence chunkId(s) in context.",
+      "usage": {
+        "embeddingPromptTokens": 87,
+        "generationPromptTokens": 4031,
+        "generationCompletionTokens": 118,
+        "generationTotalTokens": 4149
+      },
+      "timingsMs": {
+        "retrieveMs": 200.63700000000244,
+        "contextMs": 0.3594999999986612,
+        "generationMs": 3364.981332999996,
+        "totalMs": 3608.100207999996
+      },
+      "qualityReview": {
+        "conclusionCorrectness": "pending",
+        "claimSupport": "pending",
+        "essentialCompleteness": "pending",
+        "behaviorAppropriateness": "pending",
+        "focusNotes": [
+          "expectedBehavior=answered",
+          "fact: כתב שירות: עד 4 גרירות בשנת ביטוח",
+          "fact: העלון שיווקי בלבד; התנאים המחייבים הם הפוליסה וכתבי השירות",
+          "forbid: אימוץ \"ללא הגבלה\" מהשיווק ככלל מחייב"
+        ],
+        "overallNotes": "AI-assisted scoring vs corpus evidence — not an independent human evaluation."
+      }
+    },
+    {
+      "id": "E12",
+      "category": "multi_doc",
+      "tags": [
+        "ofek_plus",
+        "deductible",
+        "exception"
+      ],
+      "question": "לקוח אופק פלוס שואל אם ההנחה של 50% בהשתתפות עצמית במוסך הסדר חלה גם על גניבת רכב.",
+      "expectedBehavior": "answered",
+      "referenceAnswer": "לא — ההטבה אינה חלה על גניבה (וגם לא על אובדן גמור / מוסך שאינו בהסדר).",
+      "referenceSources": [
+        "31_ofek_plus_vip.docx"
+      ],
+      "materialFacts": [
+        "הנחת 50% בהשתתפות במוסך הסדר פעם אחת בשנה",
+        "אינה חלה על גניבה, אובדן גמור או מוסך שאינו בהסדר"
+      ],
+      "forbiddenAssumptions": [
+        "החלת הנחת אופק פלוס על גניבה"
+      ],
+      "evidenceChunkIds": [
+        "corpus/31_ofek_plus_vip:c000"
+      ],
+      "status": "answered",
+      "answer": "ההטבה של 50% הנחה בהשתתפות העצמית במוסך הסדר במסגרת אופק פלוס אינה חלה על מקרים של גניבת רכב. כלומר, במקרה של גניבה, ההנחה הזו לא תינתן.",
+      "answerParts": [
+        {
+          "text": "ההטבה של 50% הנחה בהשתתפות העצמית במוסך הסדר במסגרת אופק פלוס אינה חלה על מקרים של גניבת רכב. כלומר, במקרה של גניבה, ההנחה הזו לא תינתן.",
+          "sourceChunkIds": [
+            "corpus/31_ofek_plus_vip:c000"
+          ]
+        }
+      ],
+      "citations": [
+        {
+          "chunkId": "corpus/31_ofek_plus_vip:c000",
+          "claims": [
+            "ההטבה של 50% הנחה בהשתתפות העצמית במוסך הסדר במסגרת אופק פלוס אינה חלה על מקרים של גניבת רכב. כלומר, במקרה של גניבה, ההנחה הזו לא תינתן."
+          ]
+        }
+      ],
+      "citedFileNames": [
+        "31_ofek_plus_vip.docx"
+      ],
+      "requestId": "85271194-5b8f-4094-935b-f04a5f5c76d3",
+      "retrievedChunkIds": [
+        "corpus/31_ofek_plus_vip:c000",
+        "corpus/18_claims_process_car:c000",
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/02_car_comprehensive_policy_2026:c000",
+        "corpus/03_car_general_terms:c012"
+      ],
+      "contextChunkIds": [
+        "corpus/31_ofek_plus_vip:c000",
+        "corpus/18_claims_process_car:c000",
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/02_car_comprehensive_policy_2026:c000",
+        "corpus/03_car_general_terms:c012",
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c009"
+      ],
+      "hybridTopKChunkIds": [
+        "corpus/31_ofek_plus_vip:c000",
+        "corpus/18_claims_process_car:c000",
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/02_car_comprehensive_policy_2026:c000",
+        "corpus/03_car_general_terms:c012"
+      ],
+      "linkedChunkIds": [],
+      "retrievalMetrics": {
+        "documentRecallAt1": 1,
+        "documentRecallAt3": 1,
+        "documentRecallAt5": 1,
+        "reciprocalRank": 1
+      },
+      "evidenceCoverage": "full",
+      "evidenceCoverageNote": "All 1 evidence chunkId(s) in context.",
+      "usage": {
+        "embeddingPromptTokens": 82,
+        "generationPromptTokens": 6318,
+        "generationCompletionTokens": 85,
+        "generationTotalTokens": 6403
+      },
+      "timingsMs": {
+        "retrieveMs": 227.2512080000015,
+        "contextMs": 0.43066600000020117,
+        "generationMs": 1212.9815830000007,
+        "totalMs": 1485.2079999999987
+      },
+      "qualityReview": {
+        "conclusionCorrectness": "pending",
+        "claimSupport": "pending",
+        "essentialCompleteness": "pending",
+        "behaviorAppropriateness": "pending",
+        "focusNotes": [
+          "expectedBehavior=answered",
+          "fact: הנחת 50% בהשתתפות במוסך הסדר פעם אחת בשנה",
+          "fact: אינה חלה על גניבה, אובדן גמור או מוסך שאינו בהסדר",
+          "forbid: החלת הנחת אופק פלוס על גניבה"
+        ],
+        "overallNotes": "AI-assisted scoring vs corpus evidence — not an independent human evaluation."
+      }
+    },
+    {
+      "id": "E13",
+      "category": "multi_doc",
+      "tags": [
+        "ofek_plus",
+        "young_driver",
+        "stacking"
+      ],
+      "question": "האם הנחת אופק פלוס בהשתתפות עצמית מצטברת עם הכפלת ההשתתפות לנהג צעיר כאשר נהג צעיר נהג ברכב?",
+      "expectedBehavior": "answered",
+      "referenceAnswer": "לא — אין צבירה; כשנהג צעיר נהג לא תינתן הנחת אופק פלוס.",
+      "referenceSources": [
+        "31_ofek_plus_vip.docx"
+      ],
+      "materialFacts": [
+        "ההטבה אינה מצטברת עם הכפלת ההשתתפות לנהג צעיר; כשנהג צעיר נהג — לא תינתן הנחת אופק פלוס"
+      ],
+      "forbiddenAssumptions": [
+        "צבירת הנחות סותרות"
+      ],
+      "evidenceChunkIds": [
+        "corpus/31_ofek_plus_vip:c000"
+      ],
+      "status": "answered",
+      "answer": "הנחת אופק פלוס בהשתתפות עצמית אינה מצטברת עם הכפלת ההשתתפות העצמית לנהג צעיר. כאשר נהג צעיר נהג ברכב, לא תינתן הנחת אופק פלוס בהשתתפות העצמית.\n\nלפי נספח נהג צעיר, במקרה ביטוח שאירע בעת שהרכב היה נהוג בידי נהג צעיר, ההשתתפות העצמית תהיה כפולה מההשתתפות העצמית הנקובה בפוליסה לאותו סוג אירוע.",
+      "answerParts": [
+        {
+          "text": "הנחת אופק פלוס בהשתתפות עצמית אינה מצטברת עם הכפלת ההשתתפות העצמית לנהג צעיר. כאשר נהג צעיר נהג ברכב, לא תינתן הנחת אופק פלוס בהשתתפות העצמית.",
+          "sourceChunkIds": [
+            "corpus/31_ofek_plus_vip:c000"
+          ]
+        },
+        {
+          "text": "לפי נספח נהג צעיר, במקרה ביטוח שאירע בעת שהרכב היה נהוג בידי נהג צעיר, ההשתתפות העצמית תהיה כפולה מההשתתפות העצמית הנקובה בפוליסה לאותו סוג אירוע.",
+          "sourceChunkIds": [
+            "corpus/04_young_driver_annex:c000"
+          ]
+        }
+      ],
+      "citations": [
+        {
+          "chunkId": "corpus/31_ofek_plus_vip:c000",
+          "claims": [
+            "הנחת אופק פלוס בהשתתפות עצמית אינה מצטברת עם הכפלת ההשתתפות העצמית לנהג צעיר. כאשר נהג צעיר נהג ברכב, לא תינתן הנחת אופק פלוס בהשתתפות העצמית."
+          ]
+        },
+        {
+          "chunkId": "corpus/04_young_driver_annex:c000",
+          "claims": [
+            "לפי נספח נהג צעיר, במקרה ביטוח שאירע בעת שהרכב היה נהוג בידי נהג צעיר, ההשתתפות העצמית תהיה כפולה מההשתתפות העצמית הנקובה בפוליסה לאותו סוג אירוע."
+          ]
+        }
+      ],
+      "citedFileNames": [
+        "31_ofek_plus_vip.docx",
+        "04_young_driver_annex.docx"
+      ],
+      "requestId": "2fce4eed-7911-4123-8002-22ff2ed19d03",
+      "retrievedChunkIds": [
+        "corpus/04_young_driver_annex:c000",
+        "corpus/31_ofek_plus_vip:c000",
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/02_car_comprehensive_policy_2026:c000",
+        "corpus/25_adding_driver:c000"
+      ],
+      "contextChunkIds": [
+        "corpus/04_young_driver_annex:c000",
+        "corpus/31_ofek_plus_vip:c000",
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/02_car_comprehensive_policy_2026:c000",
+        "corpus/25_adding_driver:c000",
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c009",
+        "corpus/03_car_general_terms:c014"
+      ],
+      "hybridTopKChunkIds": [
+        "corpus/04_young_driver_annex:c000",
+        "corpus/31_ofek_plus_vip:c000",
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/02_car_comprehensive_policy_2026:c000",
+        "corpus/25_adding_driver:c000"
+      ],
+      "linkedChunkIds": [
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c009",
+        "corpus/03_car_general_terms:c014"
+      ],
+      "retrievalMetrics": {
+        "documentRecallAt1": 0,
+        "documentRecallAt3": 1,
+        "documentRecallAt5": 1,
+        "reciprocalRank": 0.5
+      },
+      "evidenceCoverage": "full",
+      "evidenceCoverageNote": "All 1 evidence chunkId(s) in context.",
+      "usage": {
+        "embeddingPromptTokens": 98,
+        "generationPromptTokens": 6435,
+        "generationCompletionTokens": 166,
+        "generationTotalTokens": 6601
+      },
+      "timingsMs": {
+        "retrieveMs": 207.53991600000154,
+        "contextMs": 0.4529590000020107,
+        "generationMs": 2272.3259999999937,
+        "totalMs": 2523.0632499999992
+      },
+      "qualityReview": {
+        "conclusionCorrectness": "pending",
+        "claimSupport": "pending",
+        "essentialCompleteness": "pending",
+        "behaviorAppropriateness": "pending",
+        "focusNotes": [
+          "expectedBehavior=answered",
+          "fact: ההטבה אינה מצטברת עם הכפלת ההשתתפות לנהג צעיר; כשנהג צעיר נהג — לא תינתן הנחת אופק פלוס",
+          "forbid: צבירת הנחות סותרות"
+        ],
+        "overallNotes": "AI-assisted scoring vs corpus evidence — not an independent human evaluation."
+      }
+    },
+    {
+      "id": "E14",
+      "category": "cross_lingual",
+      "tags": [
+        "agents",
+        "commission",
+        "en_evidence"
+      ],
+      "question": "מה קורה לעמלת הסוכן אם הלקוח מבטל פוליסה תוך 120 יום מההנפקה?",
+      "expectedBehavior": "answered",
+      "referenceAnswer": "העמלה נגבית בחזרה במלואה (full clawback) אם הביטול תוך 120 יום מההנפקה.",
+      "referenceSources": [
+        "30_agent_faq_en.md"
+      ],
+      "materialFacts": [
+        "ביטול תוך 120 יום מההנפקה → clawback מלא של העמלה (מתוך FAQ באנגלית לסוכנים)"
+      ],
+      "forbiddenAssumptions": [
+        "תשובה מנוהל הביטול ללקוח במקום מ-FAQ הסוכנים",
+        "המצאת שיעור clawback שלא במקור"
+      ],
+      "evidenceChunkIds": [
+        "corpus/30_agent_faq_en:c000"
+      ],
+      "status": "answered",
+      "answer": "אם הלקוח מבטל את הפוליסה תוך 120 יום מההנפקה, העמלה של הסוכן מוחזרת במלואה (clawback מלא).",
+      "answerParts": [
+        {
+          "text": "אם הלקוח מבטל את הפוליסה תוך 120 יום מההנפקה, העמלה של הסוכן מוחזרת במלואה (clawback מלא).",
+          "sourceChunkIds": [
+            "corpus/30_agent_faq_en:c000"
+          ]
+        }
+      ],
+      "citations": [
+        {
+          "chunkId": "corpus/30_agent_faq_en:c000",
+          "claims": [
+            "אם הלקוח מבטל את הפוליסה תוך 120 יום מההנפקה, העמלה של הסוכן מוחזרת במלואה (clawback מלא)."
+          ]
+        }
+      ],
+      "citedFileNames": [
+        "30_agent_faq_en.md"
+      ],
+      "requestId": "c8b17fad-ee0a-4b3a-a735-0968e3ecbab8",
+      "retrievedChunkIds": [
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/30_agent_faq_en:c000",
+        "corpus/24_payment_methods:c000",
+        "corpus/27_customer_complaints:c000",
+        "corpus/32_fraud_red_flags:c000"
+      ],
+      "contextChunkIds": [
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/30_agent_faq_en:c000",
+        "corpus/24_payment_methods:c000",
+        "corpus/27_customer_complaints:c000",
+        "corpus/32_fraud_red_flags:c000",
+        "corpus/23_cancellation_procedure_update_2025:c000"
+      ],
+      "hybridTopKChunkIds": [
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/30_agent_faq_en:c000",
+        "corpus/24_payment_methods:c000",
+        "corpus/27_customer_complaints:c000",
+        "corpus/32_fraud_red_flags:c000"
+      ],
+      "linkedChunkIds": [
+        "corpus/23_cancellation_procedure_update_2025:c000"
+      ],
+      "retrievalMetrics": {
+        "documentRecallAt1": 0,
+        "documentRecallAt3": 1,
+        "documentRecallAt5": 1,
+        "reciprocalRank": 0.5
+      },
+      "evidenceCoverage": "full",
+      "evidenceCoverageNote": "All 1 evidence chunkId(s) in context.",
+      "usage": {
+        "embeddingPromptTokens": 60,
+        "generationPromptTokens": 3120,
+        "generationCompletionTokens": 66,
+        "generationTotalTokens": 3186
+      },
+      "timingsMs": {
+        "retrieveMs": 234.1437500000029,
+        "contextMs": 0.22674999999435386,
+        "generationMs": 1057.9795830000003,
+        "totalMs": 1331.8911670000016
+      },
+      "qualityReview": {
+        "conclusionCorrectness": "pending",
+        "claimSupport": "pending",
+        "essentialCompleteness": "pending",
+        "behaviorAppropriateness": "pending",
+        "focusNotes": [
+          "expectedBehavior=answered",
+          "fact: ביטול תוך 120 יום מההנפקה → clawback מלא של העמלה (מתוך FAQ באנגלית לסוכנים)",
+          "forbid: תשובה מנוהל הביטול ללקוח במקום מ-FAQ הסוכנים",
+          "forbid: המצאת שיעור clawback שלא במקור"
+        ],
+        "overallNotes": "AI-assisted scoring vs corpus evidence — not an independent human evaluation."
+      }
+    },
+    {
+      "id": "E15",
+      "category": "cross_lingual",
+      "tags": [
+        "agents",
+        "discount",
+        "en_evidence"
+      ],
+      "question": "מה אחוז ההנחה המרבי שסוכן רשאי לתת לפי שיקול דעתו בלי אישור מנהל מכירות?",
+      "expectedBehavior": "answered",
+      "referenceAnswer": "עד 5%; מעל לכך נדרש אישור מנהל מכירות.",
+      "referenceSources": [
+        "30_agent_faq_en.md"
+      ],
+      "materialFacts": [
+        "עד 5% לפי שיקול דעת הסוכן; מעל זה נדרש אישור מנהל מכירות"
+      ],
+      "forbiddenAssumptions": [
+        "שימוש במבצע שיווקי 20% מהעלון כהנחת סוכן"
+      ],
+      "evidenceChunkIds": [
+        "corpus/30_agent_faq_en:c000"
+      ],
+      "status": "insufficient_evidence",
+      "answer": "לא מצאתי במקורות שסופקו מידע מספיק כדי לענות על השאלה.",
+      "answerParts": [],
+      "citations": [],
+      "citedFileNames": [],
+      "requestId": "d565f431-558a-4a0e-8214-f44253aff195",
+      "retrievedChunkIds": [
+        "corpus/19_claims_process_home:c000",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c013",
+        "corpus/09_marketing_brochure_car:c000"
+      ],
+      "contextChunkIds": [
+        "corpus/19_claims_process_home:c000",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c013",
+        "corpus/09_marketing_brochure_car:c000",
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/02_car_comprehensive_policy_2026:c000",
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c009",
+        "corpus/03_car_general_terms:c010"
+      ],
+      "hybridTopKChunkIds": [
+        "corpus/19_claims_process_home:c000",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c013",
+        "corpus/09_marketing_brochure_car:c000"
+      ],
+      "linkedChunkIds": [
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/02_car_comprehensive_policy_2026:c000"
+      ],
+      "retrievalMetrics": {
+        "documentRecallAt1": 0,
+        "documentRecallAt3": 0,
+        "documentRecallAt5": 0,
+        "reciprocalRank": 0
+      },
+      "evidenceCoverage": "missing",
+      "evidenceCoverageNote": "No required evidence file/chunk appeared in generation context.",
+      "usage": {
+        "embeddingPromptTokens": 65,
+        "generationPromptTokens": 6221,
+        "generationCompletionTokens": 12,
+        "generationTotalTokens": 6233
+      },
+      "timingsMs": {
+        "retrieveMs": 186.45958400000382,
+        "contextMs": 0.5477079999982379,
+        "generationMs": 803.3669579999987,
+        "totalMs": 1038.3278750000027
+      },
+      "qualityReview": {
+        "conclusionCorrectness": "pending",
+        "claimSupport": "pending",
+        "essentialCompleteness": "pending",
+        "behaviorAppropriateness": "pending",
+        "focusNotes": [
+          "expectedBehavior=answered",
+          "fact: עד 5% לפי שיקול דעת הסוכן; מעל זה נדרש אישור מנהל מכירות",
+          "forbid: שימוש במבצע שיווקי 20% מהעלון כהנחת סוכן"
+        ],
+        "overallNotes": "AI-assisted scoring vs corpus evidence — not an independent human evaluation."
+      },
+      "failureStageHint": "retrieval"
+    },
+    {
+      "id": "E16",
+      "category": "ambiguous",
+      "tags": [
+        "benefits",
+        "underspecified"
+      ],
+      "question": "מה ההטבות שלי?",
+      "expectedBehavior": "clarification_needed",
+      "referenceAnswer": "השאלה עמומה (איזו תוכנית/פוליסה). יש לבקש הבהרה — לא להניח אופק פלוס או מוצר מסוים רק בגלל שליפה.",
+      "referenceSources": [],
+      "materialFacts": [],
+      "forbiddenAssumptions": [
+        "הנחת אופק פלוס / מוצר רכב בלי שהמשתמש ציין"
+      ],
+      "evidenceChunkIds": [],
+      "status": "answered",
+      "answer": "אם אתה לקוח שמחזיק 3 פוליסות פעילות או יותר באופק ביטוח (בכל שילוב של רכב, דירה ונסיעות), אתה זכאי להטבות במסגרת תוכנית \"אופק פלוס\". ההטבות כוללות: נציג אישי עם קו ישיר, הנחה של 50% בהשתתפות העצמית בתיקון במוסך הסדר פעם אחת בשנה, הנחה של 7% על הפרמיה בפוליסה השלישית ואילך, והרחבת גאדג'טים בביטוח נסיעות ללא עלות. שים לב שההטבה בהשתתפות העצמית אינה חלה על גניבה, אובדן גמור או מוסך שאינו בהסדר, ואינה מצטברת עם הכפלת ההשתתפות העצמית לנהג צעיר.",
+      "answerParts": [
+        {
+          "text": "אם אתה לקוח שמחזיק 3 פוליסות פעילות או יותר באופק ביטוח (בכל שילוב של רכב, דירה ונסיעות), אתה זכאי להטבות במסגרת תוכנית \"אופק פלוס\". ההטבות כוללות: נציג אישי עם קו ישיר, הנחה של 50% בהשתתפות העצמית בתיקון במוסך הסדר פעם אחת בשנה, הנחה של 7% על הפרמיה בפוליסה השלישית ואילך, והרחבת גאדג'טים בביטוח נסיעות ללא עלות. שים לב שההטבה בהשתתפות העצמית אינה חלה על גניבה, אובדן גמור או מוסך שאינו בהסדר, ואינה מצטברת עם הכפלת ההשתתפות העצמית לנהג צעיר.",
+          "sourceChunkIds": [
+            "corpus/31_ofek_plus_vip:c000"
+          ]
+        }
+      ],
+      "citations": [
+        {
+          "chunkId": "corpus/31_ofek_plus_vip:c000",
+          "claims": [
+            "אם אתה לקוח שמחזיק 3 פוליסות פעילות או יותר באופק ביטוח (בכל שילוב של רכב, דירה ונסיעות), אתה זכאי להטבות במסגרת תוכנית \"אופק פלוס\". ההטבות כוללות: נציג אישי עם קו ישיר, הנחה של 50% בהשתתפות העצמית בתיקון במוסך הסדר פעם אחת בשנה, הנחה של 7% על הפרמיה בפוליסה השלישית ואילך, והרחבת גאדג'טים בביטוח נסיעות ללא עלות. שים לב שההטבה בהשתתפות העצמית אינה חלה על גניבה, אובדן גמור או מוסך שאינו בהסדר, ואינה מצטברת עם הכפלת ההשתתפות העצמית לנהג צעיר."
+          ]
+        }
+      ],
+      "citedFileNames": [
+        "31_ofek_plus_vip.docx"
+      ],
+      "requestId": "feda94c9-3de7-4304-8d6d-60b6fb01a858",
+      "retrievedChunkIds": [
+        "corpus/30_agent_faq_en:c000",
+        "corpus/05_car_third_party:c000",
+        "corpus/06_windshield_service:c000",
+        "corpus/11_home_water_damage:c000",
+        "corpus/31_ofek_plus_vip:c000"
+      ],
+      "contextChunkIds": [
+        "corpus/30_agent_faq_en:c000",
+        "corpus/05_car_third_party:c000",
+        "corpus/06_windshield_service:c000",
+        "corpus/11_home_water_damage:c000",
+        "corpus/31_ofek_plus_vip:c000"
+      ],
+      "hybridTopKChunkIds": [
+        "corpus/30_agent_faq_en:c000",
+        "corpus/05_car_third_party:c000",
+        "corpus/06_windshield_service:c000",
+        "corpus/11_home_water_damage:c000",
+        "corpus/31_ofek_plus_vip:c000"
+      ],
+      "linkedChunkIds": [],
+      "retrievalMetrics": {
+        "documentRecallAt1": "N/A",
+        "documentRecallAt3": "N/A",
+        "documentRecallAt5": "N/A",
+        "reciprocalRank": "N/A"
+      },
+      "evidenceCoverage": "n_a",
+      "evidenceCoverageNote": "No required evidence sources (ambiguous / no_answer).",
+      "usage": {
+        "embeddingPromptTokens": 13,
+        "generationPromptTokens": 2624,
+        "generationCompletionTokens": 215,
+        "generationTotalTokens": 2839
+      },
+      "timingsMs": {
+        "retrieveMs": 210.88450000000012,
+        "contextMs": 0.4758339999971213,
+        "generationMs": 2186.213791999995,
+        "totalMs": 2447.724833
+      },
+      "qualityReview": {
+        "conclusionCorrectness": "pending",
+        "claimSupport": "pending",
+        "essentialCompleteness": "pending",
+        "behaviorAppropriateness": "pending",
+        "focusNotes": [
+          "expectedBehavior=clarification_needed",
+          "forbid: הנחת אופק פלוס / מוצר רכב בלי שהמשתמש ציין"
+        ],
+        "overallNotes": "AI-assisted scoring vs corpus evidence — not an independent human evaluation."
+      }
+    },
+    {
+      "id": "E17",
+      "category": "ambiguous",
+      "tags": [
+        "sla",
+        "underspecified"
+      ],
+      "question": "תוך כמה זמן מגיע שמאי?",
+      "expectedBehavior": "clarification_needed",
+      "referenceAnswer": "עמום בין רכב (3 ימי עסקים) לדירה מעל 10,000 ₪ (5). יש לבקש סוג תביעה/מוצר או להציג את שתי האפשרויות במפורש כחלופות.",
+      "referenceSources": [],
+      "materialFacts": [],
+      "forbiddenAssumptions": [
+        "בחירת יעד אחד בלי לציין שתלוי בסוג"
+      ],
+      "evidenceChunkIds": [],
+      "status": "answered",
+      "answer": "שמאי מטעם החברה יתאם בדיקה של הרכב בתוך 3 ימי עסקים ממועד קבלת התביעה.\n\nזמן היעד לביקור שמאי ברכב הוא עד 3 ימי עסקים.",
+      "answerParts": [
+        {
+          "text": "שמאי מטעם החברה יתאם בדיקה של הרכב בתוך 3 ימי עסקים ממועד קבלת התביעה.",
+          "sourceChunkIds": [
+            "corpus/18_claims_process_car:c000"
+          ]
+        },
+        {
+          "text": "זמן היעד לביקור שמאי ברכב הוא עד 3 ימי עסקים.",
+          "sourceChunkIds": [
+            "corpus/21_claims_sla:c000"
+          ]
+        }
+      ],
+      "citations": [
+        {
+          "chunkId": "corpus/18_claims_process_car:c000",
+          "claims": [
+            "שמאי מטעם החברה יתאם בדיקה של הרכב בתוך 3 ימי עסקים ממועד קבלת התביעה."
+          ]
+        },
+        {
+          "chunkId": "corpus/21_claims_sla:c000",
+          "claims": [
+            "זמן היעד לביקור שמאי ברכב הוא עד 3 ימי עסקים."
+          ]
+        }
+      ],
+      "citedFileNames": [
+        "18_claims_process_car.md",
+        "21_claims_sla.md"
+      ],
+      "requestId": "660bd153-d5c5-4c5c-8b3d-31c8be267361",
+      "retrievedChunkIds": [
+        "corpus/21_claims_sla:c000",
+        "corpus/03_car_general_terms:c008",
+        "corpus/32_fraud_red_flags:c000",
+        "corpus/18_claims_process_car:c000",
+        "corpus/19_claims_process_home:c000"
+      ],
+      "contextChunkIds": [
+        "corpus/21_claims_sla:c000",
+        "corpus/03_car_general_terms:c008",
+        "corpus/32_fraud_red_flags:c000",
+        "corpus/18_claims_process_car:c000",
+        "corpus/19_claims_process_home:c000",
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c009",
+        "corpus/03_car_general_terms:c010",
+        "corpus/03_car_general_terms:c011",
+        "corpus/03_car_general_terms:c012",
+        "corpus/03_car_general_terms:c013",
+        "corpus/03_car_general_terms:c014"
+      ],
+      "hybridTopKChunkIds": [
+        "corpus/21_claims_sla:c000",
+        "corpus/03_car_general_terms:c008",
+        "corpus/32_fraud_red_flags:c000",
+        "corpus/18_claims_process_car:c000",
+        "corpus/19_claims_process_home:c000"
+      ],
+      "linkedChunkIds": [],
+      "retrievalMetrics": {
+        "documentRecallAt1": "N/A",
+        "documentRecallAt3": "N/A",
+        "documentRecallAt5": "N/A",
+        "reciprocalRank": "N/A"
+      },
+      "evidenceCoverage": "n_a",
+      "evidenceCoverageNote": "No required evidence sources (ambiguous / no_answer).",
+      "usage": {
+        "embeddingPromptTokens": 22,
+        "generationPromptTokens": 6112,
+        "generationCompletionTokens": 93,
+        "generationTotalTokens": 6205
+      },
+      "timingsMs": {
+        "retrieveMs": 188.1305840000132,
+        "contextMs": 0.5320000000065193,
+        "generationMs": 1294.4024999999965,
+        "totalMs": 1519.7964159999974
+      },
+      "qualityReview": {
+        "conclusionCorrectness": "pending",
+        "claimSupport": "pending",
+        "essentialCompleteness": "pending",
+        "behaviorAppropriateness": "pending",
+        "focusNotes": [
+          "expectedBehavior=clarification_needed",
+          "forbid: בחירת יעד אחד בלי לציין שתלוי בסוג"
+        ],
+        "overallNotes": "AI-assisted scoring vs corpus evidence — not an independent human evaluation."
+      }
+    },
+    {
+      "id": "E18",
+      "category": "no_answer",
+      "tags": [
+        "out_of_corpus",
+        "cyber"
+      ],
+      "question": "האם אופק ביטוח מציעה ביטוח סייבר לעסקים קטנים?",
+      "expectedBehavior": "insufficient_evidence",
+      "referenceAnswer": "אין מידע בקורפוס. יש להימנע ולהשתמש בניסוח ניטרלי — לא להמציא מוצר ולא להסיק היעדר מוחלט מהמדגם.",
+      "referenceSources": [],
+      "materialFacts": [],
+      "forbiddenAssumptions": [
+        "המצאת כיסוי סייבר",
+        "טענה שאין בכלל מוצר כזה בחברה"
+      ],
+      "evidenceChunkIds": [],
+      "status": "insufficient_evidence",
+      "answer": "לא מצאתי במקורות שסופקו מידע מספיק כדי לענות על השאלה.",
+      "answerParts": [],
+      "citations": [],
+      "citedFileNames": [],
+      "requestId": "9f51a4d3-04ac-49db-a902-1b4c59e1d1ac",
+      "retrievedChunkIds": [
+        "corpus/03_car_general_terms:c009",
+        "corpus/03_car_general_terms:c011",
+        "corpus/03_car_general_terms:c014",
+        "corpus/03_car_general_terms:c013",
+        "corpus/03_car_general_terms:c006"
+      ],
+      "contextChunkIds": [
+        "corpus/03_car_general_terms:c009",
+        "corpus/03_car_general_terms:c011",
+        "corpus/03_car_general_terms:c014",
+        "corpus/03_car_general_terms:c013",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c010",
+        "corpus/03_car_general_terms:c012",
+        "corpus/03_car_general_terms:c015"
+      ],
+      "hybridTopKChunkIds": [
+        "corpus/03_car_general_terms:c009",
+        "corpus/03_car_general_terms:c011",
+        "corpus/03_car_general_terms:c014",
+        "corpus/03_car_general_terms:c013",
+        "corpus/03_car_general_terms:c006"
+      ],
+      "linkedChunkIds": [],
+      "retrievalMetrics": {
+        "documentRecallAt1": "N/A",
+        "documentRecallAt3": "N/A",
+        "documentRecallAt5": "N/A",
+        "reciprocalRank": "N/A"
+      },
+      "evidenceCoverage": "n_a",
+      "evidenceCoverageNote": "No required evidence sources (ambiguous / no_answer).",
+      "usage": {
+        "embeddingPromptTokens": 47,
+        "generationPromptTokens": 5261,
+        "generationCompletionTokens": 12,
+        "generationTotalTokens": 5273
+      },
+      "timingsMs": {
+        "retrieveMs": 212.98562500000116,
+        "contextMs": 0.3523339999956079,
+        "generationMs": 735.3840420000051,
+        "totalMs": 990.6236250000075
+      },
+      "qualityReview": {
+        "conclusionCorrectness": "pending",
+        "claimSupport": "pending",
+        "essentialCompleteness": "pending",
+        "behaviorAppropriateness": "pending",
+        "focusNotes": [
+          "expectedBehavior=insufficient_evidence",
+          "forbid: המצאת כיסוי סייבר",
+          "forbid: טענה שאין בכלל מוצר כזה בחברה"
+        ],
+        "overallNotes": "AI-assisted scoring vs corpus evidence — not an independent human evaluation."
+      }
+    },
+    {
+      "id": "E19",
+      "category": "no_answer",
+      "tags": [
+        "out_of_corpus",
+        "marine"
+      ],
+      "question": "מה גבול האחריות בפוליסת ביטוח יאכטות של אופק?",
+      "expectedBehavior": "insufficient_evidence",
+      "referenceAnswer": "אין מסמך יאכטות בקורפוס — insufficient_evidence.",
+      "referenceSources": [],
+      "materialFacts": [],
+      "forbiddenAssumptions": [
+        "השאלה על צד ג' רכב כתחליף"
+      ],
+      "evidenceChunkIds": [],
+      "status": "insufficient_evidence",
+      "answer": "לא מצאתי במקורות שסופקו מידע מספיק כדי לענות על השאלה.",
+      "answerParts": [],
+      "citations": [],
+      "citedFileNames": [],
+      "requestId": "aea28844-8647-4ad3-ad67-3fe70ee073cd",
+      "retrievedChunkIds": [
+        "corpus/12_home_contents_limits:c000",
+        "corpus/05_car_third_party:c000",
+        "corpus/31_ofek_plus_vip:c000",
+        "corpus/03_car_general_terms:c014",
+        "corpus/03_car_general_terms:c013"
+      ],
+      "contextChunkIds": [
+        "corpus/12_home_contents_limits:c000",
+        "corpus/05_car_third_party:c000",
+        "corpus/31_ofek_plus_vip:c000",
+        "corpus/03_car_general_terms:c014",
+        "corpus/03_car_general_terms:c013",
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c009",
+        "corpus/03_car_general_terms:c010",
+        "corpus/03_car_general_terms:c011",
+        "corpus/03_car_general_terms:c012"
+      ],
+      "hybridTopKChunkIds": [
+        "corpus/12_home_contents_limits:c000",
+        "corpus/05_car_third_party:c000",
+        "corpus/31_ofek_plus_vip:c000",
+        "corpus/03_car_general_terms:c014",
+        "corpus/03_car_general_terms:c013"
+      ],
+      "linkedChunkIds": [],
+      "retrievalMetrics": {
+        "documentRecallAt1": "N/A",
+        "documentRecallAt3": "N/A",
+        "documentRecallAt5": "N/A",
+        "reciprocalRank": "N/A"
+      },
+      "evidenceCoverage": "n_a",
+      "evidenceCoverageNote": "No required evidence sources (ambiguous / no_answer).",
+      "usage": {
+        "embeddingPromptTokens": 44,
+        "generationPromptTokens": 6099,
+        "generationCompletionTokens": 12,
+        "generationTotalTokens": 6111
+      },
+      "timingsMs": {
+        "retrieveMs": 274.62208299999475,
+        "contextMs": 0.7690409999922849,
+        "generationMs": 1678.626041999989,
+        "totalMs": 2002.6619999999966
+      },
+      "qualityReview": {
+        "conclusionCorrectness": "pending",
+        "claimSupport": "pending",
+        "essentialCompleteness": "pending",
+        "behaviorAppropriateness": "pending",
+        "focusNotes": [
+          "expectedBehavior=insufficient_evidence",
+          "forbid: השאלה על צד ג' רכב כתחליף"
+        ],
+        "overallNotes": "AI-assisted scoring vs corpus evidence — not an independent human evaluation."
+      }
+    },
+    {
+      "id": "E20",
+      "category": "no_answer",
+      "tags": [
+        "out_of_corpus",
+        "life"
+      ],
+      "question": "מה סכום הביטוח המינימלי בביטוח חיים למשכנתא באופק?",
+      "expectedBehavior": "insufficient_evidence",
+      "referenceAnswer": "אין ביטוח חיים בקורפוס — insufficient_evidence.",
+      "referenceSources": [],
+      "materialFacts": [],
+      "forbiddenAssumptions": [
+        "ערבוב עם סכום ביטוח תכולה/נסיעות"
+      ],
+      "evidenceChunkIds": [],
+      "status": "insufficient_evidence",
+      "answer": "לא מצאתי במקורות שסופקו מידע מספיק כדי לענות על השאלה.",
+      "answerParts": [],
+      "citations": [],
+      "citedFileNames": [],
+      "requestId": "2db4045d-3c21-4033-a7b1-3506a6dd40a0",
+      "retrievedChunkIds": [
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c009",
+        "corpus/14_travel_policy_overview:c000",
+        "corpus/03_car_general_terms:c013",
+        "corpus/12_home_contents_limits:c000"
+      ],
+      "contextChunkIds": [
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c009",
+        "corpus/14_travel_policy_overview:c000",
+        "corpus/03_car_general_terms:c013",
+        "corpus/12_home_contents_limits:c000",
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c010",
+        "corpus/03_car_general_terms:c011",
+        "corpus/03_car_general_terms:c012",
+        "corpus/03_car_general_terms:c014",
+        "corpus/03_car_general_terms:c015"
+      ],
+      "hybridTopKChunkIds": [
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c009",
+        "corpus/14_travel_policy_overview:c000",
+        "corpus/03_car_general_terms:c013",
+        "corpus/12_home_contents_limits:c000"
+      ],
+      "linkedChunkIds": [],
+      "retrievalMetrics": {
+        "documentRecallAt1": "N/A",
+        "documentRecallAt3": "N/A",
+        "documentRecallAt5": "N/A",
+        "reciprocalRank": "N/A"
+      },
+      "evidenceCoverage": "n_a",
+      "evidenceCoverageNote": "No required evidence sources (ambiguous / no_answer).",
+      "usage": {
+        "embeddingPromptTokens": 48,
+        "generationPromptTokens": 6020,
+        "generationCompletionTokens": 12,
+        "generationTotalTokens": 6032
+      },
+      "timingsMs": {
+        "retrieveMs": 194.4825000000128,
+        "contextMs": 0.541083999996772,
+        "generationMs": 761.6506250000093,
+        "totalMs": 1010.8196670000034
+      },
+      "qualityReview": {
+        "conclusionCorrectness": "pending",
+        "claimSupport": "pending",
+        "essentialCompleteness": "pending",
+        "behaviorAppropriateness": "pending",
+        "focusNotes": [
+          "expectedBehavior=insufficient_evidence",
+          "forbid: ערבוב עם סכום ביטוח תכולה/נסיעות"
+        ],
+        "overallNotes": "AI-assisted scoring vs corpus evidence — not an independent human evaluation."
+      }
+    }
+  ]
+}

@@ -95,6 +95,29 @@ export {
   buildUserPrompt,
 } from "./generate";
 export {
+  buildComputedTemporalFacts,
+  calendarDaysBetween,
+  formatComputedTemporalFactsForPrompt,
+  userTextsForTemporalExtraction,
+} from "./temporal";
+export type {
+  ComputedTemporalFacts,
+  DatedEvent,
+  DatedEventKind,
+  TemporalDaySpan,
+} from "./temporal";
+export {
+  chatCompletionSamplingForModel,
+  toChatCompletionRequestFields,
+  usesClassicSampling,
+  usesReasoningFamilyParams,
+} from "./model-request-params";
+export type {
+  ChatCompletionSamplingProfile,
+  ModelCallMeta,
+  ReasoningEffort,
+} from "./model-request-params";
+export {
   HISTORY_MAX_TURNS,
   HISTORY_MAX_TOTAL_CHARS,
   HISTORY_MAX_MESSAGE_CHARS,

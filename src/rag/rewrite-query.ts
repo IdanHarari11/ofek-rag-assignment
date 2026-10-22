@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import type { ChatCompletion } from "openai/resources/chat/completions";
 import { getOpenAiApiKey, loadEnv } from "./env";
 import { getGenerationModel } from "./generate";
 import {
@@ -6,6 +7,10 @@ import {
   type ChatHistoryMessage,
 } from "./history";
 import { GenerationSystemError } from "./ask-types";
+import {
+  chatCompletionSamplingForModel,
+  toChatCompletionRequestFields,
+} from "./model-request-params";
 
 const REWRITE_JSON_SCHEMA = {
   type: "object",
@@ -138,18 +143,21 @@ export async function rewriteQuery(options: {
   }
 
   loadEnv();
-  const model = options.model ?? getGenerationModel();
+  const modelRequested = options.model ?? getGenerationModel();
   const apiKey = options.apiKey ?? getOpenAiApiKey({ required: true });
   const client = new OpenAI({ apiKey });
+  const samplingProfile = chatCompletionSamplingForModel(modelRequested, {
+    maxOutputTokens: 400,
+  });
+  const samplingFields = toChatCompletionRequestFields(samplingProfile);
 
   const started = performance.now();
-  let response;
+  let response: ChatCompletion;
   try {
-    response = await client.chat.completions.create(
+    response = (await client.chat.completions.create(
       {
-        model,
-        temperature: 0,
-        max_tokens: 400,
+        model: modelRequested,
+        ...samplingFields,
         response_format: {
           type: "json_schema",
           json_schema: {
@@ -165,9 +173,9 @@ export async function rewriteQuery(options: {
             content: buildRewriteUserPrompt(question, options.history),
           },
         ],
-      },
+      } as Parameters<typeof client.chat.completions.create>[0],
       options.signal ? { signal: options.signal } : undefined,
-    );
+    )) as ChatCompletion;
   } catch (error) {
     if (error instanceof DOMException && error.name === "AbortError") throw error;
     const message = error instanceof Error ? error.message : String(error);
@@ -185,10 +193,11 @@ export async function rewriteQuery(options: {
   }
 
   const payload = parseRewritePayload(rawText);
+  const modelReturned = response.model?.trim() || modelRequested;
   return {
     standaloneQuestion: payload.standaloneQuestion,
     unresolvedReferences: payload.unresolvedReferences,
-    model,
+    model: modelReturned,
     usage: {
       promptTokens: response.usage?.prompt_tokens,
       completionTokens: response.usage?.completion_tokens,

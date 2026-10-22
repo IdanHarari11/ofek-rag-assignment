@@ -1,0 +1,1093 @@
+{
+  "generatedAt": "2026-10-21T14:29:23.846Z",
+  "snapshotCreatedAt": "2026-10-21T14:27:07.424Z",
+  "tokenEstimateMethod": "heuristic_he_en_v1_max(words*1.3, chars/2.8)",
+  "pricingSource": "https://developers.openai.com/api/docs/pricing (standard short-context)",
+  "rows": [
+    {
+      "caseId": "MF-B-t0",
+      "model": "gpt-4.1-mini",
+      "runIndex": 0,
+      "status": "answered",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "ההשתתפות העצמית במוסך הסדר עבור רכב מקיף שהונפק באפריל 2026 היא 1,100 ₪. ההשתתפות העצמית צמודה למדד המחירים לצרכן הידוע ביום 1.3.2026.",
+      "latencyMs": 1512.4601660000008,
+      "promptTokens": 6006,
+      "completionTokens": 91,
+      "totalTokens": 6097,
+      "reasoningTokens": 0,
+      "costUsd": 0.00082,
+      "modelRequested": "gpt-4.1-mini",
+      "modelReturned": "gpt-4.1-mini-2025-04-14",
+      "samplingProfile": {
+        "kind": "classic_sampling",
+        "temperature": 0
+      }
+    },
+    {
+      "caseId": "MF-B-t0",
+      "model": "gpt-4.1-mini",
+      "runIndex": 1,
+      "status": "answered",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "ההשתתפות העצמית במוסך הסדר עבור רכב מקיף שהונפק באפריל 2026 היא 1,100 ₪. ההשתתפות העצמית צמודה למדד המחירים לצרכן הידוע ביום 1.3.2026.",
+      "latencyMs": 1599.2349590000013,
+      "promptTokens": 6006,
+      "completionTokens": 91,
+      "totalTokens": 6097,
+      "reasoningTokens": 0,
+      "costUsd": 0.00082,
+      "modelRequested": "gpt-4.1-mini",
+      "modelReturned": "gpt-4.1-mini-2025-04-14",
+      "samplingProfile": {
+        "kind": "classic_sampling",
+        "temperature": 0
+      }
+    },
+    {
+      "caseId": "MF-B-t0",
+      "model": "gpt-4.1-mini",
+      "runIndex": 2,
+      "status": "answered",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "ההשתתפות העצמית במוסך הסדר עבור רכב מקיף שהונפק באפריל 2026 היא 1,100 ₪. ההשתתפות העצמית צמודה למדד המחירים לצרכן הידוע ביום 1.3.2026.",
+      "latencyMs": 1568.9229160000014,
+      "promptTokens": 6006,
+      "completionTokens": 91,
+      "totalTokens": 6097,
+      "reasoningTokens": 0,
+      "costUsd": 0.00082,
+      "modelRequested": "gpt-4.1-mini",
+      "modelReturned": "gpt-4.1-mini-2025-04-14",
+      "samplingProfile": {
+        "kind": "classic_sampling",
+        "temperature": 0
+      }
+    },
+    {
+      "caseId": "MF-B-t1",
+      "model": "gpt-4.1-mini",
+      "runIndex": 0,
+      "status": "answered",
+      "passed": false,
+      "failures": [
+        "issue date rewritten to index base 1.1.2024"
+      ],
+      "answerPreview": "בהתאם לפוליסת רכב מקיף שהונפקה מגרסת 2024 (בתוקף מיום 1.1.2024) והונפקה בפברואר 2026, ההשתתפות העצמית במוסך הסדר היא 950 ש\"ח עבור נזק חלקי ותיקון במוסך הסדר.",
+      "latencyMs": 1657.9712919999984,
+      "promptTokens": 6057,
+      "completionTokens": 108,
+      "totalTokens": 6165,
+      "reasoningTokens": 0,
+      "costUsd": 0.0008292,
+      "modelRequested": "gpt-4.1-mini",
+      "modelReturned": "gpt-4.1-mini-2025-04-14",
+      "samplingProfile": {
+        "kind": "classic_sampling",
+        "temperature": 0
+      }
+    },
+    {
+      "caseId": "MF-B-t1",
+      "model": "gpt-4.1-mini",
+      "runIndex": 1,
+      "status": "answered",
+      "passed": false,
+      "failures": [
+        "issue date rewritten to index base 1.1.2024"
+      ],
+      "answerPreview": "בהתאם לפוליסת רכב מקיף שהונפקה מיום 1.1.2024 (כולל פברואר 2026) ולא חודשה מאז, ההשתתפות העצמית במוסך הסדר היא 950 ש\"ח עבור נזק חלקי ותיקון במוסך הסדר.",
+      "latencyMs": 1648.5432079999991,
+      "promptTokens": 6057,
+      "completionTokens": 102,
+      "totalTokens": 6159,
+      "reasoningTokens": 0,
+      "costUsd": 0.0008196,
+      "modelRequested": "gpt-4.1-mini",
+      "modelReturned": "gpt-4.1-mini-2025-04-14",
+      "samplingProfile": {
+        "kind": "classic_sampling",
+        "temperature": 0
+      }
+    },
+    {
+      "caseId": "MF-B-t1",
+      "model": "gpt-4.1-mini",
+      "runIndex": 2,
+      "status": "answered",
+      "passed": false,
+      "failures": [
+        "issue date rewritten to index base 1.1.2024"
+      ],
+      "answerPreview": "בהתאם לפוליסת רכב מקיף שהונפקה בגרסת 2024 (בתוקף מיום 1.1.2024) והונפקה בפברואר 2026, ההשתתפות העצמית במוסך הסדר היא 950 ש\"ח עבור נזק חלקי ותיקון במוסך הסדר.",
+      "latencyMs": 1610.6519579999986,
+      "promptTokens": 6057,
+      "completionTokens": 108,
+      "totalTokens": 6165,
+      "reasoningTokens": 0,
+      "costUsd": 0.0025956,
+      "modelRequested": "gpt-4.1-mini",
+      "modelReturned": "gpt-4.1-mini-2025-04-14",
+      "samplingProfile": {
+        "kind": "classic_sampling",
+        "temperature": 0
+      }
+    },
+    {
+      "caseId": "MF-B-t2",
+      "model": "gpt-4.1-mini",
+      "runIndex": 0,
+      "status": "answered",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "בפוליסת רכב מקיף שהונפקה בפברואר 2024 (ולא חודשה מאז), במקרה של תיקון במוסך שאינו מוסך הסדר, סכום ההשתתפות העצמית הוא 1,850 ₪. ההשתתפות העצמית צמודה למדד המחירים לצרכן הידוע ביום 1.1.2024.",
+      "latencyMs": 1867.2268330000006,
+      "promptTokens": 6059,
+      "completionTokens": 114,
+      "totalTokens": 6173,
+      "reasoningTokens": 0,
+      "costUsd": 0.0008396,
+      "modelRequested": "gpt-4.1-mini",
+      "modelReturned": "gpt-4.1-mini-2025-04-14",
+      "samplingProfile": {
+        "kind": "classic_sampling",
+        "temperature": 0
+      }
+    },
+    {
+      "caseId": "MF-B-t2",
+      "model": "gpt-4.1-mini",
+      "runIndex": 1,
+      "status": "answered",
+      "passed": false,
+      "failures": [
+        "user February 2026 issue date not preserved"
+      ],
+      "answerPreview": "בהתאם לפוליסת רכב מקיף של אופק ביטוח מגרסת 2024, במקרה של תיקון במוסך שאינו מוסך הסדר, סכום ההשתתפות העצמית הוא 1,850 ₪. סכום זה צמוד למדד המחירים לצרכן הידוע ביום 1.1.2024.",
+      "latencyMs": 1674.7211669999997,
+      "promptTokens": 6059,
+      "completionTokens": 106,
+      "totalTokens": 6165,
+      "reasoningTokens": 0,
+      "costUsd": 0.0008268,
+      "modelRequested": "gpt-4.1-mini",
+      "modelReturned": "gpt-4.1-mini-2025-04-14",
+      "samplingProfile": {
+        "kind": "classic_sampling",
+        "temperature": 0
+      }
+    },
+    {
+      "caseId": "MF-B-t2",
+      "model": "gpt-4.1-mini",
+      "runIndex": 2,
+      "status": "answered",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "בפוליסת רכב מקיף שהונפקה בפברואר 2024 (גרסת 2024) ולא חודשה מאז, במקרה של תיקון במוסך שאינו מוסך הסדר, סכום ההשתתפות העצמית הוא 1,850 ₪. ההשתתפות העצמית צמודה למדד המחירים לצרכן הידוע ביום 1.1.2024.",
+      "latencyMs": 1619.074999999997,
+      "promptTokens": 6059,
+      "completionTokens": 119,
+      "totalTokens": 6178,
+      "reasoningTokens": 0,
+      "costUsd": 0.0008476,
+      "modelRequested": "gpt-4.1-mini",
+      "modelReturned": "gpt-4.1-mini-2025-04-14",
+      "samplingProfile": {
+        "kind": "classic_sampling",
+        "temperature": 0
+      }
+    },
+    {
+      "caseId": "MF-D-t0",
+      "model": "gpt-4.1-mini",
+      "runIndex": 0,
+      "status": "answered",
+      "passed": false,
+      "failures": [
+        "forbidden phrase: 5%",
+        "leaked superseded 5% handling fee"
+      ],
+      "answerPreview": "אם אתה מבטל את הפוליסה בשנת 2026, עשרה ימים אחרי תחילת הביטוח, ולא הייתה תביעה, לפי העדכון לנוהל ביטול פוליסה החל מ-1.1.2025, תקבל החזר מלא של דמי הביטוח ששילמת ללא דמי טיפול, כי הביטול נעשה בתוך 14 יום ממועד הרכישה ולא הייתה תביעה. לגבי נוהל הביטול הישן מ-2023, דמי הטיפול היו מנוכים בשיעור 5% מסכום ההחזר, וההחזר מחושב באופן יחסי לתקופה שנותרה עד תום תקופת הביטוח. לכן, הכלל שחל עליך הוא הכלל המעודכן מ-2025, שבו אין ניכוי דמי טיפול אם הביטול נעשה בתוך 14 יום ולא הייתה תביעה. שאר הוראות נוהל הביטו",
+      "latencyMs": 3787.154542,
+      "promptTokens": 5700,
+      "completionTokens": 339,
+      "totalTokens": 6039,
+      "reasoningTokens": 0,
+      "costUsd": 0.0028224000000000005,
+      "modelRequested": "gpt-4.1-mini",
+      "modelReturned": "gpt-4.1-mini-2025-04-14",
+      "samplingProfile": {
+        "kind": "classic_sampling",
+        "temperature": 0
+      }
+    },
+    {
+      "caseId": "MF-D-t0",
+      "model": "gpt-4.1-mini",
+      "runIndex": 1,
+      "status": "answered",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "אם אתה מבטל את הפוליסה בשנת 2026, עשרה ימים אחרי תחילת הביטוח, ולא הייתה תביעה, לא ינוכו דמי טיפול. זאת מכיוון שביטול בתוך 14 יום ממועד הרכישה ללא תביעה מזכה בהחזר מלא של דמי הביטוח ששילמת, ללא דמי טיפול. החלק מנוהל הביטול הישן שעדיין בתוקף הוא כל ההוראות מלבד סעיף \"חישוב ההחזר\". כלומר, שאר הוראות נוהל הביטול מ-2023 נשארות בתוקף, אך חישוב ההחזר עודכן החל מ-1.1.2025.",
+      "latencyMs": 2781.3625840000022,
+      "promptTokens": 5700,
+      "completionTokens": 216,
+      "totalTokens": 5916,
+      "reasoningTokens": 0,
+      "costUsd": 0.0009744,
+      "modelRequested": "gpt-4.1-mini",
+      "modelReturned": "gpt-4.1-mini-2025-04-14",
+      "samplingProfile": {
+        "kind": "classic_sampling",
+        "temperature": 0
+      }
+    },
+    {
+      "caseId": "MF-D-t0",
+      "model": "gpt-4.1-mini",
+      "runIndex": 2,
+      "status": "answered",
+      "passed": false,
+      "failures": [
+        "forbidden phrase: 5%",
+        "leaked superseded 5% handling fee",
+        "updated 3% / no-fee rule not clearly stated"
+      ],
+      "answerPreview": "אם מבוטח מבטל פוליסה בשנת 2026, עשרה ימים אחרי תחילת הביטוח, ולא הייתה תביעה, הוא יקבל החזר מלא של דמי הביטוח ששילם ללא ניכוי דמי טיפול, כי הביטול נעשה בתוך 14 יום ממועד הרכישה ולא הייתה תביעה. הכלל שחל על ביטול בתוך 14 יום הוא שההחזר מחושב באופן יחסי (pro-rata) ללא ניכוי דמי טיפול. אם הביטול היה לאחר 14 יום ממועד הרכישה, ההחזר מחושב באופן יחסי ומנוכים ממנו דמי טיפול בשיעור 5% מסכום ההחזר, לפי נוהל הביטול מ-2023, שהוראותיו נשארו בתוקף למעט סעיף חישוב ההחזר שעודכן. שאר הוראות נוהל הביטול מ-2023 נ",
+      "latencyMs": 3260.522415999996,
+      "promptTokens": 5700,
+      "completionTokens": 333,
+      "totalTokens": 6033,
+      "reasoningTokens": 0,
+      "costUsd": 0.0011616,
+      "modelRequested": "gpt-4.1-mini",
+      "modelReturned": "gpt-4.1-mini-2025-04-14",
+      "samplingProfile": {
+        "kind": "classic_sampling",
+        "temperature": 0
+      }
+    },
+    {
+      "caseId": "MF-F-t0",
+      "model": "gpt-4.1-mini",
+      "runIndex": 0,
+      "status": "answered",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "כאשר כבודה מתעכבת מעל 24 שעות, ניתן לקבל פיצוי עד 150 דולר נוספים על רכישת פריטים חיוניים, בנוסף לפיצוי של עד 150 דולר עבור עיכוב מעל 6 שעות, כלומר סך הפיצוי המקסימלי הוא עד 300 דולר. יש להגיש דו\"ח אי-הגעת כבודה (PIR) לשדה התעופה כדי לקבל את הפיצוי. במקרה שלך, עם PIR וקבלות על פריטים חיוניים בסך 220 דולר, ניתן להניח שהפיצוי יהיה עד 220 דולר, כלומר עד לסכום הקבלות שהוצאת, כל עוד אינו עולה על התקרה של 300 דולר.",
+      "latencyMs": 2709.396916999998,
+      "promptTokens": 2721,
+      "completionTokens": 217,
+      "totalTokens": 2938,
+      "reasoningTokens": 0,
+      "costUsd": 0.0006676,
+      "modelRequested": "gpt-4.1-mini",
+      "modelReturned": "gpt-4.1-mini-2025-04-14",
+      "samplingProfile": {
+        "kind": "classic_sampling",
+        "temperature": 0
+      }
+    },
+    {
+      "caseId": "MF-F-t0",
+      "model": "gpt-4.1-mini",
+      "runIndex": 1,
+      "status": "answered",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "במקרה של עיכוב כבודה מעל 24 שעות, ניתן לקבל פיצוי עד 150 דולר נוספים מעבר לפיצוי הראשוני של 150 דולר לרכישת פריטים חיוניים, כלומר סך הפיצוי המקסימלי הוא עד 300 דולר. יש להגיש דו\"ח אי-הגעת כבודה (PIR) לשדה התעופה כדי לקבל את הפיצוי. בהתאם לכך, אם יש קבלות על פריטים חיוניים בסך 220 דולר, ניתן להגיש תביעה לפיצוי עד התקרה של 300 דולר, וההחזר בפועל יהיה בהתאם לסכום ההוצאות המאושרות עד לתקרה זו.",
+      "latencyMs": 3107.118665999995,
+      "promptTokens": 2721,
+      "completionTokens": 209,
+      "totalTokens": 2930,
+      "reasoningTokens": 0,
+      "costUsd": 0.0006548000000000001,
+      "modelRequested": "gpt-4.1-mini",
+      "modelReturned": "gpt-4.1-mini-2025-04-14",
+      "samplingProfile": {
+        "kind": "classic_sampling",
+        "temperature": 0
+      }
+    },
+    {
+      "caseId": "MF-F-t0",
+      "model": "gpt-4.1-mini",
+      "runIndex": 2,
+      "status": "answered",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "כאשר כבודה מתעכבת מעל 24 שעות, ניתן לקבל פיצוי עד 150 דולר נוספים על רכישת פריטים חיוניים, בנוסף לפיצוי של עד 150 דולר עבור עיכוב מעל 6 שעות, כלומר סך הפיצוי המקסימלי הוא עד 300 דולר. יש להגיש דו\"ח אי-הגעת כבודה (PIR) לשדה התעופה כדי לקבל את הפיצוי. בהתחשב בכך שיש קבלות על פריטים חיוניים בסך 220 דולר, ניתן להסיק שהפיצוי בפועל יכול להיות עד 220 דולר, כל עוד הקבלות עומדות בתנאי הכיסוי.",
+      "latencyMs": 3741.6347909999968,
+      "promptTokens": 2721,
+      "completionTokens": 206,
+      "totalTokens": 2927,
+      "reasoningTokens": 0,
+      "costUsd": 0.00065,
+      "modelRequested": "gpt-4.1-mini",
+      "modelReturned": "gpt-4.1-mini-2025-04-14",
+      "samplingProfile": {
+        "kind": "classic_sampling",
+        "temperature": 0
+      }
+    },
+    {
+      "caseId": "CTRL-hours",
+      "model": "gpt-4.1-mini",
+      "runIndex": 0,
+      "status": "answered",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "שעות הפעילות של מוקד שירות הלקוחות ביום שישי הן מ-08:00 עד 12:00.",
+      "latencyMs": 1192.0155830000003,
+      "promptTokens": 2038,
+      "completionTokens": 52,
+      "totalTokens": 2090,
+      "reasoningTokens": 0,
+      "costUsd": 0.00036080000000000004,
+      "modelRequested": "gpt-4.1-mini",
+      "modelReturned": "gpt-4.1-mini-2025-04-14",
+      "samplingProfile": {
+        "kind": "classic_sampling",
+        "temperature": 0
+      }
+    },
+    {
+      "caseId": "CTRL-hours",
+      "model": "gpt-4.1-mini",
+      "runIndex": 1,
+      "status": "answered",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "שעות הפעילות של מוקד שירות הלקוחות ביום שישי הן מ-08:00 עד 12:00.",
+      "latencyMs": 1285.147917000002,
+      "promptTokens": 2038,
+      "completionTokens": 52,
+      "totalTokens": 2090,
+      "reasoningTokens": 0,
+      "costUsd": 0.00036080000000000004,
+      "modelRequested": "gpt-4.1-mini",
+      "modelReturned": "gpt-4.1-mini-2025-04-14",
+      "samplingProfile": {
+        "kind": "classic_sampling",
+        "temperature": 0
+      }
+    },
+    {
+      "caseId": "CTRL-hours",
+      "model": "gpt-4.1-mini",
+      "runIndex": 2,
+      "status": "answered",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "שעות הפעילות של מוקד שירות הלקוחות ביום שישי הן מ-08:00 עד 12:00.",
+      "latencyMs": 1150.277667000002,
+      "promptTokens": 2038,
+      "completionTokens": 52,
+      "totalTokens": 2090,
+      "reasoningTokens": 0,
+      "costUsd": 0.00036080000000000004,
+      "modelRequested": "gpt-4.1-mini",
+      "modelReturned": "gpt-4.1-mini-2025-04-14",
+      "samplingProfile": {
+        "kind": "classic_sampling",
+        "temperature": 0
+      }
+    },
+    {
+      "caseId": "CTRL-replacement",
+      "model": "gpt-4.1-mini",
+      "runIndex": 0,
+      "status": "answered",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "רכב חלופי ניתן רק למבוטחים שרכשו כתב שירות רכב חלופי, והוא אינו חלק מהכיסוי הבסיסי בפוליסת מקיף. במקרה של תאונה, רכב חלופי ניתן כל עוד הרכב בתיקון במוסך הסדר, לתקופה מקסימלית של עד 21 ימים. במקרה של גניבה או אובדן גמור, רכב חלופי ניתן לתקופה מקסימלית של עד 30 ימים. במקרה של תקלה מכנית, רכב חלופי אינו ניתן. מצד שני, בעלון השיווקי של אופק ביטוח מצוין כי רכב חלופי ניתן לכל תקופת התיקון, ללא כוכביות. עם זאת, מידע זה הוא שיווקי בלבד והתנאים המחייבים הם תנאי הפוליסה וכתבי השירות שנרכשו.",
+      "latencyMs": 2525.8492079999996,
+      "promptTokens": 5852,
+      "completionTokens": 230,
+      "totalTokens": 6082,
+      "reasoningTokens": 0,
+      "costUsd": 0.0010192,
+      "modelRequested": "gpt-4.1-mini",
+      "modelReturned": "gpt-4.1-mini-2025-04-14",
+      "samplingProfile": {
+        "kind": "classic_sampling",
+        "temperature": 0
+      }
+    },
+    {
+      "caseId": "CTRL-replacement",
+      "model": "gpt-4.1-mini",
+      "runIndex": 1,
+      "status": "answered",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "רכב חלופי ניתן רק למבוטחים שרכשו כתב שירות רכב חלופי, והוא אינו חלק מהכיסוי הבסיסי בפוליסת מקיף. במקרה של תאונה, רכב חלופי ניתן כל עוד הרכב בתיקון במוסך הסדר, לתקופה מקסימלית של עד 21 ימים. במקרה של גניבה או אובדן גמור, רכב חלופי ניתן לתקופה מקסימלית של עד 30 ימים. במקרה של תקלה מכנית, רכב חלופי אינו ניתן. מצד שני, בעלון השיווקי של אופק ביטוח מצוין כי רכב חלופי ניתן לכל תקופת התיקון, ללא כוכביות. עם זאת, מידע זה הוא שיווקי בלבד והתנאים המחייבים הם תנאי הפוליסה וכתבי השירות שנרכשו.",
+      "latencyMs": 3071.8039999999964,
+      "promptTokens": 5852,
+      "completionTokens": 230,
+      "totalTokens": 6082,
+      "reasoningTokens": 0,
+      "costUsd": 0.0010192,
+      "modelRequested": "gpt-4.1-mini",
+      "modelReturned": "gpt-4.1-mini-2025-04-14",
+      "samplingProfile": {
+        "kind": "classic_sampling",
+        "temperature": 0
+      }
+    },
+    {
+      "caseId": "CTRL-replacement",
+      "model": "gpt-4.1-mini",
+      "runIndex": 2,
+      "status": "answered",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "רכב חלופי ניתן רק למבוטחים שרכשו כתב שירות רכב חלופי, והוא אינו חלק מהכיסוי הבסיסי בפוליסת מקיף. לגבי תקופת הזכאות לרכב חלופי: במקרה של תאונה שבה הרכב בתיקון במוסך הסדר, הרכב החלופי ניתן עד 21 ימים. במקרה של גניבה או אובדן גמור, הרכב החלופי ניתן עד 30 ימים. במקרה של תקלה מכנית, רכב חלופי אינו ניתן כלל. בנוסף, רכב חלופי ניתן רק אם התיקון נעשה במוסך הסדר; תיקון במוסך שאינו בהסדר אינו מזכה ברכב חלופי. מצד שני, בעלון השיווק של אופק ביטוח מצוין כי במסגרת ביטוח הרכב ניתן רכב חלופי לכל תקופת התיקון, לל",
+      "latencyMs": 2924.371208999997,
+      "promptTokens": 5852,
+      "completionTokens": 276,
+      "totalTokens": 6128,
+      "reasoningTokens": 0,
+      "costUsd": 0.0010928,
+      "modelRequested": "gpt-4.1-mini",
+      "modelReturned": "gpt-4.1-mini-2025-04-14",
+      "samplingProfile": {
+        "kind": "classic_sampling",
+        "temperature": 0
+      }
+    },
+    {
+      "caseId": "CTRL-pets",
+      "model": "gpt-4.1-mini",
+      "runIndex": 0,
+      "status": "insufficient_evidence",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "",
+      "latencyMs": 964.7002500000017,
+      "promptTokens": 4917,
+      "completionTokens": 12,
+      "totalTokens": 4929,
+      "reasoningTokens": 0,
+      "costUsd": 0.0005652000000000001,
+      "modelRequested": "gpt-4.1-mini",
+      "modelReturned": "gpt-4.1-mini-2025-04-14",
+      "samplingProfile": {
+        "kind": "classic_sampling",
+        "temperature": 0
+      }
+    },
+    {
+      "caseId": "CTRL-pets",
+      "model": "gpt-4.1-mini",
+      "runIndex": 1,
+      "status": "insufficient_evidence",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "",
+      "latencyMs": 973.2919580000016,
+      "promptTokens": 4917,
+      "completionTokens": 12,
+      "totalTokens": 4929,
+      "reasoningTokens": 0,
+      "costUsd": 0.0005652000000000001,
+      "modelRequested": "gpt-4.1-mini",
+      "modelReturned": "gpt-4.1-mini-2025-04-14",
+      "samplingProfile": {
+        "kind": "classic_sampling",
+        "temperature": 0
+      }
+    },
+    {
+      "caseId": "CTRL-pets",
+      "model": "gpt-4.1-mini",
+      "runIndex": 2,
+      "status": "insufficient_evidence",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "",
+      "latencyMs": 1087.9419160000034,
+      "promptTokens": 4917,
+      "completionTokens": 12,
+      "totalTokens": 4929,
+      "reasoningTokens": 0,
+      "costUsd": 0.0005652000000000001,
+      "modelRequested": "gpt-4.1-mini",
+      "modelReturned": "gpt-4.1-mini-2025-04-14",
+      "samplingProfile": {
+        "kind": "classic_sampling",
+        "temperature": 0
+      }
+    },
+    {
+      "caseId": "MF-B-t0",
+      "model": "gpt-5.6-terra",
+      "runIndex": 0,
+      "status": "answered",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "בפוליסת מקיף שהונפקה באפריל 2026, ההשתתפות העצמית עבור נזק חלקי ותיקון במוסך הסדר היא 1,100 ₪, צמודים למדד המחירים לצרכן הידוע ביום 1.3.2026.",
+      "latencyMs": 2462.684457999996,
+      "promptTokens": 6002,
+      "completionTokens": 105,
+      "totalTokens": 6107,
+      "reasoningTokens": 0,
+      "costUsd": 0.013264000000000001,
+      "modelRequested": "gpt-5.6-terra",
+      "modelReturned": "gpt-5.6-terra",
+      "samplingProfile": {
+        "kind": "reasoning_family",
+        "omitTemperature": true,
+        "reasoningEffort": "medium"
+      },
+      "reasoningEffortSent": "medium"
+    },
+    {
+      "caseId": "MF-B-t0",
+      "model": "gpt-5.6-terra",
+      "runIndex": 1,
+      "status": "answered",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "בפוליסת מקיף שהונפקה באפריל 2026, ההשתתפות העצמית בנזק חלקי המתוקן במוסך הסדר היא 1,100 ₪, צמודים למדד המחירים לצרכן הידוע ביום 1.3.2026.",
+      "latencyMs": 2537.3348750000005,
+      "promptTokens": 6002,
+      "completionTokens": 104,
+      "totalTokens": 6106,
+      "reasoningTokens": 0,
+      "costUsd": 0.0024538,
+      "modelRequested": "gpt-5.6-terra",
+      "modelReturned": "gpt-5.6-terra",
+      "samplingProfile": {
+        "kind": "reasoning_family",
+        "omitTemperature": true,
+        "reasoningEffort": "medium"
+      },
+      "reasoningEffortSent": "medium"
+    },
+    {
+      "caseId": "MF-B-t0",
+      "model": "gpt-5.6-terra",
+      "runIndex": 2,
+      "status": "answered",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "בפוליסת מקיף שהונפקה באפריל 2026, ההשתתפות העצמית בגין נזק חלקי המתוקן במוסך הסדר היא 1,100 ₪, צמודה למדד המחירים לצרכן הידוע ביום 1.3.2026.",
+      "latencyMs": 2617.8781669999953,
+      "promptTokens": 6002,
+      "completionTokens": 106,
+      "totalTokens": 6108,
+      "reasoningTokens": 0,
+      "costUsd": 0.0024778,
+      "modelRequested": "gpt-5.6-terra",
+      "modelReturned": "gpt-5.6-terra",
+      "samplingProfile": {
+        "kind": "reasoning_family",
+        "omitTemperature": true,
+        "reasoningEffort": "medium"
+      },
+      "reasoningEffortSent": "medium"
+    },
+    {
+      "caseId": "MF-B-t1",
+      "model": "gpt-5.6-terra",
+      "runIndex": 0,
+      "status": "answered",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "בפוליסת רכב מקיף שהונפקה בפברואר 2026 ולא חודשה, ההשתתפות העצמית עבור נזק חלקי המתוקן במוסך הסדר היא 950 ₪, צמודים למדד המחירים לצרכן הידוע ביום 1.1.2024.",
+      "latencyMs": 2671.433042000004,
+      "promptTokens": 6053,
+      "completionTokens": 109,
+      "totalTokens": 6162,
+      "reasoningTokens": 0,
+      "costUsd": 0.013414,
+      "modelRequested": "gpt-5.6-terra",
+      "modelReturned": "gpt-5.6-terra",
+      "samplingProfile": {
+        "kind": "reasoning_family",
+        "omitTemperature": true,
+        "reasoningEffort": "medium"
+      },
+      "reasoningEffortSent": "medium"
+    },
+    {
+      "caseId": "MF-B-t1",
+      "model": "gpt-5.6-terra",
+      "runIndex": 1,
+      "status": "answered",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "בפוליסת רכב מקיף שהונפקה בפברואר 2026 ולא חודשה, ההשתתפות העצמית עבור נזק חלקי המתוקן במוסך הסדר היא 950 ₪, צמודים למדד המחירים לצרכן הידוע ביום 1.1.2024.",
+      "latencyMs": 2617.0361660000053,
+      "promptTokens": 6053,
+      "completionTokens": 109,
+      "totalTokens": 6162,
+      "reasoningTokens": 0,
+      "costUsd": 0.002524,
+      "modelRequested": "gpt-5.6-terra",
+      "modelReturned": "gpt-5.6-terra",
+      "samplingProfile": {
+        "kind": "reasoning_family",
+        "omitTemperature": true,
+        "reasoningEffort": "medium"
+      },
+      "reasoningEffortSent": "medium"
+    },
+    {
+      "caseId": "MF-B-t1",
+      "model": "gpt-5.6-terra",
+      "runIndex": 2,
+      "status": "answered",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "בפוליסת רכב מקיף שהונפקה בפברואר 2026 ולא חודשה, ההשתתפות העצמית לנזק חלקי המתוקן במוסך הסדר היא 950 ₪, צמודים למדד המחירים לצרכן הידוע ביום 1.1.2024. אם בעת האירוע נהג ברכב נהג צעיר שנכלל בנספח נהג צעיר, ההשתתפות העצמית מוכפלת.",
+      "latencyMs": 3324.3227920000063,
+      "promptTokens": 6053,
+      "completionTokens": 154,
+      "totalTokens": 6207,
+      "reasoningTokens": 0,
+      "costUsd": 0.003064,
+      "modelRequested": "gpt-5.6-terra",
+      "modelReturned": "gpt-5.6-terra",
+      "samplingProfile": {
+        "kind": "reasoning_family",
+        "omitTemperature": true,
+        "reasoningEffort": "medium"
+      },
+      "reasoningEffortSent": "medium"
+    },
+    {
+      "caseId": "MF-B-t2",
+      "model": "gpt-5.6-terra",
+      "runIndex": 0,
+      "status": "answered",
+      "passed": false,
+      "failures": [
+        "user February 2026 issue date not preserved"
+      ],
+      "answerPreview": "במקרה של נזק חלקי ותיקון במוסך שאינו בהסדר, ההשתתפות העצמית היא 1,850 ₪, צמודה למדד המחירים לצרכן הידוע ביום 1.1.2024. אם בעת האירוע נהג ברכב נהג צעיר הכלול בנספח נהג צעיר, ההשתתפות העצמית מוכפלת. אין לתקן את הרכב לפני שניתנה לשמאי הזדמנות סבירה לבדוק את הנזק, למעט תיקון דחוף למניעת נזק נוסף. אם נרכש כתב שירות לרכב חלופי, תאונה שבה הרכב מתוקן במוסך שאינו בהסדר אינה מזכה ברכב חלופי.",
+      "latencyMs": 5357.847833000007,
+      "promptTokens": 6055,
+      "completionTokens": 248,
+      "totalTokens": 6303,
+      "reasoningTokens": 0,
+      "costUsd": 0.015085999999999999,
+      "modelRequested": "gpt-5.6-terra",
+      "modelReturned": "gpt-5.6-terra",
+      "samplingProfile": {
+        "kind": "reasoning_family",
+        "omitTemperature": true,
+        "reasoningEffort": "medium"
+      },
+      "reasoningEffortSent": "medium"
+    },
+    {
+      "caseId": "MF-B-t2",
+      "model": "gpt-5.6-terra",
+      "runIndex": 1,
+      "status": "answered",
+      "passed": false,
+      "failures": [
+        "user February 2026 issue date not preserved"
+      ],
+      "answerPreview": "בתיקון של נזק חלקי במוסך שאינו בהסדר, ההשתתפות העצמית היא 1,850 ₪, צמודה למדד המחירים לצרכן הידוע ביום 1.1.2024. אם הנהג היה נהג צעיר שנכלל בנספח, ההשתתפות העצמית מוכפלת. לפני תיקון הרכב יש לאפשר לשמאי הזדמנות סבירה לבדוק את הנזק, למעט תיקון דחוף שנדרש כדי למנוע נזק נוסף.",
+      "latencyMs": 4101.468459000011,
+      "promptTokens": 6055,
+      "completionTokens": 186,
+      "totalTokens": 6241,
+      "reasoningTokens": 0,
+      "costUsd": 0.0034484,
+      "modelRequested": "gpt-5.6-terra",
+      "modelReturned": "gpt-5.6-terra",
+      "samplingProfile": {
+        "kind": "reasoning_family",
+        "omitTemperature": true,
+        "reasoningEffort": "medium"
+      },
+      "reasoningEffortSent": "medium"
+    },
+    {
+      "caseId": "MF-B-t2",
+      "model": "gpt-5.6-terra",
+      "runIndex": 2,
+      "status": "answered",
+      "passed": false,
+      "failures": [
+        "user February 2026 issue date not preserved"
+      ],
+      "answerPreview": "במקרה של נזק חלקי ותיקון במוסך שאינו בהסדר, ההשתתפות העצמית היא 1,850 ₪, צמודה למדד המחירים לצרכן הידוע ביום 1.1.2024. הסכום מנוכה מתגמולי הביטוח. אם בעת האירוע נהג ברכב נהג צעיר שנכלל בנספח נהג צעיר, ההשתתפות העצמית מוכפלת עבור אותו סוג אירוע.",
+      "latencyMs": 4266.179000000004,
+      "promptTokens": 6055,
+      "completionTokens": 174,
+      "totalTokens": 6229,
+      "reasoningTokens": 0,
+      "costUsd": 0.0033044,
+      "modelRequested": "gpt-5.6-terra",
+      "modelReturned": "gpt-5.6-terra",
+      "samplingProfile": {
+        "kind": "reasoning_family",
+        "omitTemperature": true,
+        "reasoningEffort": "medium"
+      },
+      "reasoningEffortSent": "medium"
+    },
+    {
+      "caseId": "MF-D-t0",
+      "model": "gpt-5.6-terra",
+      "runIndex": 0,
+      "status": "answered",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "הכלל שחל עליך: אם הביטול נעשה בתוך 14 יום ממועד הרכישה ולא הוגשה תביעה, תקבל החזר מלא של דמי הביטוח ששילמת, ללא דמי טיפול. לכן, בנסיבות שתיארת—10 ימים מתחילת הביטוח וללא תביעה—לא ינוכו דמי טיפול, ככל שמועד הרכישה הוא בתוך אותם 14 ימים. מהנוהל הישן עדיין בתוקף: אפשר לבטל בכל עת; הבקשה מוגשת בטופס 4401 או בשיחה מוקלטת למוקד לאחר זיהוי מלא; הביטול נכנס לתוקף במועד שביקשת, אך לא לפני קבלת הבקשה. ההחזר מועבר לאמצעי התשלום המקורי או לחשבון בנק לפי טופס 4410, בתוך 14 ימי עסקים. אחרי 14 יום: ההחזר מחושב",
+      "latencyMs": 6633.364041000008,
+      "promptTokens": 5696,
+      "completionTokens": 337,
+      "totalTokens": 6033,
+      "reasoningTokens": 0,
+      "costUsd": 0.015435999999999998,
+      "modelRequested": "gpt-5.6-terra",
+      "modelReturned": "gpt-5.6-terra",
+      "samplingProfile": {
+        "kind": "reasoning_family",
+        "omitTemperature": true,
+        "reasoningEffort": "medium"
+      },
+      "reasoningEffortSent": "medium"
+    },
+    {
+      "caseId": "MF-D-t0",
+      "model": "gpt-5.6-terra",
+      "runIndex": 1,
+      "status": "answered",
+      "passed": false,
+      "failures": [
+        "forbidden phrase: 5%",
+        "leaked superseded 5% handling fee"
+      ],
+      "answerPreview": "במקרה שתיארת — ביטול בשנת 2026 בתוך 14 ימים ממועד הרכישה וללא הגשת תביעה — תקבל/י החזר מלא של דמי הביטוח ששולמו, ללא דמי טיפול. לכן לא ינוכו דמי טיפול. אחרי 14 ימים: ההחזר מחושב באופן יחסי לתקופה שנותרה עד תום הביטוח, ודמי הטיפול הם 3% מסכום ההחזר, עד לתקרה של 150 ₪. מהנוהל הישן של 2023 עדיין בתוקף, משום שהעדכון שינה רק את חישוב ההחזר: אפשר לבטל בכל עת; הבקשה מוגשת בטופס 4401 או בשיחה מוקלטת במוקד לאחר זיהוי מלא; הביטול נכנס לתוקף במועד שביקשת, אך לא לפני קבלת הבקשה; וההחזר מועבר לאמצעי התשלום ה",
+      "latencyMs": 6974.107250000001,
+      "promptTokens": 5696,
+      "completionTokens": 378,
+      "totalTokens": 6074,
+      "reasoningTokens": 0,
+      "costUsd": 0.0056806,
+      "modelRequested": "gpt-5.6-terra",
+      "modelReturned": "gpt-5.6-terra",
+      "samplingProfile": {
+        "kind": "reasoning_family",
+        "omitTemperature": true,
+        "reasoningEffort": "medium"
+      },
+      "reasoningEffortSent": "medium"
+    },
+    {
+      "caseId": "MF-D-t0",
+      "model": "gpt-5.6-terra",
+      "runIndex": 2,
+      "status": "answered",
+      "passed": false,
+      "failures": [
+        "forbidden phrase: 5%",
+        "leaked superseded 5% handling fee"
+      ],
+      "answerPreview": "במקרה שלך — ביטול בתוך 14 יום ממועד הרכישה וללא הגשת תביעה — תקבל החזר מלא של דמי הביטוח ששילמת, ללא דמי טיפול. לכן, בביטול 10 ימים לאחר תחילת הביטוח אין לנכות דמי טיפול, ככל שתחילת הביטוח היא גם בתוך 14 יום ממועד הרכישה. הכלל לאחר 14 יום: ההחזר מחושב באופן יחסי לתקופה שנותרה עד תום הביטוח, ומנוכים ממנו דמי טיפול בשיעור 3% מסכום ההחזר, עד תקרה של 150 ₪. מהנוהל הישן נותרו בתוקף כל ההוראות שאינן עוסקות בחישוב ההחזר: אפשר לבטל בכל עת; יש להגיש בקשה בטופס 4401 או בשיחה מוקלטת במוקד לאחר זיהוי מלא; ה",
+      "latencyMs": 7405.630207999988,
+      "promptTokens": 5696,
+      "completionTokens": 418,
+      "totalTokens": 6114,
+      "reasoningTokens": 0,
+      "costUsd": 0.0061606000000000005,
+      "modelRequested": "gpt-5.6-terra",
+      "modelReturned": "gpt-5.6-terra",
+      "samplingProfile": {
+        "kind": "reasoning_family",
+        "omitTemperature": true,
+        "reasoningEffort": "medium"
+      },
+      "reasoningEffortSent": "medium"
+    },
+    {
+      "caseId": "MF-F-t0",
+      "model": "gpt-5.6-terra",
+      "runIndex": 0,
+      "status": "answered",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "בעיכוב כבודה של 30 שעות, התקרה לרכישת פריטים חיוניים היא עד 300 דולר: עד 150 דולר כאשר העיכוב מעל 6 שעות, ועוד עד 150 דולר כאשר הוא מעל 24 שעות. מאחר שיש דו״ח PIR וקבלות בסך 220 דולר, סכום ההוצאות נמוך מהתקרה. לכן ניתן להסיק שהבקשה יכולה להיות עד 220 דולר, בכפוף לבדיקת התביעה ואישור ההוצאות; אין במידע שנמסר התחייבות להחזר מלא בפועל. לתביעה יש לצרף גם כרטיס טיסה וכרטיס עלייה למטוס, ולהגיש אותה עד 90 יום מהחזרה לישראל. התשלום, אם יאושר, יועבר בשקלים לפי השער היציג ביום התשלום.",
+      "latencyMs": 5514.939957999988,
+      "promptTokens": 2717,
+      "completionTokens": 259,
+      "totalTokens": 2976,
+      "reasoningTokens": 0,
+      "costUsd": 0.008542,
+      "modelRequested": "gpt-5.6-terra",
+      "modelReturned": "gpt-5.6-terra",
+      "samplingProfile": {
+        "kind": "reasoning_family",
+        "omitTemperature": true,
+        "reasoningEffort": "medium"
+      },
+      "reasoningEffortSent": "medium"
+    },
+    {
+      "caseId": "MF-F-t0",
+      "model": "gpt-5.6-terra",
+      "runIndex": 1,
+      "status": "answered",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "בעיכוב כבודה של 30 שעות, התקרה לרכישת פריטים חיוניים היא עד 300$: עד 150$ כאשר העיכוב מעל 6 שעות, ועוד עד 150$ כאשר הוא מעל 24 שעות. מאחר שיש PIR וקבלות בסך 220$, סכום ההוצאות נמוך מהתקרה. לכן ניתן להסיק שההחזר עשוי להגיע עד 220$ עבור ההוצאות המתועדות, בכפוף לבדיקת התביעה ואישורה; לא ניתן להסיק מהמסמכים שהחזר מלא מובטח. לתביעה נדרשים גם כרטיס טיסה וכרטיס עלייה למטוס, וההגשה היא עד 90 יום מיום החזרה לישראל. התשלום, אם יאושר, יועבר בשקלים לפי השער היציג ביום התשלום.",
+      "latencyMs": 4962.345874999999,
+      "promptTokens": 2717,
+      "completionTokens": 262,
+      "totalTokens": 2979,
+      "reasoningTokens": 0,
+      "costUsd": 0.0036928,
+      "modelRequested": "gpt-5.6-terra",
+      "modelReturned": "gpt-5.6-terra",
+      "samplingProfile": {
+        "kind": "reasoning_family",
+        "omitTemperature": true,
+        "reasoningEffort": "medium"
+      },
+      "reasoningEffortSent": "medium"
+    },
+    {
+      "caseId": "MF-F-t0",
+      "model": "gpt-5.6-terra",
+      "runIndex": 2,
+      "status": "answered",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "בעיכוב כבודה של 30 שעות, התקרה היא עד 300 דולר לרכישת פריטים חיוניים: עד 150 דולר בעיכוב של מעל 6 שעות ועוד עד 150 דולר בעיכוב של מעל 24 שעות. מאחר שיש דו״ח PIR וקבלות בסך 220 דולר, סכום ההוצאות נמוך מהתקרה. לכן ניתן להסיק שההחזר עשוי להגיע עד 220 דולר, בכפוף לאישור התביעה ולכך שהרכישות יוכרו כפריטים חיוניים. התשלום מועבר בשקלים לפי השער היציג ביום התשלום.",
+      "latencyMs": 4613.110833999992,
+      "promptTokens": 2717,
+      "completionTokens": 199,
+      "totalTokens": 2916,
+      "reasoningTokens": 0,
+      "costUsd": 0.0029368000000000003,
+      "modelRequested": "gpt-5.6-terra",
+      "modelReturned": "gpt-5.6-terra",
+      "samplingProfile": {
+        "kind": "reasoning_family",
+        "omitTemperature": true,
+        "reasoningEffort": "medium"
+      },
+      "reasoningEffortSent": "medium"
+    },
+    {
+      "caseId": "CTRL-hours",
+      "model": "gpt-5.6-terra",
+      "runIndex": 0,
+      "status": "answered",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "מוקד שירות הלקוחות פעיל ביום שישי בין 08:00 ל־12:00. טלפון: *6789.",
+      "latencyMs": 1902.7204159999965,
+      "promptTokens": 2034,
+      "completionTokens": 65,
+      "totalTokens": 2099,
+      "reasoningTokens": 0,
+      "costUsd": 0.004848,
+      "modelRequested": "gpt-5.6-terra",
+      "modelReturned": "gpt-5.6-terra",
+      "samplingProfile": {
+        "kind": "reasoning_family",
+        "omitTemperature": true,
+        "reasoningEffort": "medium"
+      },
+      "reasoningEffortSent": "medium"
+    },
+    {
+      "caseId": "CTRL-hours",
+      "model": "gpt-5.6-terra",
+      "runIndex": 1,
+      "status": "answered",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "מוקד שירות הלקוחות פועל ביום שישי בין 08:00 ל־12:00. טלפון: *6789.",
+      "latencyMs": 1933.7428749999963,
+      "promptTokens": 2034,
+      "completionTokens": 65,
+      "totalTokens": 2099,
+      "reasoningTokens": 0,
+      "costUsd": 0.0011921999999999998,
+      "modelRequested": "gpt-5.6-terra",
+      "modelReturned": "gpt-5.6-terra",
+      "samplingProfile": {
+        "kind": "reasoning_family",
+        "omitTemperature": true,
+        "reasoningEffort": "medium"
+      },
+      "reasoningEffortSent": "medium"
+    },
+    {
+      "caseId": "CTRL-hours",
+      "model": "gpt-5.6-terra",
+      "runIndex": 2,
+      "status": "answered",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "ביום שישי מוקד שירות הלקוחות פועל בין 08:00 ל־12:00. טלפון: *6789.",
+      "latencyMs": 2097.271000000008,
+      "promptTokens": 2034,
+      "completionTokens": 66,
+      "totalTokens": 2100,
+      "reasoningTokens": 0,
+      "costUsd": 0.0012042,
+      "modelRequested": "gpt-5.6-terra",
+      "modelReturned": "gpt-5.6-terra",
+      "samplingProfile": {
+        "kind": "reasoning_family",
+        "omitTemperature": true,
+        "reasoningEffort": "medium"
+      },
+      "reasoningEffortSent": "medium"
+    },
+    {
+      "caseId": "CTRL-replacement",
+      "model": "gpt-5.6-terra",
+      "runIndex": 0,
+      "status": "answered",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "לא בהכרח. רכב חלופי ניתן רק אם נרכש כתב שירות רכב חלופי; הוא אינו חלק מהכיסוי הבסיסי בפוליסת המקיף. במקרה של תאונה, הזכאות היא כל עוד הרכב מתוקן במוסך הסדר, ועד 21 ימים לכל היותר. תיקון במוסך שאינו בהסדר אינו מזכה ברכב חלופי.",
+      "latencyMs": 3562.290249999991,
+      "promptTokens": 5848,
+      "completionTokens": 156,
+      "totalTokens": 6004,
+      "reasoningTokens": 0,
+      "costUsd": 0.013568,
+      "modelRequested": "gpt-5.6-terra",
+      "modelReturned": "gpt-5.6-terra",
+      "samplingProfile": {
+        "kind": "reasoning_family",
+        "omitTemperature": true,
+        "reasoningEffort": "medium"
+      },
+      "reasoningEffortSent": "medium"
+    },
+    {
+      "caseId": "CTRL-replacement",
+      "model": "gpt-5.6-terra",
+      "runIndex": 1,
+      "status": "answered",
+      "passed": false,
+      "failures": [
+        "missing any of [כתב שירות]"
+      ],
+      "answerPreview": "לא בהכרח. רכב חלופי אינו חלק מהכיסוי הבסיסי, והוא ניתן רק אם נרכש כתב השירות. במקרה של תאונה, הזכאות היא כל עוד הרכב בתיקון במוסך הסדר, ועד 21 ימים לכל היותר; תיקון במוסך שאינו בהסדר אינו מזכה ברכב חלופי.",
+      "latencyMs": 3166.0092920000025,
+      "promptTokens": 5848,
+      "completionTokens": 141,
+      "totalTokens": 5989,
+      "reasoningTokens": 0,
+      "costUsd": 0.002867,
+      "modelRequested": "gpt-5.6-terra",
+      "modelReturned": "gpt-5.6-terra",
+      "samplingProfile": {
+        "kind": "reasoning_family",
+        "omitTemperature": true,
+        "reasoningEffort": "medium"
+      },
+      "reasoningEffortSent": "medium"
+    },
+    {
+      "caseId": "CTRL-replacement",
+      "model": "gpt-5.6-terra",
+      "runIndex": 2,
+      "status": "answered",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "לא בהכרח. רכב חלופי אינו חלק מהכיסוי הבסיסי, והוא ניתן רק אם נרכש כתב שירות רכב חלופי. במקרה של תאונה, הזכאות היא כל עוד הרכב בתיקון במוסך הסדר, ועד 21 ימים לכל היותר. בתיקון במוסך שאינו בהסדר אין זכאות לרכב חלופי. העלון המציין „לכל תקופת התיקון” הוא מידע שיווקי בלבד; התנאים המחייבים הם הפוליסה וכתב השירות.",
+      "latencyMs": 4254.371375000017,
+      "promptTokens": 5848,
+      "completionTokens": 200,
+      "totalTokens": 6048,
+      "reasoningTokens": 0,
+      "costUsd": 0.003575,
+      "modelRequested": "gpt-5.6-terra",
+      "modelReturned": "gpt-5.6-terra",
+      "samplingProfile": {
+        "kind": "reasoning_family",
+        "omitTemperature": true,
+        "reasoningEffort": "medium"
+      },
+      "reasoningEffortSent": "medium"
+    },
+    {
+      "caseId": "CTRL-pets",
+      "model": "gpt-5.6-terra",
+      "runIndex": 0,
+      "status": "insufficient_evidence",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "",
+      "latencyMs": 1706.231958999997,
+      "promptTokens": 4913,
+      "completionTokens": 21,
+      "totalTokens": 4934,
+      "reasoningTokens": 0,
+      "costUsd": 0.010078,
+      "modelRequested": "gpt-5.6-terra",
+      "modelReturned": "gpt-5.6-terra",
+      "samplingProfile": {
+        "kind": "reasoning_family",
+        "omitTemperature": true,
+        "reasoningEffort": "medium"
+      },
+      "reasoningEffortSent": "medium"
+    },
+    {
+      "caseId": "CTRL-pets",
+      "model": "gpt-5.6-terra",
+      "runIndex": 1,
+      "status": "insufficient_evidence",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "",
+      "latencyMs": 1175.1432499999937,
+      "promptTokens": 4913,
+      "completionTokens": 21,
+      "totalTokens": 4934,
+      "reasoningTokens": 0,
+      "costUsd": 0.00124,
+      "modelRequested": "gpt-5.6-terra",
+      "modelReturned": "gpt-5.6-terra",
+      "samplingProfile": {
+        "kind": "reasoning_family",
+        "omitTemperature": true,
+        "reasoningEffort": "medium"
+      },
+      "reasoningEffortSent": "medium"
+    },
+    {
+      "caseId": "CTRL-pets",
+      "model": "gpt-5.6-terra",
+      "runIndex": 2,
+      "status": "insufficient_evidence",
+      "passed": true,
+      "failures": [],
+      "answerPreview": "",
+      "latencyMs": 1213.1449159999902,
+      "promptTokens": 4913,
+      "completionTokens": 21,
+      "totalTokens": 4934,
+      "reasoningTokens": 0,
+      "costUsd": 0.00124,
+      "modelRequested": "gpt-5.6-terra",
+      "modelReturned": "gpt-5.6-terra",
+      "samplingProfile": {
+        "kind": "reasoning_family",
+        "omitTemperature": true,
+        "reasoningEffort": "medium"
+      },
+      "reasoningEffortSent": "medium"
+    }
+  ]
+}

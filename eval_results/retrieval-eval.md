@@ -1,13 +1,13 @@
 # Retrieval evaluation report
 
-Generated: 2026-10-21T05:34:48.438Z
+Generated: 2026-10-22T07:58:14.592Z
 Model: text-embedding-3-small (dims=1536), topK=5
 
 ## Averages (questions with reference sources only)
 
 | Document Recall@1 | Document Recall@3 | Document Recall@5 | MRR |
 | --- | --- | --- | --- |
-| 0.357 | 0.536 | 0.643 | 0.589 |
+| 0.357 | 0.536 | 0.714 | 0.607 |
 
 API usage (questions): prompt_tokens=737, total_tokens=737
 
@@ -20,7 +20,7 @@ API usage (questions): prompt_tokens=737, total_tokens=737
 **Reference sources:** 28_call_center_hours.md
 
 Metrics: R@1=1, R@3=1, R@5=1, RR=1
-Timings: embed=375.2ms, search=2.7ms
+Timings: embed=270.4ms, search=2.9ms
 Tokens: total=42
 
 Top hits:
@@ -45,7 +45,7 @@ Top hits:
 **Reference sources:** 20_forms_catalog.pdf
 
 Metrics: R@1=1, R@3=1, R@5=1, RR=1
-Timings: embed=1684.5ms, search=0.3ms
+Timings: embed=189.8ms, search=0.2ms
 Tokens: total=38
 
 Top hits:
@@ -70,7 +70,7 @@ Top hits:
 **Reference sources:** 02_car_comprehensive_policy_2026.pdf
 
 Metrics: R@1=0, R@3=1, R@5=1, RR=0.5
-Timings: embed=196.6ms, search=0.3ms
+Timings: embed=193.3ms, search=0.1ms
 Tokens: total=68
 
 Top hits:
@@ -95,7 +95,7 @@ Top hits:
 **Reference sources:** (none)
 
 Metrics: R@1=N/A, R@3=N/A, R@5=N/A, RR=N/A
-Timings: embed=198.8ms, search=0.3ms
+Timings: embed=201.7ms, search=0.7ms
 Tokens: total=35
 
 Top hits:
@@ -121,7 +121,7 @@ Top hits:
 **Reference sources:** 02_car_comprehensive_policy_2026.pdf, 10_home_policy_overview.md
 
 Metrics: R@1=0, R@3=0, R@5=0, RR=0
-Timings: embed=234.2ms, search=0.3ms
+Timings: embed=210.7ms, search=0.2ms
 Tokens: total=19
 
 Top hits:
@@ -132,10 +132,10 @@ Top hits:
    מסמך: ביטוח הרכב של אופק – הכי פשוט שיש! 🚗 סעיף: ביטוח הרכב של אופק – הכי פשוט שיש! 🚗 מצטרפים לאופק ונוסעים בראש שקט. - השתתפות עצמית החל מ-950 ₪ בלבד! - רכב חלופי לכל תקופת התיקון – בלי כוכביות. - גרירות ללא הגבלה, בכ…
 3. `corpus/26_address_change:c000` | doc=`26_address_change.md` | score=0.2941 | section=עדכון כתובת ופרטי קשר
    מסמך: עדכון כתובת ופרטי קשר סעיף: עדכון כתובת ופרטי קשר - עדכון כתובת, טלפון ומייל אפשרי באזור האישי, באפליקציה או במוקד לאחר זיהוי. - שינוי כתובת בפוליסת דירה הוא שינוי מהותי: מעבירים לחיתום, כי הפוליסה מבטחת דירה מסוימ…
-4. `corpus/12_home_contents_limits:c000` | doc=`12_home_contents_limits.docx` | score=0.2768 | section=ביטוח תכולה – גבולות אחריות
-   מסמך: ביטוח תכולה – גבולות אחריות סעיף: ביטוח תכולה – גבולות אחריות תכולה מבוטחת לפי ערך כינון (חדש תמורת ישן), עד סכום ביטוח התכולה הנקוב ברשימה. גבולות אחריות לפריטים מסוימים פריט: תכשיטים ושעונים – ללא רשימה מוערכת | …
-5. `corpus/17_travel_claims:c000` | doc=`17_travel_claims.md` | score=0.2686 | section=הגשת תביעה בביטוח נסיעות
+4. `corpus/17_travel_claims:c000` | doc=`17_travel_claims.md` | score=0.2686 | section=הגשת תביעה בביטוח נסיעות
    מסמך: הגשת תביעה בביטוח נסיעות סעיף: הגשת תביעה בביטוח נסיעות - מועד הגשה: עד 90 יום מיום החזרה לישראל. - טופס: 3005 – תביעת ביטוח נסיעות. - ערוץ: באזור האישי באתר או באפליקציה. אפשר גם בדואר. 1. כרטיס טיסה וכרטיס עלייה …
+5. `corpus/29_glossary:c000` | doc=`29_glossary.md` | score=0.2665 | section=מילון מונחים – Glossary
+   מסמך: מילון מונחים – Glossary סעיף: מילון מונחים – Glossary עברית: השתתפות עצמית | English: Deductible / Excess | הסבר: הסכום שהמבוטח נושא בו בכל מקרה ביטוח עברית: סכום ביטוח | English: Sum Insured | הסבר: הסכום המרבי שה…
 
 - Note: Ambiguous question: multiple valid documents may exist; automatic document recall is not a full answer-quality judgment.
 - Note: Document match ≠ proof that the retrieved section contains the answer span.
@@ -147,7 +147,7 @@ Top hits:
 **Reference sources:** 03_car_general_terms.pdf, 04_young_driver_annex.docx
 
 Metrics: R@1=0.5, R@3=0.5, R@5=1, RR=1
-Timings: embed=178.4ms, search=0.3ms
+Timings: embed=241.0ms, search=0.1ms
 Tokens: total=86
 
 Top hits:
@@ -173,7 +173,7 @@ Top hits:
 **Reference sources:** 30_agent_faq_en.md, 15_travel_preexisting_conditions.docx
 
 Metrics: R@1=0.5, R@3=0.5, R@5=0.5, RR=1
-Timings: embed=188.7ms, search=0.3ms
+Timings: embed=208.0ms, search=0.3ms
 Tokens: total=82
 
 Top hits:
@@ -199,7 +199,7 @@ Top hits:
 **Reference sources:** 23_cancellation_procedure_update_2025.md
 
 Metrics: R@1=0, R@3=0, R@5=0, RR=0
-Timings: embed=197.7ms, search=0.3ms
+Timings: embed=188.0ms, search=0.2ms
 Tokens: total=69
 
 Top hits:
@@ -223,8 +223,8 @@ Top hits:
 
 **Reference sources:** 12_home_contents_limits.docx
 
-Metrics: R@1=0, R@3=0, R@5=0, RR=0
-Timings: embed=196.5ms, search=0.3ms
+Metrics: R@1=0, R@3=0, R@5=1, RR=0.25
+Timings: embed=192.3ms, search=0.2ms
 Tokens: total=37
 
 Top hits:
@@ -235,10 +235,10 @@ Top hits:
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 9 – תשלום תגמולי ביטוח סעיף 9 – תשלום תגמולי ביטוח תגמולי הביטוח ישולמו לא יאוחר מ-30 יום ממועד שבו הומצאו למבטח …
 3. `corpus/03_car_general_terms:c004` | doc=`03_car_general_terms.pdf` | score=0.5445 | section=תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 4 – דמי הביטוח והצמדה
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 4 – דמי הביטוח והצמדה סעיף 4 – דמי הביטוח והצמדה דמי הביטוח וכל סכום אחר המגיע מהמבוטח צמודים למדד המחירים לצרכן.…
-4. `corpus/03_car_general_terms:c013` | doc=`03_car_general_terms.pdf` | score=0.5259 | section=תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 13 – ביטול הביטוח
+4. `corpus/12_home_contents_limits:c000` | doc=`12_home_contents_limits.docx` | score=0.5264 | section=ביטוח תכולה – גבולות אחריות
+   מסמך: ביטוח תכולה – גבולות אחריות סעיף: ביטוח תכולה – גבולות אחריות תכולה מבוטחת לפי ערך כינון (חדש תמורת ישן), עד סכום ביטוח התכולה הנקוב ברשימה. גבולות אחריות לפריטים מסוימים פריט: תכשיטים ושעונים – ללא רשימה מוערכת | …
+5. `corpus/03_car_general_terms:c013` | doc=`03_car_general_terms.pdf` | score=0.5259 | section=תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 13 – ביטול הביטוח
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 13 – ביטול הביטוח סעיף 13 – ביטול הביטוח המבוטח רשאי לבטל את הביטוח בכל עת בהודעה למבטח. אופן חישוב ההחזר נקבע בנ…
-5. `corpus/14_travel_policy_overview:c000` | doc=`14_travel_policy_overview.md` | score=0.5207 | section=ביטוח נסיעות לחו"ל – סקירת כיסויים
-   מסמך: ביטוח נסיעות לחו"ל – סקירת כיסויים סעיף: ביטוח נסיעות לחו"ל – סקירת כיסויים כיסוי: הוצאות רפואיות בחו"ל | סכום מקסימלי: עד 1,000,000 $ כיסוי: קיצור נסיעה עקב מקרה רפואי | סכום מקסימלי: עד 10,000 $ כיסוי: ביטול נסיע…
 
 - Note: Document match ≠ proof that the retrieved section contains the answer span.
 
@@ -249,7 +249,7 @@ Top hits:
 **Reference sources:** 08_replacement_car.md, 09_marketing_brochure_car.md
 
 Metrics: R@1=0.5, R@3=1, R@5=1, RR=1
-Timings: embed=185.1ms, search=0.1ms
+Timings: embed=195.1ms, search=0.2ms
 Tokens: total=39
 
 Top hits:
@@ -275,7 +275,7 @@ Top hits:
 **Reference sources:** 16_travel_luggage.md
 
 Metrics: R@1=0, R@3=1, R@5=1, RR=0.5
-Timings: embed=192.5ms, search=0.1ms
+Timings: embed=196.5ms, search=0.1ms
 Tokens: total=57
 
 Top hits:
@@ -300,14 +300,14 @@ Top hits:
 **Reference sources:** 07_towing_roadside.md
 
 Metrics: R@1=0, R@3=0, R@5=0, RR=0
-Timings: embed=172.5ms, search=0.1ms
+Timings: embed=209.3ms, search=0.2ms
 Tokens: total=28
 
 Top hits:
 
 1. `corpus/03_car_general_terms:c014` | doc=`03_car_general_terms.pdf` | score=0.5400 | section=תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 14 – התיישנות
    מסמך: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ סעיף: תנאים כלליים לפוליסות רכב – אופק ביטוח בע”מ > סעיף 14 – התיישנות סעיף 14 – התיישנות תקופת ההתיישנות של תביעה לתגמולי ביטוח היא שלוש שנים מיום קרות מקרה הביטוח.
-2. `corpus/12_home_contents_limits:c000` | doc=`12_home_contents_limits.docx` | score=0.5220 | section=ביטוח תכולה – גבולות אחריות
+2. `corpus/12_home_contents_limits:c000` | doc=`12_home_contents_limits.docx` | score=0.5275 | section=ביטוח תכולה – גבולות אחריות
    מסמך: ביטוח תכולה – גבולות אחריות סעיף: ביטוח תכולה – גבולות אחריות תכולה מבוטחת לפי ערך כינון (חדש תמורת ישן), עד סכום ביטוח התכולה הנקוב ברשימה. גבולות אחריות לפריטים מסוימים פריט: תכשיטים ושעונים – ללא רשימה מוערכת | …
 3. `corpus/05_car_third_party:c000` | doc=`05_car_third_party.md` | score=0.5193 | section=ביטוח צד שלישי (רכוש) – תמצית כיסוי
    מסמך: ביטוח צד שלישי (רכוש) – תמצית כיסוי סעיף: ביטוח צד שלישי (רכוש) – תמצית כיסוי ביטוח צד ג' מכסה את חבות המבוטח בגין נזק שגרם הרכב המבוטח לרכוש של אחרים, בעיקר לרכבים אחרים. - גבול אחריות: עד 1,000,000 ₪ לאירוע, לפי …
@@ -325,7 +325,7 @@ Top hits:
 **Reference sources:** 15_travel_preexisting_conditions.docx
 
 Metrics: R@1=0, R@3=0, R@5=1, RR=0.25
-Timings: embed=180.1ms, search=0.1ms
+Timings: embed=186.3ms, search=0.1ms
 Tokens: total=48
 
 Top hits:
@@ -350,7 +350,7 @@ Top hits:
 **Reference sources:** 13_home_earthquake_annex.pdf
 
 Metrics: R@1=1, R@3=1, R@5=1, RR=1
-Timings: embed=176.0ms, search=0.1ms
+Timings: embed=166.9ms, search=0.2ms
 Tokens: total=40
 
 Top hits:
@@ -375,7 +375,7 @@ Top hits:
 **Reference sources:** 03_car_general_terms.pdf, 18_claims_process_car.md
 
 Metrics: R@1=0.5, R@3=0.5, R@5=0.5, RR=1
-Timings: embed=194.3ms, search=0.3ms
+Timings: embed=215.9ms, search=0.3ms
 Tokens: total=49
 
 Top hits:

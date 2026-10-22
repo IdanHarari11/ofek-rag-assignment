@@ -1,9 +1,10 @@
 import { readFile, mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import type { Embedder } from "../rag/embedder";
-import { defaultEvalDir } from "../rag/paths";
+import { loadValidatedIndex } from "../rag/index-store";
+import { defaultChunksPath, defaultEvalDir, defaultIndexPath } from "../rag/paths";
 import { retrieve, type RetrieveDependencies } from "../rag/retrieve";
-import type { RetrievalHit } from "../rag/types";
+import type { RetrievalHit, RetrieveMode } from "../rag/types";
 import {
   documentRecallAtK,
   mean,
@@ -54,9 +55,19 @@ export interface RetrievalEvalQuestionResult {
 
 export interface RetrievalEvalReport {
   generatedAt: string;
+  /** Retrieval mode used for this report (default vector when omitted historically). */
+  mode: RetrieveMode;
   model: string;
   dimensions: number;
   topK: number;
+  /** Metric denominator: Document Recall over reference *documents* in top-K *chunks*. */
+  metricDenominator: string;
+  index?: {
+    path: string;
+    chunksInputHash?: string;
+    embeddingTextHash?: string;
+    chunkCount?: number;
+  };
   questionCount: number;
   scoredQuestionCount: number;
   noReferenceQuestionIds: string[];
@@ -138,13 +149,23 @@ export async function loadDevQuestions(
 export async function runRetrievalEval(options: {
   devSetPath: string;
   topK?: number;
+  /** Defaults to vector — same as retrieve() when mode is omitted. */
+  mode?: RetrieveMode;
   deps?: RetrieveDependencies;
   embedder?: Embedder;
 }): Promise<RetrievalEvalReport> {
   const questions = await loadDevQuestions(options.devSetPath);
   const topK = options.topK ?? 5;
+  const mode: RetrieveMode = options.mode ?? "vector";
+  const index =
+    options.deps?.index ??
+    (await loadValidatedIndex({
+      chunksPath: defaultChunksPath(),
+      indexPath: defaultIndexPath(),
+    }));
   const deps: RetrieveDependencies = {
     ...options.deps,
+    index,
     embedder: options.embedder ?? options.deps?.embedder,
   };
 
@@ -155,7 +176,7 @@ export async function runRetrievalEval(options: {
   let dimensions = 0;
 
   for (const question of questions) {
-    const retrieved = await retrieve(question.question, { topK }, deps);
+    const retrieved = await retrieve(question.question, { topK, mode }, deps);
     model = retrieved.model;
     dimensions = retrieved.dimensions;
     promptTokens += retrieved.usage?.promptTokens ?? 0;
@@ -200,9 +221,18 @@ export async function runRetrievalEval(options: {
 
   return {
     generatedAt: new Date().toISOString(),
+    mode,
     model,
     dimensions,
     topK,
+    metricDenominator:
+      "Document Recall / MRR: reference documents appearing among top-K retrieved chunks (not answer correctness).",
+    index: {
+      path: "data/index/embeddings.json",
+      chunksInputHash: index.manifest.chunksInputHash,
+      embeddingTextHash: index.manifest.embeddingTextHash,
+      chunkCount: index.manifest.chunkCount,
+    },
     questionCount: results.length,
     scoredQuestionCount: scored.length,
     noReferenceQuestionIds: results
@@ -214,7 +244,7 @@ export async function runRetrievalEval(options: {
         ? { promptTokens, totalTokens }
         : undefined,
     disclaimer:
-      "Document Recall measures whether a reference document appears among top-K chunks. It does not prove the answer span was retrieved. Similarity scores are not confidence. No-answer / ambiguous / alternate-valid-source cases need separate human review.",
+      "Document Recall measures whether a reference document appears among top-K chunks. It does not prove the answer span was retrieved. Similarity scores are not confidence. No-answer / ambiguous / alternate-valid-source cases need separate human review. Do not compare this report to a different retrieval mode without labeling both.",
     questions: results,
   };
 }
@@ -224,7 +254,15 @@ export function formatRetrievalEvalMarkdown(report: RetrievalEvalReport): string
   lines.push("# Retrieval evaluation report");
   lines.push("");
   lines.push(`Generated: ${report.generatedAt}`);
-  lines.push(`Model: ${report.model} (dims=${report.dimensions}), topK=${report.topK}`);
+  lines.push(
+    `Mode: **${report.mode}** | Model: ${report.model} (dims=${report.dimensions}), topK=${report.topK}`,
+  );
+  lines.push(`Metric: ${report.metricDenominator}`);
+  if (report.index?.embeddingTextHash) {
+    lines.push(
+      `Index: chunks=${report.index.chunkCount ?? "?"} embeddingTextHash=${report.index.embeddingTextHash.slice(0, 12)}… chunksInputHash=${(report.index.chunksInputHash ?? "").slice(0, 12)}…`,
+    );
+  }
   lines.push("");
   lines.push("## Averages (questions with reference sources only)");
   lines.push("");

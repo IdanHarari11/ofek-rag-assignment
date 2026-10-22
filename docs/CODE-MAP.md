@@ -14,6 +14,10 @@
 | **Tracing (ask)** | `src/rag/trace/` — `AskTraceSession`, JSONL in `data/traces/`; `context` stage includes applicability; read: `pnpm trace -- <requestId>` |
 | **Thin browser API** | `src/app/api/ask/route.ts` + DTO in `src/lib/ask-display.ts` (includes `requestId`) |
 | **Answer → UI mapping** | `src/lib/rag-chat-model-adapter.ts` → `metadata.custom.rag`; display in `src/components/home-demo/messages.tsx`, `sources.tsx` |
+| **Citation numbers / source headings** | `src/lib/citation-numbers.ts`, `src/lib/source-display.ts`; `versionLabel` from `document-relations/version-label.ts` (manifest only) |
+| **Search-only retrieval aliases** | `src/rag/retrieval-aliases.ts` → `embedding-text.ts` (not citation body) |
+| **Multi-scenario version keep** | `src/rag/document-relations/multi-scenario.ts` + `resolve.ts` |
+| **Retrieval metric reports** | `pnpm eval:retrieval` = **vector**; `pnpm eval:hybrid` = vector+lexical+hybrid — see `docs/retrieval-metrics-alignment-2026-10-22.md` |
 | **Runtime separate from shell** | `src/components/demo-runtime/demo-runtime-provider.tsx` (localStorage threads + history to API) |
 | **Retrieval / hybrid / ask eval** | `src/eval/`, `scripts/eval-*.ts` (`dev_set` read only here) |
 | **Stage 6 holdout (20 questions)** | `dev_set/extended_eval_stage6.json` + `.sha256`; load/freeze: `src/eval/load-extended-set.ts`; run: `pnpm eval:ask-stage6-extended` |

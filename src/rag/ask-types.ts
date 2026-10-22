@@ -70,6 +70,11 @@ export interface AnswerSource {
   relativePath: string;
   fileName: string;
   documentTitle?: string;
+  /**
+   * Verified version from document-relations manifest when present.
+   * Optional for backward compatibility with older stored messages.
+   */
+  versionLabel?: string;
   sectionPath?: string[];
   pages?: number[];
   claims: string[];
@@ -122,6 +127,11 @@ export interface AskResult {
     linkedChunkIds?: string[];
     enrichmentOmissions?: Array<{ chunkId: string; reasonCode: string }>;
     hybridTopKChunkIds?: string[];
+    /**
+     * Deterministic day counts from user-stated absolute dates (not corpus).
+     * Present when extraction found events, spans, or missing-clock notes.
+     */
+    computedTemporalFacts?: import("./temporal").ComputedTemporalFacts;
   };
   validation: {
     structureOk: boolean;

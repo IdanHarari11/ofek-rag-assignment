@@ -1,0 +1,1386 @@
+{
+  "generatedAt": "2026-10-22T09:01:40.023Z",
+  "setId": "manual-fail-regression-v1",
+  "stageLabel": "manual-fail-diagnosis",
+  "config": {
+    "retrievalMode": "hybrid",
+    "topK": 5,
+    "generationModel": "gpt-4.1-mini",
+    "answerReviewEnabled": false
+  },
+  "turns": [
+    {
+      "caseId": "MF-A",
+      "title": "שלוש תחולות באותה שאלה — השתתפות במוסך הסדר",
+      "failureTheme": "multi_applicability_single_ask",
+      "turnIndex": 0,
+      "question": "מה ההשתתפות העצמית במוסך הסדר בכל אחד מהמקרים: פוליסה שהונפקה ב-28.2.2026 ולא חודשה; פוליסה שהונפקה ב-1.3.2026; פוליסה שהונפקה ב-2024 וחודשה ב-1.4.2026?",
+      "historyLength": 0,
+      "status": "answered",
+      "answer": "לגבי פוליסה שהונפקה ב-28.2.2026 ולא חודשה, ההשתתפות העצמית במוסך הסדר היא 950 ₪, לפי תנאי פוליסת 2024 שכן פוליסות שהונפקו לפני 1.3.2026 ממשיכות לפעול לפי גרסת 2024 עד מועד החידוש הבא שלהן.\n\nלגבי פוליסה שהונפקה ב-1.3.2026, ההשתתפות העצמית במוסך הסדר היא 1,100 ₪, לפי תנאי פוליסת 2026 שכן פוליסות שהונפקו או חודשו מיום 1.3.2026 ואילך כפופות לגרסה זו.\n\nלגבי פוליסה שהונפקה בשנת 2024 וחודשה ב-1.4.2026, ההשתתפות העצמית במוסך הסדר היא 1,100 ₪, לפי תנאי פוליסת 2026 שכן החידוש ב-1.4.2026 מחייב את הפוליסה לפעול לפי גרסת 2026.",
+      "standaloneQuestion": "מה ההשתתפות העצמית במוסך הסדר בכל אחד מהמקרים: פוליסה שהונפקה ב-28.2.2026 ולא חודשה; פוליסה שהונפקה ב-1.3.2026; פוליסה שהונפקה ב-2024 וחודשה ב-1.4.2026?",
+      "unresolvedReferences": [],
+      "retrievedChunkIds": [
+        "corpus/02_car_comprehensive_policy_2026:c000",
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/24_payment_methods:c000",
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/31_ofek_plus_vip:c000"
+      ],
+      "retrievedFileNames": [
+        "corpus/02_car_comprehensive_policy_2026.pdf",
+        "corpus/01_car_comprehensive_policy_2024.pdf",
+        "corpus/24_payment_methods.md",
+        "corpus/22_cancellation_procedure_2023.md",
+        "corpus/31_ofek_plus_vip.docx"
+      ],
+      "contextChunkIds": [
+        "corpus/02_car_comprehensive_policy_2026:c000",
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/24_payment_methods:c000",
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/31_ofek_plus_vip:c000",
+        "corpus/03_car_general_terms:c000",
+        "corpus/23_cancellation_procedure_update_2025:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c009"
+      ],
+      "contextFileNames": [
+        "corpus/02_car_comprehensive_policy_2026.pdf",
+        "corpus/01_car_comprehensive_policy_2024.pdf",
+        "corpus/24_payment_methods.md",
+        "corpus/22_cancellation_procedure_2023.md",
+        "corpus/31_ofek_plus_vip.docx",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/23_cancellation_procedure_update_2025.md",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf"
+      ],
+      "contextOrigins": [
+        "retrieved",
+        "retrieved",
+        "retrieved",
+        "retrieved",
+        "retrieved",
+        "linked",
+        "linked",
+        "linked",
+        "linked",
+        "linked",
+        "linked",
+        "linked",
+        "linked",
+        "linked",
+        "linked",
+        "linked"
+      ],
+      "applicabilityPromptLines": [
+        "Applicability and document-relationship summary (source-based metadata — not a substitute for source text):",
+        "- Family car_comprehensive_policy: multi-scenario comparison — keep all listed versions in context and apply each case's own issue/renewal date (multi_scenario_comparison_keep_versions). Versions: corpus/01_car_comprehensive_policy_2024, corpus/02_car_comprehensive_policy_2026. Do not apply one case's version to the others. Evidence: corpus/01_car_comprehensive_policy_2024:c000, corpus/02_car_comprehensive_policy_2026:c000",
+        "- Family cancellation_procedure: partial update — use corpus/23_cancellation_procedure_update_2025 for replaced sections; keep corpus/22_cancellation_procedure_2023 for unreplaced sections (partial_update_refund_section_from_2025). Replaced section(s): חישוב ההחזר. Do not apply superseded section wording as the current rule. Evidence: corpus/22_cancellation_procedure_2023:c000, corpus/23_cancellation_procedure_update_2025:c000, corpus/23_cancellation_procedure_update_2025:c000",
+        "- Relationship supersedes: corpus/02_car_comprehensive_policy_2026 → corpus/01_car_comprehensive_policy_2024",
+        "- Relationship supplemented_by: corpus/02_car_comprehensive_policy_2026 → corpus/03_car_general_terms",
+        "- Relationship superseded_by: corpus/01_car_comprehensive_policy_2024 → corpus/02_car_comprehensive_policy_2026",
+        "- Relationship supplemented_by: corpus/01_car_comprehensive_policy_2024 → corpus/03_car_general_terms",
+        "- Relationship partially_updated_by: corpus/22_cancellation_procedure_2023 → corpus/23_cancellation_procedure_update_2025 sections: חישוב ההחזר",
+        "- Relationship partially_updates: corpus/23_cancellation_procedure_update_2025 → corpus/22_cancellation_procedure_2023 sections: חישוב ההחזר",
+        "- Marketing document corpus/09_marketing_brochure_car: marketing only; binding terms are the policy conditions and service riders (see evidence in the manifest)."
+      ],
+      "enrichmentOmissions": [
+        {
+          "chunkId": "corpus/03_car_general_terms:c010",
+          "reasonCode": "budget_linked_expansion"
+        },
+        {
+          "chunkId": "corpus/03_car_general_terms:c011",
+          "reasonCode": "budget_linked_expansion"
+        },
+        {
+          "chunkId": "corpus/03_car_general_terms:c012",
+          "reasonCode": "budget_linked_expansion"
+        },
+        {
+          "chunkId": "corpus/03_car_general_terms:c013",
+          "reasonCode": "budget_linked_expansion"
+        },
+        {
+          "chunkId": "corpus/03_car_general_terms:c014",
+          "reasonCode": "budget_linked_expansion"
+        },
+        {
+          "chunkId": "corpus/03_car_general_terms:c015",
+          "reasonCode": "budget_linked_expansion"
+        }
+      ],
+      "omittedRetrieved": [],
+      "answerParts": [
+        {
+          "text": "לגבי פוליסה שהונפקה ב-28.2.2026 ולא חודשה, ההשתתפות העצמית במוסך הסדר היא 950 ₪, לפי תנאי פוליסת 2024 שכן פוליסות שהונפקו לפני 1.3.2026 ממשיכות לפעול לפי גרסת 2024 עד מועד החידוש הבא שלהן.",
+          "sourceChunkIds": [
+            "corpus/01_car_comprehensive_policy_2024:c000",
+            "corpus/02_car_comprehensive_policy_2026:c000"
+          ]
+        },
+        {
+          "text": "לגבי פוליסה שהונפקה ב-1.3.2026, ההשתתפות העצמית במוסך הסדר היא 1,100 ₪, לפי תנאי פוליסת 2026 שכן פוליסות שהונפקו או חודשו מיום 1.3.2026 ואילך כפופות לגרסה זו.",
+          "sourceChunkIds": [
+            "corpus/02_car_comprehensive_policy_2026:c000"
+          ]
+        },
+        {
+          "text": "לגבי פוליסה שהונפקה בשנת 2024 וחודשה ב-1.4.2026, ההשתתפות העצמית במוסך הסדר היא 1,100 ₪, לפי תנאי פוליסת 2026 שכן החידוש ב-1.4.2026 מחייב את הפוליסה לפעול לפי גרסת 2026.",
+          "sourceChunkIds": [
+            "corpus/02_car_comprehensive_policy_2026:c000"
+          ]
+        }
+      ],
+      "citedChunkIds": [
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/02_car_comprehensive_policy_2026:c000"
+      ],
+      "citedFileNames": [
+        "01_car_comprehensive_policy_2024.pdf",
+        "02_car_comprehensive_policy_2026.pdf"
+      ],
+      "citedSectionPaths": [
+        [
+          "אופק ביטוח בע”מ – פוליסה לביטוח רכב מקיף"
+        ],
+        [
+          "אופק ביטוח בע”מ – פוליסה לביטוח רכב מקיף"
+        ]
+      ],
+      "citationNumbersUniqueInAnswer": false,
+      "sourceCardsDistinguishVersions": true,
+      "sectionPathPresent": true,
+      "observedFailure": "Manual probe target: distinguish three applicability outcomes in one answer.",
+      "sourceNotes": "2024 policy: מוסך הסדר 950 ₪ (index base 1.1.2024). 2026 policy: מוסך הסדר 1,100 ₪ from issue/renewal on/after 1.3.2026 (index base 1.3.2026). Case1 28.2.2026 no renewal → 2024/950. Case2 1.3.2026 → 2026/1100. Case3 issued 2024 renewed 1.4.2026 → 2026/1100. Do not confuse issue date with index base date.",
+      "suggestedLayer": "undetermined",
+      "layerEvidence": [
+        "no automatic failure markers"
+      ]
+    },
+    {
+      "caseId": "MF-B",
+      "title": "תיקון עובדה לאורך שיחה — תאריך הנפקה",
+      "failureTheme": "user_fact_correction_date",
+      "turnIndex": 0,
+      "question": "רכב מקיף שהונפק באפריל 2026: מה ההשתתפות העצמית במוסך הסדר?",
+      "historyLength": 0,
+      "status": "answered",
+      "answer": "ההשתתפות העצמית במוסך הסדר עבור רכב מקיף שהונפק באפריל 2026 היא 1,100 ₪. ההשתתפות העצמית צמודה למדד המחירים לצרכן הידוע ביום 1.3.2026.",
+      "standaloneQuestion": "רכב מקיף שהונפק באפריל 2026: מה ההשתתפות העצמית במוסך הסדר?",
+      "unresolvedReferences": [],
+      "retrievedChunkIds": [
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/02_car_comprehensive_policy_2026:c000",
+        "corpus/08_replacement_car:c000",
+        "corpus/18_claims_process_car:c000",
+        "corpus/04_young_driver_annex:c000"
+      ],
+      "retrievedFileNames": [
+        "corpus/01_car_comprehensive_policy_2024.pdf",
+        "corpus/02_car_comprehensive_policy_2026.pdf",
+        "corpus/08_replacement_car.md",
+        "corpus/18_claims_process_car.md",
+        "corpus/04_young_driver_annex.docx"
+      ],
+      "contextChunkIds": [
+        "corpus/02_car_comprehensive_policy_2026:c000",
+        "corpus/08_replacement_car:c000",
+        "corpus/18_claims_process_car:c000",
+        "corpus/04_young_driver_annex:c000",
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c009",
+        "corpus/03_car_general_terms:c010",
+        "corpus/03_car_general_terms:c011",
+        "corpus/03_car_general_terms:c014"
+      ],
+      "contextFileNames": [
+        "corpus/02_car_comprehensive_policy_2026.pdf",
+        "corpus/08_replacement_car.md",
+        "corpus/18_claims_process_car.md",
+        "corpus/04_young_driver_annex.docx",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf"
+      ],
+      "contextOrigins": [
+        "retrieved",
+        "retrieved",
+        "retrieved",
+        "retrieved",
+        "linked",
+        "linked",
+        "linked",
+        "linked",
+        "linked",
+        "linked",
+        "linked",
+        "linked",
+        "linked",
+        "linked",
+        "linked",
+        "linked",
+        "linked"
+      ],
+      "applicabilityPromptLines": [
+        "Applicability and document-relationship summary (source-based metadata — not a substitute for source text):",
+        "- Family car_comprehensive_policy: selected corpus/02_car_comprehensive_policy_2026 (issue_or_renewal_on_or_after_2026_03_01, dateKind=issue). Evidence: corpus/01_car_comprehensive_policy_2024:c000, corpus/02_car_comprehensive_policy_2026:c000",
+        "- Relationship superseded_by: corpus/01_car_comprehensive_policy_2024 → corpus/02_car_comprehensive_policy_2026",
+        "- Relationship supplemented_by: corpus/01_car_comprehensive_policy_2024 → corpus/03_car_general_terms",
+        "- Relationship supersedes: corpus/02_car_comprehensive_policy_2026 → corpus/01_car_comprehensive_policy_2024",
+        "- Relationship supplemented_by: corpus/02_car_comprehensive_policy_2026 → corpus/03_car_general_terms",
+        "- Marketing document corpus/09_marketing_brochure_car: marketing only; binding terms are the policy conditions and service riders (see evidence in the manifest)."
+      ],
+      "enrichmentOmissions": [
+        {
+          "chunkId": "corpus/01_car_comprehensive_policy_2024:c000",
+          "reasonCode": "demoted_version_omit_retrieved"
+        },
+        {
+          "chunkId": "corpus/03_car_general_terms:c012",
+          "reasonCode": "budget_linked_expansion"
+        },
+        {
+          "chunkId": "corpus/03_car_general_terms:c013",
+          "reasonCode": "budget_linked_expansion"
+        },
+        {
+          "chunkId": "corpus/03_car_general_terms:c015",
+          "reasonCode": "budget_linked_expansion"
+        }
+      ],
+      "omittedRetrieved": [],
+      "answerParts": [
+        {
+          "text": "ההשתתפות העצמית במוסך הסדר עבור רכב מקיף שהונפק באפריל 2026 היא 1,100 ₪. ההשתתפות העצמית צמודה למדד המחירים לצרכן הידוע ביום 1.3.2026.",
+          "sourceChunkIds": [
+            "corpus/02_car_comprehensive_policy_2026:c000"
+          ]
+        }
+      ],
+      "citedChunkIds": [
+        "corpus/02_car_comprehensive_policy_2026:c000"
+      ],
+      "citedFileNames": [
+        "02_car_comprehensive_policy_2026.pdf"
+      ],
+      "citedSectionPaths": [
+        [
+          "אופק ביטוח בע”מ – פוליסה לביטוח רכב מקיף"
+        ]
+      ],
+      "citationNumbersUniqueInAnswer": true,
+      "sourceCardsDistinguishVersions": true,
+      "sectionPathPresent": true,
+      "observedFailure": "Baseline turn (April 2026 → expect 2026 amounts).",
+      "sourceNotes": "April 2026 issue → 2026 version → 1,100 ₪ מוסך הסדר.",
+      "suggestedLayer": "undetermined",
+      "layerEvidence": [
+        "no automatic failure markers"
+      ]
+    },
+    {
+      "caseId": "MF-B",
+      "title": "תיקון עובדה לאורך שיחה — תאריך הנפקה",
+      "failureTheme": "user_fact_correction_date",
+      "turnIndex": 1,
+      "question": "טעיתי: הפוליסה הונפקה בפברואר 2026 ולא חודשה מאז.",
+      "historyLength": 2,
+      "status": "answered",
+      "answer": "בהתאם לפוליסת רכב מקיף שהונפקה בגרסת 2024 (בתוקף מיום 1.1.2024) והונפקה לפני מרץ 2026, ההשתתפות העצמית במוסך הסדר היא 950 ש\"ח עבור נזק חלקי ותיקון במוסך הסדר.",
+      "standaloneQuestion": "מה ההשתתפות העצמית במוסך הסדר בפוליסת רכב מקיף שהונפקה בפברואר 2026 ולא חודשה מאז?",
+      "unresolvedReferences": [],
+      "rewriteMs": 809.0858339999977,
+      "retrievedChunkIds": [
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/02_car_comprehensive_policy_2026:c000",
+        "corpus/08_replacement_car:c000",
+        "corpus/04_young_driver_annex:c000",
+        "corpus/18_claims_process_car:c000"
+      ],
+      "retrievedFileNames": [
+        "corpus/01_car_comprehensive_policy_2024.pdf",
+        "corpus/02_car_comprehensive_policy_2026.pdf",
+        "corpus/08_replacement_car.md",
+        "corpus/04_young_driver_annex.docx",
+        "corpus/18_claims_process_car.md"
+      ],
+      "contextChunkIds": [
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/08_replacement_car:c000",
+        "corpus/04_young_driver_annex:c000",
+        "corpus/18_claims_process_car:c000",
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c009",
+        "corpus/03_car_general_terms:c010",
+        "corpus/03_car_general_terms:c011",
+        "corpus/03_car_general_terms:c013"
+      ],
+      "contextFileNames": [
+        "corpus/01_car_comprehensive_policy_2024.pdf",
+        "corpus/08_replacement_car.md",
+        "corpus/04_young_driver_annex.docx",
+        "corpus/18_claims_process_car.md",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf"
+      ],
+      "contextOrigins": [
+        "retrieved",
+        "retrieved",
+        "retrieved",
+        "retrieved",
+        "linked",
+        "linked",
+        "linked",
+        "linked",
+        "linked",
+        "linked",
+        "linked",
+        "linked",
+        "linked",
+        "linked",
+        "linked",
+        "linked",
+        "linked"
+      ],
+      "applicabilityPromptLines": [
+        "Applicability and document-relationship summary (source-based metadata — not a substitute for source text):",
+        "- Family car_comprehensive_policy: selected corpus/01_car_comprehensive_policy_2024 (issue_or_renewal_before_2026_03_01, dateKind=issue). Evidence: corpus/01_car_comprehensive_policy_2024:c000, corpus/02_car_comprehensive_policy_2026:c000",
+        "- Relationship superseded_by: corpus/01_car_comprehensive_policy_2024 → corpus/02_car_comprehensive_policy_2026",
+        "- Relationship supplemented_by: corpus/01_car_comprehensive_policy_2024 → corpus/03_car_general_terms",
+        "- Relationship supersedes: corpus/02_car_comprehensive_policy_2026 → corpus/01_car_comprehensive_policy_2024",
+        "- Relationship supplemented_by: corpus/02_car_comprehensive_policy_2026 → corpus/03_car_general_terms",
+        "- Marketing document corpus/09_marketing_brochure_car: marketing only; binding terms are the policy conditions and service riders (see evidence in the manifest)."
+      ],
+      "enrichmentOmissions": [
+        {
+          "chunkId": "corpus/02_car_comprehensive_policy_2026:c000",
+          "reasonCode": "demoted_version_omit_retrieved"
+        },
+        {
+          "chunkId": "corpus/03_car_general_terms:c012",
+          "reasonCode": "budget_linked_expansion"
+        },
+        {
+          "chunkId": "corpus/03_car_general_terms:c014",
+          "reasonCode": "budget_linked_expansion"
+        },
+        {
+          "chunkId": "corpus/03_car_general_terms:c015",
+          "reasonCode": "budget_linked_expansion"
+        }
+      ],
+      "omittedRetrieved": [],
+      "answerParts": [
+        {
+          "text": "בהתאם לפוליסת רכב מקיף שהונפקה בגרסת 2024 (בתוקף מיום 1.1.2024) והונפקה לפני מרץ 2026, ההשתתפות העצמית במוסך הסדר היא 950 ש\"ח עבור נזק חלקי ותיקון במוסך הסדר.",
+          "sourceChunkIds": [
+            "corpus/01_car_comprehensive_policy_2024:c000"
+          ]
+        }
+      ],
+      "citedChunkIds": [
+        "corpus/01_car_comprehensive_policy_2024:c000"
+      ],
+      "citedFileNames": [
+        "01_car_comprehensive_policy_2024.pdf"
+      ],
+      "citedSectionPaths": [
+        [
+          "אופק ביטוח בע”מ – פוליסה לביטוח רכב מקיף"
+        ]
+      ],
+      "citationNumbersUniqueInAnswer": true,
+      "sourceCardsDistinguishVersions": true,
+      "sectionPathPresent": true,
+      "standaloneChecks": {
+        "mustIncludeOk": true,
+        "mustNotIncludeOk": true,
+        "missingIncludes": [],
+        "leakedExcludes": []
+      },
+      "observedFailure": "System chose 2024 amounts but rewrote the user's issue date to 2024 or 1.1.2024.",
+      "sourceNotes": "February 2026 issue, not renewed → still under 2024 wording until next renewal → 950 ₪ מוסך הסדר. User date remains February 2026; 1.1.2024 is index base, not issue date.",
+      "suggestedLayer": "undetermined",
+      "layerEvidence": [
+        "no automatic failure markers"
+      ]
+    },
+    {
+      "caseId": "MF-B",
+      "title": "תיקון עובדה לאורך שיחה — תאריך הנפקה",
+      "failureTheme": "user_fact_correction_date",
+      "turnIndex": 2,
+      "question": "ומה במוסך שאינו בהסדר?",
+      "historyLength": 4,
+      "status": "answered",
+      "answer": "בפוליסת רכב מקיף שהונפקה בפברואר 2024 (ולא חודשה מאז), במקרה של תיקון במוסך שאינו מוסך הסדר, סכום ההשתתפות העצמית הוא 1,850 ₪. ההשתתפות העצמית צמודה למדד המחירים לצרכן הידוע ביום 1.1.2024.",
+      "standaloneQuestion": "מהי ההשתתפות העצמית בפוליסת רכב מקיף שהונפקה בפברואר 2026 ולא חודשה מאז, במקרה של תיקון במוסך שאינו מוסך הסדר?",
+      "unresolvedReferences": [],
+      "rewriteMs": 847.0786669999943,
+      "retrievedChunkIds": [
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/02_car_comprehensive_policy_2026:c000",
+        "corpus/08_replacement_car:c000",
+        "corpus/04_young_driver_annex:c000",
+        "corpus/03_car_general_terms:c007"
+      ],
+      "retrievedFileNames": [
+        "corpus/01_car_comprehensive_policy_2024.pdf",
+        "corpus/02_car_comprehensive_policy_2026.pdf",
+        "corpus/08_replacement_car.md",
+        "corpus/04_young_driver_annex.docx",
+        "corpus/03_car_general_terms.pdf"
+      ],
+      "contextChunkIds": [
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/08_replacement_car:c000",
+        "corpus/04_young_driver_annex:c000",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c009",
+        "corpus/03_car_general_terms:c010",
+        "corpus/03_car_general_terms:c011",
+        "corpus/03_car_general_terms:c012",
+        "corpus/03_car_general_terms:c013"
+      ],
+      "contextFileNames": [
+        "corpus/01_car_comprehensive_policy_2024.pdf",
+        "corpus/08_replacement_car.md",
+        "corpus/04_young_driver_annex.docx",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf"
+      ],
+      "contextOrigins": [
+        "retrieved",
+        "retrieved",
+        "retrieved",
+        "retrieved",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded"
+      ],
+      "applicabilityPromptLines": [
+        "Applicability and document-relationship summary (source-based metadata — not a substitute for source text):",
+        "- Family car_comprehensive_policy: selected corpus/01_car_comprehensive_policy_2024 (issue_or_renewal_before_2026_03_01, dateKind=issue). Evidence: corpus/01_car_comprehensive_policy_2024:c000, corpus/02_car_comprehensive_policy_2026:c000",
+        "- Family car_general_terms: cannot decide version (no_machine_rule). Alternatives: corpus/03_car_general_terms. Evidence: corpus/03_car_general_terms:c000",
+        "- Relationship superseded_by: corpus/01_car_comprehensive_policy_2024 → corpus/02_car_comprehensive_policy_2026",
+        "- Relationship supplemented_by: corpus/01_car_comprehensive_policy_2024 → corpus/03_car_general_terms",
+        "- Relationship supersedes: corpus/02_car_comprehensive_policy_2026 → corpus/01_car_comprehensive_policy_2024",
+        "- Relationship supplemented_by: corpus/02_car_comprehensive_policy_2026 → corpus/03_car_general_terms",
+        "- Marketing document corpus/09_marketing_brochure_car: marketing only; binding terms are the policy conditions and service riders (see evidence in the manifest)."
+      ],
+      "enrichmentOmissions": [
+        {
+          "chunkId": "corpus/02_car_comprehensive_policy_2026:c000",
+          "reasonCode": "demoted_version_omit_retrieved"
+        },
+        {
+          "chunkId": "corpus/03_car_general_terms:c014",
+          "reasonCode": "budget_expansion"
+        },
+        {
+          "chunkId": "corpus/03_car_general_terms:c015",
+          "reasonCode": "budget_expansion"
+        }
+      ],
+      "omittedRetrieved": [],
+      "answerParts": [
+        {
+          "text": "בפוליסת רכב מקיף שהונפקה בפברואר 2024 (ולא חודשה מאז), במקרה של תיקון במוסך שאינו מוסך הסדר, סכום ההשתתפות העצמית הוא 1,850 ₪. ההשתתפות העצמית צמודה למדד המחירים לצרכן הידוע ביום 1.1.2024.",
+          "sourceChunkIds": [
+            "corpus/01_car_comprehensive_policy_2024:c000"
+          ]
+        }
+      ],
+      "citedChunkIds": [
+        "corpus/01_car_comprehensive_policy_2024:c000"
+      ],
+      "citedFileNames": [
+        "01_car_comprehensive_policy_2024.pdf"
+      ],
+      "citedSectionPaths": [
+        [
+          "אופק ביטוח בע”מ – פוליסה לביטוח רכב מקיף"
+        ]
+      ],
+      "citationNumbersUniqueInAnswer": true,
+      "sourceCardsDistinguishVersions": true,
+      "sectionPathPresent": true,
+      "standaloneChecks": {
+        "mustIncludeOk": true,
+        "mustNotIncludeOk": true,
+        "missingIncludes": [],
+        "leakedExcludes": []
+      },
+      "observedFailure": "Same date-mutation risk on follow-up; expect 2024 non-network amount 1,850 ₪.",
+      "sourceNotes": "2024 non-network workshop deductible: 1,850 ₪. Keep user issue date February 2026.",
+      "suggestedLayer": "undetermined",
+      "layerEvidence": [
+        "no automatic failure markers"
+      ]
+    },
+    {
+      "caseId": "MF-C",
+      "title": "החלפת נושא — רכב → מזומנים בתכולה → השתתפות",
+      "failureTheme": "topic_switch_false_clarification",
+      "turnIndex": 0,
+      "question": "השתתפות עצמית ברכב מקיף שהונפק באפריל 2026, במוסך הסדר.",
+      "historyLength": 0,
+      "status": "answered",
+      "answer": "ההשתתפות העצמית ברכב מקיף שהונפק באפריל 2026 במוסך הסדר היא 1,100 ₪. סכום זה צמוד למדד המחירים לצרכן הידוע ביום 1.3.2026.",
+      "standaloneQuestion": "השתתפות עצמית ברכב מקיף שהונפק באפריל 2026, במוסך הסדר.",
+      "unresolvedReferences": [],
+      "retrievedChunkIds": [
+        "corpus/02_car_comprehensive_policy_2026:c000",
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/08_replacement_car:c000",
+        "corpus/09_marketing_brochure_car:c000",
+        "corpus/03_car_general_terms:c006"
+      ],
+      "retrievedFileNames": [
+        "corpus/02_car_comprehensive_policy_2026.pdf",
+        "corpus/01_car_comprehensive_policy_2024.pdf",
+        "corpus/08_replacement_car.md",
+        "corpus/09_marketing_brochure_car.md",
+        "corpus/03_car_general_terms.pdf"
+      ],
+      "contextChunkIds": [
+        "corpus/02_car_comprehensive_policy_2026:c000",
+        "corpus/08_replacement_car:c000",
+        "corpus/09_marketing_brochure_car:c000",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c009",
+        "corpus/03_car_general_terms:c010",
+        "corpus/03_car_general_terms:c011",
+        "corpus/03_car_general_terms:c012",
+        "corpus/03_car_general_terms:c013"
+      ],
+      "contextFileNames": [
+        "corpus/02_car_comprehensive_policy_2026.pdf",
+        "corpus/08_replacement_car.md",
+        "corpus/09_marketing_brochure_car.md",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf"
+      ],
+      "contextOrigins": [
+        "retrieved",
+        "retrieved",
+        "retrieved",
+        "retrieved",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded"
+      ],
+      "applicabilityPromptLines": [
+        "Applicability and document-relationship summary (source-based metadata — not a substitute for source text):",
+        "- Family car_comprehensive_policy: selected corpus/02_car_comprehensive_policy_2026 (issue_or_renewal_on_or_after_2026_03_01, dateKind=issue). Evidence: corpus/01_car_comprehensive_policy_2024:c000, corpus/02_car_comprehensive_policy_2026:c000",
+        "- Family car_general_terms: cannot decide version (no_machine_rule). Alternatives: corpus/03_car_general_terms. Evidence: corpus/03_car_general_terms:c000",
+        "- Family car_marketing: selected corpus/09_marketing_brochure_car (marketing_non_binding). Evidence: corpus/09_marketing_brochure_car:c000",
+        "- Relationship supersedes: corpus/02_car_comprehensive_policy_2026 → corpus/01_car_comprehensive_policy_2024",
+        "- Relationship supplemented_by: corpus/02_car_comprehensive_policy_2026 → corpus/03_car_general_terms",
+        "- Relationship superseded_by: corpus/01_car_comprehensive_policy_2024 → corpus/02_car_comprehensive_policy_2026",
+        "- Relationship supplemented_by: corpus/01_car_comprehensive_policy_2024 → corpus/03_car_general_terms",
+        "- Relationship defers_to: corpus/09_marketing_brochure_car → corpus/01_car_comprehensive_policy_2024",
+        "- Relationship defers_to: corpus/09_marketing_brochure_car → corpus/02_car_comprehensive_policy_2026",
+        "- Marketing document corpus/09_marketing_brochure_car: marketing only; binding terms are the policy conditions and service riders (see evidence in the manifest)."
+      ],
+      "enrichmentOmissions": [
+        {
+          "chunkId": "corpus/01_car_comprehensive_policy_2024:c000",
+          "reasonCode": "demoted_version_omit_retrieved"
+        },
+        {
+          "chunkId": "corpus/03_car_general_terms:c014",
+          "reasonCode": "budget_expansion"
+        },
+        {
+          "chunkId": "corpus/03_car_general_terms:c015",
+          "reasonCode": "budget_expansion"
+        }
+      ],
+      "omittedRetrieved": [],
+      "answerParts": [
+        {
+          "text": "ההשתתפות העצמית ברכב מקיף שהונפק באפריל 2026 במוסך הסדר היא 1,100 ₪. סכום זה צמוד למדד המחירים לצרכן הידוע ביום 1.3.2026.",
+          "sourceChunkIds": [
+            "corpus/02_car_comprehensive_policy_2026:c000"
+          ]
+        }
+      ],
+      "citedChunkIds": [
+        "corpus/02_car_comprehensive_policy_2026:c000"
+      ],
+      "citedFileNames": [
+        "02_car_comprehensive_policy_2026.pdf"
+      ],
+      "citedSectionPaths": [
+        [
+          "אופק ביטוח בע”מ – פוליסה לביטוח רכב מקיף"
+        ]
+      ],
+      "citationNumbersUniqueInAnswer": true,
+      "sourceCardsDistinguishVersions": true,
+      "sectionPathPresent": true,
+      "observedFailure": "Baseline auto turn.",
+      "sourceNotes": "April 2026 → 1,100 ₪ מוסך הסדר.",
+      "suggestedLayer": "undetermined",
+      "layerEvidence": [
+        "no automatic failure markers"
+      ]
+    },
+    {
+      "caseId": "MF-C",
+      "title": "החלפת נושא — רכב → מזומנים בתכולה → השתתפות",
+      "failureTheme": "topic_switch_false_clarification",
+      "turnIndex": 1,
+      "question": "עכשיו שאלה אחרת: מה תקרת הכיסוי למזומנים בביטוח תכולת דירה?",
+      "historyLength": 2,
+      "status": "answered",
+      "answer": "תקרת הכיסוי למזומנים בביטוח תכולת דירה של אופק ביטוח היא 2,000 ₪.",
+      "standaloneQuestion": "מהי תקרת הכיסוי למזומנים בביטוח תכולת דירה של אופק ביטוח?",
+      "unresolvedReferences": [],
+      "rewriteMs": 839.4406249999884,
+      "retrievedChunkIds": [
+        "corpus/12_home_contents_limits:c000",
+        "corpus/11_home_water_damage:c000",
+        "corpus/13_home_earthquake_annex:c000",
+        "corpus/10_home_policy_overview:c000",
+        "corpus/03_car_general_terms:c006"
+      ],
+      "retrievedFileNames": [
+        "corpus/12_home_contents_limits.docx",
+        "corpus/11_home_water_damage.md",
+        "corpus/13_home_earthquake_annex.pdf",
+        "corpus/10_home_policy_overview.md",
+        "corpus/03_car_general_terms.pdf"
+      ],
+      "contextChunkIds": [
+        "corpus/12_home_contents_limits:c000",
+        "corpus/11_home_water_damage:c000",
+        "corpus/13_home_earthquake_annex:c000",
+        "corpus/10_home_policy_overview:c000",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c009",
+        "corpus/03_car_general_terms:c010",
+        "corpus/03_car_general_terms:c011",
+        "corpus/03_car_general_terms:c012"
+      ],
+      "contextFileNames": [
+        "corpus/12_home_contents_limits.docx",
+        "corpus/11_home_water_damage.md",
+        "corpus/13_home_earthquake_annex.pdf",
+        "corpus/10_home_policy_overview.md",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf"
+      ],
+      "contextOrigins": [
+        "retrieved",
+        "retrieved",
+        "retrieved",
+        "retrieved",
+        "retrieved",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded"
+      ],
+      "applicabilityPromptLines": [
+        "Applicability and document-relationship summary (source-based metadata — not a substitute for source text):",
+        "- Family car_general_terms: cannot decide version (no_machine_rule). Alternatives: corpus/03_car_general_terms. Evidence: corpus/03_car_general_terms:c000",
+        "- Marketing document corpus/09_marketing_brochure_car: marketing only; binding terms are the policy conditions and service riders (see evidence in the manifest)."
+      ],
+      "enrichmentOmissions": [
+        {
+          "chunkId": "corpus/03_car_general_terms:c013",
+          "reasonCode": "budget_expansion"
+        },
+        {
+          "chunkId": "corpus/03_car_general_terms:c014",
+          "reasonCode": "budget_expansion"
+        },
+        {
+          "chunkId": "corpus/03_car_general_terms:c015",
+          "reasonCode": "budget_expansion"
+        }
+      ],
+      "omittedRetrieved": [],
+      "answerParts": [
+        {
+          "text": "תקרת הכיסוי למזומנים בביטוח תכולת דירה של אופק ביטוח היא 2,000 ₪.",
+          "sourceChunkIds": [
+            "corpus/12_home_contents_limits:c000"
+          ]
+        }
+      ],
+      "citedChunkIds": [
+        "corpus/12_home_contents_limits:c000"
+      ],
+      "citedFileNames": [
+        "12_home_contents_limits.docx"
+      ],
+      "citedSectionPaths": [
+        [
+          "ביטוח תכולה – גבולות אחריות"
+        ]
+      ],
+      "citationNumbersUniqueInAnswer": true,
+      "sourceCardsDistinguishVersions": true,
+      "sectionPathPresent": true,
+      "standaloneChecks": {
+        "mustIncludeOk": false,
+        "mustNotIncludeOk": true,
+        "missingIncludes": [
+          "תכולה"
+        ],
+        "leakedExcludes": []
+      },
+      "observedFailure": "Clear cash-limit question received a clarification request.",
+      "sourceNotes": "Home contents limits: מזומנים גבול אחריות 2,000 ₪.",
+      "suggestedLayer": "rewrite",
+      "layerEvidence": [
+        "rewrite standalone checks failed: missing=תכולה leaked=—"
+      ]
+    },
+    {
+      "caseId": "MF-C",
+      "title": "החלפת נושא — רכב → מזומנים בתכולה → השתתפות",
+      "failureTheme": "topic_switch_false_clarification",
+      "turnIndex": 2,
+      "question": "ומה ההשתתפות העצמית?",
+      "historyLength": 4,
+      "status": "clarification_needed",
+      "answer": "מה סוג הביטוח המדויק שאליו אתה מתייחס לגבי ההשתתפות העצמית?",
+      "standaloneQuestion": "מהי ההשתתפות העצמית בביטוח תכולת דירה?",
+      "unresolvedReferences": [],
+      "rewriteMs": 720.0971660000068,
+      "retrievedChunkIds": [
+        "corpus/12_home_contents_limits:c000",
+        "corpus/03_car_general_terms:c009",
+        "corpus/13_home_earthquake_annex:c000",
+        "corpus/05_car_third_party:c000",
+        "corpus/31_ofek_plus_vip:c000"
+      ],
+      "retrievedFileNames": [
+        "corpus/12_home_contents_limits.docx",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/13_home_earthquake_annex.pdf",
+        "corpus/05_car_third_party.md",
+        "corpus/31_ofek_plus_vip.docx"
+      ],
+      "contextChunkIds": [
+        "corpus/12_home_contents_limits:c000",
+        "corpus/03_car_general_terms:c009",
+        "corpus/13_home_earthquake_annex:c000",
+        "corpus/05_car_third_party:c000",
+        "corpus/31_ofek_plus_vip:c000",
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c010",
+        "corpus/03_car_general_terms:c011",
+        "corpus/03_car_general_terms:c012"
+      ],
+      "contextFileNames": [
+        "corpus/12_home_contents_limits.docx",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/13_home_earthquake_annex.pdf",
+        "corpus/05_car_third_party.md",
+        "corpus/31_ofek_plus_vip.docx",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf"
+      ],
+      "contextOrigins": [
+        "retrieved",
+        "retrieved",
+        "retrieved",
+        "retrieved",
+        "retrieved",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded"
+      ],
+      "applicabilityPromptLines": [
+        "Applicability and document-relationship summary (source-based metadata — not a substitute for source text):",
+        "- Family car_general_terms: cannot decide version (no_machine_rule). Alternatives: corpus/03_car_general_terms. Evidence: corpus/03_car_general_terms:c000",
+        "- Marketing document corpus/09_marketing_brochure_car: marketing only; binding terms are the policy conditions and service riders (see evidence in the manifest)."
+      ],
+      "enrichmentOmissions": [
+        {
+          "chunkId": "corpus/03_car_general_terms:c013",
+          "reasonCode": "budget_expansion"
+        },
+        {
+          "chunkId": "corpus/03_car_general_terms:c014",
+          "reasonCode": "budget_expansion"
+        },
+        {
+          "chunkId": "corpus/03_car_general_terms:c015",
+          "reasonCode": "budget_expansion"
+        }
+      ],
+      "omittedRetrieved": [],
+      "answerParts": [
+        {
+          "text": "מה סוג הביטוח המדויק שאליו אתה מתייחס לגבי ההשתתפות העצמית?",
+          "sourceChunkIds": []
+        }
+      ],
+      "citedChunkIds": [],
+      "citedFileNames": [],
+      "citedSectionPaths": [],
+      "citationNumbersUniqueInAnswer": true,
+      "sourceCardsDistinguishVersions": true,
+      "sectionPathPresent": false,
+      "standaloneChecks": {
+        "mustIncludeOk": false,
+        "mustNotIncludeOk": true,
+        "missingIncludes": [
+          "תכולה"
+        ],
+        "leakedExcludes": []
+      },
+      "observedFailure": "Last turn must only clarify truly missing home-context details; must not auto-return to auto.",
+      "sourceNotes": "Home structure deductibles exist (e.g. general 600 ₪). Ambiguity is home event-type if needed — not car product/date.",
+      "suggestedLayer": "mixed",
+      "layerEvidence": [
+        "rewrite standalone checks failed: missing=תכולה leaked=—",
+        "status=clarification_needed on a concrete topic-switch ask"
+      ]
+    },
+    {
+      "caseId": "MF-D",
+      "title": "עדכון חלקי לנוהל ביטול — 10 ימים ללא תביעה",
+      "failureTheme": "partial_update_old_rule_leak",
+      "turnIndex": 0,
+      "question": "אני מבטל פוליסה בשנת 2026, עשרה ימים אחרי תחילת הביטוח, ולא הייתה תביעה. האם ינכו דמי טיפול? איזה חלק מנוהל הביטול הישן עדיין בתוקף? הפרד בין הכלל שחל עליי לבין מה שחל אחרי 14 יום.",
+      "historyLength": 0,
+      "status": "answered",
+      "answer": "אם מבוטח מבטל פוליסה בשנת 2026, עשרה ימים אחרי תחילת הביטוח, ולא הייתה תביעה, לפי העדכון לנוהל ביטול פוליסה החל מ-1.1.2025, הוא יקבל החזר מלא של דמי הביטוח ששילם ללא דמי טיפול, כי הביטול נעשה בתוך 14 יום ממועד הרכישה ולא הייתה תביעה.\n\nהחלק מנוהל הביטול הישן שעדיין בתוקף הוא כל ההוראות בנוהל ביטול פוליסה 2023 מלבד סעיף חישוב ההחזר, כלומר שאר ההוראות לגבי הגשת בקשת הביטול, מועד כניסת הביטול לתוקף, ואופן ההגשה נשארים בתוקף.",
+      "standaloneQuestion": "אני מבטל פוליסה בשנת 2026, עשרה ימים אחרי תחילת הביטוח, ולא הייתה תביעה. האם ינכו דמי טיפול? איזה חלק מנוהל הביטול הישן עדיין בתוקף? הפרד בין הכלל שחל עליי לבין מה שחל אחרי 14 יום.",
+      "unresolvedReferences": [],
+      "retrievedChunkIds": [
+        "corpus/23_cancellation_procedure_update_2025:c000",
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/03_car_general_terms:c013",
+        "corpus/03_car_general_terms:c014",
+        "corpus/03_car_general_terms:c004"
+      ],
+      "retrievedFileNames": [
+        "corpus/23_cancellation_procedure_update_2025.md",
+        "corpus/22_cancellation_procedure_2023.md",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf"
+      ],
+      "contextChunkIds": [
+        "corpus/23_cancellation_procedure_update_2025:c000",
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/03_car_general_terms:c013",
+        "corpus/03_car_general_terms:c014",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c009",
+        "corpus/03_car_general_terms:c010",
+        "corpus/03_car_general_terms:c011",
+        "corpus/03_car_general_terms:c012",
+        "corpus/03_car_general_terms:c015"
+      ],
+      "contextFileNames": [
+        "corpus/23_cancellation_procedure_update_2025.md",
+        "corpus/22_cancellation_procedure_2023.md",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf"
+      ],
+      "contextOrigins": [
+        "retrieved",
+        "retrieved",
+        "retrieved",
+        "retrieved",
+        "retrieved",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded"
+      ],
+      "applicabilityPromptLines": [
+        "Applicability and document-relationship summary (source-based metadata — not a substitute for source text):",
+        "- Family car_general_terms: cannot decide version (no_machine_rule). Alternatives: corpus/03_car_general_terms. Evidence: corpus/03_car_general_terms:c000",
+        "- Family cancellation_procedure: partial update — use corpus/23_cancellation_procedure_update_2025 for replaced sections; keep corpus/22_cancellation_procedure_2023 for unreplaced sections (partial_update_keep_base_and_update). Replaced section(s): חישוב ההחזר. Do not apply superseded section wording as the current rule. Evidence: corpus/22_cancellation_procedure_2023:c000, corpus/23_cancellation_procedure_update_2025:c000, corpus/23_cancellation_procedure_update_2025:c000",
+        "- Relationship partially_updates: corpus/23_cancellation_procedure_update_2025 → corpus/22_cancellation_procedure_2023 sections: חישוב ההחזר",
+        "- Relationship partially_updated_by: corpus/22_cancellation_procedure_2023 → corpus/23_cancellation_procedure_update_2025 sections: חישוב ההחזר",
+        "- Marketing document corpus/09_marketing_brochure_car: marketing only; binding terms are the policy conditions and service riders (see evidence in the manifest)."
+      ],
+      "enrichmentOmissions": [],
+      "omittedRetrieved": [],
+      "answerParts": [
+        {
+          "text": "אם מבוטח מבטל פוליסה בשנת 2026, עשרה ימים אחרי תחילת הביטוח, ולא הייתה תביעה, לפי העדכון לנוהל ביטול פוליסה החל מ-1.1.2025, הוא יקבל החזר מלא של דמי הביטוח ששילם ללא דמי טיפול, כי הביטול נעשה בתוך 14 יום ממועד הרכישה ולא הייתה תביעה.",
+          "sourceChunkIds": [
+            "corpus/23_cancellation_procedure_update_2025:c000"
+          ]
+        },
+        {
+          "text": "החלק מנוהל הביטול הישן שעדיין בתוקף הוא כל ההוראות בנוהל ביטול פוליסה 2023 מלבד סעיף חישוב ההחזר, כלומר שאר ההוראות לגבי הגשת בקשת הביטול, מועד כניסת הביטול לתוקף, ואופן ההגשה נשארים בתוקף.",
+          "sourceChunkIds": [
+            "corpus/22_cancellation_procedure_2023:c000",
+            "corpus/23_cancellation_procedure_update_2025:c000"
+          ]
+        }
+      ],
+      "citedChunkIds": [
+        "corpus/23_cancellation_procedure_update_2025:c000",
+        "corpus/22_cancellation_procedure_2023:c000"
+      ],
+      "citedFileNames": [
+        "23_cancellation_procedure_update_2025.md",
+        "22_cancellation_procedure_2023.md"
+      ],
+      "citedSectionPaths": [
+        [
+          "עדכון לנוהל ביטול פוליסה"
+        ],
+        [
+          "נוהל ביטול פוליסה – 2023"
+        ]
+      ],
+      "citationNumbersUniqueInAnswer": false,
+      "sourceCardsDistinguishVersions": true,
+      "sectionPathPresent": true,
+      "observedFailure": "Answer mentioned the 2025 update but still used 5% from the old procedure.",
+      "sourceNotes": "Update 2025 (from 1.1.2025) replaces refund-calculation only: within 14 days from purchase date with no claim → full refund, no handling fee; after 14 days → pro-rata with 3% fee capped at 150 ₪. Old 5% must not be stated to customers. Clock source text: מועד הרכישה — user said תחילת הביטוח; treat carefully if those dates differ.",
+      "suggestedLayer": "undetermined",
+      "layerEvidence": [
+        "no automatic failure markers"
+      ]
+    },
+    {
+      "caseId": "MF-E",
+      "title": "עמלת סוכן — clawback יום 130 מול 100",
+      "failureTheme": "english_faq_miss_false_clarify",
+      "turnIndex": 0,
+      "question": "אני סוכן ביטוח. לקוח ביטל פוליסה ביום ה-130. מה קורה לעמלה שכבר שולמה לי — agent commission clawback? איני שואל על דמי הטיפול של הלקוח. מה הכלל ומה היה משתנה בביטול ביום ה-100?",
+      "historyLength": 0,
+      "status": "answered",
+      "answer": "אם הלקוח ביטל את הפוליסה ביום ה-130, לפי נוהל ביטול פוליסה של אופק ביטוח, העמלה שכבר שולמה לסוכן תחויב בהחזר חלקי (clawback) באופן פרופורציונלי (pro-rata) כי הביטול נעשה בין 121 ימים ל-12 חודשים ממועד הרכישה. אם הביטול היה ביום ה-100, כלומר בתוך 120 ימים ממועד הרכישה, כל העמלה תחויב בהחזר מלא (full clawback).",
+      "standaloneQuestion": "אני סוכן ביטוח. לקוח ביטל פוליסה ביום ה-130. מה קורה לעמלה שכבר שולמה לי — agent commission clawback? איני שואל על דמי הטיפול של הלקוח. מה הכלל ומה היה משתנה בביטול ביום ה-100?",
+      "unresolvedReferences": [],
+      "retrievedChunkIds": [
+        "corpus/30_agent_faq_en:c000",
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/03_car_general_terms:c004",
+        "corpus/23_cancellation_procedure_update_2025:c000",
+        "corpus/27_customer_complaints:c000"
+      ],
+      "retrievedFileNames": [
+        "corpus/30_agent_faq_en.md",
+        "corpus/22_cancellation_procedure_2023.md",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/23_cancellation_procedure_update_2025.md",
+        "corpus/27_customer_complaints.md"
+      ],
+      "contextChunkIds": [
+        "corpus/30_agent_faq_en:c000",
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/03_car_general_terms:c004",
+        "corpus/23_cancellation_procedure_update_2025:c000",
+        "corpus/27_customer_complaints:c000",
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c009",
+        "corpus/03_car_general_terms:c010",
+        "corpus/03_car_general_terms:c011",
+        "corpus/03_car_general_terms:c012"
+      ],
+      "contextFileNames": [
+        "corpus/30_agent_faq_en.md",
+        "corpus/22_cancellation_procedure_2023.md",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/23_cancellation_procedure_update_2025.md",
+        "corpus/27_customer_complaints.md",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf",
+        "corpus/03_car_general_terms.pdf"
+      ],
+      "contextOrigins": [
+        "retrieved",
+        "retrieved",
+        "retrieved",
+        "retrieved",
+        "retrieved",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded",
+        "expanded"
+      ],
+      "applicabilityPromptLines": [
+        "Applicability and document-relationship summary (source-based metadata — not a substitute for source text):",
+        "- Family car_general_terms: cannot decide version (no_machine_rule). Alternatives: corpus/03_car_general_terms. Evidence: corpus/03_car_general_terms:c000",
+        "- Family cancellation_procedure: partial update — use corpus/23_cancellation_procedure_update_2025 for replaced sections; keep corpus/22_cancellation_procedure_2023 for unreplaced sections (partial_update_keep_base_and_update). Replaced section(s): חישוב ההחזר. Do not apply superseded section wording as the current rule. Evidence: corpus/22_cancellation_procedure_2023:c000, corpus/23_cancellation_procedure_update_2025:c000, corpus/23_cancellation_procedure_update_2025:c000",
+        "- Relationship partially_updated_by: corpus/22_cancellation_procedure_2023 → corpus/23_cancellation_procedure_update_2025 sections: חישוב ההחזר",
+        "- Relationship partially_updates: corpus/23_cancellation_procedure_update_2025 → corpus/22_cancellation_procedure_2023 sections: חישוב ההחזר",
+        "- Marketing document corpus/09_marketing_brochure_car: marketing only; binding terms are the policy conditions and service riders (see evidence in the manifest)."
+      ],
+      "enrichmentOmissions": [
+        {
+          "chunkId": "corpus/03_car_general_terms:c013",
+          "reasonCode": "budget_expansion"
+        },
+        {
+          "chunkId": "corpus/03_car_general_terms:c014",
+          "reasonCode": "budget_expansion"
+        },
+        {
+          "chunkId": "corpus/03_car_general_terms:c015",
+          "reasonCode": "budget_expansion"
+        }
+      ],
+      "omittedRetrieved": [],
+      "answerParts": [
+        {
+          "text": "אם הלקוח ביטל את הפוליסה ביום ה-130, לפי נוהל ביטול פוליסה של אופק ביטוח, העמלה שכבר שולמה לסוכן תחויב בהחזר חלקי (clawback) באופן פרופורציונלי (pro-rata) כי הביטול נעשה בין 121 ימים ל-12 חודשים ממועד הרכישה. אם הביטול היה ביום ה-100, כלומר בתוך 120 ימים ממועד הרכישה, כל העמלה תחויב בהחזר מלא (full clawback).",
+          "sourceChunkIds": [
+            "corpus/30_agent_faq_en:c000"
+          ]
+        }
+      ],
+      "citedChunkIds": [
+        "corpus/30_agent_faq_en:c000"
+      ],
+      "citedFileNames": [
+        "30_agent_faq_en.md"
+      ],
+      "citedSectionPaths": [
+        [
+          "Agent FAQ – Ofek Insurance (internal, for licensed agents)"
+        ]
+      ],
+      "citationNumbersUniqueInAnswer": true,
+      "sourceCardsDistinguishVersions": true,
+      "sectionPathPresent": true,
+      "observedFailure": "Asked for policy type instead of answering from the English agent FAQ.",
+      "sourceNotes": "Agent FAQ EN: cancel within 120 days of issue → full commission clawback; between 121 days and 12 months → pro-rata. Day 130 → pro-rata; day 100 → full clawback. Independent of customer handling-fee rules.",
+      "suggestedLayer": "undetermined",
+      "layerEvidence": [
+        "no automatic failure markers"
+      ]
+    },
+    {
+      "caseId": "MF-F",
+      "title": "יישום סכום הוצאה — עיכוב כבודה 30 שעות ו-220$",
+      "failureTheme": "amount_application_incomplete",
+      "turnIndex": 0,
+      "question": "כבודה התעכבה 30 שעות. יש PIR וקבלות על פריטים חיוניים בסך 220 דולר. מה התקרה ומה ניתן להסיק לגבי ההחזר בפועל?",
+      "historyLength": 0,
+      "status": "answered",
+      "answer": "כאשר כבודה מתעכבת מעל 24 שעות, ניתן לקבל פיצוי עד 150 דולר נוספים על רכישת פריטים חיוניים, בנוסף לפיצוי של עד 150 דולר עבור עיכוב מעל 6 שעות. כלומר, במקרה של עיכוב של 30 שעות, הפיצוי המקסימלי עבור רכישת פריטים חיוניים הוא עד 300 דולר.\n\nבמקרה שלך, עם קבלות על פריטים חיוניים בסך 220 דולר, ניתן להגיש תביעה עם דו\"ח PIR וקבלות מקוריות כדי לקבל החזר עד לתקרה של 300 דולר.",
+      "standaloneQuestion": "כבודה התעכבה 30 שעות. יש PIR וקבלות על פריטים חיוניים בסך 220 דולר. מה התקרה ומה ניתן להסיק לגבי ההחזר בפועל?",
+      "unresolvedReferences": [],
+      "retrievedChunkIds": [
+        "corpus/16_travel_luggage:c000",
+        "corpus/17_travel_claims:c000",
+        "corpus/14_travel_policy_overview:c000",
+        "corpus/07_towing_roadside:c000",
+        "corpus/22_cancellation_procedure_2023:c000"
+      ],
+      "retrievedFileNames": [
+        "corpus/16_travel_luggage.md",
+        "corpus/17_travel_claims.md",
+        "corpus/14_travel_policy_overview.md",
+        "corpus/07_towing_roadside.md",
+        "corpus/22_cancellation_procedure_2023.md"
+      ],
+      "contextChunkIds": [
+        "corpus/16_travel_luggage:c000",
+        "corpus/17_travel_claims:c000",
+        "corpus/14_travel_policy_overview:c000",
+        "corpus/07_towing_roadside:c000",
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/23_cancellation_procedure_update_2025:c000"
+      ],
+      "contextFileNames": [
+        "corpus/16_travel_luggage.md",
+        "corpus/17_travel_claims.md",
+        "corpus/14_travel_policy_overview.md",
+        "corpus/07_towing_roadside.md",
+        "corpus/22_cancellation_procedure_2023.md",
+        "corpus/23_cancellation_procedure_update_2025.md"
+      ],
+      "contextOrigins": [
+        "retrieved",
+        "retrieved",
+        "retrieved",
+        "retrieved",
+        "retrieved",
+        "linked"
+      ],
+      "applicabilityPromptLines": [
+        "Applicability and document-relationship summary (source-based metadata — not a substitute for source text):",
+        "- Family cancellation_procedure: partial update — use corpus/23_cancellation_procedure_update_2025 for replaced sections; keep corpus/22_cancellation_procedure_2023 for unreplaced sections (partial_update_keep_base_and_update). Replaced section(s): חישוב ההחזר. Do not apply superseded section wording as the current rule. Evidence: corpus/22_cancellation_procedure_2023:c000, corpus/23_cancellation_procedure_update_2025:c000, corpus/23_cancellation_procedure_update_2025:c000",
+        "- Relationship partially_updated_by: corpus/22_cancellation_procedure_2023 → corpus/23_cancellation_procedure_update_2025 sections: חישוב ההחזר",
+        "- Relationship partially_updates: corpus/23_cancellation_procedure_update_2025 → corpus/22_cancellation_procedure_2023 sections: חישוב ההחזר",
+        "- Marketing document corpus/09_marketing_brochure_car: marketing only; binding terms are the policy conditions and service riders (see evidence in the manifest)."
+      ],
+      "enrichmentOmissions": [],
+      "omittedRetrieved": [],
+      "answerParts": [
+        {
+          "text": "כאשר כבודה מתעכבת מעל 24 שעות, ניתן לקבל פיצוי עד 150 דולר נוספים על רכישת פריטים חיוניים, בנוסף לפיצוי של עד 150 דולר עבור עיכוב מעל 6 שעות. כלומר, במקרה של עיכוב של 30 שעות, הפיצוי המקסימלי עבור רכישת פריטים חיוניים הוא עד 300 דולר.",
+          "sourceChunkIds": [
+            "corpus/16_travel_luggage:c000"
+          ]
+        },
+        {
+          "text": "במקרה שלך, עם קבלות על פריטים חיוניים בסך 220 דולר, ניתן להגיש תביעה עם דו\"ח PIR וקבלות מקוריות כדי לקבל החזר עד לתקרה של 300 דולר.",
+          "sourceChunkIds": [
+            "corpus/16_travel_luggage:c000",
+            "corpus/17_travel_claims:c000"
+          ]
+        }
+      ],
+      "citedChunkIds": [
+        "corpus/16_travel_luggage:c000",
+        "corpus/17_travel_claims:c000"
+      ],
+      "citedFileNames": [
+        "16_travel_luggage.md",
+        "17_travel_claims.md"
+      ],
+      "citedSectionPaths": [
+        [
+          "כבודה בביטוח נסיעות",
+          "אובדן, גניבה או נזק"
+        ],
+        [
+          "הגשת תביעה בביטוח נסיעות"
+        ]
+      ],
+      "citationNumbersUniqueInAnswer": false,
+      "sourceCardsDistinguishVersions": true,
+      "sectionPathPresent": true,
+      "observedFailure": "Answer explained the 300$ ceiling but did not address the 220$ amount.",
+      "sourceNotes": "Luggage delay: >6h up to 150$; >24h additional up to 150$ → combined ceiling 300$ for essentials with PIR. 220$ is below 300$; do not promise automatic eligibility/payment — infer only that claimed receipts are within the documented ceiling subject to claim process.",
+      "suggestedLayer": "undetermined",
+      "layerEvidence": [
+        "no automatic failure markers"
+      ]
+    }
+  ]
+}

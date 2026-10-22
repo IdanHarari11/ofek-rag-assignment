@@ -1,0 +1,375 @@
+{
+  "generatedAt": "2026-10-22T07:44:20.070Z",
+  "model": "gpt-4.1-mini",
+  "answerReviewEnabled": false,
+  "rows": [
+    {
+      "id": "T-start-only",
+      "run": 0,
+      "ok": false,
+      "failures": [
+        "missing purchase-clock gap identification",
+        "personal no-fee determination without purchase date"
+      ],
+      "status": "answered",
+      "answer": "אם מבוטח מבטל פוליסה בתוך 14 יום ממועד הרכישה ולא הגיש תביעה, הוא יקבל החזר מלא של דמי הביטוח ששילם ללא ניכוי דמי טיפול. במקרה שלך, ביטול הפוליסה נעשה עשרה ימים אחרי תחילת הביטוח ולא הייתה תביעה, ולכן לא ינוכו דמי טיפול.",
+      "cited": [
+        "corpus/23_cancellation_procedure_update_2025:c000"
+      ],
+      "computedTemporalFacts": {
+        "events": [],
+        "daySpans": [],
+        "missingOrUncertain": [
+          "purchase date not provided; source cancellation windows that count from purchase cannot be decided from insurance_start alone (do not assume purchase = insurance_start)."
+        ],
+        "unsupportedNotes": [
+          "Relative interval from insurance_start mentioned without an absolute purchase date."
+        ]
+      },
+      "latencyMs": 2583.3826249999997,
+      "generationMs": 1544.8376250000001,
+      "usage": {
+        "embeddingPromptTokens": 87,
+        "generationPromptTokens": 6615,
+        "generationCompletionTokens": 109,
+        "generationTotalTokens": 6724
+      },
+      "rescoredOffline": true
+    },
+    {
+      "id": "T-split-19-days",
+      "run": 0,
+      "ok": true,
+      "failures": [],
+      "status": "answered",
+      "answer": "אם מבטלים את הפוליסה בתוך 14 יום ממועד הרכישה ולא הוגשה תביעה, הלקוח יקבל החזר מלא של דמי הביטוח ששילם, ללא דמי טיפול.\n\nבמקרה שלך, רכישת הפוליסה הייתה ב-1.1.2026 והביטול ב-20.1.2026, כלומר הביטול נעשה לאחר 14 יום ממועד הרכישה.\n\nלכן, דמי הטיפול ינוכו בשיעור של 3% מסכום ההחזר, אך לא יותר מ-150 ₪.",
+      "cited": [
+        "corpus/23_cancellation_procedure_update_2025:c000"
+      ],
+      "computedTemporalFacts": {
+        "events": [
+          {
+            "kind": "purchase",
+            "isoDate": "2026-01-01",
+            "quote": "רכישת הפוליסה הייתה ב-1.1.2026",
+            "startOffset": 0,
+            "endOffset": 30
+          },
+          {
+            "kind": "insurance_start",
+            "isoDate": "2026-01-10",
+            "quote": "תחילת הביטוח ב-10.1.2026",
+            "startOffset": 32,
+            "endOffset": 56
+          },
+          {
+            "kind": "cancellation",
+            "isoDate": "2026-01-20",
+            "quote": "ואני מבטל ב-20.1.2026",
+            "startOffset": 58,
+            "endOffset": 79
+          }
+        ],
+        "daySpans": [
+          {
+            "fromKind": "purchase",
+            "toKind": "cancellation",
+            "fromIso": "2026-01-01",
+            "toIso": "2026-01-20",
+            "calendarDays": 19,
+            "orderOk": true
+          },
+          {
+            "fromKind": "insurance_start",
+            "toKind": "cancellation",
+            "fromIso": "2026-01-10",
+            "toIso": "2026-01-20",
+            "calendarDays": 10,
+            "orderOk": true
+          }
+        ],
+        "missingOrUncertain": [],
+        "unsupportedNotes": []
+      },
+      "latencyMs": 2641.279209,
+      "generationMs": 2380.4217920000006,
+      "usage": {
+        "embeddingPromptTokens": 105,
+        "generationPromptTokens": 6923,
+        "generationCompletionTokens": 202,
+        "generationTotalTokens": 7125
+      },
+      "rescoredOffline": true
+    },
+    {
+      "id": "T-split-19-days",
+      "run": 1,
+      "ok": false,
+      "failures": [
+        "personal determination as within-14 from purchase"
+      ],
+      "status": "answered",
+      "answer": "אם ביטלת את הפוליסה ב-20.1.2026, שזה בתוך 14 יום ממועד הרכישה ב-1.1.2026, ולא הגשת תביעה, תקבל החזר מלא של דמי הביטוח ששילמת ללא דמי טיפול.\n\nאם הביטול היה לאחר 14 יום ממועד הרכישה, ינוכו דמי טיפול בשיעור 3% מסכום ההחזר, ולא יותר מ-150 ₪.",
+      "cited": [
+        "corpus/23_cancellation_procedure_update_2025:c000"
+      ],
+      "computedTemporalFacts": {
+        "events": [
+          {
+            "kind": "purchase",
+            "isoDate": "2026-01-01",
+            "quote": "רכישת הפוליסה הייתה ב-1.1.2026",
+            "startOffset": 0,
+            "endOffset": 30
+          },
+          {
+            "kind": "insurance_start",
+            "isoDate": "2026-01-10",
+            "quote": "תחילת הביטוח ב-10.1.2026",
+            "startOffset": 32,
+            "endOffset": 56
+          },
+          {
+            "kind": "cancellation",
+            "isoDate": "2026-01-20",
+            "quote": "ואני מבטל ב-20.1.2026",
+            "startOffset": 58,
+            "endOffset": 79
+          }
+        ],
+        "daySpans": [
+          {
+            "fromKind": "purchase",
+            "toKind": "cancellation",
+            "fromIso": "2026-01-01",
+            "toIso": "2026-01-20",
+            "calendarDays": 19,
+            "orderOk": true
+          },
+          {
+            "fromKind": "insurance_start",
+            "toKind": "cancellation",
+            "fromIso": "2026-01-10",
+            "toIso": "2026-01-20",
+            "calendarDays": 10,
+            "orderOk": true
+          }
+        ],
+        "missingOrUncertain": [],
+        "unsupportedNotes": []
+      },
+      "latencyMs": 2795.2732499999993,
+      "generationMs": 1852.8631670000004,
+      "usage": {
+        "embeddingPromptTokens": 105,
+        "generationPromptTokens": 6923,
+        "generationCompletionTokens": 153,
+        "generationTotalTokens": 7076
+      },
+      "rescoredOffline": true
+    },
+    {
+      "id": "T-split-19-days",
+      "run": 2,
+      "ok": true,
+      "failures": [],
+      "status": "answered",
+      "answer": "אם ביטלת את הפוליסה ב-20.1.2026, שזה אחרי 14 יום ממועד הרכישה (1.1.2026), ולא הגשת תביעה, ינוכו דמי טיפול בשיעור 3% מסכום ההחזר, אך לא יותר מ-150 ₪.",
+      "cited": [
+        "corpus/23_cancellation_procedure_update_2025:c000"
+      ],
+      "computedTemporalFacts": {
+        "events": [
+          {
+            "kind": "purchase",
+            "isoDate": "2026-01-01",
+            "quote": "רכישת הפוליסה הייתה ב-1.1.2026",
+            "startOffset": 0,
+            "endOffset": 30
+          },
+          {
+            "kind": "insurance_start",
+            "isoDate": "2026-01-10",
+            "quote": "תחילת הביטוח ב-10.1.2026",
+            "startOffset": 32,
+            "endOffset": 56
+          },
+          {
+            "kind": "cancellation",
+            "isoDate": "2026-01-20",
+            "quote": "ואני מבטל ב-20.1.2026",
+            "startOffset": 58,
+            "endOffset": 79
+          }
+        ],
+        "daySpans": [
+          {
+            "fromKind": "purchase",
+            "toKind": "cancellation",
+            "fromIso": "2026-01-01",
+            "toIso": "2026-01-20",
+            "calendarDays": 19,
+            "orderOk": true
+          },
+          {
+            "fromKind": "insurance_start",
+            "toKind": "cancellation",
+            "fromIso": "2026-01-10",
+            "toIso": "2026-01-20",
+            "calendarDays": 10,
+            "orderOk": true
+          }
+        ],
+        "missingOrUncertain": [],
+        "unsupportedNotes": []
+      },
+      "latencyMs": 1777.8259170000001,
+      "generationMs": 1536.99575,
+      "usage": {
+        "embeddingPromptTokens": 105,
+        "generationPromptTokens": 6923,
+        "generationCompletionTokens": 99,
+        "generationTotalTokens": 7022
+      },
+      "rescoredOffline": true
+    },
+    {
+      "id": "T-split-other-over-14",
+      "run": 0,
+      "ok": true,
+      "failures": [],
+      "status": "answered",
+      "answer": "אם הלקוח מבטל את הפוליסה בתוך 14 יום ממועד הרכישה ולא הגיש תביעה, הוא יקבל החזר מלא של דמי הביטוח ששילם ללא דמי טיפול.\n\nבמקרה שלך, הביטול בוצע ב-25.2.2026, שזה 20 ימים ממועד הרכישה ב-5.2.2026, ולכן הביטול נעשה לאחר 14 יום ממועד הרכישה.\n\nלכן, דמי הטיפול יחושבו כהפרש של 3% מסכום ההחזר, אך לא יותר מ-150 ש\"ח.",
+      "cited": [
+        "corpus/23_cancellation_procedure_update_2025:c000"
+      ],
+      "computedTemporalFacts": {
+        "events": [
+          {
+            "kind": "purchase",
+            "isoDate": "2026-02-05",
+            "quote": "רכישת הפוליסה הייתה ב-5.2.2026",
+            "startOffset": 0,
+            "endOffset": 30
+          },
+          {
+            "kind": "insurance_start",
+            "isoDate": "2026-02-08",
+            "quote": "תחילת הביטוח ב-8.2.2026",
+            "startOffset": 32,
+            "endOffset": 55
+          },
+          {
+            "kind": "cancellation",
+            "isoDate": "2026-02-25",
+            "quote": "ואני מבטל ב-25.2.2026",
+            "startOffset": 57,
+            "endOffset": 78
+          }
+        ],
+        "daySpans": [
+          {
+            "fromKind": "purchase",
+            "toKind": "cancellation",
+            "fromIso": "2026-02-05",
+            "toIso": "2026-02-25",
+            "calendarDays": 20,
+            "orderOk": true
+          },
+          {
+            "fromKind": "insurance_start",
+            "toKind": "cancellation",
+            "fromIso": "2026-02-08",
+            "toIso": "2026-02-25",
+            "calendarDays": 17,
+            "orderOk": true
+          }
+        ],
+        "missingOrUncertain": [],
+        "unsupportedNotes": []
+      },
+      "latencyMs": 3143.534958,
+      "generationMs": 2836.8327090000002,
+      "usage": {
+        "embeddingPromptTokens": 91,
+        "generationPromptTokens": 6526,
+        "generationCompletionTokens": 206,
+        "generationTotalTokens": 6732
+      },
+      "rescoredOffline": true
+    },
+    {
+      "id": "T-within-14-direct",
+      "run": 0,
+      "ok": true,
+      "failures": [],
+      "status": "answered",
+      "answer": "אם ביטלת את הפוליסה בתוך 14 יום ממועד הרכישה ולא הגשת תביעה, תקבל החזר מלא של דמי הביטוח ששילמת ללא ניכוי דמי טיפול.",
+      "cited": [
+        "corpus/23_cancellation_procedure_update_2025:c000"
+      ],
+      "computedTemporalFacts": {
+        "events": [
+          {
+            "kind": "purchase",
+            "isoDate": "2026-03-01",
+            "quote": "רכישת הפוליסה הייתה ב-1.3.2026",
+            "startOffset": 0,
+            "endOffset": 30
+          },
+          {
+            "kind": "cancellation",
+            "isoDate": "2026-03-08",
+            "quote": "ואני מבטל ב-8.3.2026",
+            "startOffset": 31,
+            "endOffset": 51
+          }
+        ],
+        "daySpans": [
+          {
+            "fromKind": "purchase",
+            "toKind": "cancellation",
+            "fromIso": "2026-03-01",
+            "toIso": "2026-03-08",
+            "calendarDays": 7,
+            "orderOk": true
+          }
+        ],
+        "missingOrUncertain": [],
+        "unsupportedNotes": []
+      },
+      "latencyMs": 1643.671792000001,
+      "generationMs": 1359.1601250000003,
+      "usage": {
+        "embeddingPromptTokens": 76,
+        "generationPromptTokens": 3233,
+        "generationCompletionTokens": 75,
+        "generationTotalTokens": 3308
+      },
+      "rescoredOffline": true
+    },
+    {
+      "id": "T-hours-unaffected",
+      "run": 0,
+      "ok": true,
+      "failures": [],
+      "status": "answered",
+      "answer": "שעות הפעילות של מוקד שירות הלקוחות ביום שישי הן מ-08:00 עד 12:00.",
+      "cited": [
+        "corpus/28_call_center_hours:c000"
+      ],
+      "computedTemporalFacts": null,
+      "latencyMs": 1592.7060829999991,
+      "generationMs": 1291.8838339999984,
+      "usage": {
+        "embeddingPromptTokens": 42,
+        "generationPromptTokens": 2378,
+        "generationCompletionTokens": 52,
+        "generationTotalTokens": 2430
+      },
+      "rescoredOffline": true
+    }
+  ],
+  "rescoredAt": "2026-10-22T07:45:24.474Z",
+  "rescoreNote": "Credit answers that apply 3%/150 to the user case even if they also state the generic within-14 corpus rule."
+}

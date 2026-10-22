@@ -1,0 +1,420 @@
+{
+  "generatedAt": "2026-10-22T07:56:34.345Z",
+  "model": "gpt-4.1-mini",
+  "answerReviewEnabled": false,
+  "note": "Closure round: multi-scenario keep versions + corpus retrieval aliases. Date arithmetic not retuned; model may still ignore computed temporal facts.",
+  "rows": [
+    {
+      "id": "M-three-cases",
+      "ok": true,
+      "failures": [],
+      "status": "answered",
+      "answer": "לגבי פוליסה שהונפקה ב-28.2.2026 ולא חודשה, ההשתתפות העצמית במוסך הסדר היא לפי גרסת 2024, כלומר 950 ₪, צמודה למדד המחירים לצרכן הידוע ביום 1.1.2024.\n\nלגבי פוליסה שהונפקה ב-1.3.2026, ההשתתפות העצמית במוסך הסדר היא לפי גרסת 2026, כלומר 1,100 ₪, צמודה למדד המחירים לצרכן הידוע ביום 1.3.2026.\n\nלגבי פוליסה שהונפקה בשנת 2024 וחודשה ב-1.4.2026, ההשתתפות העצמית במוסך הסדר תהיה לפי גרסת 2026, כלומר 1,100 ₪, צמודה למדד המחירים לצרכן הידוע ביום 1.3.2026, מאחר שהחידוש בוצע אחרי 1.3.2026.",
+      "cited": [
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/02_car_comprehensive_policy_2026:c000"
+      ],
+      "contextDocIds": [
+        "corpus/02_car_comprehensive_policy_2026",
+        "corpus/01_car_comprehensive_policy_2024",
+        "corpus/24_payment_methods",
+        "corpus/22_cancellation_procedure_2023",
+        "corpus/31_ofek_plus_vip",
+        "corpus/03_car_general_terms",
+        "corpus/23_cancellation_procedure_update_2025"
+      ],
+      "applicability": [
+        "Applicability and document-relationship summary (source-based metadata — not a substitute for source text):",
+        "- Family car_comprehensive_policy: multi-scenario comparison — keep all listed versions in context and apply each case's own issue/renewal date (multi_scenario_comparison_keep_versions). Versions: corpus/01_car_comprehensive_policy_2024, corpus/02_car_comprehensive_policy_2026. Do not apply one case's version to the others. Evidence: corpus/01_car_comprehensive_policy_2024:c000, corpus/02_car_comprehensive_policy_2026:c000",
+        "- Family cancellation_procedure: partial update — use corpus/23_cancellation_procedure_update_2025 for replaced sections; keep corpus/22_cancellation_procedure_2023 for unreplaced sections (partial_update_refund_section_from_2025). Replaced section(s): חישוב ההחזר. Do not apply superseded section wording as the current rule. Evidence: corpus/22_cancellation_procedure_2023:c000, corpus/23_cancellation_procedure_update_2025:c000, corpus/23_cancellation_procedure_update_2025:c000",
+        "- Relationship supersedes: corpus/02_car_comprehensive_policy_2026 → corpus/01_car_comprehensive_policy_2024",
+        "- Relationship supplemented_by: corpus/02_car_comprehensive_policy_2026 → corpus/03_car_general_terms",
+        "- Relationship superseded_by: corpus/01_car_comprehensive_policy_2024 → corpus/02_car_comprehensive_policy_2026",
+        "- Relationship supplemented_by: corpus/01_car_comprehensive_policy_2024 → corpus/03_car_general_terms",
+        "- Relationship partially_updated_by: corpus/22_cancellation_procedure_2023 → corpus/23_cancellation_procedure_update_2025 sections: חישוב ההחזר",
+        "- Relationship partially_updates: corpus/23_cancellation_procedure_update_2025 → corpus/22_cancellation_procedure_2023 sections: חישוב ההחזר",
+        "- Marketing document corpus/09_marketing_brochure_car: marketing only; binding terms are the policy conditions and service riders (see evidence in the manifest)."
+      ],
+      "enrichmentOmissions": [
+        {
+          "chunkId": "corpus/03_car_general_terms:c010",
+          "reasonCode": "budget_linked_expansion"
+        },
+        {
+          "chunkId": "corpus/03_car_general_terms:c011",
+          "reasonCode": "budget_linked_expansion"
+        },
+        {
+          "chunkId": "corpus/03_car_general_terms:c012",
+          "reasonCode": "budget_linked_expansion"
+        },
+        {
+          "chunkId": "corpus/03_car_general_terms:c013",
+          "reasonCode": "budget_linked_expansion"
+        },
+        {
+          "chunkId": "corpus/03_car_general_terms:c014",
+          "reasonCode": "budget_linked_expansion"
+        },
+        {
+          "chunkId": "corpus/03_car_general_terms:c015",
+          "reasonCode": "budget_linked_expansion"
+        }
+      ]
+    },
+    {
+      "id": "M-three-reordered",
+      "ok": true,
+      "failures": [],
+      "status": "answered",
+      "answer": "לגבי פוליסה שהונפקה ב-2024 וחודשה ב-1.4.2026: מכיוון שהחידוש בוצע אחרי 1.3.2026, הפוליסה כפופה לגרסת 2026. ההשתתפות העצמית בנזק חלקי במוסך הסדר היא 1,100 ₪, צמודה למדד המחירים לצרכן ביום 1.3.2026.\n\nלגבי פוליסה שהונפקה ב-28.2.2026 ולא חודשה: הפוליסה ממשיכה לפעול לפי גרסת 2024 עד מועד החידוש הבא שלה. לכן, ההשתתפות העצמית בנזק חלקי במוסך הסדר היא 950 ₪, צמודה למדד המחירים לצרכן ביום 1.1.2024.\n\nלגבי פוליסה שהונפקה ב-1.3.2026: הפוליסה כפופה לגרסת 2026. ההשתתפות העצמית בנזק חלקי במוסך הסדר היא 1,100 ₪, צמודה למדד המחירים לצרכן ביום 1.3.2026.",
+      "cited": [
+        "corpus/02_car_comprehensive_policy_2026:c000",
+        "corpus/01_car_comprehensive_policy_2024:c000"
+      ],
+      "contextDocIds": [
+        "corpus/02_car_comprehensive_policy_2026",
+        "corpus/01_car_comprehensive_policy_2024",
+        "corpus/22_cancellation_procedure_2023",
+        "corpus/24_payment_methods",
+        "corpus/23_cancellation_procedure_update_2025",
+        "corpus/03_car_general_terms"
+      ],
+      "applicability": [
+        "Applicability and document-relationship summary (source-based metadata — not a substitute for source text):",
+        "- Family car_comprehensive_policy: multi-scenario comparison — keep all listed versions in context and apply each case's own issue/renewal date (multi_scenario_comparison_keep_versions). Versions: corpus/01_car_comprehensive_policy_2024, corpus/02_car_comprehensive_policy_2026. Do not apply one case's version to the others. Evidence: corpus/01_car_comprehensive_policy_2024:c000, corpus/02_car_comprehensive_policy_2026:c000",
+        "- Family cancellation_procedure: partial update — use corpus/23_cancellation_procedure_update_2025 for replaced sections; keep corpus/22_cancellation_procedure_2023 for unreplaced sections (partial_update_refund_section_from_2025). Replaced section(s): חישוב ההחזר. Do not apply superseded section wording as the current rule. Evidence: corpus/22_cancellation_procedure_2023:c000, corpus/23_cancellation_procedure_update_2025:c000, corpus/23_cancellation_procedure_update_2025:c000",
+        "- Relationship supersedes: corpus/02_car_comprehensive_policy_2026 → corpus/01_car_comprehensive_policy_2024",
+        "- Relationship supplemented_by: corpus/02_car_comprehensive_policy_2026 → corpus/03_car_general_terms",
+        "- Relationship superseded_by: corpus/01_car_comprehensive_policy_2024 → corpus/02_car_comprehensive_policy_2026",
+        "- Relationship supplemented_by: corpus/01_car_comprehensive_policy_2024 → corpus/03_car_general_terms",
+        "- Relationship partially_updated_by: corpus/22_cancellation_procedure_2023 → corpus/23_cancellation_procedure_update_2025 sections: חישוב ההחזר",
+        "- Relationship partially_updates: corpus/23_cancellation_procedure_update_2025 → corpus/22_cancellation_procedure_2023 sections: חישוב ההחזר",
+        "- Marketing document corpus/09_marketing_brochure_car: marketing only; binding terms are the policy conditions and service riders (see evidence in the manifest)."
+      ]
+    },
+    {
+      "id": "M-single-renewal",
+      "ok": true,
+      "failures": [],
+      "status": "answered",
+      "answer": "פוליסות שהונפקו לפני 1.3.2026 וחודשו לאחר מכן ממשיכות לפעול לפי גרסת 2024 עד מועד החידוש הבא שלהן. לכן, הפוליסה שהונפקה ב-1.1.2024 וחודשה ב-1.4.2026 כפופה לגרסת 2026 החל מחידוש זה.\n\nבהתאם לגרסת 2026, ההשתתפות העצמית בנזק חלקי לתיקון במוסך הסדר היא 1,100 ₪, והסכום צמוד למדד המחירים לצרכן הידוע ביום 1.3.2026.",
+      "cited": [
+        "corpus/02_car_comprehensive_policy_2026:c000"
+      ],
+      "contextDocIds": [
+        "corpus/02_car_comprehensive_policy_2026",
+        "corpus/22_cancellation_procedure_2023",
+        "corpus/31_ofek_plus_vip",
+        "corpus/09_marketing_brochure_car",
+        "corpus/03_car_general_terms"
+      ],
+      "applicability": [
+        "Applicability and document-relationship summary (source-based metadata — not a substitute for source text):",
+        "- Family car_comprehensive_policy: selected corpus/02_car_comprehensive_policy_2026 (issue_or_renewal_on_or_after_2026_03_01, dateKind=renewal). Evidence: corpus/01_car_comprehensive_policy_2024:c000, corpus/02_car_comprehensive_policy_2026:c000",
+        "- Family cancellation_procedure: selected corpus/22_cancellation_procedure_2023 (before_2025_partial_update, dateKind=issue). Evidence: corpus/22_cancellation_procedure_2023:c000, corpus/23_cancellation_procedure_update_2025:c000, corpus/23_cancellation_procedure_update_2025:c000",
+        "- Family car_marketing: selected corpus/09_marketing_brochure_car (marketing_non_binding). Evidence: corpus/09_marketing_brochure_car:c000",
+        "- Relationship superseded_by: corpus/01_car_comprehensive_policy_2024 → corpus/02_car_comprehensive_policy_2026",
+        "- Relationship supplemented_by: corpus/01_car_comprehensive_policy_2024 → corpus/03_car_general_terms",
+        "- Relationship supersedes: corpus/02_car_comprehensive_policy_2026 → corpus/01_car_comprehensive_policy_2024",
+        "- Relationship supplemented_by: corpus/02_car_comprehensive_policy_2026 → corpus/03_car_general_terms",
+        "- Relationship partially_updated_by: corpus/22_cancellation_procedure_2023 → corpus/23_cancellation_procedure_update_2025 sections: חישוב ההחזר",
+        "- Relationship defers_to: corpus/09_marketing_brochure_car → corpus/01_car_comprehensive_policy_2024",
+        "- Relationship defers_to: corpus/09_marketing_brochure_car → corpus/02_car_comprehensive_policy_2026",
+        "- Relationship partially_updates: corpus/23_cancellation_procedure_update_2025 → corpus/22_cancellation_procedure_2023 sections: חישוב ההחזר",
+        "- Marketing document corpus/09_marketing_brochure_car: marketing only; binding terms are the policy conditions and service riders (see evidence in the manifest)."
+      ]
+    },
+    {
+      "id": "M-april-to-february",
+      "ok": true,
+      "failures": [],
+      "status": "answered",
+      "answer": "ההשתתפות העצמית במוסך הסדר עבור רכב מקיף היא 950 ₪ לנזק חלקי בתיקון במוסך הסדר.",
+      "cited": [
+        "corpus/01_car_comprehensive_policy_2024:c000"
+      ],
+      "contextDocIds": [
+        "corpus/01_car_comprehensive_policy_2024",
+        "corpus/08_replacement_car",
+        "corpus/03_car_general_terms",
+        "corpus/04_young_driver_annex"
+      ],
+      "standaloneQuestion": "מה ההשתתפות העצמית במוסך הסדר עבור רכב מקיף שהונפק בפברואר 2026 ולא חודשה מאז?",
+      "applicability": [
+        "Applicability and document-relationship summary (source-based metadata — not a substitute for source text):",
+        "- Family car_comprehensive_policy: selected corpus/01_car_comprehensive_policy_2024 (issue_or_renewal_before_2026_03_01, dateKind=issue). Evidence: corpus/01_car_comprehensive_policy_2024:c000, corpus/02_car_comprehensive_policy_2026:c000",
+        "- Family car_general_terms: cannot decide version (no_machine_rule). Alternatives: corpus/03_car_general_terms. Evidence: corpus/03_car_general_terms:c000",
+        "- Relationship supersedes: corpus/02_car_comprehensive_policy_2026 → corpus/01_car_comprehensive_policy_2024",
+        "- Relationship supplemented_by: corpus/02_car_comprehensive_policy_2026 → corpus/03_car_general_terms",
+        "- Relationship superseded_by: corpus/01_car_comprehensive_policy_2024 → corpus/02_car_comprehensive_policy_2026",
+        "- Relationship supplemented_by: corpus/01_car_comprehensive_policy_2024 → corpus/03_car_general_terms",
+        "- Marketing document corpus/09_marketing_brochure_car: marketing only; binding terms are the policy conditions and service riders (see evidence in the manifest)."
+      ]
+    },
+    {
+      "id": "M-event-only-accident",
+      "ok": true,
+      "failures": [],
+      "status": "answered",
+      "answer": "ההשתתפות העצמית בתאונה ברכב מקיף במוסך הסדר בשנת 2026 היא 1,100 ₪. סכום זה צמוד למדד המחירים לצרכן הידוע ביום 1.3.2026.",
+      "cited": [
+        "corpus/02_car_comprehensive_policy_2026:c000"
+      ],
+      "contextDocIds": [
+        "corpus/01_car_comprehensive_policy_2024",
+        "corpus/08_replacement_car",
+        "corpus/02_car_comprehensive_policy_2026",
+        "corpus/18_claims_process_car",
+        "corpus/03_car_general_terms"
+      ],
+      "applicability": [
+        "Applicability and document-relationship summary (source-based metadata — not a substitute for source text):",
+        "- Family car_comprehensive_policy: cannot decide version (event_date_without_issue_or_renewal). Alternatives: corpus/01_car_comprehensive_policy_2024, corpus/02_car_comprehensive_policy_2026. Evidence: corpus/01_car_comprehensive_policy_2024:c000, corpus/02_car_comprehensive_policy_2026:c000",
+        "- Family car_general_terms: cannot decide version (no_machine_rule). Alternatives: corpus/03_car_general_terms. Evidence: corpus/03_car_general_terms:c000",
+        "- Relationship superseded_by: corpus/01_car_comprehensive_policy_2024 → corpus/02_car_comprehensive_policy_2026",
+        "- Relationship supplemented_by: corpus/01_car_comprehensive_policy_2024 → corpus/03_car_general_terms",
+        "- Relationship supersedes: corpus/02_car_comprehensive_policy_2026 → corpus/01_car_comprehensive_policy_2024",
+        "- Relationship supplemented_by: corpus/02_car_comprehensive_policy_2026 → corpus/03_car_general_terms",
+        "- Marketing document corpus/09_marketing_brochure_car: marketing only; binding terms are the policy conditions and service riders (see evidence in the manifest)."
+      ],
+      "notes": "Event date must not be treated as issue date"
+    },
+    {
+      "id": "R-home-cash-after-car",
+      "ok": true,
+      "failures": [],
+      "status": "answered",
+      "answer": "תקרת הכיסוי למזומנים בביטוח תכולת דירה של אופק ביטוח היא 2,000 ₪.",
+      "cited": [
+        "corpus/12_home_contents_limits:c000"
+      ],
+      "contextDocIds": [
+        "corpus/12_home_contents_limits",
+        "corpus/11_home_water_damage",
+        "corpus/13_home_earthquake_annex",
+        "corpus/10_home_policy_overview",
+        "corpus/03_car_general_terms"
+      ],
+      "standaloneQuestion": "מהי תקרת הכיסוי למזומנים בביטוח תכולת דירה של אופק ביטוח?",
+      "retrieved": [
+        {
+          "chunkId": "corpus/12_home_contents_limits:c000",
+          "documentId": "corpus/12_home_contents_limits",
+          "score": 0.03252247488101534,
+          "semanticRank": 2,
+          "lexicalRank": 1
+        },
+        {
+          "chunkId": "corpus/11_home_water_damage:c000",
+          "documentId": "corpus/11_home_water_damage",
+          "score": 0.03200204813108039,
+          "semanticRank": 3,
+          "lexicalRank": 2
+        },
+        {
+          "chunkId": "corpus/13_home_earthquake_annex:c000",
+          "documentId": "corpus/13_home_earthquake_annex",
+          "score": 0.030776515151515152,
+          "semanticRank": 4,
+          "lexicalRank": 6
+        },
+        {
+          "chunkId": "corpus/10_home_policy_overview:c000",
+          "documentId": "corpus/10_home_policy_overview",
+          "score": 0.03047794966520434,
+          "semanticRank": 1,
+          "lexicalRank": 11
+        },
+        {
+          "chunkId": "corpus/03_car_general_terms:c006",
+          "documentId": "corpus/03_car_general_terms",
+          "score": 0.030330882352941176,
+          "semanticRank": 8,
+          "lexicalRank": 4
+        }
+      ],
+      "notes": "lex@5=true vec@5=true hybrid@5=true; lexHits=corpus/12_home_contents_limits|corpus/11_home_water_damage|corpus/20_forms_catalog|corpus/03_car_general_terms|corpus/01_car_comprehensive_policy_2024"
+    },
+    {
+      "id": "R-agent-clawback-he-en",
+      "ok": true,
+      "failures": [],
+      "status": "answered",
+      "answer": "אם הלקוח ביטל את הפוליסה ביום ה-130, לפי נוהל ביטול פוליסה של אופק ביטוח, העמלה שכבר שולמה לך תיחשב להחזר חלקי (clawback) באופן פרופורציונלי (pro-rata) כי הביטול נעשה בין 121 ימים ל-12 חודשים ממועד הרכישה. כלומר, לא כל העמלה תחזור, אלא חלק יחסי לתקופה שנותרה בפוליסה.\n\nאם הביטול היה ביום ה-100, כלומר בתוך 120 ימים ממועד הרכישה, אזי כל העמלה שניתנה תחזור (clawback מלא).",
+      "cited": [
+        "corpus/30_agent_faq_en:c000"
+      ],
+      "contextDocIds": [
+        "corpus/30_agent_faq_en",
+        "corpus/22_cancellation_procedure_2023",
+        "corpus/03_car_general_terms",
+        "corpus/23_cancellation_procedure_update_2025",
+        "corpus/27_customer_complaints"
+      ],
+      "standaloneQuestion": "אני סוכן ביטוח. לקוח ביטל פוליסה ביום ה-130. מה קורה לעמלה שכבר שולמה לי — agent commission clawback? איני שואל על דמי הטיפול של הלקוח. מה הכלל ומה היה משתנה בביטול ביום ה-100?",
+      "retrieved": [
+        {
+          "chunkId": "corpus/30_agent_faq_en:c000",
+          "documentId": "corpus/30_agent_faq_en",
+          "score": 0.03252247488101534,
+          "semanticRank": 2,
+          "lexicalRank": 1
+        },
+        {
+          "chunkId": "corpus/22_cancellation_procedure_2023:c000",
+          "documentId": "corpus/22_cancellation_procedure_2023",
+          "score": 0.031009615384615385,
+          "semanticRank": 5,
+          "lexicalRank": 4
+        },
+        {
+          "chunkId": "corpus/03_car_general_terms:c004",
+          "documentId": "corpus/03_car_general_terms",
+          "score": 0.03028233151183971,
+          "semanticRank": 1,
+          "lexicalRank": 12
+        },
+        {
+          "chunkId": "corpus/23_cancellation_procedure_update_2025:c000",
+          "documentId": "corpus/23_cancellation_procedure_update_2025",
+          "score": 0.030017921146953404,
+          "semanticRank": 12,
+          "lexicalRank": 2
+        },
+        {
+          "chunkId": "corpus/27_customer_complaints:c000",
+          "documentId": "corpus/27_customer_complaints",
+          "score": 0.02967032967032967,
+          "semanticRank": 10,
+          "lexicalRank": 5
+        }
+      ],
+      "notes": "lex@5=true vec@5=true hybrid@5=true; lexHits=corpus/30_agent_faq_en|corpus/23_cancellation_procedure_update_2025|corpus/33_customer_identification|corpus/22_cancellation_procedure_2023|corpus/27_customer_complaints"
+    },
+    {
+      "id": "R-agent-clawback-he",
+      "ok": false,
+      "failures": [
+        "target 30_agent_faq_en missing from hybrid R@5"
+      ],
+      "status": "clarification_needed",
+      "answer": "האם תוכל לציין באיזו פוליסה מדובר או מתי נרכשה הפוליסה? כדי לקבוע מה קורה לעמלה שלך ביום ה-100 וה-130 לאחר ביטול, יש צורך לדעת את מועד הרכישה או סוג הפוליסה, שכן חישוב ההחזר ודמי הטיפול משתנים בהתאם לעדכון שנכנס לתוקף מ-1.1.2025.",
+      "cited": [],
+      "contextDocIds": [
+        "corpus/27_customer_complaints",
+        "corpus/23_cancellation_procedure_update_2025",
+        "corpus/19_claims_process_home",
+        "corpus/18_claims_process_car",
+        "corpus/03_car_general_terms",
+        "corpus/22_cancellation_procedure_2023"
+      ],
+      "standaloneQuestion": "אני סוכן. לקוח ביטל ביום ה-130 מה קורה לעמלה שלי? ומה ביום ה-100? לא שואל על דמי טיפול ללקוח.",
+      "retrieved": [
+        {
+          "chunkId": "corpus/27_customer_complaints:c000",
+          "documentId": "corpus/27_customer_complaints",
+          "score": 0.03225806451612903,
+          "semanticRank": 2,
+          "lexicalRank": 2
+        },
+        {
+          "chunkId": "corpus/23_cancellation_procedure_update_2025:c000",
+          "documentId": "corpus/23_cancellation_procedure_update_2025",
+          "score": 0.03149801587301587,
+          "semanticRank": 4,
+          "lexicalRank": 3
+        },
+        {
+          "chunkId": "corpus/19_claims_process_home:c000",
+          "documentId": "corpus/19_claims_process_home",
+          "score": 0.031099324975891997,
+          "semanticRank": 1,
+          "lexicalRank": 8
+        },
+        {
+          "chunkId": "corpus/18_claims_process_car:c000",
+          "documentId": "corpus/18_claims_process_car",
+          "score": 0.03007688828584351,
+          "semanticRank": 7,
+          "lexicalRank": 6
+        },
+        {
+          "chunkId": "corpus/03_car_general_terms:c004",
+          "documentId": "corpus/03_car_general_terms",
+          "score": 0.029418126757516764,
+          "semanticRank": 9,
+          "lexicalRank": 7
+        }
+      ],
+      "notes": "lex@5=true vec@5=false hybrid@5=false; lexHits=corpus/30_agent_faq_en|corpus/27_customer_complaints|corpus/23_cancellation_procedure_update_2025|corpus/22_cancellation_procedure_2023|corpus/33_customer_identification"
+    },
+    {
+      "id": "R-customer-fee-control",
+      "ok": true,
+      "failures": [],
+      "status": "answered",
+      "answer": "לקוח שמבטל פוליסה 30 יום אחרי הרכישה ב-2026 ללא תביעה יקבל החזר מחושב באופן יחסי לתקופה שנותרה עד תום תקופת הביטוח (pro-rata). דמי הטיפול על ההחזר הם 3% מסכום ההחזר, אך לא יותר מ-150 ₪.",
+      "cited": [
+        "corpus/23_cancellation_procedure_update_2025:c000"
+      ],
+      "contextDocIds": [
+        "corpus/23_cancellation_procedure_update_2025",
+        "corpus/22_cancellation_procedure_2023",
+        "corpus/21_claims_sla",
+        "corpus/27_customer_complaints",
+        "corpus/32_fraud_red_flags"
+      ]
+    },
+    {
+      "id": "S-hours",
+      "ok": true,
+      "failures": [],
+      "status": "answered",
+      "answer": "שעות הפעילות של מוקד שירות הלקוחות ביום שישי הן מ-08:00 עד 12:00.",
+      "cited": [
+        "corpus/28_call_center_hours:c000"
+      ]
+    },
+    {
+      "id": "S-4401",
+      "ok": true,
+      "failures": [],
+      "status": "answered",
+      "answer": "בקשת ביטול פוליסה מוגשת בטופס מספר 4401, או בשיחה מוקלטת במוקד לאחר זיהוי מלא.\n\nבטופס 4401 משתמשים כאשר הלקוח מבקש לבטל את הפוליסה ביוזמתו, והוא מתאים לכל קו מוצר.",
+      "cited": [
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/20_forms_catalog:c001"
+      ]
+    },
+    {
+      "id": "S-cancel-2025",
+      "ok": true,
+      "failures": [],
+      "status": "answered",
+      "answer": "אם מבטלים את הפוליסה אחרי יותר מ-14 יום מהרכישה בשנת 2026 וללא הגשת תביעה, דמי הטיפול הם 3% מסכום ההחזר, אך לא יותר מ-150 ₪.",
+      "cited": [
+        "corpus/23_cancellation_procedure_update_2025:c000"
+      ]
+    },
+    {
+      "id": "S-replacement",
+      "ok": true,
+      "failures": [],
+      "status": "answered",
+      "answer": "רכב חלופי ניתן רק למבוטחים שרכשו כתב שירות רכב חלופי, והוא אינו חלק מהכיסוי הבסיסי בפוליסת מקיף. רכב חלופי ניתן לכל תקופת התיקון רק אם התיקון נעשה במוסך הסדר, ולתקופה מקסימלית של עד 21 ימים במקרה של תאונה. במקרה של גניבה או אובדן גמור, ניתן רכב חלופי עד 30 ימים. במקרה של תקלה מכנית, רכב חלופי אינו ניתן כלל. בנוסף, אם התאונה התיקון נעשה במוסך שאינו מוסך הסדר, לא יינתן רכב חלופי.\n\nבעלון השיווק של אופק ביטוח מצוין כי יש רכב חלופי לכל תקופת התיקון ללא הגבלות, אך מדובר במידע שיווקי בלבד והתנאים המחייבים הם תנאי הפוליסה וכתבי השירות שנרכשו.",
+      "cited": [
+        "corpus/08_replacement_car:c000",
+        "corpus/09_marketing_brochure_car:c000"
+      ]
+    },
+    {
+      "id": "S-pets",
+      "ok": true,
+      "failures": [],
+      "status": "insufficient_evidence",
+      "answer": "לא מצאתי במקורות שסופקו מידע מספיק כדי לענות על השאלה.",
+      "cited": []
+    }
+  ]
+}

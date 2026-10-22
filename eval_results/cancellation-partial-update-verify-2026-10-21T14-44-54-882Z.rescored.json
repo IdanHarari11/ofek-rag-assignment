@@ -1,0 +1,270 @@
+{
+  "generatedAt": "2026-10-21T14:44:54.882Z",
+  "activeModelRequested": "gpt-4.1-mini",
+  "envGenerationModel": "gpt-4.1-mini",
+  "answerReviewEnabled": false,
+  "rows": [
+    {
+      "id": "C-within-10-days-2026",
+      "run": 0,
+      "status": "answered",
+      "ok": true,
+      "failures": [],
+      "answer": "אם מבטלים פוליסה בשנת 2026 בתוך 14 יום ממועד הרכישה ולא הוגשה תביעה, הלקוח יקבל החזר מלא של דמי הביטוח ששילם ללא ניכוי דמי טיפול.\n\nההחזר מחושב באופן יחסי לתקופה שנותרה עד תום תקופת הביטוח (pro-rata).\n\nדמי הטיפול במקרה ביטול לאחר 14 יום או במקרים אחרים הם 3% מסכום ההחזר, ולא יותר מ-150 ₪, אך במקרה שלך, בתוך 14 יום וללא תביעה, אין ניכוי דמי טיפול.",
+      "cited": [
+        "corpus/23_cancellation_procedure_update_2025:c000"
+      ],
+      "contextIds": [
+        "corpus/23_cancellation_procedure_update_2025:c000",
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/21_claims_sla:c000",
+        "corpus/02_car_comprehensive_policy_2026:c000",
+        "corpus/15_travel_preexisting_conditions:c000",
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c009"
+      ],
+      "applicability": [
+        "Applicability and document-relationship summary (source-based metadata — not a substitute for source text):",
+        "- Family car_comprehensive_policy: cannot decide version (missing_issue_or_renewal_date). Alternatives: corpus/01_car_comprehensive_policy_2024, corpus/02_car_comprehensive_policy_2026. Evidence: corpus/01_car_comprehensive_policy_2024:c000, corpus/02_car_comprehensive_policy_2026:c000",
+        "- Family cancellation_procedure: partial update — use corpus/23_cancellation_procedure_update_2025 for replaced sections; keep corpus/22_cancellation_procedure_2023 for unreplaced sections (partial_update_keep_base_and_update). Replaced section(s): חישוב ההחזר. Do not apply superseded section wording as the current rule. Evidence: corpus/22_cancellation_procedure_2023:c000, corpus/23_cancellation_procedure_update_2025:c000, corpus/23_cancellation_procedure_update_2025:c000",
+        "- Relationship partially_updates: corpus/23_cancellation_procedure_update_2025 → corpus/22_cancellation_procedure_2023 sections: חישוב ההחזר",
+        "- Relationship partially_updated_by: corpus/22_cancellation_procedure_2023 → corpus/23_cancellation_procedure_update_2025 sections: חישוב ההחזר",
+        "- Relationship supersedes: corpus/02_car_comprehensive_policy_2026 → corpus/01_car_comprehensive_policy_2024",
+        "- Relationship supplemented_by: corpus/02_car_comprehensive_policy_2026 → corpus/03_car_general_terms",
+        "- Relationship superseded_by: corpus/01_car_comprehensive_policy_2024 → corpus/02_car_comprehensive_policy_2026",
+        "- Relationship supplemented_by: corpus/01_car_comprehensive_policy_2024 → corpus/03_car_general_terms",
+        "- Marketing document corpus/09_marketing_brochure_car: marketing only; binding terms are the policy conditions and service riders (see evidence in the manifest)."
+      ],
+      "modelReturned": "gpt-4.1-mini-2025-04-14",
+      "referenceNotes": "Within 14 days from purchase, no claim → full refund, no handling fee (2025 update).",
+      "rescoredOffline": true
+    },
+    {
+      "id": "C-after-14-days-2026",
+      "run": 0,
+      "status": "answered",
+      "ok": true,
+      "failures": [],
+      "answer": "אם מבטלים פוליסה בשנת 2026, שלושים ימים אחרי מועד הרכישה, ללא תביעה, דמי הטיפול בהחזר הם 3% מסכום ההחזר, ולא יותר מ-150 ₪. ההחזר מחושב באופן יחסי לתקופה שנותרה עד תום תקופת הביטוח (pro-rata).",
+      "cited": [
+        "corpus/23_cancellation_procedure_update_2025:c000"
+      ],
+      "contextIds": [
+        "corpus/23_cancellation_procedure_update_2025:c000",
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/02_car_comprehensive_policy_2026:c000",
+        "corpus/21_claims_sla:c000",
+        "corpus/27_customer_complaints:c000",
+        "corpus/01_car_comprehensive_policy_2024:c000",
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c009"
+      ],
+      "applicability": [
+        "Applicability and document-relationship summary (source-based metadata — not a substitute for source text):",
+        "- Family car_comprehensive_policy: cannot decide version (missing_issue_or_renewal_date). Alternatives: corpus/01_car_comprehensive_policy_2024, corpus/02_car_comprehensive_policy_2026. Evidence: corpus/01_car_comprehensive_policy_2024:c000, corpus/02_car_comprehensive_policy_2026:c000",
+        "- Family cancellation_procedure: partial update — use corpus/23_cancellation_procedure_update_2025 for replaced sections; keep corpus/22_cancellation_procedure_2023 for unreplaced sections (partial_update_keep_base_and_update). Replaced section(s): חישוב ההחזר. Do not apply superseded section wording as the current rule. Evidence: corpus/22_cancellation_procedure_2023:c000, corpus/23_cancellation_procedure_update_2025:c000, corpus/23_cancellation_procedure_update_2025:c000",
+        "- Relationship partially_updates: corpus/23_cancellation_procedure_update_2025 → corpus/22_cancellation_procedure_2023 sections: חישוב ההחזר",
+        "- Relationship partially_updated_by: corpus/22_cancellation_procedure_2023 → corpus/23_cancellation_procedure_update_2025 sections: חישוב ההחזר",
+        "- Relationship supersedes: corpus/02_car_comprehensive_policy_2026 → corpus/01_car_comprehensive_policy_2024",
+        "- Relationship supplemented_by: corpus/02_car_comprehensive_policy_2026 → corpus/03_car_general_terms",
+        "- Relationship superseded_by: corpus/01_car_comprehensive_policy_2024 → corpus/02_car_comprehensive_policy_2026",
+        "- Relationship supplemented_by: corpus/01_car_comprehensive_policy_2024 → corpus/03_car_general_terms",
+        "- Marketing document corpus/09_marketing_brochure_car: marketing only; binding terms are the policy conditions and service riders (see evidence in the manifest)."
+      ],
+      "modelReturned": "gpt-4.1-mini-2025-04-14",
+      "referenceNotes": "After 14 days → pro-rata + 3% capped at 150 ₪ (not 5%).",
+      "rescoredOffline": true
+    },
+    {
+      "id": "C-compare-both",
+      "run": 0,
+      "status": "answered",
+      "ok": true,
+      "failures": [],
+      "answer": "אם מבטלים פוליסה בשנת 2026 בתוך 14 יום ממועד הרכישה ולא הוגשה תביעה, הלקוח יקבל החזר מלא של דמי הביטוח ששילם ללא דמי טיפול. ההחזר מחושב באופן יחסי (pro-rata).\n\nאם הביטול נעשה אחרי 14 יום ממועד הרכישה, דמי הטיפול יהיו 3% מסכום ההחזר, אך לא יותר מ-150 ₪. יש להדגיש כי כלל דמי הטיפול הישן של 5% אינו חל יותר.",
+      "cited": [
+        "corpus/23_cancellation_procedure_update_2025:c000"
+      ],
+      "contextIds": [
+        "corpus/23_cancellation_procedure_update_2025:c000",
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/27_customer_complaints:c000",
+        "corpus/21_claims_sla:c000",
+        "corpus/19_claims_process_home:c000"
+      ],
+      "applicability": [
+        "Applicability and document-relationship summary (source-based metadata — not a substitute for source text):",
+        "- Family cancellation_procedure: partial update — use corpus/23_cancellation_procedure_update_2025 for replaced sections; keep corpus/22_cancellation_procedure_2023 for unreplaced sections (partial_update_keep_base_and_update). Replaced section(s): חישוב ההחזר. Do not apply superseded section wording as the current rule. Evidence: corpus/22_cancellation_procedure_2023:c000, corpus/23_cancellation_procedure_update_2025:c000, corpus/23_cancellation_procedure_update_2025:c000",
+        "- Relationship partially_updates: corpus/23_cancellation_procedure_update_2025 → corpus/22_cancellation_procedure_2023 sections: חישוב ההחזר",
+        "- Relationship partially_updated_by: corpus/22_cancellation_procedure_2023 → corpus/23_cancellation_procedure_update_2025 sections: חישוב ההחזר",
+        "- Marketing document corpus/09_marketing_brochure_car: marketing only; binding terms are the policy conditions and service riders (see evidence in the manifest)."
+      ],
+      "modelReturned": "gpt-4.1-mini-2025-04-14",
+      "referenceNotes": "Must contrast no-fee cooling-off vs 3%/150 after 14 days; 5% only if clearly historical.",
+      "rescoredOffline": true
+    },
+    {
+      "id": "C-compare-both",
+      "run": 1,
+      "status": "answered",
+      "ok": true,
+      "failures": [],
+      "answer": "אם מבטלים פוליסה בשנת 2026 בתוך 14 יום ממועד הרכישה ולא הוגשה תביעה, הלקוח יקבל החזר מלא של דמי הביטוח ששילם ללא דמי טיפול. ההחזר מחושב באופן יחסי (pro-rata).\n\nאם הביטול נעשה אחרי 14 יום ממועד הרכישה, דמי הטיפול הם 3% מסכום ההחזר, אך לא יותר מ-150 ₪. אין להשתמש בכלל הישן של 5% כדמי טיפול.",
+      "cited": [
+        "corpus/23_cancellation_procedure_update_2025:c000"
+      ],
+      "contextIds": [
+        "corpus/23_cancellation_procedure_update_2025:c000",
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/27_customer_complaints:c000",
+        "corpus/21_claims_sla:c000",
+        "corpus/19_claims_process_home:c000"
+      ],
+      "applicability": [
+        "Applicability and document-relationship summary (source-based metadata — not a substitute for source text):",
+        "- Family cancellation_procedure: partial update — use corpus/23_cancellation_procedure_update_2025 for replaced sections; keep corpus/22_cancellation_procedure_2023 for unreplaced sections (partial_update_keep_base_and_update). Replaced section(s): חישוב ההחזר. Do not apply superseded section wording as the current rule. Evidence: corpus/22_cancellation_procedure_2023:c000, corpus/23_cancellation_procedure_update_2025:c000, corpus/23_cancellation_procedure_update_2025:c000",
+        "- Relationship partially_updates: corpus/23_cancellation_procedure_update_2025 → corpus/22_cancellation_procedure_2023 sections: חישוב ההחזר",
+        "- Relationship partially_updated_by: corpus/22_cancellation_procedure_2023 → corpus/23_cancellation_procedure_update_2025 sections: חישוב ההחזר",
+        "- Marketing document corpus/09_marketing_brochure_car: marketing only; binding terms are the policy conditions and service riders (see evidence in the manifest)."
+      ],
+      "modelReturned": "gpt-4.1-mini-2025-04-14",
+      "referenceNotes": "Must contrast no-fee cooling-off vs 3%/150 after 14 days; 5% only if clearly historical.",
+      "rescoredOffline": true
+    },
+    {
+      "id": "C-compare-both",
+      "run": 2,
+      "status": "answered",
+      "ok": true,
+      "failures": [],
+      "answer": "אם מבטלים פוליסה בשנת 2026 בתוך 14 יום ממועד הרכישה ולא הוגשה תביעה, הלקוח יקבל החזר מלא של דמי הביטוח ששילם ללא דמי טיפול. ההחזר מחושב באופן יחסי (pro-rata).\n\nאם הביטול נעשה אחרי 14 יום ממועד הרכישה, דמי הטיפול יהיו 3% מסכום ההחזר, אך לא יותר מ-150 ₪.",
+      "cited": [
+        "corpus/23_cancellation_procedure_update_2025:c000"
+      ],
+      "contextIds": [
+        "corpus/23_cancellation_procedure_update_2025:c000",
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/27_customer_complaints:c000",
+        "corpus/21_claims_sla:c000",
+        "corpus/19_claims_process_home:c000"
+      ],
+      "applicability": [
+        "Applicability and document-relationship summary (source-based metadata — not a substitute for source text):",
+        "- Family cancellation_procedure: partial update — use corpus/23_cancellation_procedure_update_2025 for replaced sections; keep corpus/22_cancellation_procedure_2023 for unreplaced sections (partial_update_keep_base_and_update). Replaced section(s): חישוב ההחזר. Do not apply superseded section wording as the current rule. Evidence: corpus/22_cancellation_procedure_2023:c000, corpus/23_cancellation_procedure_update_2025:c000, corpus/23_cancellation_procedure_update_2025:c000",
+        "- Relationship partially_updates: corpus/23_cancellation_procedure_update_2025 → corpus/22_cancellation_procedure_2023 sections: חישוב ההחזר",
+        "- Relationship partially_updated_by: corpus/22_cancellation_procedure_2023 → corpus/23_cancellation_procedure_update_2025 sections: חישוב ההחזר",
+        "- Marketing document corpus/09_marketing_brochure_car: marketing only; binding terms are the policy conditions and service riders (see evidence in the manifest)."
+      ],
+      "modelReturned": "gpt-4.1-mini-2025-04-14",
+      "referenceNotes": "Must contrast no-fee cooling-off vs 3%/150 after 14 days; 5% only if clearly historical.",
+      "rescoredOffline": true
+    },
+    {
+      "id": "C-unreplaced-rule",
+      "run": 0,
+      "status": "answered",
+      "ok": true,
+      "failures": [],
+      "answer": "בקשת ביטול פוליסה מוגשת בטופס 4401, או בשיחה מוקלטת במוקד לאחר זיהוי מלא.\n\nמעבר לסעיף חישוב ההחזר שעודכן ב-2025, שאר הוראות נוהל הביטול מ-2023 נותרו בתוקף.",
+      "cited": [
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/23_cancellation_procedure_update_2025:c000"
+      ],
+      "contextIds": [
+        "corpus/23_cancellation_procedure_update_2025:c000",
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/18_claims_process_car:c000",
+        "corpus/19_claims_process_home:c000",
+        "corpus/03_car_general_terms:c013",
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c009",
+        "corpus/03_car_general_terms:c010",
+        "corpus/03_car_general_terms:c011",
+        "corpus/03_car_general_terms:c012"
+      ],
+      "applicability": [
+        "Applicability and document-relationship summary (source-based metadata — not a substitute for source text):",
+        "- Family car_general_terms: cannot decide version (no_machine_rule). Alternatives: corpus/03_car_general_terms. Evidence: corpus/03_car_general_terms:c000",
+        "- Family cancellation_procedure: partial update — use corpus/23_cancellation_procedure_update_2025 for replaced sections; keep corpus/22_cancellation_procedure_2023 for unreplaced sections (partial_update_keep_base_and_update). Replaced section(s): חישוב ההחזר. Do not apply superseded section wording as the current rule. Evidence: corpus/22_cancellation_procedure_2023:c000, corpus/23_cancellation_procedure_update_2025:c000, corpus/23_cancellation_procedure_update_2025:c000",
+        "- Relationship partially_updates: corpus/23_cancellation_procedure_update_2025 → corpus/22_cancellation_procedure_2023 sections: חישוב ההחזר",
+        "- Relationship partially_updated_by: corpus/22_cancellation_procedure_2023 → corpus/23_cancellation_procedure_update_2025 sections: חישוב ההחזר",
+        "- Marketing document corpus/09_marketing_brochure_car: marketing only; binding terms are the policy conditions and service riders (see evidence in the manifest)."
+      ],
+      "modelReturned": "gpt-4.1-mini-2025-04-14",
+      "referenceNotes": "Form 4401 / cancel anytime — unreplaced 2023 rules still apply.",
+      "rescoredOffline": true
+    },
+    {
+      "id": "C-start-vs-purchase",
+      "run": 0,
+      "status": "answered",
+      "ok": false,
+      "failures": [
+        "missing explicit gap between תחילת הביטוח and מועד הרכישה"
+      ],
+      "answer": "אם אתה מבטל את הפוליסה בשנת 2026, עשרה ימים אחרי תחילת הביטוח, ולא הייתה תביעה, אז לפי נוהל הביטול המעודכן החל מ-1.1.2025, לא ינוכו דמי טיפול אם הביטול נעשה בתוך 14 יום ממועד הרכישה. כלומר, במקרה שלך, מאחר והביטול נעשה בתוך 14 יום, תקבל החזר מלא של דמי הביטוח ששילמת ללא ניכוי דמי טיפול.\n\nהחלק של נוהל הביטול הישן (2023) שעדיין בתוקף הוא כל ההוראות מלבד סעיף חישוב ההחזר, שנחלף בעדכון מ-2025. כלומר, שאר ההוראות בנוהל 2023, כמו אופן הגשת בקשת הביטול, תקפות גם במקרה שלך.",
+      "cited": [
+        "corpus/23_cancellation_procedure_update_2025:c000",
+        "corpus/22_cancellation_procedure_2023:c000"
+      ],
+      "contextIds": [
+        "corpus/23_cancellation_procedure_update_2025:c000",
+        "corpus/22_cancellation_procedure_2023:c000",
+        "corpus/03_car_general_terms:c013",
+        "corpus/03_car_general_terms:c014",
+        "corpus/03_car_general_terms:c004",
+        "corpus/03_car_general_terms:c000",
+        "corpus/03_car_general_terms:c001",
+        "corpus/03_car_general_terms:c002",
+        "corpus/03_car_general_terms:c003",
+        "corpus/03_car_general_terms:c005",
+        "corpus/03_car_general_terms:c006",
+        "corpus/03_car_general_terms:c007",
+        "corpus/03_car_general_terms:c008",
+        "corpus/03_car_general_terms:c009",
+        "corpus/03_car_general_terms:c010",
+        "corpus/03_car_general_terms:c011",
+        "corpus/03_car_general_terms:c012",
+        "corpus/03_car_general_terms:c015"
+      ],
+      "applicability": [
+        "Applicability and document-relationship summary (source-based metadata — not a substitute for source text):",
+        "- Family car_general_terms: cannot decide version (no_machine_rule). Alternatives: corpus/03_car_general_terms. Evidence: corpus/03_car_general_terms:c000",
+        "- Family cancellation_procedure: partial update — use corpus/23_cancellation_procedure_update_2025 for replaced sections; keep corpus/22_cancellation_procedure_2023 for unreplaced sections (partial_update_keep_base_and_update). Replaced section(s): חישוב ההחזר. Do not apply superseded section wording as the current rule. Evidence: corpus/22_cancellation_procedure_2023:c000, corpus/23_cancellation_procedure_update_2025:c000, corpus/23_cancellation_procedure_update_2025:c000",
+        "- Relationship partially_updates: corpus/23_cancellation_procedure_update_2025 → corpus/22_cancellation_procedure_2023 sections: חישוב ההחזר",
+        "- Relationship partially_updated_by: corpus/22_cancellation_procedure_2023 → corpus/23_cancellation_procedure_update_2025 sections: חישוב ההחזר",
+        "- Marketing document corpus/09_marketing_brochure_car: marketing only; binding terms are the policy conditions and service riders (see evidence in the manifest)."
+      ],
+      "modelReturned": "gpt-4.1-mini-2025-04-14",
+      "referenceNotes": "Must not invent a purchase date; must note the source clock is מועד הרכישה vs user תחילת הביטוח; current fee rules from 2025 update.",
+      "rescoredOffline": true
+    }
+  ],
+  "rescoredAt": "2026-10-22T07:12:29.630Z",
+  "note": "Offline rescore of saved answers with updated evaluator patterns; no new model calls."
+}

@@ -12,8 +12,9 @@ import { menuContentClass, menuItemClass } from "./styles";
 import { Thread } from "./thread";
 import { ThreadRenameInput } from "./thread-rename-input";
 import {
+  getThreadCommands,
   getThreadShortcut,
-  threadCommands,
+  useIsApplePlatform,
   type ThreadCommand,
 } from "./thread-shortcuts";
 
@@ -276,6 +277,7 @@ function DemoMenu({
   persisted: boolean;
 }): ReactNode {
   const pendingCommand = useRef<ThreadCommand | null>(null);
+  const commands = getThreadCommands(useIsApplePlatform());
   return (
     <Menu.Root
       onOpenChange={(open) => {
@@ -311,7 +313,7 @@ function DemoMenu({
               pendingCommand.current !== "composer"
             }
           >
-            {threadCommands.map((command) => (
+            {commands.map((command) => (
               <Menu.Item
                 key={command.id}
                 className={cn(menuItemClass, "justify-between gap-6")}

@@ -1,6 +1,8 @@
 # Evaluation summary report
 
-> **Stage 7 note:** Developer prose in this file is in English. Historical run artifacts under `eval_results/*.json` and per-run `*.md` reports are **unchanged** (Hebrew answers and original wording preserved). After English prompt translation, `promptBundleId` may differ from `docs/stage6-config-freeze.md`; re-run **`pnpm eval:ask-stage6-extended`** (and related) on the **same** frozen holdout for **regression** — not as a new unseen set.
+> **Final submission (2026-10-22):** Use **[`docs/submission-final-evaluation-2026-10-22.md`](submission-final-evaluation-2026-10-22.md)** and [`docs/submission-config-freeze-2026-10-22.md`](submission-config-freeze-2026-10-22.md) as the authoritative frozen-config results. This file remains an **index of historical runs** — do not treat Stage 4/5/6/7 numbers below as the final Hybrid+aliases configuration.
+
+> **Stage 7 note:** Developer prose in this file is in English. Historical run artifacts under `eval_results/*.json` and per-run `*.md` reports are **unchanged** (Hebrew answers and original wording preserved).
 
 One readable report pointing to detailed artifacts. **Do not mix runs** — every figure names its source run. **No pooled average** that hides differences between evaluation groups.
 

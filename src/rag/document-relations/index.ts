@@ -31,6 +31,22 @@ export {
   demotedDocumentIds,
 } from "./resolve";
 export {
+  countPolicyIssueAnchors,
+  isMultiScenarioInSingleText,
+  isMultiScenarioPolicyComparison,
+} from "./multi-scenario";
+export { verifiedVersionLabel } from "./version-label";
+export {
   buildEnrichedGenerationContext,
 } from "./enrich-context";
 export type { EnrichedContextBuildResult, EnrichContextOptions } from "./enrich-context";
+export {
+  annotateChunksForPartialUpdates,
+  collectPartialUpdateBindings,
+  wrapSupersededSection,
+} from "./annotate-partial-updates";
+export type { PartialUpdateSectionBinding } from "./annotate-partial-updates";
+export {
+  VERIFIED_PARTIAL_UPDATE_SECTION_SPANS,
+  findVerifiedSpan,
+} from "./section-spans";

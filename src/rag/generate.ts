@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import type { ChatCompletion } from "openai/resources/chat/completions";
 import { getOpenAiApiKey, loadEnv } from "./env";
 import type {
   AnswerPart,
@@ -8,7 +9,18 @@ import type {
 } from "./ask-types";
 import { GenerationSystemError } from "./ask-types";
 import { formatContextForPrompt } from "./context-builder";
+import { annotateChunksForPartialUpdates } from "./document-relations/annotate-partial-updates";
 import type { ApplicabilitySummary } from "./document-relations/types";
+import {
+  chatCompletionSamplingForModel,
+  toChatCompletionRequestFields,
+  type ChatCompletionSamplingProfile,
+  type ReasoningEffort,
+} from "./model-request-params";
+import {
+  formatComputedTemporalFactsForPrompt,
+  type ComputedTemporalFacts,
+} from "./temporal";
 
 /** Default chat model for Hebrew grounded answers (OpenAI GPT-4.1 mini). */
 export const DEFAULT_GENERATION_MODEL = "gpt-4.1-mini";
@@ -17,6 +29,8 @@ export const GENERATION_MODEL_NOTES = [
   "Default GENERATION_MODEL=gpt-4.1-mini — documented OpenAI model with strong instruction following,",
   "structured output support, and solid Hebrew capability at moderate cost/latency.",
   "Override via GENERATION_MODEL in .env. Not a guarantee of perfect Hebrew JSON; server validates.",
+  "Sampling params are model-family-aware (see model-request-params.ts): classic models keep temperature:0;",
+  "GPT-5 / gpt-5.6-terra omit temperature and may send reasoning_effort (default medium). No silent model fallback.",
 ] as const;
 
 const ANSWER_JSON_SCHEMA = {
@@ -85,6 +99,21 @@ export function buildSystemPrompt(allowedIds: string[]): string {
     "   When a version is selected in the summary — answer accordingly; do not present an alternate version as applying to the same case.",
     "   There is no rule that \"newest always wins\". A partial update replaces only the sections marked as updated.",
     "   An event date alone does not prove an issue or renewal date.",
+    "10. Time bases (clocks): distinguish the event a source uses to count a period from the event/date the user stated.",
+    "   Do not automatically equate purchase, issue/issuance, insurance start, renewal, loss/damage event, or request-filing dates.",
+    "   If the user named a different clock than the source (e.g. insurance start vs purchase), say so explicitly;",
+    "   do not treat the user's interval on clock A as satisfying a source window on clock B.",
+    "   When the user gives calendar dates, count elapsed days against the source's own clock before choosing a branch.",
+    "   When a missing clock or date would change which source branch applies: name exactly what is missing and why it matters;",
+    "   you may explain source-supported conditional branches; do not decide the user's specific eligibility on an unspoken assumption;",
+    "   do not re-ask for facts already provided in the question or history.",
+    "   Choose status per this contract: use clarification_needed when you must obtain the missing clock to decide the user's case;",
+    "   if status=answered with conditionals, do not present those branches as a final determination for the user's case.",
+    "11. When a \"Computed temporal facts\" block is present: treat its calendar day differences as authoritative arithmetic from the user text;",
+    "   do not re-count those intervals differently. The block is not a corpus source and must not be cited as a document chunk.",
+    "   Eligibility thresholds, fee percentages, and caps still come only from Context sources.",
+    "   If the block lists a missing clock needed for the user's case, say so; do not invent dates.",
+    "   Do not block every question that lacks a purchase date — only when that clock is required for the decision.",
     "",
     `Allowed chunkIds: ${allowedIds.join(", ") || "(none)"}`,
   ].join("\n");
@@ -97,6 +126,7 @@ export function buildUserPrompt(
     standaloneQuestion?: string;
     unresolvedReferences?: readonly string[];
     applicabilitySummary?: ApplicabilitySummary;
+    computedTemporalFacts?: ComputedTemporalFacts;
   },
 ): string {
   const standalone = options?.standaloneQuestion?.trim();
@@ -115,7 +145,18 @@ export function buildUserPrompt(
   if (options?.applicabilitySummary?.promptLines.length) {
     lines.push("", ...options.applicabilitySummary.promptLines);
   }
-  lines.push("", "Context (sources):", formatContextForPrompt(contextChunks));
+  const temporalLines = options?.computedTemporalFacts
+    ? formatComputedTemporalFactsForPrompt(options.computedTemporalFacts)
+    : [];
+  if (temporalLines.length > 0) {
+    lines.push("", ...temporalLines);
+  }
+  // Prompt-only annotation: marks superseded sections without mutating citation text.
+  const promptChunks = annotateChunksForPartialUpdates(
+    contextChunks,
+    options?.applicabilitySummary,
+  );
+  lines.push("", "Context (sources):", formatContextForPrompt(promptChunks));
   return lines.join("\n");
 }
 
@@ -176,13 +217,22 @@ export function parseModelGenerationPayload(raw: string): ModelGenerationPayload
 export interface GenerateAnswerResult {
   payload: ModelGenerationPayload;
   rawText: string;
+  /** Echo of the requested model id (no silent substitution). */
+  modelRequested: string;
+  /** Provider-reported model id from the successful response. */
+  modelReturned: string;
+  /** @deprecated Prefer modelReturned; kept as alias for callers expecting `model`. */
   model: string;
+  samplingProfile: ChatCompletionSamplingProfile;
+  reasoningEffortSent?: ReasoningEffort;
   usage?: {
     promptTokens?: number;
     completionTokens?: number;
     totalTokens?: number;
     /** Present when the provider reports cached prompt tokens. */
     cachedInputTokens?: number;
+    /** Reasoning tokens when the provider reports them. */
+    reasoningTokens?: number;
   };
   latencyMs: number;
 }
@@ -193,26 +243,34 @@ export async function generateGroundedAnswer(options: {
   standaloneQuestion?: string;
   unresolvedReferences?: readonly string[];
   applicabilitySummary?: ApplicabilitySummary;
+  computedTemporalFacts?: ComputedTemporalFacts;
   model?: string;
   apiKey?: string;
   signal?: AbortSignal;
+  /** Override reasoning effort for reasoning-family models only. */
+  reasoningEffort?: ReasoningEffort;
 }): Promise<GenerateAnswerResult> {
-  const model = options.model ?? getGenerationModel();
+  const modelRequested = options.model ?? getGenerationModel();
   const apiKey = options.apiKey ?? getOpenAiApiKey({ required: true });
   const client = new OpenAI({ apiKey });
   const allowedIds = options.contextChunks.map((c) => c.chunkId);
+  const samplingProfile = chatCompletionSamplingForModel(modelRequested, {
+    reasoningEffort: options.reasoningEffort,
+  });
+  const samplingFields = toChatCompletionRequestFields(samplingProfile);
 
   if (options.signal?.aborted) {
     throw new DOMException("Request aborted", "AbortError");
   }
 
   const started = performance.now();
-  let response;
+  let response: ChatCompletion;
   try {
-    response = await client.chat.completions.create(
+    // Non-streaming create; cast away the Stream | ChatCompletion union.
+    response = (await client.chat.completions.create(
       {
-        model,
-        temperature: 0,
+        model: modelRequested,
+        ...samplingFields,
         response_format: {
           type: "json_schema",
           json_schema: {
@@ -229,12 +287,13 @@ export async function generateGroundedAnswer(options: {
               standaloneQuestion: options.standaloneQuestion,
               unresolvedReferences: options.unresolvedReferences,
               applicabilitySummary: options.applicabilitySummary,
+              computedTemporalFacts: options.computedTemporalFacts,
             }),
           },
         ],
-      },
+      } as Parameters<typeof client.chat.completions.create>[0],
       options.signal ? { signal: options.signal } : undefined,
-    );
+    )) as ChatCompletion;
   } catch (error) {
     if (error instanceof DOMException && error.name === "AbortError") throw error;
     const message = error instanceof Error ? error.message : String(error);
@@ -247,17 +306,29 @@ export async function generateGroundedAnswer(options: {
     throw new GenerationSystemError("Generation API returned empty content.");
   }
 
+  const modelReturned = response.model?.trim() || modelRequested;
   const payload = parseModelGenerationPayload(rawText);
+  const reasoningEffortSent =
+    samplingProfile.kind === "reasoning_family"
+      ? samplingProfile.reasoningEffort
+      : undefined;
+
   return {
     payload,
     rawText,
-    model,
+    modelRequested,
+    modelReturned,
+    model: modelReturned,
+    samplingProfile,
+    reasoningEffortSent,
     usage: {
       promptTokens: response.usage?.prompt_tokens,
       completionTokens: response.usage?.completion_tokens,
       totalTokens: response.usage?.total_tokens,
       cachedInputTokens:
         response.usage?.prompt_tokens_details?.cached_tokens,
+      reasoningTokens:
+        response.usage?.completion_tokens_details?.reasoning_tokens,
     },
     latencyMs,
   };

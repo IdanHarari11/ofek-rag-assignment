@@ -1,7 +1,13 @@
 import OpenAI from "openai";
+import type { ChatCompletion } from "openai/resources/chat/completions";
 import { formatContextForPrompt } from "../context-builder";
+import { annotateChunksForPartialUpdates } from "../document-relations/annotate-partial-updates";
 import { getOpenAiApiKey, loadEnv } from "../env";
 import { getGenerationModel } from "../generate";
+import {
+  chatCompletionSamplingForModel,
+  toChatCompletionRequestFields,
+} from "../model-request-params";
 import { formatHistoryForPrompt } from "../history";
 import { AnswerReviewSystemError, type ReviewCallResult, type ReviewDraftInput } from "./types";
 import { parseReviewResultPayload } from "./validate-review";
@@ -133,7 +139,12 @@ export function buildReviewUserPrompt(input: ReviewDraftInput): string {
     `Allowed chunkIds in findings: ${allowedIds.join(", ") || "(none)"}`,
     "",
     "Context (this turn's sources only):",
-    formatContextForPrompt(input.contextChunks),
+    formatContextForPrompt(
+      annotateChunksForPartialUpdates(
+        input.contextChunks,
+        input.applicabilitySummary,
+      ),
+    ),
   );
 
   return lines.join("\n");
@@ -151,18 +162,21 @@ export async function reviewAnswerDraft(
   const model = options.model ?? getGenerationModel();
   const apiKey = options.apiKey ?? getOpenAiApiKey({ required: true });
   const client = new OpenAI({ apiKey });
+  const samplingFields = toChatCompletionRequestFields(
+    chatCompletionSamplingForModel(model),
+  );
 
   if (options.signal?.aborted) {
     throw new DOMException("Request aborted", "AbortError");
   }
 
   const started = performance.now();
-  let response;
+  let response: ChatCompletion;
   try {
-    response = await client.chat.completions.create(
+    response = (await client.chat.completions.create(
       {
         model,
-        temperature: 0,
+        ...samplingFields,
         response_format: {
           type: "json_schema",
           json_schema: {
@@ -175,9 +189,9 @@ export async function reviewAnswerDraft(
           { role: "system", content: REVIEW_SYSTEM_PROMPT },
           { role: "user", content: buildReviewUserPrompt(input) },
         ],
-      },
+      } as Parameters<typeof client.chat.completions.create>[0],
       options.signal ? { signal: options.signal } : undefined,
-    );
+    )) as ChatCompletion;
   } catch (error) {
     if (error instanceof DOMException && error.name === "AbortError") throw error;
     const message = error instanceof Error ? error.message : String(error);

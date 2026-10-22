@@ -133,6 +133,12 @@ export async function GET(): Promise<Response> {
   await connection();
   loadEnv();
   return NextResponse.json({
+    /**
+     * Configured model from env — not proof a call succeeded.
+     * Prefer AskDisplayResponse.generationModel after a successful ask.
+     */
+    configuredGenerationModel: getGenerationModel(),
+    /** @deprecated Alias of configuredGenerationModel (unverified). */
     generationModel: getGenerationModel(),
     maxQuestionChars: ASK_MAX_QUESTION_CHARS,
     retrievalModeDefault: "hybrid",

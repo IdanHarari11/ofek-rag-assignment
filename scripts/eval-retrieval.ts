@@ -33,15 +33,18 @@ async function main(): Promise<void> {
     throw error;
   }
 
-  console.log("Running retrieval eval on dev_set (question text only → retrieve)...");
+  console.log(
+    "Running retrieval eval on dev_set (mode=vector by default — not hybrid)...",
+  );
   const report = await runRetrievalEval({
     devSetPath: DEV_SET,
     topK: 5,
+    mode: "vector",
   });
   const { jsonPath, mdPath } = await writeRetrievalEvalReports(report);
 
   console.log(
-    `scored=${report.scoredQuestionCount}/${report.questionCount} (N/A refs: ${report.noReferenceQuestionIds.join(", ") || "none"})`,
+    `mode=${report.mode} scored=${report.scoredQuestionCount}/${report.questionCount} (N/A refs: ${report.noReferenceQuestionIds.join(", ") || "none"})`,
   );
   console.log(
     `avg R@1=${report.averages.documentRecallAt1?.toFixed(3) ?? "N/A"} ` +

@@ -124,6 +124,7 @@ export function buildEnrichedGenerationContext(
     options.manifest,
     facts,
     presentDocs,
+    options.questionTexts,
   );
   const activatedRelationships = collectActivatedRelationships(
     options.manifest,

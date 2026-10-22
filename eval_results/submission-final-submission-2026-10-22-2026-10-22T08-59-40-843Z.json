@@ -1,0 +1,81 @@
+{
+  "generatedAt": "2026-10-22T09:01:40.026Z",
+  "freezeLabel": "submission-2026-10-22",
+  "note": "Final submission evaluation on frozen Hybrid config. Extended set was exposed during development — not a new holdout. Quality dimension labels in the markdown report are AI-assisted where marked.",
+  "config": {
+    "promptBundleId": "prompt-939569b5812dce49",
+    "codeVersion": {
+      "value": "b50a30c",
+      "localChangesUnknown": true
+    },
+    "generationModel": "gpt-4.1-mini",
+    "embeddingModel": "text-embedding-3-small",
+    "embeddingDimensions": 1536,
+    "answerReviewEnabled": false,
+    "retrievalMode": "hybrid",
+    "topK": 5,
+    "contextBudgetTokens": 3500,
+    "historyMaxTurns": 6,
+    "historyMaxTotalChars": 6000,
+    "chunksInputHash": "cf3e80be3731404fc22ee4504b8a7a641504de5f43b11982b310660ae410a4f3",
+    "embeddingTextHash": "7a261a23b62d3261ee6c44e3bd28ca38f0b8165040be72e3547c5848cec57043",
+    "chunkCount": 49,
+    "features": [
+      "hybrid+retrieval-aliases",
+      "document-relations",
+      "multi-scenario-keep-versions",
+      "computed-temporal-facts",
+      "conversational-rewrite",
+      "answerParts+citations",
+      "answer-review-off"
+    ]
+  },
+  "runs": [
+    {
+      "id": "hybrid-comparison",
+      "ok": true,
+      "retries": 0,
+      "durationMs": 4468.9924169999995,
+      "pathJson": "/Users/idanharari/Projects/mint-rag-assignment/eval_results/hybrid-comparison-submission-2026-10-22-2026-10-22T08-59-40-843Z.json",
+      "pathMd": "/Users/idanharari/Projects/mint-rag-assignment/eval_results/hybrid-comparison-submission-2026-10-22-2026-10-22T08-59-40-843Z.md"
+    },
+    {
+      "id": "ask-dev15",
+      "ok": true,
+      "retries": 0,
+      "durationMs": 29558.781833,
+      "pathJson": "/Users/idanharari/Projects/mint-rag-assignment/eval_results/ask-eval-submission-2026-10-22.json",
+      "pathMd": "/Users/idanharari/Projects/mint-rag-assignment/eval_results/ask-eval-submission-2026-10-22.md"
+    },
+    {
+      "id": "ask-extended20",
+      "ok": true,
+      "retries": 0,
+      "durationMs": 40858.040667,
+      "pathJson": "/Users/idanharari/Projects/mint-rag-assignment/eval_results/ask-eval-extended-submission-2026-10-22-2026-10-22T08-59-40-843Z.json",
+      "pathMd": "/Users/idanharari/Projects/mint-rag-assignment/eval_results/ask-eval-extended-submission-2026-10-22-2026-10-22T08-59-40-843Z.md"
+    },
+    {
+      "id": "conversation",
+      "ok": true,
+      "retries": 0,
+      "durationMs": 22126.822499999995,
+      "pathJson": "/Users/idanharari/Projects/mint-rag-assignment/eval_results/conversation-eval-submission-2026-10-22-2026-10-22T08-59-40-843Z.json",
+      "pathMd": "/Users/idanharari/Projects/mint-rag-assignment/eval_results/conversation-eval-submission-2026-10-22-2026-10-22T08-59-40-843Z.md"
+    },
+    {
+      "id": "manual-fail",
+      "ok": true,
+      "retries": 0,
+      "durationMs": 22167.162666999997,
+      "pathJson": "/Users/idanharari/Projects/mint-rag-assignment/eval_results/manual-fail-submission-2026-10-22-2026-10-22T08-59-40-843Z.json",
+      "pathMd": "/Users/idanharari/Projects/mint-rag-assignment/eval_results/manual-fail-submission-2026-10-22-2026-10-22T08-59-40-843Z.md"
+    }
+  ],
+  "artifactPaths": {
+    "askDev15": "/Users/idanharari/Projects/mint-rag-assignment/eval_results/ask-eval-submission-2026-10-22.json",
+    "askExtended20": "/Users/idanharari/Projects/mint-rag-assignment/eval_results/ask-eval-extended-submission-2026-10-22-2026-10-22T08-59-40-843Z.json",
+    "conversation": "/Users/idanharari/Projects/mint-rag-assignment/eval_results/conversation-eval-submission-2026-10-22-2026-10-22T08-59-40-843Z.json",
+    "manualFail": "/Users/idanharari/Projects/mint-rag-assignment/eval_results/manual-fail-submission-2026-10-22-2026-10-22T08-59-40-843Z.json"
+  }
+}

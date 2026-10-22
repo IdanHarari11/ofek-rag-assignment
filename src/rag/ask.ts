@@ -5,6 +5,10 @@ import {
 } from "./document-relations";
 import { generateGroundedAnswer, getGenerationModel } from "./generate";
 import {
+  buildComputedTemporalFacts,
+  userTextsForTemporalExtraction,
+} from "./temporal";
+import {
   applyHistoryWindow,
   HISTORY_MAX_TOTAL_CHARS,
   HISTORY_MAX_TURNS,
@@ -228,6 +232,16 @@ export async function ask(
 
     throwIfAborted(signal);
 
+    const computedTemporalFacts = buildComputedTemporalFacts(
+      userTextsForTemporalExtraction({ question: trimmed, history }),
+    );
+    const temporalForPrompt =
+      computedTemporalFacts.events.length > 0 ||
+      computedTemporalFacts.daySpans.length > 0 ||
+      computedTemporalFacts.missingOrUncertain.length > 0
+        ? computedTemporalFacts
+        : undefined;
+
     const generateFn = deps.generate ?? generateGroundedAnswer;
     let generation;
     const generationStarted = performance.now();
@@ -238,6 +252,7 @@ export async function ask(
         unresolvedReferences,
         contextChunks: context.contextChunks,
         applicabilitySummary: context.applicability,
+        computedTemporalFacts: temporalForPrompt,
         model,
         signal,
       });
@@ -411,6 +426,7 @@ export async function ask(
         linkedChunkIds: context.linkedChunkIds,
         enrichmentOmissions: context.enrichmentOmissions,
         hybridTopKChunkIds: context.hybridTopKChunkIds,
+        computedTemporalFacts: temporalForPrompt,
       },
       validation: {
         structureOk: true,
@@ -418,7 +434,7 @@ export async function ask(
         invalidCitationIds: assembled.invalidCitationIds,
       },
       retrievalMode: retrieval.mode,
-      generationModel: generation.model,
+      generationModel: generation.modelReturned,
       embeddingModel: retrieval.model,
       usage: {
         embeddingPromptTokens: retrieval.usage?.promptTokens,

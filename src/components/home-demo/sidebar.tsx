@@ -7,6 +7,10 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 import { SidebarNavigationContext } from "./sidebar-context";
 import { threadListItemComponents } from "./thread-list-item";
+import {
+  getCommandShortcutLabels,
+  useIsApplePlatform,
+} from "./thread-shortcuts";
 
 const sidebarLabelClass =
   "text-muted-foreground mt-5 mb-1 px-2 text-xs font-medium";
@@ -25,6 +29,10 @@ export function Sidebar({
   onNavigate?: (() => void) | undefined;
 }): ReactNode {
   const navigation = useMemo(() => ({ onNavigate }), [onNavigate]);
+  const newThreadShortcut = getCommandShortcutLabels(
+    "new",
+    useIsApplePlatform(),
+  );
 
   return (
     <SidebarNavigationContext.Provider value={navigation}>
@@ -34,8 +42,8 @@ export function Sidebar({
             <button
               type="button"
               onClick={onNavigate}
-              title="שיחה חדשה (Alt+Shift+O)"
-              aria-keyshortcuts="Alt+Shift+O"
+              title={`שיחה חדשה (${newThreadShortcut.display})`}
+              aria-keyshortcuts={newThreadShortcut.aria}
               className="border-foreground/10 bg-background hover:border-foreground/25 rounded-control flex h-8 w-full shrink-0 items-center gap-2 border px-2.5 text-[13px] transition-colors"
             >
               <PlusIcon className="size-3.5" />

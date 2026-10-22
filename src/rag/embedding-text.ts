@@ -1,10 +1,12 @@
 import type { Chunk } from "../chunking/types";
 import { normalizeWhitespace } from "../ingestion/utils";
+import { retrievalAliasesForDocument } from "./retrieval-aliases";
 
 /**
- * Build the exact string sent to the embedding model.
+ * Build the exact string sent to the embedding model / BM25 corpus.
  *
- * Included: document title, section path, and chunk body content.
+ * Included: document title, section path, chunk body content, and optional
+ * corpus-grounded retrieval aliases (search only — not citation text).
  * Excluded: chunkId, documentId, hashes, block ids, pages, warnings,
  * token estimates, and other technical metadata.
  */
@@ -18,6 +20,14 @@ export function buildEmbeddingText(chunk: Chunk): string {
 
   const body = extractSearchableBody(chunk.text, title, section);
   if (body) lines.push(body);
+
+  const aliases = retrievalAliasesForDocument(chunk.metadata.documentId);
+  if (aliases.length > 0) {
+    lines.push("Retrieval aliases (search only):");
+    for (const alias of aliases) {
+      lines.push(alias);
+    }
+  }
 
   return normalizeWhitespace(lines.join("\n"));
 }

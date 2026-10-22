@@ -1,4 +1,5 @@
 import { governingPolicyDate, isOnOrAfter } from "./dates";
+import { isMultiScenarioPolicyComparison } from "./multi-scenario";
 import type {
   ActivatedRelationship,
   ApplicabilitySummary,
@@ -11,11 +12,15 @@ import type {
 /**
  * Decide which document versions apply given explicit user temporal facts.
  * Never uses event-only dates to pick issue/renewal-gated versions.
+ *
+ * @param questionTexts — optional user/standalone texts; when a multi-scenario
+ * comparison is detected, car comprehensive keeps both versions (no demotion).
  */
 export function resolveVersionDecisions(
   manifest: DocumentRelationsManifest,
   facts: UserTemporalFacts,
   relevantDocumentIds: ReadonlySet<string>,
+  questionTexts: readonly string[] = [],
 ): VersionDecision[] {
   const byFamily = new Map<string, ManifestDocument[]>();
   for (const doc of manifest.documents) {
@@ -32,9 +37,11 @@ export function resolveVersionDecisions(
 
   const decisions: VersionDecision[] = [];
 
+  const multiScenario = isMultiScenarioPolicyComparison(questionTexts);
+
   for (const [family, docs] of byFamily) {
     if (family === "car_comprehensive_policy") {
-      decisions.push(resolveCarComprehensive(docs, facts));
+      decisions.push(resolveCarComprehensive(docs, facts, multiScenario));
       continue;
     }
     if (family === "cancellation_procedure") {
@@ -84,6 +91,7 @@ function familyTouched(
 function resolveCarComprehensive(
   docs: ManifestDocument[],
   facts: UserTemporalFacts,
+  multiScenarioComparison: boolean,
 ): VersionDecision {
   const v2024 = docs.find((d) => d.versionLabel === "2024");
   const v2026 = docs.find((d) => d.versionLabel === "2026");
@@ -91,6 +99,19 @@ function resolveCarComprehensive(
     d.evidence.flatMap((e) => e.chunkIds),
   );
   const alternatives = docs.map((d) => d.documentId);
+
+  // Comparison across independent issue/renewal scenarios: do not pick one
+  // global version (that would demote the other from generation context).
+  if (multiScenarioComparison) {
+    return {
+      documentFamily: "car_comprehensive_policy",
+      status: "unresolved",
+      alternativeDocumentIds: alternatives,
+      reasonCode: "multi_scenario_comparison_keep_versions",
+      evidenceChunkIds,
+    };
+  }
+
   const governing = governingPolicyDate(facts);
 
   if (!governing) {
@@ -244,12 +265,36 @@ export function buildApplicabilitySummary(options: {
   for (const d of options.decisions) {
     if (d.status === "unresolved") {
       unresolvedNotes.push(`${d.documentFamily}:${d.reasonCode}`);
-      promptLines.push(
-        `- Family ${d.documentFamily}: cannot decide version (${d.reasonCode}). Alternatives: ${d.alternativeDocumentIds.join(", ") || "(none)"}. Evidence: ${d.evidenceChunkIds.join(", ")}`,
-      );
+      if (d.reasonCode === "multi_scenario_comparison_keep_versions") {
+        promptLines.push(
+          `- Family ${d.documentFamily}: multi-scenario comparison — keep all listed versions in context and apply each case's own issue/renewal date (${d.reasonCode}). Versions: ${d.alternativeDocumentIds.join(", ") || "(none)"}. Do not apply one case's version to the others. Evidence: ${d.evidenceChunkIds.join(", ")}`,
+        );
+      } else {
+        promptLines.push(
+          `- Family ${d.documentFamily}: cannot decide version (${d.reasonCode}). Alternatives: ${d.alternativeDocumentIds.join(", ") || "(none)"}. Evidence: ${d.evidenceChunkIds.join(", ")}`,
+        );
+      }
     } else if (d.status === "partial_update") {
+      const sectionNames = [
+        ...new Set(
+          options.activatedRelationships
+            .filter(
+              (r) =>
+                (r.type === "partially_updates" ||
+                  r.type === "partially_updated_by") &&
+                (r.fromDocumentId === d.selectedDocumentId ||
+                  r.toDocumentId === d.selectedDocumentId ||
+                  d.alternativeDocumentIds.includes(r.fromDocumentId) ||
+                  d.alternativeDocumentIds.includes(r.toDocumentId)),
+            )
+            .flatMap((r) => r.affectedSections ?? []),
+        ),
+      ];
+      const sectionNote = sectionNames.length
+        ? ` Replaced section(s): ${sectionNames.join("; ")}.`
+        : "";
       promptLines.push(
-        `- Family ${d.documentFamily}: partial update — use ${d.selectedDocumentId} for updated sections, keep ${d.alternativeDocumentIds.join(", ")} for sections not replaced (${d.reasonCode}). Evidence: ${d.evidenceChunkIds.join(", ")}`,
+        `- Family ${d.documentFamily}: partial update — use ${d.selectedDocumentId} for replaced sections; keep ${d.alternativeDocumentIds.join(", ")} for unreplaced sections (${d.reasonCode}).${sectionNote} Do not apply superseded section wording as the current rule. Evidence: ${d.evidenceChunkIds.join(", ")}`,
       );
     } else if (d.status === "selected") {
       promptLines.push(
