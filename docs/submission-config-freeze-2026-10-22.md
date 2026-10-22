@@ -10,11 +10,11 @@ Secrets are never recorded here. API keys stay in the environment only.
 | --- | --- |
 | Freeze label | `submission-2026-10-22` |
 | `promptBundleId` | `prompt-939569b5812dce49` |
-| Git `HEAD` at freeze drafting | `b50a30c` (pre-submission commit; working tree dirty until submission commit) |
-| Working tree | Dirty until local submission commit — traces may report `localChangesUnknown: true` |
+| Git submission commit (clean-install verified) | `1679625` (`167962594febd2a6443848ebc29ba904f1285ea6`) |
+| Working tree after commit | Clean except ignored/local `.planning/` |
 | Freeze time (UTC) | 2026-10-22 |
 
-After the local submission commit, replace the commit row in the **final evaluation report** with the committed SHA that was clean-install verified.
+Clean-install path verified from `git archive 1679625` → `pnpm install --frozen-lockfile` → `pnpm prepare:rag` (hashes match) → `pnpm build` → CLI `ask` + `POST /api/ask`.
 
 ## Models
 

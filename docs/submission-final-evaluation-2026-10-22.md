@@ -13,6 +13,7 @@
 | Suite runner | `pnpm eval:submission-final` |
 | Bundle JSON | `eval_results/submission-final-submission-2026-10-22-2026-10-22T08-59-40-843Z.json` |
 | API failures / retries | **none** (5/5 suite stages ok) |
+| Clean-install commit | `1679625` (local only; not pushed) |
 
 This is **not** production software. **`answered` ≠ pass.** Hybrid **R@5 / MRR are retrieval metrics only**, not answer accuracy. Quality labels below marked **AI-assisted** were assigned by the coding agent from this run’s answers and corpus notes — not independent human adjudication and not verified ground truth.
 
