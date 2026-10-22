@@ -41,8 +41,6 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env / secrets — never commit keys
-.env
-.env.*
 !.env.example
 
 # local planning scratch (not part of submission)
@@ -54,3 +52,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat
+config.bat

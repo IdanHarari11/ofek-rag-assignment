@@ -4,6 +4,8 @@ AI assistant for fictional insurance call-center agents: free-form Hebrew questi
 
 **This is a homework / demo system, not production software.** Answers are not verified ground truth; citation checks are structural (`chunkId`), not semantic proof.
 
+**Live demo:** [https://ofek-rag-assignment.vercel.app](https://ofek-rag-assignment.vercel.app) (requires a valid server-side `OPENAI_API_KEY` on Vercel).
+
 **Requires Node.js ≥ 22** and **pnpm** (lockfile verified with pnpm 12.x; see `package.json` `engines` / `packageManager`). Full install notes: [`docs/INSTALL.md`](docs/INSTALL.md).
 
 ## Quick start
