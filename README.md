@@ -4,12 +4,14 @@ AI assistant for fictional insurance call-center agents: free-form Hebrew questi
 
 **This is a homework / demo system, not production software.** Answers are not verified ground truth; citation checks are structural (`chunkId`), not semantic proof.
 
+**Requires Node.js ≥ 22** and **pnpm** (lockfile verified with pnpm 12.x; see `package.json` `engines` / `packageManager`). Full install notes: [`docs/INSTALL.md`](docs/INSTALL.md).
+
 ## Quick start
 
 ```bash
 pnpm install
-cp .env.example .env   # set OPENAI_API_KEY
-pnpm prepare:rag       # ingest → chunk → index (first time)
+cp .env.example .env   # set OPENAI_API_KEY (server-only; never commit .env)
+pnpm prepare:rag       # ingest → chunk → index (first time; rebuilds local data/)
 pnpm dev               # http://localhost:3000
 ```
 
@@ -17,7 +19,7 @@ In the UI, try: «מה שעות הפעילות של מוקד שירות הלקו
 
 CLI: `pnpm ask -- "…"`
 
-Full install path: [`docs/INSTALL.md`](docs/INSTALL.md) · Demo script: [`docs/DEMO-SCRIPT.md`](docs/DEMO-SCRIPT.md)
+UI shell adapted from [assistant-ui](https://github.com/assistant-ui/assistant-ui) HomeDemo — attribution and MIT license: [`docs/ATTRIBUTION.md`](docs/ATTRIBUTION.md). Demo script: [`docs/DEMO-SCRIPT.md`](docs/DEMO-SCRIPT.md).
 
 ## Architecture (short)
 
@@ -75,7 +77,7 @@ Dev-set (14 scored questions), post search-only retrieval aliases (2026-10-22):
 
 Pre-alias Hybrid baseline (2026-10-21): R@5=0.929, MRR=0.732 — same R@5 after aliases. Alignment notes: `docs/retrieval-metrics-alignment-2026-10-22.md`.
 
-**R@5 / MRR** = whether reference **documents** appear in top‑K **chunks** — not answer correctness.
+**R@5 / MRR** = whether reference **documents** appear in top‑K **chunks** on **14** scored 15-dev questions (D04 N/A). They are **retrieval** metrics only — **not** “93% answer accuracy” and not claim-support quality. End-to-end answer judgments: [`docs/submission-final-evaluation-2026-10-22.md`](docs/submission-final-evaluation-2026-10-22.md).
 
 Search-only **retrieval aliases** (Hebrew bridges for EN FAQ / home cash ceilings) live in `embeddingText` only; cited source cards show chunk body text, never aliases.
 

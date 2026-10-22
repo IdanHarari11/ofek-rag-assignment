@@ -14,6 +14,17 @@ Do **not** pool scores across groups as if they were one run. The extended 20 se
 
 ## Documented failures and limits
 
+### Manual continuous chat observation (not an automated eval)
+
+Informal **manual** 8-turn chat on the submission UI (Hybrid, `gpt-4.1-mini`, review off). This is a **human observation only** — not an automated eval score and **not** a general accuracy metric. Citations were **not** audited in this pass. No requestIds/traces retained here.
+
+- **6 / 8** turns: content judged adequate for the ask.
+- **1 / 8** partial: clarification asked about insurance type that the user had already stated.
+- **1 / 8** failed: correcting the issue date from April 2026 to February 2026 (no renewal) returned `insufficient_evidence`.
+- Re-asking the same case in a **full standalone** wording then returned **1,850 ₪** as expected for non-network garage under the applicable version.
+
+Related automated probes (multi-scenario / rewrite correction) live in the final evaluation report; this note documents a separate live multi-turn friction point.
+
 ### D05 — ambiguity not always → clarification
 
 - Question: «מה ההשתתפות העצמית?» without product/event.
